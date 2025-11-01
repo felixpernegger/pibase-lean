@@ -18,6 +18,11 @@ def PointFinite (f : ι → Set X) :=
 def IsCozeroSet (A : Set X) : Prop :=
   ∃ f : X → ℝ, Continuous f ∧ A = f ⁻¹' {(0 : ℝ)}
 
+def IsSigmaLocallyFinite (A : Set (Set X)) : Prop :=
+  0 = 0
+
+#check LocallyFinite
+
 end AdditionalDefs
 end PiBase
 end Topology
