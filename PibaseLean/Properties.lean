@@ -68,7 +68,7 @@ class SemiregularSpace (X : Type u) [TopologicalSpace X] : Prop where
 /-19. Countably compact -/
 class CountablyCompactSpace (X : Type u) [TopologicalSpace X] : Prop where
   countablyCompact : ∀ {ι : Type v} (U : ι → Set X),
-    (∀ i, IsOpen (U i)) → (X = ⋃ i, U i) → ∃ t : Set ι, Countable t ∧ X = ⋃ i ∈ t, U i
+    (∀ i, IsOpen (U i)) → (X = ⋃ i, U i) → ∃ t : Set ι, Countable t ∧ Set.univ ⊆ ⋃ i ∈ t, U i
 
 /-20. Sequentially compact -/
 #check SeqCompactSpace
