@@ -67,7 +67,7 @@ class SemiregularSpace (X : Type u) [TopologicalSpace X] : Prop where
 
 /-19. Countably compact -/
 class CountablyCompactSpace (X : Type u) [TopologicalSpace X] : Prop where
-  p19 : ∀ {ι : Type v} (U : ι → Set X),
+  countablyCompact : ∀ {ι : Type v} (U : ι → Set X),
     (∀ i, IsOpen (U i)) → (X = ⋃ i, U i) → ∃ t : Set ι, Countable t ∧ X = ⋃ i ∈ t, U i
 
 /-20. Sequentially compact -/
@@ -87,7 +87,7 @@ class WeaklyLocallyCompact (X : Type u) [TopologicalSpace X] : Prop where
 
 /-24. Locally relatively compact -/
 class LocallyRelativelyCompact (X : Type u) [TopologicalSpace X] : Prop where
-  p24 : ∀ x : X, ∃ B : Set (Set X), generate s = 𝓝 x ∧ ∀ s ∈ B, IsCompact (closure s)
+  p24 : ∀ x : X, ∃ B : Set (Set X), generate B = 𝓝 x ∧ ∀ s ∈ B, IsCompact (closure s)
 
 /-25. Exhaustlible by compacts -/
 class ExhaustibleByCompacts (X : Type u) [TopologicalSpace X] : Prop

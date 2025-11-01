@@ -1,9 +1,11 @@
 import Mathlib
 import PibaseLean.Properties
 
-universe u v
-
 namespace PiBase
+
+
+
+open Topology TopologicalSpace
 
 /-- T₀ -/
 abbrev P1 := T0Space
@@ -59,8 +61,10 @@ abbrev P17 := SigmaCompactSpace
 /-- Lindelöf -/
 abbrev P18 := LindelofSpace
 
+/-
 /-- Countably compact -/
 abbrev P19 := CountablyCompactSpace
+-/
 
 /-- Sequentially compact -/
 abbrev P20 := SeqCompactSpace
@@ -95,6 +99,7 @@ abbrev P29 := CountableChainCondition
 /-- Paracompact -/
 abbrev P30 := ParacompactSpace
 
+/-
 /-- MetacompactSpace -/
 abbrev P31 := MetacompactSpace
 
@@ -103,6 +108,7 @@ abbrev P32 := CountablyParacompactSpace
 
 /-- Fully normal -/
 abbrev P33 := CountablyMetacompactSpace
+-/
 
 /-- Fully normal -/
 abbrev P34 := FullyNormalSpace
@@ -147,7 +153,7 @@ abbrev P46 := TotallyPathDisconnectedSpace
 abbrev P47 := TotallyDisconnectedSpace
 
 /-- Totally seperated -/
-abbrev P48 := TotallySeperatedSpace
+abbrev P48 := TotallySeparatedSpace
 
 /-- Extremally disconnected -/
 abbrev P49 := ExtremallyDisconnected
