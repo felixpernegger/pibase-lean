@@ -5,7 +5,7 @@ universe u v
 
 namespace PiBase
 
-variable {X : Type*} {Y : Type*} [TopologicalSpace X]
+variable (X : Type*) {Y : Type*} [TopologicalSpace X]
 
 open Function Set Filter Topology TopologicalSpace Topology.PiBase.AdditionalDefs
 
