@@ -9,199 +9,206 @@ variable {X : Type*} {Y : Type*} [TopologicalSpace X]
 
 open Function Set Filter Topology TopologicalSpace Topology.PiBase.AdditionalDefs
 
-/-- T₀ -/
-abbrev P1 (X : Type u) [TopologicalSpace X] : Prop := T0Space X
+/-1. T₀ -/
+#check T0Space X
 
-/-- T₁ -/
-abbrev P2 (X : Type u) [TopologicalSpace X] : Prop := T1Space X
+/-2. T₁ -/
+#check T1Space
 
-/-- T₂ -/
-abbrev P3 (X : Type u) [TopologicalSpace X] : Prop := T2Space X
+/-3. T₂ -/
+#check T2Space
 
-/-- T25 -/
-abbrev P4 (X : Type u) [TopologicalSpace X] : Prop := T25Space X
+/-4. T₃ -/
+#check T25Space
 
-/-- T₃ -/
-abbrev P5 (X : Type u) [TopologicalSpace X] : Prop := T3Space X
+/-5. T₃ -/
+#check T3Space
 
-/-- T35 -/
-abbrev P6 (X : Type u) [TopologicalSpace X] : Prop := T35Space X
+/-6. T35 -/
+#check T35Space
 
-/-- T₄ -/
-abbrev P7 (X : Type u) [TopologicalSpace X] : Prop := T4Space X
+/-7. T₄ -/
+#check T4Space
 
-/-- T₅ -/
-abbrev P8 (X : Type u) [TopologicalSpace X] : Prop := T5Space X
+/-8. T₅ -/
+#check T5Space
 
-/-- Functionally Hausdorff -/
-class P9 (X : Type u) [TopologicalSpace X] : Prop where
+/-9. Functionally Hausdorff -/
+class CompletelyT2Space (X : Type u) [TopologicalSpace X] : Prop where
   p9 : Pairwise fun x y : X ↦ ∃ f : Icc (0 : ℝ) 1 → X, Continuous f ∧ f 0 = x ∧ f 1 = y
 
-/-- Semiregular -/
-class P10 (X : Type u) [TopologicalSpace X] : Prop where
+/-10. Semiregular -/
+class SemiregularSpace (X : Type u) [TopologicalSpace X] : Prop where
   p10 : ∃ B : Set (Set X), IsTopologicalBasis B ∧ ∀ s ∈ B, interior (closure s) = s
 
-/-- Regular -/
-abbrev P11 (X : Type u) [TopologicalSpace X] : Prop := RegularSpace X
+/-11. Regular -/
+#check RegularSpace
 
-/-- Completely regular -/
-abbrev P12 (X : Type u) [TopologicalSpace X] : Prop := CompletelyRegularSpace X
+/-12. Completely regular -/
+#check CompletelyRegularSpace
 
-/-- Normal -/
-abbrev P13 (X : Type u) [TopologicalSpace X] : Prop := NormalSpace X
+/-13. Normal -/
+#check NormalSpace
 
-/-- Completely normal -/
-abbrev P14 (X : Type u) [TopologicalSpace X] : Prop := CompletelyNormalSpace X
+/-14. Completely normal -/
+#check CompletelyNormalSpace
 
-/-- Perfectly normal -/
-abbrev P15 (X : Type u) [TopologicalSpace X] : Prop := PerfectlyNormalSpace X
+/-15. Perfectly normal -/
+#check PerfectlyNormalSpace
 
-/-- Compact -/
-abbrev P16 (X : Type u) [TopologicalSpace X] : Prop := CompactSpace X
+/-16. Compact -/
+#check CompactSpace
 
-/-- σ-compact -/
-abbrev P17 (X : Type u) [TopologicalSpace X] : Prop := SigmaCompactSpace X
+/-17. σ-compact -/
+#check SigmaCompactSpace
 
-/-- Lindelöf -/
-abbrev P18 (X : Type u) [TopologicalSpace X] : Prop := LindelofSpace X
+/-18. Lindelöf -/
+#check LindelofSpace
 
-/-- Countably compact -/
-class P19 (X : Type u) [TopologicalSpace X] : Prop where
+/-19. Countably compact -/
+class CountablyCompactSpace (X : Type u) [TopologicalSpace X] : Prop where
   p19 : ∀ {ι : Type v} (U : ι → Set X),
     (∀ i, IsOpen (U i)) → (X = ⋃ i, U i) → ∃ t : Set ι, Countable t ∧ X = ⋃ i ∈ t, U i
 
-/-- Sequentially compact -/
-abbrev P20 (X : Type u) [TopologicalSpace X] := SeqCompactSpace X
+/-20. Sequentially compact -/
+#check SeqCompactSpace
 
-/-- Weakly countably compact -/
-class P21 (X : Type u) [TopologicalSpace X] : Prop where
+/-21. Weakly countably compact -/
+class WeaklyCountablyCompact (X : Type u) [TopologicalSpace X] : Prop where
   p21 : ∀ Y : Set X, ¬ Y.Finite → ∃ x : X, ∀ s ∈ 𝓝 x, (s ∩ Yᶜ).Finite
 
-/-- Pseudocompact -/
-class P22 (X : Type u) [TopologicalSpace X] : Prop where
+/-22. Pseudocompact -/
+class Pseudocompact (X : Type u) [TopologicalSpace X] : Prop where
   p22 : ∀ (f : X → ℝ), Continuous f → Bornology.IsBounded (range f)
 
-/-- Weakly locally compact -/
-class P23 (X : Type u) [TopologicalSpace X] : Prop where
+/-23. Weakly locally compact -/
+class WeaklyLocallyCompact (X : Type u) [TopologicalSpace X] : Prop where
   p23 : ∀ (x : X), ∃ C ∈ 𝓝 x, IsCompact C
 
-/-- Locally relatively compact -/
-class P24 (X : Type u) [TopologicalSpace X] : Prop where
+/-24. Locally relatively compact -/
+class LocallyRelativelyCompact (X : Type u) [TopologicalSpace X] : Prop where
   p24 : ∀ x : X, ∃ B : Set (Set X), generate s = 𝓝 x ∧ ∀ s ∈ B, IsCompact (closure s)
 
-/-- Exhaustlible by compacts -/
-class P25 (X : Type u) [TopologicalSpace X] : Prop extends P17 X, P23 X
+/-25. Exhaustlible by compacts -/
+class ExhaustibleByCompacts (X : Type u) [TopologicalSpace X] : Prop
+  extends SigmaCompactSpace X, WeaklyLocallyCompact X
 
-/-- Separable -/
-abbrev P26 (X : Type u) [TopologicalSpace X] := SeparableSpace X
+/-26. Separable -/
+#check SeparableSpace
 
-/-- Second countable -/
-abbrev P27 (X : Type u) [TopologicalSpace X] := SecondCountableTopology X
+/-27. Second countable -/
+#check SecondCountableTopology
 
-/-- First countable -/
-abbrev P28 (X : Type u) [TopologicalSpace X] := FirstCountableTopology X
+/-28. First countable -/
+#check FirstCountableTopology
 
-/-- Countable chain condition -/
-class P29 (X : Type u) [TopologicalSpace X] : Prop where
+/-29. Countable chain condition -/
+class CountableChainCondition (X : Type u) [TopologicalSpace X] : Prop where
   p29 : ∀ (S : Set (Set X)), S.PairwiseDisjoint id → (∀ s ∈ S, IsOpen s) → Countable S
 
-/-- Paracompact -/
-abbrev P30 (X : Type u) [TopologicalSpace X] := ParacompactSpace X
+/-30. Paracompact -/
+#check ParacompactSpace
 
-/-- Metacompact -/
-class P31 (X : Type u) [TopologicalSpace X] : Prop where
+/-31. Metacompact -/
+class MetacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
   p31 :
     ∀ (α : Type v) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →
       ∃ (β : Type v) (t : β → Set X),
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ PointFinite t ∧ ∀ b, ∃ a, t b ⊆ s a
 
-/-- Countably paracompact -/
-class P32 (X : Type u) [TopologicalSpace X] : Prop where
+/-32. Countably paracompact -/
+class CountablyParacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
   p32 :
     ∀ (α : Type v) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →
       ∃ (β : Type v) (t : β → Set X), Countable β →
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ LocallyFinite t ∧ ∀ b, ∃ a, t b ⊆ s a
 
-/-- Countably metacompact -/
-class P33 (X : Type u) [TopologicalSpace X] : Prop where
+/-33. Countably metacompact -/
+class CountablyMetacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
   p33 :
     ∀ (α : Type v) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →
       ∃ (β : Type v) (t : β → Set X), Countable β →
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ PointFinite t ∧ ∀ b, ∃ a, t b ⊆ s a
 
-/-- Fully normal -/
-class P34 (X : Type u) [TopologicalSpace X] : Prop extends P30 X, P13 X
+/-34. Fully normal -/
+class FullyNormalSpace (X : Type u) [TopologicalSpace X] : Prop
+  extends ParacompactSpace X, NormalSpace X
 
-/-- Fully T₄ -/
-class P35 (X : Type u) [TopologicalSpace X] : Prop extends P2 X, P34 X
+/-35. Fully T₄ -/
+class FullyT4Space (X : Type u) [TopologicalSpace X] : Prop extends T1Space X, FullyNormalSpace X
 
-/-- Connected -/
-abbrev P36 (X : Type u) [TopologicalSpace X] := ConnectedSpace X
+/-36. Connected -/ --Attention! Mathlib requires the space to be nonempty, while π-Base does not.
+#check PreconnectedSpace
 
-/-- Path connected -/
-abbrev P37 (X : Type u) [TopologicalSpace X] := PathConnectedSpace X
+/-37. Path connected -/
+class PrePathConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
+  joined : ∀ x y : X, Joined x y
 
-/-- Injectively path connected -/
-class P38 (X : Type u) [TopologicalSpace X] : Prop where
+/-38. Injectively path connected -/
+class InjPrePathConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
   p38 : Pairwise fun x y : X ↦
     ∃ f : Icc (0 : ℝ) 1 → X, Continuous f ∧ Injective f ∧ f 0 = x ∧ f 1 = y
 
-/-- Hyperconnected -/
-class P39 (X : Type u) [TopologicalSpace X] : Prop where
+/-39. Hyperconnected -/
+class HyperconnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
   p39 : ∀ s v : Set X, IsOpen s → IsOpen v → (s ∩ v).Nonempty
 
-/-- Ultraconnected -/
-class P40 (X : Type u) [TopologicalSpace X] : Prop where
+/-40. Ultraconnected -/
+class UltraconnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
   p40 : ∀ s v : Set X, IsClosed s → IsClosed v → (s ∩ v).Nonempty
 
-/-- Locally conneced -/
-abbrev P41 (X : Type u) [TopologicalSpace X] : Prop := LocallyConnectedSpace X
+/-41. Locally conneced -/ --Again difference between mathlib!
+class LocallyPreconnectedSpace (α : Type*) [TopologicalSpace α] : Prop where
+  open_connected_basis : ∀ x, (𝓝 x).HasBasis (fun s : Set α => IsOpen s ∧ x ∈ s ∧ IsConnected s) id
 
-/-- Locally path conneced -/
-class P42 (X : Type u) [TopologicalSpace X] : Prop where
-  p42 : ∀ x : X, ∃ s ∈ 𝓝 x, P37 s
+/-Locally path-connected-/
+class LocallyPrePathConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p42 : ∀ x : X, ∃ s ∈ 𝓝 x, PrePathConnectedSpace s
 
-/-- Locally injectively path conneced -/
-class P43 (X : Type u) [TopologicalSpace X] : Prop where
-  p43 : ∀ x : X, ∃ s ∈ 𝓝 x, P38 s
+/-43. Locally injectively path conneced -/
+class LocallyInjPrePathConnected (X : Type u) [TopologicalSpace X] : Prop where
+  p43 : ∀ x : X, ∃ s ∈ 𝓝 x, InjPrePathConnectedSpace s
 
-/-- Biconnected -/
-class P44 (X : Type u) [TopologicalSpace X] : Prop where
-  p44 : P36 X ∧ ∀ s v : Set X, P38 s → encard s ≥ 2 → P38 v → encard v ≥ 2 → (s ∩ v).Nonempty
+/-44. Biconnected -/
+class BiconnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
+  preconnted : PreconnectedSpace X
+  no_partition : ∀ s v : Set X,
+    ConnectedSpace s → encard s ≥ 2 → ConnectedSpace v → encard v ≥ 2 → (s ∩ v).Nonempty
 
-/-- Has a dispersion point -/
-class P45 (X : Type u) [TopologicalSpace X] : Prop where
-  p45 : P36 X ∧ ∃ p : X, IsTotallyDisconnected ({p}ᶜ)
+/-45. Has a dispersion point -/
+class HasDispersionPoint (X : Type u) [TopologicalSpace X] : Prop where
+  preconnected : PreconnectedSpace X
+  ex_dispersion_point : ∃ p : X, IsTotallyDisconnected ({p}ᶜ)
 
-/-- Totally path disconnected -/
-class P46 (X : Type u) [TopologicalSpace X] : Prop where
+/-46. Totally path disconnected -/
+class TotallyPathDisconnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
   p46 : ∀ f : Icc (0 : ℝ) 1 → X, Continuous f → ∃ x : X, f = const (Icc 0 1) x
 
-/-- Totally disconnected -/
-abbrev P47 (X : Type u) [TopologicalSpace X] : Prop := TotallyDisconnectedSpace X
+/-47. Totally disconnected -/
+#check TotallyDisconnectedSpace
 
-/-- Totally seperated -/
-abbrev P48 (X : Type u) [TopologicalSpace X] : Prop := TotallySeparatedSpace X
+/-48. Totally seperated -/
+#check TotallySeparatedSpace
 
-/-- Extremally disconnected -/
-abbrev P49 (X : Type u) [TopologicalSpace X] : Prop := ExtremallyDisconnected X
+/-49. Extremally disconnected -/
+#check ExtremallyDisconnected
 
-/-- Zero dimensional -/
-class P50 (X : Type u) [TopologicalSpace X] : Prop where
+/-50. Zero dimensional -/
+class ZeroDimensionalSpace (X : Type u) [TopologicalSpace X] : Prop where
   p50 : ∃ B : Set (Set X), IsTopologicalBasis B ∧ ∀ s ∈ B, IsClopen s
 
-/-- Scattered -/
-class P51 (X : Type u) [TopologicalSpace X] : Prop where
+/-51. Scattered -/
+class ScatteredSpace (X : Type u) [TopologicalSpace X] : Prop where
   p51 : ∀ Y : Set X, Y.Nonempty → ∃ x : Y, IsOpen {x}
 
-/-- Discrete -/
-abbrev P52 (X : Type u) [TopologicalSpace X] : Prop := DiscreteTopology X
+/-52. Discrete -/
+#check DiscreteTopology
 
-/-- Metrizable -/
-abbrev P53 (X : Type u) [TopologicalSpace X] : Prop := MetrizableSpace X
+/-53. Metrizable -/
+#check MetrizableSpace
 
-/-- Has a σ-locally finite base -/
-class P54 (X : Type u) [TopologicalSpace X] : Prop where
+/-54. Has a σ-locally finite base -/
+class HasSigmaLocallyFiniteBase (X : Type u) [TopologicalSpace X] : Prop where
   p54 : ∃ B : Set (Set X), IsTopologicalBasis B ∧ ∀ s ∈ B, IsClopen s
 
 end PiBase
