@@ -19,7 +19,7 @@ instance (priority := 100) CountablyCompactSpace.CompactSpace [CountablyCompactS
     apply isCompact_iff_finite_subcover.2
     intro ι U h h'
     rename_i a b
-    #check countablyCompact (X := X)
+    have := CountablyCompactSpace.countablyCompact
     sorry
 
 
