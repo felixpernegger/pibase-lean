@@ -245,11 +245,11 @@ class StronglyConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
   isStronglyConnected : ∀ f : X → ℝ, Continuous f → ∃ r : ℝ, f = Function.const X r
 
 /- 61. Cozero complemented -/
-class CozeroComplementedSpace {X : Type u} [TopologicalSpace X] : Prop where
+class CozeroComplementedSpace (X : Type u) [TopologicalSpace X] : Prop where
   p61 : ∀ s : Set X, IsCozero s → ∃ t : Set X, IsCozero t ∧ Dense (s ∪ t)
 
 /- 62. Weakly Lindelöf -/
-class WeaklyLindelofSpace {X : Type u} [TopologicalSpace X] : Prop where
+class WeaklyLindelofSpace (X : Type u) [TopologicalSpace X] : Prop where
   p62 : ∀ {ι : Type*} (U : ι → Set X),
     (∀ i, IsOpen (U i)) →  (X = ⋃ i, U i) → ∃ t : Set ι, t.Countable ∧ Dense (⋃ i ∈ t, U i)
 
@@ -285,6 +285,56 @@ end card
 --TODO: Topological game
 
 /- 71. σ-relatviely compact -/
+class SigmaRelativelyCompactSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p71 : ∃ R : ℕ → Set X, X = ⋃ n : ℕ, R n ∧ ∀ n : ℕ, IsRelativelyCompact (R n)
 
+/- 72. 2 Markov Menger -/
+--TODO: Topological game
+
+/- 73. Sober -/
+class SoberSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p73 : ∀ {S : Set X}, IsIrreducible S → IsClosed S → ∃! x, IsGenericPoint x S
+
+/- 182. Has a countable network -/
+class HasCountableNetwork (X : Type u) [TopologicalSpace X] : Prop where
+  p182 : ∃ (N : ℕ → Set X),
+    ∀ (x : X) (U : Set X) (_ : U ∈ 𝓝 x), ∃ i : ℕ, x ∈ N i ∧ N i ⊆ U
+
+/- 74. Cosmic -/
+class CosmicSpace (X : Type u) [TopologicalSpace X] : Prop extends
+  T3Space X, HasCountableNetwork X
+
+/- 75. Spectral Space -/
+#check SpectralSpace
+
+/- 76. Proximal -/
+--TODO: Topological game
+
+/- 77. Corson compact -/
+--TODO
+
+/- 78. Finite -/
+#check Finite
+
+/- 79. Seqeuential -/
+#check SequentialSpace
+
+/- 80. Frechet Urysohn -/
+#check FrechetUrysohnSpace
+
+/- 81. Countably tight space -/
+class CountablyTightSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p81 : ∀ (x : X) (A : Set X), x ∈ closure A → ∃ D : Set X, D.Countable ∧ D ⊆ A ∧ x ∈ closure D
+
+/- 82. Locally metrizable -/
+class LocallyMetrizableSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p82 : ∀ (x : X), ∃ C : Set X, C ∈ 𝓝 x ∧ MetrizableSpace C
+
+/- 83. Meta Lindelöf -/
+class MetaLindelofSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p83 :
+    ∀ (α : Type u) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →
+      ∃ (β : Type u) (t : β → Set X),
+        (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ PointCountable t ∧ ∀ b, ∃ a, t b ⊆ s a
 
 end PiBase

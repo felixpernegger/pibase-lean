@@ -15,6 +15,9 @@ variable {ι ι' α X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f g 
 def PointFinite (U : ι → Set X) :=
   ∀ x : X, { i | x ∈ U i }.Finite
 
+def PointCountable (U : ι → Set X) :=
+  ∀ x : X, { i | x ∈ U i }.Countable
+
 def IsCozero {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∃ f : C(X, ℝ), f.toFun ⁻¹' {0}ᶜ = s
 /-
