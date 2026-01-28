@@ -418,7 +418,23 @@ class KcSpace (X : Type u) [TopologicalSpace X] : Prop where
 
 /- 101. Has closed retracts -/
 class HasClosedRetract (X : Type u) [TopologicalSpace X] : Prop where
-  p101 : ∀ A : Set X, ∃ f : X → A, IsRetract A
+  p101 : ∀ A : Set X, IsRetractSet A → IsClosed A
+
+/- 102. Semimetrizable -/
+-- TODO
+
+/- 103. Strongly KC -/
+-- TODO
+
+/- 104. Symmetrizable -/
+-- TODO
+
+/- 105. Para-Lindelöf -/
+class ParaLindelofSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p31 :
+    ∀ (α : Type v) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →
+      ∃ (β : Type v) (t : β → Set X),
+        (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ LocallyCountable t ∧ ∀ b, ∃ a, t b ⊆ s a
 
 section card
 
