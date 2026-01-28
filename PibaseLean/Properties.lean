@@ -7,7 +7,7 @@ namespace PiBase
 
 variable (X : Type*) {Y : Type*} [TopologicalSpace X]
 
-open Function Set Filter Topology TopologicalSpace Topology.PiBase.AdditionalDefs
+open Function Set Filter Topology TopologicalSpace Set.Notation Topology.PiBase.AdditionalDefs
 
 /- 1. T₀ -/
 #check T0Space X
@@ -140,7 +140,7 @@ class FullyNormalSpace (X : Type u) [TopologicalSpace X] : Prop
 class FullyT4Space (X : Type u) [TopologicalSpace X] : Prop extends T1Space X, FullyNormalSpace X
 
 /- 36. Connected -/ --Attention! Mathlib requires the space to be nonempty, while π-Base does not.
-#check PreconnectedSpace
+#check ConnectedSpace
 
 /- 37. Path connected -/ --This differs from mathlib!
 #check PathConnectedSpace
@@ -160,15 +160,14 @@ class UltraconnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
   p40 : ∀ s v : Set X, IsClosed s → IsClosed v → (s ∩ v).Nonempty
 
 /- 41. Locally conneced -/ --Again difference between mathlib!
-class LocallyPreconnectedSpace (α : Type*) [TopologicalSpace α] : Prop where
-  open_connected_basis : ∀ x, (𝓝 x).HasBasis (fun s : Set α => IsOpen s ∧ x ∈ s ∧ IsConnected s) id
+#check LocallyConnectedSpace
 
 /- Locally path-connected-/
-class LocallyPrePathConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
+class LocallyPathConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
   p42 : ∀ x : X, ∃ s ∈ 𝓝 x, PathConnectedSpace s
 
 /- 43. Locally injectively path conneced -/
-class LocallyInjPrePathConnected (X : Type u) [TopologicalSpace X] : Prop where
+class LocallyInjPathConnected (X : Type u) [TopologicalSpace X] : Prop where
   p43 : ∀ x : X, ∃ s ∈ 𝓝 x, InjPathConnectedSpace s
 
 /- 44. Biconnected -/
@@ -217,9 +216,8 @@ class HasSigmaLocallyFiniteBase (X : Type u) [TopologicalSpace X] : Prop where
 #check IsCompletelyMetrizableSpace
 
 /- 56. Meager -/
---POSSIBLY!!!!
-#check IsMeagre
--- as a class
+class MeagreSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p56 : IsMeagre (univ (α := X))
 
 /- 57. Countably -/
 #check Countable
@@ -270,13 +268,19 @@ class CardEqContinuum (X : Type u) where
 end card
 
 /- 66. Menger -/
---TODO, might be tricky
+class MengerSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p66 : ∀ {ι : Type u} (U : ℕ → ι → Set X),
+    (∀ (n : ℕ) (i : ι), IsOpen (U n i)) → (∀ (n : ℕ), univ = ⋃ (i : ι), (U n i)) →
+      ∃ s : ℕ → (Finset ι), univ = ⋃ (n : ℕ), ⋃ i ∈ s n, U n i
 
 /- 67. T6 -/
 #check T6Space
 
 /- 68. Rothberger -/
---TODO similar to 66.
+class RothbergerSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p66 : ∀ {ι : Type u} (U : ℕ → ι → Set X),
+    (∀ (n : ℕ) (i : ι), IsOpen (U n i)) → (∀ (n : ℕ), univ = ⋃ (i : ι), (U n i)) →
+      ∃ j : ℕ → ι, univ = ⋃ (n : ℕ), U n (j n)
 
 /- 69. Strategic Menger -/
 --TODO: Topological game
@@ -336,5 +340,105 @@ class MetaLindelofSpace (X : Type u) [TopologicalSpace X] : Prop where
     ∀ (α : Type u) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →
       ∃ (β : Type u) (t : β → Set X),
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ PointCountable t ∧ ∀ b, ∃ a, t b ⊆ s a
+
+/- 84. Locally metrizable -/
+class LocallyT2Space (X : Type u) [TopologicalSpace X] : Prop where
+  p84 : ∀ (x : X), ∃ C : Set X, C ∈ 𝓝 x ∧ T2Space C
+
+/- 85. Basically disconnected -/
+class BasicallyDisconnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p85 : ∀ (U : Set X), IsCozero U → IsOpen (closure U)
+
+/- 86. Homogenous -/
+class HomogenousSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p86 : ∀ (x y : X), ∃ f : X ≃ₜ X,  f x = y
+
+/- 87. Has Group Topology -/
+class HasGroupTopology (X : Type u) [TopologicalSpace X] : Prop where
+  p87 : ∃ (_ : Group X), IsTopologicalGroup X
+
+/- 88. Collectionwise normal -/
+class CollectionwiseNormalSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p88 : ∀ {ι : Type u} (F : ι → Set X), IsDiscreteFamily F → (∀ i : ι, IsClosed (F i)) →
+    ∃ U : ι → Set X, (univ.PairwiseDisjoint U) ∧ (∀ i : ι, IsOpen (U i)) ∧ (∀ i : ι, U i ⊆ F i)
+
+/- 89. Fixed point property -/
+class FixedPointSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p89 : ∀ (f : X → X), Continuous f → ∃ x : X, f x = x
+
+/- 90. Alexandrov -/
+#check AlexandrovDiscrete
+
+/- 91. Eberlein compact -/
+--TODO
+
+/- 92. k ω 3 space -/
+class kωSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p92 : ∃ K : ℕ → Set X, Monotone K ∧ univ = ⋃ n : ℕ, K n ∧
+    (∀ n : ℕ, IsCompact (K n)) ∧ (∀ n : ℕ, T2Space (K n)) ∧
+      ∀ s : Set X, IsOpen s ↔ ∀ n : ℕ, IsOpen ((K n) ↓∩ s)
+
+/- 93. Locally countable (slightly different wording than pibase) -/
+class LocallyCountableSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p93 : ∀ x : X, ∃ s ∈ 𝓝 x, s.Countable
+
+/- 94. Locally countable (slightly different wording than pibase) -/
+class LocallyFiniteSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p93 : ∀ x : X, ∃ s ∈ 𝓝 x, s.Finite
+
+/- 95. Arc connected -/
+class ArcConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
+  nonempty : Nonempty X
+  joined : Pairwise fun x y : X ↦
+    ∃ f : Icc (0 : ℝ) 1 → X, IsEmbedding f ∧ f 0 = x ∧ f 1 = y
+
+/- 96. Locally Arc connected -/
+class LocallyArcConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
+  nonempty : Nonempty X
+  joined : ∀ x : X, ∃ B : Set (Set X), generate B = 𝓝 x ∧ ∀ s ∈ B, ArcConnectedSpace s
+
+/- 97. Embeddable in ℝ -/
+class EmbeddableInR (X : Type u) [TopologicalSpace X] : Prop where
+  p97 : ∃ f : X → ℝ, IsEmbedding f
+
+/- 98. k ω 1 space -/
+class kωSpace' (X : Type u) [TopologicalSpace X] : Prop where
+  p98 : ∃ K : ℕ → Set X, Monotone K ∧ univ = ⋃ n : ℕ, K n ∧
+    (∀ n : ℕ, IsCompact (K n)) ∧
+      ∀ s : Set X, IsOpen s ↔ ∀ n : ℕ, IsOpen ((K n) ↓∩ s)
+
+/- 99. US -/
+class UsSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p99 : ∀ (f : Y → X) (l : Filter Y) (a b : X), (_ : NeBot l)
+    → (Tendsto f l (𝓝 a)) → (Tendsto f l (𝓝 b)) → a = b
+
+/- 100. KC Space -/
+class KcSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p100 : ∀ s : Set X, IsCompact s → IsClosed s
+
+/- 101. Has closed retracts -/
+class HasClosedRetract (X : Type u) [TopologicalSpace X] : Prop where
+  p101 : ∀ A : Set X, ∃ f : X → A, IsRetract A
+
+section card
+
+open Cardinal
+
+class TorontoSpace (X : Type u) [TopologicalSpace X] where
+  toronto : ∀ Y : Set X, #Y = #X → Y ≃ₜ X
+
+instance Finite.torontoSpace (X : Type u) [TopologicalSpace X] [Finite X] : TorontoSpace X where
+  toronto := by
+    intro Y hY
+    have eq : Y = Set.univ := by
+      refine (eq_univ_iff_ncard Y).mpr ?_
+      have : Y.ncard = (#↑Y).toNat := by
+        exact rfl
+      rw [this, hY]
+      exact rfl
+    rw [eq]
+    exact Homeomorph.Set.univ X
+
+end card
 
 end PiBase
