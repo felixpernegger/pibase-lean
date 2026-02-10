@@ -4,9 +4,9 @@ variable (X : Type*) [TopologicalSpace X]
 
 namespace PiBase.Formal
 
-abbrev P42 := PrePathConnectedSpace
+abbrev P37 := PrePathConnectedSpace
 
-class NP38 (X : Type*) [TopologicalSpace X] where
-  not_p38 := ¬ P42 X
+class NP37 (X : Type*) [TopologicalSpace X] where
+  not_p37 := ¬ P37 X
 
 end PiBase.Formal
