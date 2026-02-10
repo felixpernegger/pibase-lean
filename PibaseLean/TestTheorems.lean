@@ -3,7 +3,7 @@ import PibaseLean.Properties
 
 namespace PiBase
 
-
+/-- Some basic tests, best to ignore. -/
 
 open Topology TopologicalSpace
 

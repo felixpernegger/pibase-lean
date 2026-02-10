@@ -2,6 +2,8 @@ import Mathlib
 
 universe u v
 
+/-! This file contains additional definitions which are useful for properties and theorems. -/
+
 namespace Topology
 
 namespace PiBase
@@ -22,10 +24,6 @@ def PointCountable (U : ι → Set X) :=
 
 def IsCozero {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∃ f : C(X, ℝ), f.toFun ⁻¹' {0}ᶜ = s
-/-
-def IsSigmaLocallyFinite (A : Set (Set X)) : Prop :=
-  0 = 0
--/
 
 def IsRelativelyCompact {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∀ {ι : Type u} (U : ι → Set X),

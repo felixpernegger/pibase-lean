@@ -9,6 +9,8 @@ variable (X : Type*) {Y : Type*} [TopologicalSpace X]
 
 open Function Set Filter Topology TopologicalSpace Set.Notation Topology.PiBase.AdditionalDefs
 
+/-! This file is an old overview of definitions of properties. -/
+
 /- 1. T₀ -/
 #check T0Space X
 
@@ -162,7 +164,7 @@ class UltraconnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
 /- 41. Locally conneced -/ --Again difference between mathlib!
 #check LocallyConnectedSpace
 
-/- Locally path-connected-/
+/- 42. Locally path-connected-/
 class LocallyPathConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
   p42 : ∀ x : X, ∃ s ∈ 𝓝 x, PathConnectedSpace s
 
@@ -431,10 +433,37 @@ class HasClosedRetract (X : Type u) [TopologicalSpace X] : Prop where
 
 /- 105. Para-Lindelöf -/
 class ParaLindelofSpace (X : Type u) [TopologicalSpace X] : Prop where
-  p31 :
+  p105 :
     ∀ (α : Type v) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →
       ∃ (β : Type v) (t : β → Set X),
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ LocallyCountable t ∧ ∀ b, ∃ a, t b ⊆ s a
+
+/- 106. Has a Gδ diagonal -/
+class HasGδDiagonal (X : Type u) [TopologicalSpace X] : Prop where
+  p106 : IsGδ (diagonal X)
+
+/- 107. Has a closed point -/
+class HasClosedPoint (X : Type u) [TopologicalSpace X] : Prop where
+  p107 : ∃ x : X, IsClosed {x}
+
+/- 108. Hereditarily collectionwise normal -/
+class HereditarilyCollectionwiseNormalSpace (X : Type u) [TopologicalSpace X] : Prop where
+  p108 : ∀ s : Set X, CollectionwiseNormalSpace s
+
+/- 109. Motononically normal (Def. 3 from Wikipedia) -/
+class MonotonicallyNormalSpace (X : Type u) [TopologicalSpace X] : Prop extends T1Space X where
+  p109 : ∃ μ : (x : X) → (s : Opens X) → (hs : ↑s ∈ 𝓝 x) → Opens X,
+    ∀ (x : X) (s : Opens X) (hs : ↑s ∈ 𝓝 x), ↑s ∈ 𝓝 x → ↑(μ x s hs) ∈ 𝓝 x ∧
+      ∀ (x y : X) (u v : Opens X) (hu : ↑u ∈ 𝓝 x) (hv : ↑v ∈ 𝓝 y),
+        (↑(μ x u hu) : Set X) ∩ ↑(μ y v hv) ≠ ∅ → ↑v ∈ 𝓝 x ∨ ↑u ∈ 𝓝 y
+
+/- 110. Developable (Note: Make seperate definition for development)-/
+-- TODO
+
+/- 111. Hemicompact -/
+class HemicompactSpace (X : Type u) [TopologicalSpace X] : Prop where
+  hemiCompact : ∃ (ι : Type u) (K : ι → Set X), Countable ι ∧
+    (∀ i, IsCompact (K i)) ∧ X = ⋃ i, K i ∧ ∀ t : Set X, IsCompact t → ∃ i : ι, t ⊆ K i
 
 section card
 
