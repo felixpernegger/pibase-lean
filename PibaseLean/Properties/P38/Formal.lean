@@ -1,9 +1,12 @@
-import PibaseLean.Properties.P43.Defs
+import PibaseLean.Properties.P38.Defs
 
 variable (X : Type*) [TopologicalSpace X]
 
-namespace PiBase
+namespace PiBase.Formal
 
 abbrev P38 := InjPathConnectedSpace
 
-end PiBase
+class NP38 (X : Type*) [TopologicalSpace X] where
+  not_p38 := ¬ InjPathConnectedSpace X
+
+end PiBase.Formal
