@@ -37,7 +37,7 @@ open Function Set Filter Topology TopologicalSpace Set.Notation Topology.PiBase.
 
 /- 9. Functionally Hausdorff -/
 class CompletelyT2Space (X : Type u) [TopologicalSpace X] : Prop where
-  p9 : Pairwise fun x y : X ↦ ∃ f : Icc (0 : ℝ) 1 → X, Continuous f ∧ f 0 = x ∧ f 1 = y
+  completelyT2 : Pairwise fun x y : X ↦ ∃ f : Icc (0 : ℝ) 1 → X, Continuous f ∧ f 0 = x ∧ f 1 = y
 
 /- 10. Semiregular -/
 class SemiregularSpace (X : Type u) [TopologicalSpace X] : Prop where
@@ -466,6 +466,8 @@ class HemicompactSpace (X : Type u) [TopologicalSpace X] : Prop where
     (∀ i, IsCompact (K i)) ∧ X = ⋃ i, K i ∧ ∀ t : Set X, IsCompact t → ∃ i : ι, t ⊆ K i
 
 section card
+
+/- 112. -/
 
 open Cardinal
 
