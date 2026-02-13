@@ -8,7 +8,7 @@ namespace PiBase
 
 /- Theorem 86, functionally hausdorff implies T25 -/
 instance CompletelyT2Space.T25Space
-    (X : Type u) [TopologicalSpace X] [h : CompletelyT2Space X] :
+    (X : Type*) [TopologicalSpace X] [h : CompletelyT2Space X] :
     T25Space X := by
   apply T25Space.mk
   intro x y xy
