@@ -12,8 +12,11 @@ instance CompactSpace.CountablyCompactSpace
     CountablyCompactSpace X where
   countablyCompact := by
     intro ι U hU uU
-    #check isCompact_univ (X := X)
-    #check (isCompact_iff_finite_subcover).1 (isCompact_univ (X := X)) U hU (univ_subset_iff.mpr (id (Eq.symm uU)))
-    sorry
+    obtain ⟨t, ht⟩ := (isCompact_iff_finite_subcover).1 (isCompact_univ (X := X)) U hU
+      (univ_subset_iff.mpr (id (Eq.symm uU)))
+    use t
+    constructor
+    · exact Finset.countable_toSet t
+    · exact ht
 
 end PiBase
