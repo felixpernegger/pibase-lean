@@ -13,7 +13,7 @@ instance CompactSpace.CountablyCompactSpace
   countablyCompact := by
     intro ι U hU uU
     #check isCompact_univ (X := X)
-    #check (isCompact_iff_finite_subcover _).2 (isCompact_univ (X := X))
+    #check (isCompact_iff_finite_subcover).1 (isCompact_univ (X := X)) U hU (univ_subset_iff.mpr (id (Eq.symm uU)))
     sorry
 
 end PiBase
