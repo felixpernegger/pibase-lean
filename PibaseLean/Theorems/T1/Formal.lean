@@ -1,12 +1,11 @@
-import PibaseLean.Theorems.T39.Theorem
+import PibaseLean.Theorems.T1.Theorem
 
 namespace PiBase.Formal
 
-abbrev T39 := InjPathConnectedSpace.PrePathConnectedSpace
+abbrev T1 := CompactSpace.CountablyCompactSpace
 
 /-- Contrapose -/
-instance T39_contra (X : Type*) [TopologicalSpace X] [h : NP37 X] : NP38 X := by
-  replace h : ¬ P37 X := h.not_p37
-  exact { not_p38 := fun a ↦ h (InjPathConnectedSpace.PrePathConnectedSpace X) }
+instance T39_contra {X : Type*} [TopologicalSpace X] [h : NP16 X] : NP19 X where
+  not_p19 := fun a ↦ h.not_p16 (CompactSpace.CountablyCompactSpace)
 
 end PiBase.Formal

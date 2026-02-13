@@ -8,7 +8,7 @@ namespace PiBase
 
 /- Theorem 1, compact implies compactly compact -/
 instance CompactSpace.CountablyCompactSpace
-    (X : Type*) [TopologicalSpace X] [h : CompactSpace X] :
+    {X : Type*} [TopologicalSpace X] [h : CompactSpace X] :
     CountablyCompactSpace X where
   countablyCompact := by
     intro ι U hU uU
