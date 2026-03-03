@@ -1,7 +1,7 @@
 import Mathlib
 import PibaseLean.AdditionalDefs
 
-open Topology Set Function Filter TopologicalSpace Topology.PiBase.AdditionalDefs
+open Topology Set Filter TopologicalSpace Topology.PiBase.AdditionalDefs
 
 universe u v
 
