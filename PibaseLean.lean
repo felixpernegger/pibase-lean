@@ -12,8 +12,6 @@ import PibaseLean.Properties.P107.Defs
 import PibaseLean.Properties.P107.Formal
 import PibaseLean.Properties.P11.Defs
 import PibaseLean.Properties.P11.Formal
-import PibaseLean.Properties.P112.Defs
-import PibaseLean.Properties.P112.Formal
 import PibaseLean.Properties.P12.Defs
 import PibaseLean.Properties.P12.Formal
 import PibaseLean.Properties.P13.Defs
@@ -133,7 +131,6 @@ import PibaseLean.UnstableProperties.P108.Defs
 import PibaseLean.UnstableProperties.P109.Defs
 import PibaseLean.UnstableProperties.P11.Defs
 import PibaseLean.UnstableProperties.P111.Defs
-import PibaseLean.UnstableProperties.P112.Defs
 import PibaseLean.UnstableProperties.P12.Defs
 import PibaseLean.UnstableProperties.P13.Defs
 import PibaseLean.UnstableProperties.P14.Defs

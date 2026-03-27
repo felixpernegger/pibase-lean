@@ -2,7 +2,7 @@ import PibaseLean.Properties.P53.Defs
 
 namespace PiBase.Formal
 
-abbrev P53 := MetrizableSpace
+abbrev P53 := TopologicalSpace.MetrizableSpace
 
 class NP53 (X : Type*) [TopologicalSpace X] where
   not_p53 : ¬ P53 X

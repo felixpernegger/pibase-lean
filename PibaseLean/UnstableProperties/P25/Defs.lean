@@ -8,6 +8,6 @@ namespace PiBase
 
 /- 25. Exhaustlible by compacts -/
 class ExhaustibleByCompacts (X : Type*) [TopologicalSpace X] : Prop
-  extends SigmaCompactSpace X, WeaklyLocallyCompact X
+  extends SigmaCompactSpace X, WeaklyLocallyCompactSpace X
 
 end PiBase
