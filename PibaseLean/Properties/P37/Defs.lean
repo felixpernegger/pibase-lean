@@ -4,7 +4,7 @@ open Topology Set Function
 
 namespace PiBase
 
-/-- 42. Path connected
+/-- 37. Path connected
 Note: Unlike Mathlib, we allow the space to be empty. -/
 class PrePathConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
   joined : Pairwise fun x y : X ↦

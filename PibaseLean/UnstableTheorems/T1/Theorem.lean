@@ -1,6 +1,6 @@
 import Mathlib
-import PibaseLean.Properties.P16.Formal
-import PibaseLean.Properties.P19.Formal
+import PibaseLean.UnstableProperties.P16.Formal
+import PibaseLean.UnstableProperties.P19.Formal
 
 open Topology Set Function TopologicalSpace
 

@@ -1,4 +1,4 @@
-import PibaseLean.Properties.P30.Defs
+import PibaseLean.UnstableProperties.P30.Defs
 
 open TopologicalSpace
 

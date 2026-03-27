@@ -1,4 +1,4 @@
-import PibaseLean.Properties.P22.Defs
+import PibaseLean.UnstableProperties.P22.Defs
 
 variable (X : Type*) [TopologicalSpace X]
 

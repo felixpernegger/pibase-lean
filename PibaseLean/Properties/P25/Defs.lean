@@ -1,5 +1,5 @@
 import Mathlib
-import PibaseLean.Properties.P37
+import PibaseLean.Properties.P37.Defs
 
 open Function Set Filter Topology TopologicalSpace Set.Notation
 

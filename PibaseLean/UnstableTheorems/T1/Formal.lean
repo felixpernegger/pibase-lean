@@ -1,4 +1,4 @@
-import PibaseLean.Theorems.T1.Theorem
+import PibaseLean.UnstableTheorems.T1.Theorem
 
 namespace PiBase.Formal
 

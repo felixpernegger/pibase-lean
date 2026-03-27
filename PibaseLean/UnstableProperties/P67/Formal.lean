@@ -1,4 +1,4 @@
-import PibaseLean.Properties.P67.Defs
+import PibaseLean.UnstableProperties.P67.Defs
 
 namespace PiBase.Formal
 
