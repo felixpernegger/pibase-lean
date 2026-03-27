@@ -157,7 +157,6 @@ import PibaseLean.UnstableProperties.P3.Defs
 import PibaseLean.UnstableProperties.P30.Defs
 import PibaseLean.UnstableProperties.P31.Defs
 import PibaseLean.UnstableProperties.P32.Defs
-import PibaseLean.UnstableProperties.P32.Formal
 import PibaseLean.UnstableProperties.P33.Defs
 import PibaseLean.UnstableProperties.P34.Defs
 import PibaseLean.UnstableProperties.P35.Defs
