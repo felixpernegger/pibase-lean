@@ -92,8 +92,6 @@ import PibaseLean.Properties.P67.Defs
 import PibaseLean.Properties.P67.Formal
 import PibaseLean.Properties.P7.Defs
 import PibaseLean.Properties.P7.Formal
-import PibaseLean.Properties.P74.Defs
-import PibaseLean.Properties.P74.Formal
 import PibaseLean.Properties.P75.Defs
 import PibaseLean.Properties.P75.Formal
 import PibaseLean.Properties.P78.Defs
