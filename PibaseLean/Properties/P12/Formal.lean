@@ -1,10 +1,10 @@
-import PibaseLean.Properties.P13.Defs
+import PibaseLean.Properties.P12.Defs
 
 namespace PiBase.Formal
 
-abbrev P13 := CompletelyRegularSpace
+abbrev P12 := CompletelyRegularSpace
 
-class NP13 (X : Type*) [TopologicalSpace X] where
-  not_p13 : ¬ P13 X
+class NP12 (X : Type*) [TopologicalSpace X] where
+  not_p12 : ¬ P12 X
 
 end PiBase.Formal
