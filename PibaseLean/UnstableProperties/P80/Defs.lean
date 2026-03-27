@@ -4,7 +4,7 @@ open Topology Set Function Filter TopologicalSpace
 
 namespace PiBase
 
-/- 36. Connected -/
-#check PreconnectedSpace
+/- 80. Frechet Urysohn -/
+#check FrechetUrysohnSpace
 
 end PiBase

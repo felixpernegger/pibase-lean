@@ -46,7 +46,6 @@ variable (A : Set ℕ)
 def LocallyCountable (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, { i | (f i ∩ t).Nonempty }.Finite
 
-#check LocallyFinite
 end AdditionalDefs
 end PiBase
 end Topology

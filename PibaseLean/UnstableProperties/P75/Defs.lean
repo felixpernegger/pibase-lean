@@ -4,7 +4,7 @@ open Topology Set Function Filter TopologicalSpace
 
 namespace PiBase
 
-/- 36. Connected -/
-#check PreconnectedSpace
+/- 75. Spectral Space -/
+#check SpectralSpace
 
 end PiBase
