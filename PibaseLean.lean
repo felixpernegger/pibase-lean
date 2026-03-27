@@ -235,5 +235,4 @@ import PibaseLean.UnstableTheorems.T1.Formal
 import PibaseLean.UnstableTheorems.T1.Theorem
 import PibaseLean.UnstableTheorems.T39.Formal
 import PibaseLean.UnstableTheorems.T39.Theorem
-import PibaseLean.UnstableTheorems.T86.Formal
 import PibaseLean.UnstableTheorems.T86.Theorem
