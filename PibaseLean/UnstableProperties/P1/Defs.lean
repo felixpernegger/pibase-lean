@@ -2,9 +2,9 @@ import Mathlib
 
 open Topology Set Function
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 1. T₀-Space -/
 #check T0Space
 
-end PiBase
+end UnstablePiBase

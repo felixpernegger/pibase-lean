@@ -2,9 +2,9 @@ import Mathlib
 
 open Topology Set Function Filter TopologicalSpace
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 80. Frechet Urysohn -/
 #check FrechetUrysohnSpace
 
-end PiBase
+end UnstablePiBase

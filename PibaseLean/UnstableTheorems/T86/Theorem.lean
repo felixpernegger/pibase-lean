@@ -4,7 +4,7 @@ import PibaseLean.UnstableProperties.P4.Formal
 
 open Topology Set Function
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- Theorem 86, functionally hausdorff implies T25 -/
 instance CompletelyT2Space.T25Space
@@ -43,4 +43,4 @@ instance CompletelyT2Space.T25Space
   refine Disjoint.symm (Disjoint.preimage f ?_)
   simp
 
-end PiBase
+end UnstablePiBase

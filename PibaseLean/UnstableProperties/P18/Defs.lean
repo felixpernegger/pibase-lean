@@ -2,9 +2,9 @@ import Mathlib
 
 open Topology Set Function
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 18. Lindelöf -/
 #check LindelofSpace
 
-end PiBase
+end UnstablePiBase

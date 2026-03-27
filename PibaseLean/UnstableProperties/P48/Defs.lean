@@ -2,9 +2,9 @@ import Mathlib
 
 open Topology Set Function Filter TopologicalSpace
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 48. Totally separated -/
 #check TotallySeparatedSpace
 
-end PiBase
+end UnstablePiBase

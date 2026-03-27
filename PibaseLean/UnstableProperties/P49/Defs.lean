@@ -2,9 +2,9 @@ import Mathlib
 
 open Topology Set Function Filter TopologicalSpace
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 49. Extremally disconnected -/
 #check ExtremallyDisconnected
 
-end PiBase
+end UnstablePiBase

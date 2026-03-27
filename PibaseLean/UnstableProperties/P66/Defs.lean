@@ -4,7 +4,7 @@ open Topology Set Function Filter TopologicalSpace
 
 universe u
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 66. Menger -/
 class MengerSpace (X : Type u) [TopologicalSpace X] : Prop where
@@ -12,4 +12,4 @@ class MengerSpace (X : Type u) [TopologicalSpace X] : Prop where
     (∀ (n : ℕ) (i : ι), IsOpen (U n i)) → (∀ (n : ℕ), univ = ⋃ (i : ι), (U n i)) →
       ∃ s : ℕ → (Finset ι), univ = ⋃ (n : ℕ), ⋃ i ∈ s n, U n i
 
-end PiBase
+end UnstablePiBase

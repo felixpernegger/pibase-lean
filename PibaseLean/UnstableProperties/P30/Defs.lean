@@ -2,9 +2,9 @@ import Mathlib
 
 open Topology
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 30. Paracompact -/
 #check ParacompactSpace
 
-end PiBase
+end UnstablePiBase

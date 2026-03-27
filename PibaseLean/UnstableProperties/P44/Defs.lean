@@ -2,7 +2,7 @@ import Mathlib
 
 open Topology Set Function Filter TopologicalSpace
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 44. Biconnected -/
 class BiconnectedSpace (X : Type*) [TopologicalSpace X] : Prop where
@@ -10,4 +10,4 @@ class BiconnectedSpace (X : Type*) [TopologicalSpace X] : Prop where
   no_partition : ∀ s v : Set X,
     ConnectedSpace s → encard s ≥ 2 → ConnectedSpace v → encard v ≥ 2 → (s ∩ v).Nonempty
 
-end PiBase
+end UnstablePiBase

@@ -2,9 +2,9 @@ import Mathlib
 
 open Topology Set Function
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 16. Compact -/
 #check CompactSpace
 
-end PiBase
+end UnstablePiBase

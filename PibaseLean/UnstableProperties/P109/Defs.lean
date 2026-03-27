@@ -2,7 +2,7 @@ import Mathlib
 
 open Topology Set Function Filter TopologicalSpace
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 109. Monotonically normal -/
 class MonotonicallyNormalSpace (X : Type*) [TopologicalSpace X] : Prop extends T1Space X where
@@ -11,4 +11,4 @@ class MonotonicallyNormalSpace (X : Type*) [TopologicalSpace X] : Prop extends T
       ∀ (x y : X) (u v : Opens X) (hu : ↑u ∈ 𝓝 x) (hv : ↑v ∈ 𝓝 y),
         (↑(μ x u hu) : Set X) ∩ ↑(μ y v hv) ≠ ∅ → ↑v ∈ 𝓝 x ∨ ↑u ∈ 𝓝 y
 
-end PiBase
+end UnstablePiBase

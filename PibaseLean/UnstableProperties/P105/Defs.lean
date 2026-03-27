@@ -5,7 +5,7 @@ open Topology Set Filter TopologicalSpace Topology.PiBase.AdditionalDefs
 
 universe u v
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 105. Para-Lindelöf -/
 class ParaLindelofSpace (X : Type u) [TopologicalSpace X] : Prop where
@@ -14,4 +14,4 @@ class ParaLindelofSpace (X : Type u) [TopologicalSpace X] : Prop where
       ∃ (β : Type v) (t : β → Set X),
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ LocallyCountable t ∧ ∀ b, ∃ a, t b ⊆ s a
 
-end PiBase
+end UnstablePiBase

@@ -2,9 +2,9 @@ import Mathlib
 
 open Topology Set Function Filter TopologicalSpace
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 55. Completely metrizable -/
 #check IsCompletelyMetrizableSpace
 
-end PiBase
+end UnstablePiBase

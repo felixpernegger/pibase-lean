@@ -4,7 +4,7 @@ open Topology Set Function Filter TopologicalSpace
 
 universe u
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 68. Rothberger -/
 class RothbergerSpace (X : Type u) [TopologicalSpace X] : Prop where
@@ -12,4 +12,4 @@ class RothbergerSpace (X : Type u) [TopologicalSpace X] : Prop where
     (∀ (n : ℕ) (i : ι), IsOpen (U n i)) → (∀ (n : ℕ), univ = ⋃ (i : ι), (U n i)) →
       ∃ j : ℕ → ι, univ = ⋃ (n : ℕ), U n (j n)
 
-end PiBase
+end UnstablePiBase

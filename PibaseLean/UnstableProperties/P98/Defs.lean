@@ -2,7 +2,7 @@ import Mathlib
 
 open Topology Set Function Filter TopologicalSpace Set.Notation
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 98. k ω 1 space -/
 class kωSpace' (X : Type*) [TopologicalSpace X] : Prop where
@@ -10,4 +10,4 @@ class kωSpace' (X : Type*) [TopologicalSpace X] : Prop where
     (∀ n : ℕ, IsCompact (K n)) ∧
       ∀ s : Set X, IsOpen s ↔ ∀ n : ℕ, IsOpen ((K n) ↓∩ s)
 
-end PiBase
+end UnstablePiBase

@@ -2,7 +2,7 @@ import Mathlib
 
 open Topology Set Function Filter TopologicalSpace
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 95. Arc connected -/
 class ArcConnectedSpace (X : Type*) [TopologicalSpace X] : Prop where
@@ -10,4 +10,4 @@ class ArcConnectedSpace (X : Type*) [TopologicalSpace X] : Prop where
   joined : Pairwise fun x y : X ↦
     ∃ f : Icc (0 : ℝ) 1 → X, IsEmbedding f ∧ f 0 = x ∧ f 1 = y
 
-end PiBase
+end UnstablePiBase

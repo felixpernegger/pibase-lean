@@ -5,10 +5,10 @@ open Topology Set Function Filter TopologicalSpace Topology.PiBase.AdditionalDef
 
 universe u
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 71. σ-relatively compact -/
 class SigmaRelativelyCompactSpace (X : Type u) [TopologicalSpace X] : Prop where
   sigma_relatively_compact : ∃ R : ℕ → Set X, X = ⋃ n : ℕ, R n ∧ ∀ n : ℕ, IsRelativelyCompact (R n)
 
-end PiBase
+end UnstablePiBase

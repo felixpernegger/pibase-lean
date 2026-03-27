@@ -5,7 +5,7 @@ open Topology Set Function Filter TopologicalSpace Topology.PiBase.AdditionalDef
 
 universe u v
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 33. Countably metacompact -/
 class CountablyMetacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
@@ -14,4 +14,4 @@ class CountablyMetacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
       ∃ (β : Type v) (t : β → Set X), Countable β →
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ PointFinite t ∧ ∀ b, ∃ a, t b ⊆ s a
 
-end PiBase
+end UnstablePiBase

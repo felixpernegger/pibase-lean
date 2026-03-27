@@ -5,7 +5,7 @@ open Topology Set Function Filter TopologicalSpace Topology.PiBase.AdditionalDef
 
 universe u
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 88. Collectionwise normal -/
 class CollectionwiseNormalSpace (X : Type u) [TopologicalSpace X] : Prop where
@@ -14,4 +14,4 @@ class CollectionwiseNormalSpace (X : Type u) [TopologicalSpace X] : Prop where
         ∃ U : ι → Set X, (univ.PairwiseDisjoint U)
           ∧ (∀ i : ι, IsOpen (U i)) ∧ (∀ i : ι, U i ⊆ F i)
 
-end PiBase
+end UnstablePiBase

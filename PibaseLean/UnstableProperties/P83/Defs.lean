@@ -5,7 +5,7 @@ open Topology Set Function Filter TopologicalSpace Topology.PiBase.AdditionalDef
 
 universe u
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 83. Meta Lindelöf -/
 class MetaLindelofSpace (X : Type u) [TopologicalSpace X] : Prop where
@@ -14,4 +14,4 @@ class MetaLindelofSpace (X : Type u) [TopologicalSpace X] : Prop where
       ∃ (β : Type u) (t : β → Set X),
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ PointCountable t ∧ ∀ b, ∃ a, t b ⊆ s a
 
-end PiBase
+end UnstablePiBase

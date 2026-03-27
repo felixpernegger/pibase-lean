@@ -4,7 +4,7 @@ import PibaseLean.UnstableProperties.P19.Formal
 
 open Topology Set Function TopologicalSpace
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- Theorem 1, compact implies compactly compact -/
 instance CompactSpace.CountablyCompactSpace
@@ -19,4 +19,4 @@ instance CompactSpace.CountablyCompactSpace
     · exact Finset.countable_toSet t
     · exact ht
 
-end PiBase
+end UnstablePiBase

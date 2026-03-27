@@ -2,9 +2,9 @@ import Mathlib
 
 open Topology Set Function
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 17. σ-compact -/
 #check SigmaCompactSpace
 
-end PiBase
+end UnstablePiBase

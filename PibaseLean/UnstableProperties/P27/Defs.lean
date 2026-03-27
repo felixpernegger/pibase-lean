@@ -2,9 +2,9 @@ import Mathlib
 
 open Topology Set Function TopologicalSpace
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 27. Second countable -/
 #check SecondCountableTopology
 
-end PiBase
+end UnstablePiBase

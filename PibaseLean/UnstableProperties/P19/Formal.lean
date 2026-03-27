@@ -1,10 +1,10 @@
 import PibaseLean.UnstableProperties.P19.Defs
 
-namespace PiBase.Formal
+namespace UnstablePiBase.Formal
 
 abbrev P19 := CountablyCompactSpace
 
 class NP19 (X : Type*) [TopologicalSpace X] where
   not_p19 : ¬ P19 X
 
-end PiBase.Formal
+end UnstablePiBase.Formal

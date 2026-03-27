@@ -2,9 +2,9 @@ import Mathlib
 
 open Topology Set Function Filter TopologicalSpace
 
-namespace PiBase
+namespace UnstablePiBase
 
 /- 52. Discrete -/
 #check DiscreteTopology
 
-end PiBase
+end UnstablePiBase
