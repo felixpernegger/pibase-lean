@@ -1,6 +1,6 @@
 import Mathlib
 
-open Topology Set Function
+open Topology Set Function Filter
 
 namespace UnstablePiBase
 
