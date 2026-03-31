@@ -180,7 +180,6 @@ import PibaseLean.UnstableProperties.P50.Defs
 import PibaseLean.UnstableProperties.P51.Defs
 import PibaseLean.UnstableProperties.P52.Defs
 import PibaseLean.UnstableProperties.P53.Defs
-import PibaseLean.UnstableProperties.P54.Defs
 import PibaseLean.UnstableProperties.P55.Defs
 import PibaseLean.UnstableProperties.P56.Defs
 import PibaseLean.UnstableProperties.P57.Defs
