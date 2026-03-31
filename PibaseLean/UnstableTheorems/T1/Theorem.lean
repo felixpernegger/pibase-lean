@@ -10,13 +10,6 @@ namespace UnstablePiBase
 instance CompactSpace.CountablyCompactSpace
     {X : Type*} [TopologicalSpace X] [h : CompactSpace X] :
     CountablyCompactSpace X where
-  countablyCompact := by
-    intro ι U hU uU
-    obtain ⟨t, ht⟩ := (isCompact_iff_finite_subcover).1 (isCompact_univ (X := X)) U hU
-      (univ_subset_iff.mpr (id (Eq.symm uU)))
-    use t
-    constructor
-    · exact Finset.countable_toSet t
-    · exact ht
+  isCountablyCompact_univ := isCompact_univ.isCountablyCompact
 
 end UnstablePiBase
