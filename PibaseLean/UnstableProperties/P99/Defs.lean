@@ -8,7 +8,6 @@ universe u
 
 /- 99. US -/
 class UsSpace (X : Type u) [TopologicalSpace X] : Prop where
-  us : ∀ {Y : Type} (f : Y → X) (l : Filter Y) (a b : X), NeBot l
-    → Tendsto f l (𝓝 a) → Tendsto f l (𝓝 b) → a = b
+  us : ∀ (f : ℕ → X) (a b : X), Tendsto f atTop (𝓝 a) → Tendsto f atTop (𝓝 b) → a = b
 
 end UnstablePiBase

@@ -1,8 +1,6 @@
 import Mathlib
-import PibaseLean.UnstableProperties.P37.Defs
 
 open Function Set Filter Topology TopologicalSpace Set.Notation
-
 
 namespace UnstablePiBase
 

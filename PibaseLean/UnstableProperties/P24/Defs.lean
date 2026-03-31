@@ -7,7 +7,6 @@ namespace UnstablePiBase
 
 /- 24. Locally relatively compact -/
 class LocallyRelativelyCompact (X : Type*) [TopologicalSpace X] : Prop where
-  locally_relatively_compact : ∀ x : X, ∃ B : Set (Set X),
-    generate B = 𝓝 x ∧ ∀ s ∈ B, IsCompact (closure s)
+  locally_relatively_compact : ∀ x : X, (𝓝 x).HasBasis (fun s => IsCompact (closure s)) id
 
 end UnstablePiBase
