@@ -1,6 +1,6 @@
 import Mathlib.Topology.Metrizable.Basic
 
-open Topology Set Function Filter TopologicalSpace
+open TopologicalSpace
 
 namespace PiBase
 

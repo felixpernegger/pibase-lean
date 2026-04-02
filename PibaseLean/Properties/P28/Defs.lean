@@ -1,7 +1,5 @@
 import Mathlib.Topology.Bases
 
-open Topology Set Function TopologicalSpace
-
 namespace PiBase
 
 /- 28. Second countable -/
