@@ -3,15 +3,13 @@ import PibaseLean.AdditionalDefs
 
 open Topology Set Function Filter TopologicalSpace Topology.PiBase.AdditionalDefs
 
-universe u v
-
 namespace UnstablePiBase
 
 /- 33. Countably metacompact -/
-class CountablyMetacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
+class CountablyMetacompactSpace (X : Type*) [TopologicalSpace X] : Prop where
   countably_metacompact :
-    ∀ (α : Type v) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →
-      ∃ (β : Type v) (t : β → Set X), Countable β →
+    ∀ (α : Type) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →
+      ∃ (β : Type) (t : β → Set X), Countable β →
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ PointFinite t ∧ ∀ b, ∃ a, t b ⊆ s a
 
 end UnstablePiBase

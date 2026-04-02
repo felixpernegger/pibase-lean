@@ -1,6 +1,6 @@
 import Mathlib
 
-universe u v
+universe u
 
 /-! This file contains additional definitions which are useful for properties and theorems. -/
 
@@ -12,9 +12,8 @@ namespace AdditionalDefs
 
 open Filter Function Set Topology TopologicalSpace
 
-variable {X : Type*} {Y : Type*} [TopologicalSpace X]
-
-variable {ι ι' α X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f g : ι → Set X}
+variable
+  {X Y ι ι' α X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f g : ι → Set X}
 
 def PointFinite (U : ι → Set X) :=
   ∀ x : X, { i | x ∈ U i }.Finite
@@ -47,5 +46,7 @@ def LocallyCountable (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, { i | (f i ∩ t).Nonempty }.Finite
 
 end AdditionalDefs
+
 end PiBase
+
 end Topology
