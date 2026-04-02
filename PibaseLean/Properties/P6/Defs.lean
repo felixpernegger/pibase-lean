@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.Separation.CompletelyRegular
 
 open Topology Set Function
 

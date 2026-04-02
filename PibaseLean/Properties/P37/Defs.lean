@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.Connected.PathConnected
 
 open Topology Set Function
 

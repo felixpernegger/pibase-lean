@@ -1,6 +1,6 @@
-import Mathlib
+import Mathlib.Topology.Compactness.SigmaCompact
 
-open Function Set Filter Topology TopologicalSpace Set.Notation
+open Function Set Filter Topology TopologicalSpace
 
 namespace PiBase
 

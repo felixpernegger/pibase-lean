@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Data.Countable.Defs
+import Mathlib.Order.BourbakiWitt
+import Mathlib.Topology.Defs.Basic
 
 open Topology Set Function TopologicalSpace
 

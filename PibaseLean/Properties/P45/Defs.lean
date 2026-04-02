@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.Connected.TotallyDisconnected
 
 open Topology Set Function Filter TopologicalSpace
 

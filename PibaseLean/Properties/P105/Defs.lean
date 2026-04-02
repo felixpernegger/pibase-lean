@@ -1,4 +1,3 @@
-import Mathlib
 import PibaseLean.AdditionalDefs
 
 open Topology Set Filter TopologicalSpace Topology.PiBase.AdditionalDefs

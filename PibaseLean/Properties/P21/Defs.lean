@@ -1,6 +1,7 @@
-import Mathlib
+import Mathlib.Data.Finite.Defs
+import Mathlib.Topology.Defs.Filter
 
-open Topology Set Function Filter
+open Topology Set Filter
 
 namespace PiBase
 

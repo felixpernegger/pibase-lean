@@ -1,6 +1,7 @@
-import Mathlib
+import Mathlib.Data.Countable.Defs
+import Mathlib.Topology.Defs.Filter
 
-open Topology Set Function Filter TopologicalSpace
+open Topology Set
 
 universe u
 

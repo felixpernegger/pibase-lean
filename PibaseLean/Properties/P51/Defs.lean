@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.Defs.Induced
 
 open Topology Set Function Filter TopologicalSpace
 

@@ -1,6 +1,4 @@
-import Mathlib
-
-open Topology Set Function
+import Mathlib.Topology.Defs.Sequences
 
 namespace PiBase
 

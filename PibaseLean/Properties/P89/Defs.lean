@@ -1,6 +1,6 @@
-import Mathlib
+import Mathlib.Topology.Defs.Basic
 
-open Topology Set Function Filter TopologicalSpace
+open Topology Set Function TopologicalSpace
 
 namespace PiBase
 

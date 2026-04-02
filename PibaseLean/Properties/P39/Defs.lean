@@ -1,6 +1,4 @@
-import Mathlib
-
-open Topology Set Function Filter TopologicalSpace
+import Mathlib.Topology.Irreducible
 
 namespace PiBase
 

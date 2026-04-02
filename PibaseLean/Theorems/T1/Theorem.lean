@@ -1,4 +1,3 @@
-import Mathlib
 import PibaseLean.Properties.P16.Formal
 import PibaseLean.Properties.P19.Formal
 

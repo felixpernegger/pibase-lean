@@ -1,7 +1,4 @@
-import Mathlib
-
-open Topology Set Function Filter TopologicalSpace
-
+import Mathlib.Data.Countable.Defs
 namespace PiBase
 
 /- 57. Countable -/

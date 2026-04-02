@@ -1,6 +1,4 @@
-import Mathlib
-
-open Topology Set Function
+import Mathlib.Topology.Compactness.CountablyCompact
 
 namespace PiBase
 

@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.Defs.Sequences
 
 open Topology Set Function Filter TopologicalSpace
 

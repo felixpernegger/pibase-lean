@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.Spectral.Basic
 
 open Topology Set Function Filter TopologicalSpace
 

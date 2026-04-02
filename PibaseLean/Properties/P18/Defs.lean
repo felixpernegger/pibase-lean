@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.Compactness.Lindelof
 
 open Topology Set Function
 

@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.Compactness.Paracompact
 
 open Topology Set Function Filter TopologicalSpace
 

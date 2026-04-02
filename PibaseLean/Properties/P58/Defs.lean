@@ -1,7 +1,6 @@
-import Mathlib
+import Mathlib.SetTheory.Cardinal.Continuum
 
-open Topology Set Function Filter TopologicalSpace Cardinal
-
+open Cardinal
 namespace PiBase
 
 /- 58. Cardinality < 𝔠 -/

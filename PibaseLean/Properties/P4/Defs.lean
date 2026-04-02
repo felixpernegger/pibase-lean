@@ -1,6 +1,4 @@
-import Mathlib
-
-open Topology Set Function
+import Mathlib.Topology.Separation.Regular
 
 namespace PiBase
 

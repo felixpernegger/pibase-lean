@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.Metrizable.CompletelyMetrizable
 
 open Topology Set Function Filter TopologicalSpace
 

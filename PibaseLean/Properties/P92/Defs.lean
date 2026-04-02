@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Order.BourbakiWitt
+import Mathlib.Topology.Separation.Hausdorff
 
 open Topology Set Function Filter TopologicalSpace Set.Notation
 

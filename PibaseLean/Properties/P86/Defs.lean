@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.Homeomorph.Defs
 
 open Topology Set Function Filter TopologicalSpace
 

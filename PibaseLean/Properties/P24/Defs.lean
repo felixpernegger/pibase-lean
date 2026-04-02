@@ -1,7 +1,7 @@
-import Mathlib
+import Mathlib.Order.Filter.Bases.Basic
+import Mathlib.Topology.Defs.Filter
 
-open Function Set Filter Topology TopologicalSpace Set.Notation
-
+open Function Set Filter Topology TopologicalSpace
 
 namespace PiBase
 

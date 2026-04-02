@@ -1,4 +1,3 @@
-import Mathlib
 import PibaseLean.Properties.P38.Defs
 
 open Topology Set Function

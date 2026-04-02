@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.Separation.Hausdorff
 
 open Topology Set Function Filter TopologicalSpace
 

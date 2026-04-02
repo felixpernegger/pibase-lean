@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Topology.LocallyFinite
 
 open Topology Set Function Filter TopologicalSpace
 
