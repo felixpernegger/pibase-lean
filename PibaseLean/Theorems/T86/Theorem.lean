@@ -1,6 +1,8 @@
+import Mathlib.Analysis.Normed.Order.Lattice
+import Mathlib.Analysis.RCLike.Basic
 import PibaseLean.Properties.P9.Defs
 
-open Topology Set Function
+open Topology Set Function TopologicalSpace
 
 namespace PiBase
 
