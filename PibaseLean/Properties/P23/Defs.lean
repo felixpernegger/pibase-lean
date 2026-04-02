@@ -4,7 +4,7 @@ open Topology Set Function
 
 namespace PiBase
 
-/- 19. Countably compact -/
-#check CountablyCompactSpace
+/- 23. Weakly locally compact -/
+#check WeaklyLocallyCompactSpace
 
 end PiBase
