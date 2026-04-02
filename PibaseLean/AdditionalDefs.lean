@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Data.Set.Card
+import Mathlib.Topology.MetricSpace.Pseudo.Defs
 
 universe u
 

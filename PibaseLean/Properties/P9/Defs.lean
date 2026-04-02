@@ -1,7 +1,6 @@
-import Mathlib
+import Mathlib.Topology.MetricSpace.Pseudo.Defs
 
 open Topology Set Function
-
 namespace PiBase
 
 /- 9. Functionally Hausdorff -/
