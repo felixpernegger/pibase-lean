@@ -1,4 +1,4 @@
-import Mathlib.Topology.Path
+import PibaseLean.AdditionalDefs
 
 open Function
 
@@ -6,7 +6,7 @@ namespace PiBase
 
 /- 38. Injectively path connected -/
 class InjPathConnectedSpace (X : Type*) [TopologicalSpace X] : Prop where
-  joined : Pairwise fun x y : X ↦ ∃ f : Path x y, Injective f
+  joined : IsInjPathConnected
 
 end PiBase
 

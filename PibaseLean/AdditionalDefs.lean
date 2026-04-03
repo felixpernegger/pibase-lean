@@ -1,5 +1,6 @@
 import Mathlib.Data.Set.Card
 import Mathlib.Topology.MetricSpace.Pseudo.Defs
+import Mathlib.Topology.Path
 
 universe u
 
@@ -15,6 +16,9 @@ open Filter Function Set Topology TopologicalSpace
 
 variable
   {X Y ι ι' α X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f g : ι → Set X}
+
+def IsInjPathConnected (s : Set X) :=
+  Pairwise fun x y : X ↦ x ∈ s → y ∈ s → ∃ f : Path x y, Injective f ∧ range f ⊆ s
 
 def PointFinite (U : ι → Set X) :=
   ∀ x : X, { i | x ∈ U i }.Finite

@@ -7,7 +7,7 @@ open Topology Set Function TopologicalSpace
 namespace PiBase
 
 /- Theorem 86, functionally hausdorff implies T25 -/
-instance CompletelyT2Space.T25Space
+instance instCompletelyT2SpaceOfT25Space
     {X : Type*} [TopologicalSpace X] [h : CompletelyT2Space X] :
     T25Space X := by
   apply T25Space.mk

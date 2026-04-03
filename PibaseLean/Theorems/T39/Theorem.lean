@@ -7,7 +7,7 @@ namespace PiBase
 
 /- Theorem 39, injectively path connected
 implies (pre-) path connected -/
-instance InjPathConnectedSpace.PrePathConnectedSpace
+instance instInjPathConnectedSpaceOfPrePathConnectedSpace
     {X : Type*} [TopologicalSpace X] [h : InjPathConnectedSpace X] :
     PrePathConnectedSpace X where
   joined x y := (eq_or_ne x y).elim
@@ -18,10 +18,10 @@ end PiBase
 namespace PiBase.Formal
 
 abbrev T39 {X : Type*} [TopologicalSpace X] [InjPathConnectedSpace X] :=
-  InjPathConnectedSpace.PrePathConnectedSpace (X := X)
+  instInjPathConnectedSpaceOfPrePathConnectedSpace (X := X)
 
 /-- Contrapose -/
 instance T39_contra {X : Type*} [TopologicalSpace X] [h : NP37 X] : NP38 X where
-  not_p38 _ := h.not_p37 (InjPathConnectedSpace.PrePathConnectedSpace (X := X))
+  not_p38 _ := h.not_p37 (instInjPathConnectedSpaceOfPrePathConnectedSpace (X := X))
 
 end PiBase.Formal
