@@ -10,9 +10,9 @@ is locally path connected -/
 instance instLocally {X : Type*} [TopologicalSpace X] [h : LocallyInjPathConnectedSpace X] :
     LocPathConnectedSpace X where
   path_connected_basis x := by
-    refine Filter.hasBasis_self.mpr ?_
-    intro t ht
-    #check Filter.hasBasis_self (l := 𝓝 x) (P := fun s ↦ s ∈ 𝓝 x ∧ IsPathConnected s)
+    apply Filter.hasBasis_self.mpr (fun t ht ↦ ?_)
+    #check (Filter.hasBasis_self).1 <| h.inj_path_connected_basis x
+    sorry
 
 
 end PiBase
