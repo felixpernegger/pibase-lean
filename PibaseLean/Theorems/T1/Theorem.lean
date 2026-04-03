@@ -1,5 +1,5 @@
-import PibaseLean.Properties.P16.Formal
-import PibaseLean.Properties.P19.Formal
+import PibaseLean.Properties.P16.Defs
+import PibaseLean.Properties.P19.Defs
 
 open Topology Set Function TopologicalSpace
 
@@ -12,5 +12,15 @@ instance CompactSpace.CountablyCompactSpace
     CountablyCompactSpace X where
   isCountablyCompact_univ := isCompact_univ.isCountablyCompact
 
-
 end PiBase
+
+namespace PiBase.Formal
+
+abbrev T1 {X : Type*} [TopologicalSpace X] [CompactSpace X] :=
+  CompactSpace.CountablyCompactSpace (X := X)
+
+/-- Contrapose -/
+instance T1_contra {X : Type*} [TopologicalSpace X] [h : NP19 X] : NP16 X where
+  not_p16 _ := h.not_p19 (CompactSpace.CountablyCompactSpace (X := X))
+
+end PiBase.Formal
