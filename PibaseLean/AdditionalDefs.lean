@@ -28,7 +28,7 @@ theorem IsInjPathConnected.isPathConnected {s : Set X} (h : IsInjPathConnected s
   rcases eq_or_ne x y with xy|xy
   · exact xy ▸ JoinedIn.refl xs
   obtain ⟨f, f_inj, fs⟩ := h xy xs ys
-  exact ⟨f, fun t ↦ by apply fs; simp⟩
+  exact ⟨f, fun t ↦ fs (by simp)⟩
 
 def PointFinite (U : ι → Set X) :=
   ∀ x : X, { i | x ∈ U i }.Finite
