@@ -1,6 +1,7 @@
 import Mathlib.Data.Set.Card
 import Mathlib.Topology.MetricSpace.Pseudo.Defs
 import Mathlib.Topology.Path
+import Mathlib.Topology.Connected.PathConnected
 
 universe u
 
@@ -19,6 +20,15 @@ variable
 
 def IsInjPathConnected (s : Set X) :=
   Pairwise fun x y : X ↦ x ∈ s → y ∈ s → ∃ f : Path x y, Injective f ∧ range f ⊆ s
+
+theorem IsInjPathConnected.isPathConnected {s : Set X} (h : IsInjPathConnected s)
+    (hs : s.Nonempty) : IsPathConnected s := by
+  rw [isPathConnected_iff]
+  refine ⟨hs, fun x xs y ys ↦ ?_⟩
+  rcases eq_or_ne x y with xy|xy
+  · exact xy ▸ JoinedIn.refl xs
+  obtain ⟨f, f_inj, fs⟩ := h xy xs ys
+  exact ⟨f, fun t ↦ by apply fs; simp⟩
 
 def PointFinite (U : ι → Set X) :=
   ∀ x : X, { i | x ∈ U i }.Finite
