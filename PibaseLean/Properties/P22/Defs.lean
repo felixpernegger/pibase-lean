@@ -6,6 +6,6 @@ namespace PiBase
 
 /- 22. PseudocompactSpace -/
 class PseudocompactSpace (X : Type*) [TopologicalSpace X] : Prop where
-  PseudocompactSpace : ∀ (f : X → ℝ), Continuous f → Bornology.IsBounded (range f)
+  pseudocompact : ∀ (f : X → ℝ), Continuous f → Bornology.IsBounded (range f)
 
 end PiBase
