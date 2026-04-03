@@ -101,4 +101,7 @@ import PibaseLean.Properties.P98.Defs
 import PibaseLean.Properties.P99.Defs
 import PibaseLean.Theorems.T1.Theorem
 import PibaseLean.Theorems.T39.Theorem
+import PibaseLean.Theorems.T55.Theorem
+import PibaseLean.Theorems.T61.Theorem
+import PibaseLean.Theorems.T63.Theorem
 import PibaseLean.Theorems.T86.Theorem
