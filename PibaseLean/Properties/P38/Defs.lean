@@ -1,5 +1,7 @@
 import Mathlib.Topology.Path
 
+open Function
+
 namespace PiBase
 
 /- 38. Injectively path connected -/

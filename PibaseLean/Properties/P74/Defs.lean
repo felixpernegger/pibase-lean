@@ -1,6 +1,5 @@
 import PibaseLean.Properties.P182.Defs
-
-open Topology Set Function Filter TopologicalSpace
+import Mathlib.Topology.Separation.Regular
 
 namespace PiBase
 

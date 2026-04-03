@@ -1,7 +1,5 @@
 import Mathlib.Topology.Defs.Basic
 
-open Topology Set Function Filter TopologicalSpace
-
 namespace PiBase
 
 /- 40. Ultraconnected -/
