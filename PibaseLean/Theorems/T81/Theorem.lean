@@ -1,37 +1,30 @@
 import PibaseLean.Properties.P23.Defs
 import PibaseLean.Properties.P24.Defs
 import PibaseLean.Properties.P100.Defs
+import Mathlib.Topology.Compactness.Compact
 
-open Topology Set Function TopologicalSpace
+open Topology Set Function TopologicalSpace Filter
 
 namespace PiBase
 
 /- Theorem 81: A weakly locally compact KC space is
 locally relatively compact. -/
 instance instLocallyRelativelyCompactSpaceOfWeaklyLocallyCompactSpaceOfKC
-    {X : Type*} [TopologicalSpace X] [h : WeaklyLocallyCompactSpace X] :
-    LocallyRelativelyCompactSpace X := by
-  apply T25Space.mk
-  intro _ _ h'
-  obtain ⟨f, cf, hf⟩ := h.completelyT2 h'
-  apply Filter.disjoint_iff.mpr
-  refine ⟨f ⁻¹' (Ioo (-0.5 : ℝ) 0.5), ?_, ?_⟩
-  · apply (Filter.mem_lift'_sets (monotone_closure X)).mpr
-    refine ⟨f ⁻¹' Ioo (-0.25  : ℝ) 0.25, ?_, ?_⟩
-    · apply ContinuousAt.preimage_mem_nhds (Continuous.continuousAt cf)
-      exact Ioo_mem_nhds (by norm_num [hf.1]) (by norm_num [hf.1])
-    apply subset_trans (Continuous.closure_preimage_subset cf (Ioo (-0.25  : ℝ) 0.25))
-    apply preimage_mono
-    rw [closure_Ioo (by norm_num)]
-    exact Icc_subset_Ioo (by norm_num) (by norm_num)
-  refine ⟨f ⁻¹' (Ioo (0.5 : ℝ) 1.5), ?_, Disjoint.symm (Disjoint.preimage f (by simp))⟩
-  apply (Filter.mem_lift'_sets (monotone_closure X)).mpr
-  refine ⟨f ⁻¹' Ioo 0.75 1.25, ?_, ?_⟩
-  · apply ContinuousAt.preimage_mem_nhds <| Continuous.continuousAt cf
-    exact Ioo_mem_nhds (by norm_num [hf.2]) (by norm_num [hf.2])
-  apply subset_trans <| Continuous.closure_preimage_subset cf (Ioo (0.75 : ℝ) 1.25)
-  apply preimage_mono
-  rw [closure_Ioo (by norm_num)]
-  exact Icc_subset_Ioo (by norm_num) (by norm_num)
+    {X : Type*} [TopologicalSpace X] [h : WeaklyLocallyCompactSpace X] [h' : KcSpace X] :
+    LocallyRelativelyCompactSpace X where
+  locally_relatively_compact x := by
+    obtain ⟨t, tc, xt⟩ := exists_compact_mem_nhds x
+    have hb : (𝓝 x).HasBasis (fun s => s ∈ 𝓝 x ∧ IsCompact (closure s)) id := by
+      apply hasBasis_self.mpr (fun r hr ↦ ⟨t ∩ r, inter_mem xt hr, ?_, inter_subset_right⟩)
+      apply tc.of_isClosed_subset isClosed_closure
+      nth_rw 2 [← closure_eq_iff_isClosed.mpr <| KcSpace.kc t tc]
+      exact closure_mono inter_subset_left
+    rw [hasBasis_iff] at hb ⊢
+    intro t
+    rw [hb t]
+    constructor <;> intro ⟨r, hr, rt⟩
+    · exact ⟨r, hr.2, rt⟩
+    ·
+      sorry
 
 end PiBase
