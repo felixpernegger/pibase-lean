@@ -1,5 +1,4 @@
-import PiBaseLean.Properties.P60.Defs
-import PiBaseLean.Properties.P5.Defs
+import PiBaseLean.Properties.P110.Defs
 
 open Topology Set
 

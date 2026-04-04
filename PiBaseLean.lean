@@ -9,7 +9,11 @@ import PiBaseLean.Properties.P107.Defs
 import PiBaseLean.Properties.P108.Defs
 import PiBaseLean.Properties.P109.Defs
 import PiBaseLean.Properties.P11.Defs
+import PiBaseLean.Properties.P110.Defs
 import PiBaseLean.Properties.P111.Defs
+import PiBaseLean.Properties.P112.Defs
+import PiBaseLean.Properties.P113.Defs
+import PiBaseLean.Properties.P114.Defs
 import PiBaseLean.Properties.P12.Defs
 import PiBaseLean.Properties.P13.Defs
 import PiBaseLean.Properties.P14.Defs
@@ -22,6 +26,11 @@ import PiBaseLean.Properties.P19.Defs
 import PiBaseLean.Properties.P2.Defs
 import PiBaseLean.Properties.P20.Defs
 import PiBaseLean.Properties.P21.Defs
+import PiBaseLean.Properties.P210.Defs
+import PiBaseLean.Properties.P211.Defs
+import PiBaseLean.Properties.P212.Defs
+import PiBaseLean.Properties.P213.Defs
+import PiBaseLean.Properties.P214.Defs
 import PiBaseLean.Properties.P22.Defs
 import PiBaseLean.Properties.P23.Defs
 import PiBaseLean.Properties.P24.Defs
