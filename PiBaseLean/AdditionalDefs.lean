@@ -62,7 +62,7 @@ def CoverStar {X ι : Type*} (U : ι → Set X) [TopologicalSpace X] (x : X) :
 variable (A : Set ℕ)
 
 def LocallyCountable (f : ι → Set X) :=
-  ∀ x : X, ∃ t ∈ 𝓝 x, { i | (f i ∩ t).Nonempty }.Finite
+  ∀ x : X, ∃ t ∈ 𝓝 x, { i | (f i ∩ t).Nonempty }.Countable
 
 end AdditionalDefs
 
