@@ -3,7 +3,7 @@ import Mathlib.Topology.MetricSpace.Pseudo.Defs
 import Mathlib.Topology.Path
 import Mathlib.Topology.Connected.PathConnected
 
-universe u
+universe u v
 
 /-! This file contains additional definitions which are useful for properties and theorems. -/
 
@@ -54,6 +54,10 @@ def IsRetraction {X : Type u} [TopologicalSpace X] {A : Set X} (f : X → A) : P
 
 def IsRetract {X : Type u} [TopologicalSpace X] (A : Set X) : Prop :=
   ∃ f : X → A, IsRetraction f
+
+/-- Star of an open cover. -/
+def CoverStar {X ι : Type*} {ω : ι → Type v} (U : (i : ι) → ω i → Set X) [TopologicalSpace X] (x : X) :
+    Set X := ⋃ i : ι, ⋃ r : ω i, ⋃ (_ : x ∈ U i r), U i r
 
 variable (A : Set ℕ)
 
