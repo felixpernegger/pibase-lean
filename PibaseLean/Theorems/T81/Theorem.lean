@@ -9,7 +9,7 @@ namespace PiBase
 
 /- Theorem 81: A weakly locally compact KC space is
 locally relatively compact. -/
-instance instLocallyRelativelyCompactSpaceOfWeaklyLocallyCompactSpaceOfKC
+instance instLocallyRelativelyCompactSpaceOfWeaklyLocallyCompactSpaceOfKc
     {X : Type*} [TopologicalSpace X] [h : WeaklyLocallyCompactSpace X] [h' : KcSpace X] :
     LocallyRelativelyCompactSpace X where
   locally_relatively_compact x := by
