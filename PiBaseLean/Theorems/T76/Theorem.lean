@@ -6,7 +6,7 @@ open Topology Set Function
 namespace PiBase
 
 /- Theorem 76: a strongly connected space is pseudocompact -/
-instance instBiconnectedSpaceOfPreconnectedSpace
+instance instStrnglyConnectedSpaceOfPseudocompactSpace
     {X : Type*} [TopologicalSpace X] [h : StronglyConnectedSpace X] :
     PseudocompactSpace X where
   pseudocompact f hf := by
