@@ -9,8 +9,8 @@ namespace PiBase
 /- Theorem 81: A weakly locally compact KC space is
 locally relatively compact. -/
 instance instLocallyRelativelyCompactSpaceOfWeaklyLocallyCompactSpaceOfKC
-    {X : Type*} [TopologicalSpace X] [h : CompletelyT2Space X] :
-    T25Space X := by
+    {X : Type*} [TopologicalSpace X] [h : WeaklyLocallyCompactSpace X] :
+    LocallyRelativelyCompactSpace X := by
   apply T25Space.mk
   intro _ _ h'
   obtain ⟨f, cf, hf⟩ := h.completelyT2 h'
