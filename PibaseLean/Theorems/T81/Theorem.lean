@@ -14,17 +14,9 @@ instance instLocallyRelativelyCompactSpaceOfWeaklyLocallyCompactSpaceOfKC
     LocallyRelativelyCompactSpace X where
   locally_relatively_compact x := by
     obtain ⟨t, tc, xt⟩ := exists_compact_mem_nhds x
-    have hb : (𝓝 x).HasBasis (fun s => s ∈ 𝓝 x ∧ IsCompact (closure s)) id := by
-      apply hasBasis_self.mpr (fun r hr ↦ ⟨t ∩ r, inter_mem xt hr, ?_, inter_subset_right⟩)
-      apply tc.of_isClosed_subset isClosed_closure
-      nth_rw 2 [← closure_eq_iff_isClosed.mpr <| KcSpace.kc t tc]
-      exact closure_mono inter_subset_left
-    rw [hasBasis_iff] at hb ⊢
-    intro t
-    rw [hb t]
-    constructor <;> intro ⟨r, hr, rt⟩
-    · exact ⟨r, hr.2, rt⟩
-    ·
-      sorry
+    apply hasBasis_self.mpr (fun r hr ↦ ⟨t ∩ r, inter_mem xt hr, ?_, inter_subset_right⟩)
+    apply tc.of_isClosed_subset isClosed_closure
+    nth_rw 2 [← closure_eq_iff_isClosed.mpr <| KcSpace.kc t tc]
+    exact closure_mono inter_subset_left
 
 end PiBase
