@@ -11,8 +11,8 @@ namespace PiBase
 --TODO: Add more generally to mathlib: IsSimplyConnecred s ↔ SimplyConnectedSpace ↑s
 -- and IsSimplyConnetced uni ↔ SimplyConnectedSpace X
 
-/- Theorem 853: a simply connected space is weakly locally simply connected -/
-instance instWeaklyLocallySimplyConnectedSpaceOfLocallySimplyConnectedSpace
+/- Theorem 858: a simply connected space is weakly locally simply connected -/
+instance instWeaklyLocallySimplyConnectedSpaceOfSimplyConnectedSpace
     {X : Type*} [TopologicalSpace X] [h : PreSimplyConnectedSpace X] :
     WeaklyLocallySimplyConnectedSpace X where
   simply_connected_nbhd x := by
