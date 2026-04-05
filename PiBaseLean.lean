@@ -3,6 +3,7 @@ import PiBaseLean.Properties.P1.Defs
 import PiBaseLean.Properties.P10.Defs
 import PiBaseLean.Properties.P100.Defs
 import PiBaseLean.Properties.P101.Defs
+import PiBaseLean.Properties.P103.Defs
 import PiBaseLean.Properties.P105.Defs
 import PiBaseLean.Properties.P106.Defs
 import PiBaseLean.Properties.P107.Defs
@@ -14,8 +15,17 @@ import PiBaseLean.Properties.P111.Defs
 import PiBaseLean.Properties.P112.Defs
 import PiBaseLean.Properties.P113.Defs
 import PiBaseLean.Properties.P114.Defs
+import PiBaseLean.Properties.P116.Defs
+import PiBaseLean.Properties.P119.Defs
 import PiBaseLean.Properties.P12.Defs
+import PiBaseLean.Properties.P129.Defs
 import PiBaseLean.Properties.P13.Defs
+import PiBaseLean.Properties.P131.Defs
+import PiBaseLean.Properties.P134.Defs
+import PiBaseLean.Properties.P135.Defs
+import PiBaseLean.Properties.P136.Defs
+import PiBaseLean.Properties.P137.Defs
+import PiBaseLean.Properties.P139.Defs
 import PiBaseLean.Properties.P14.Defs
 import PiBaseLean.Properties.P15.Defs
 import PiBaseLean.Properties.P16.Defs
@@ -23,16 +33,23 @@ import PiBaseLean.Properties.P17.Defs
 import PiBaseLean.Properties.P18.Defs
 import PiBaseLean.Properties.P182.Defs
 import PiBaseLean.Properties.P19.Defs
+import PiBaseLean.Properties.P192.Defs
 import PiBaseLean.Properties.P2.Defs
 import PiBaseLean.Properties.P20.Defs
+import PiBaseLean.Properties.P203.Defs
+import PiBaseLean.Properties.P208.Defs
 import PiBaseLean.Properties.P21.Defs
 import PiBaseLean.Properties.P210.Defs
 import PiBaseLean.Properties.P211.Defs
 import PiBaseLean.Properties.P212.Defs
 import PiBaseLean.Properties.P213.Defs
 import PiBaseLean.Properties.P214.Defs
+import PiBaseLean.Properties.P216.Defs
+import PiBaseLean.Properties.P217.Defs
 import PiBaseLean.Properties.P22.Defs
 import PiBaseLean.Properties.P23.Defs
+import PiBaseLean.Properties.P233.Defs
+import PiBaseLean.Properties.P234.Defs
 import PiBaseLean.Properties.P24.Defs
 import PiBaseLean.Properties.P25.Defs
 import PiBaseLean.Properties.P26.Defs
@@ -108,6 +125,8 @@ import PiBaseLean.Properties.P96.Defs
 import PiBaseLean.Properties.P97.Defs
 import PiBaseLean.Properties.P98.Defs
 import PiBaseLean.Properties.P99.Defs
+import PiBaseLean.Properties.«P1 copy».Defs
+import PiBaseLean.Properties.«P139 copy».Defs
 import PiBaseLean.Theorems.T1.Theorem
 import PiBaseLean.Theorems.T39.Theorem
 import PiBaseLean.Theorems.T55.Theorem
