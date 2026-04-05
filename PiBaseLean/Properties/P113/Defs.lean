@@ -6,7 +6,7 @@ universe u
 
 namespace PiBase
 
-/- 111. Moore Space -/
+/- 113. Moore Space -/
 class MooreSpace (X : Type u) [TopologicalSpace X] extends DevelopableSpace X, T3Space X
 
 end PiBase
