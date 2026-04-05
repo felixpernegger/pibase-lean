@@ -36,6 +36,9 @@ def PointFinite (U : ι → Set X) :=
 def PointCountable (U : ι → Set X) :=
   ∀ x : X, { i | x ∈ U i }.Countable
 
+def IsZero {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
+  ∃ f : C(X, ℝ), f.toFun ⁻¹' {0} = s
+
 def IsCozero {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∃ f : C(X, ℝ), f.toFun ⁻¹' {0}ᶜ = s
 
