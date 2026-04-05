@@ -67,6 +67,8 @@ variable (A : Set ℕ)
 def LocallyCountable (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
 
+def IsCutPoint (p : X) := ¬ IsConnected {p}ᶜ
+
 end AdditionalDefs
 
 end PiBase
