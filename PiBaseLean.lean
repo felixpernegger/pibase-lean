@@ -140,6 +140,7 @@ import PiBaseLean.Properties.P99.Defs
 import PiBaseLean.Theorems.T1.Theorem
 import PiBaseLean.Theorems.T39.Theorem
 import PiBaseLean.Theorems.T55.Theorem
+import PiBaseLean.Theorems.T583.Theorem
 import PiBaseLean.Theorems.T61.Theorem
 import PiBaseLean.Theorems.T63.Theorem
 import PiBaseLean.Theorems.T76.Theorem
