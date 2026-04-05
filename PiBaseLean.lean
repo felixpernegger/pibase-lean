@@ -38,9 +38,12 @@ import PiBaseLean.Properties.P196.Defs
 import PiBaseLean.Properties.P2.Defs
 import PiBaseLean.Properties.P20.Defs
 import PiBaseLean.Properties.P200.Defs
+import PiBaseLean.Properties.P201.Defs
+import PiBaseLean.Properties.P202.Defs
 import PiBaseLean.Properties.P203.Defs
 import PiBaseLean.Properties.P204.Defs
 import PiBaseLean.Properties.P205.Defs
+import PiBaseLean.Properties.P207.Defs
 import PiBaseLean.Properties.P208.Defs
 import PiBaseLean.Properties.P209.Defs
 import PiBaseLean.Properties.P21.Defs
@@ -51,10 +54,15 @@ import PiBaseLean.Properties.P213.Defs
 import PiBaseLean.Properties.P214.Defs
 import PiBaseLean.Properties.P216.Defs
 import PiBaseLean.Properties.P217.Defs
+import PiBaseLean.Properties.P218.Defs
+import PiBaseLean.Properties.P219.Defs
 import PiBaseLean.Properties.P22.Defs
+import PiBaseLean.Properties.P220.Defs
 import PiBaseLean.Properties.P224.Defs
 import PiBaseLean.Properties.P226.Defs
+import PiBaseLean.Properties.P227.Defs
 import PiBaseLean.Properties.P23.Defs
+import PiBaseLean.Properties.P231.Defs
 import PiBaseLean.Properties.P233.Defs
 import PiBaseLean.Properties.P234.Defs
 import PiBaseLean.Properties.P24.Defs
@@ -140,4 +148,5 @@ import PiBaseLean.Theorems.T63.Theorem
 import PiBaseLean.Theorems.T76.Theorem
 import PiBaseLean.Theorems.T78.Theorem
 import PiBaseLean.Theorems.T81.Theorem
+import PiBaseLean.Theorems.T818.Theorem
 import PiBaseLean.Theorems.T86.Theorem
