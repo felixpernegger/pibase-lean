@@ -8,6 +8,6 @@ namespace PiBase
 
 /- 112. Submetrizable space -/
 class SubmetrizableSpace (X : Type u) [τ : TopologicalSpace X] : Prop where
-  le_metrizable : ∃ m : MetricSpace X, m.toUniformSpace.toTopologicalSpace ≥ τ
+  le_metrizable : ∃ m : MetricSpace X, τ ≤ m.toUniformSpace.toTopologicalSpace
 
 end PiBase
