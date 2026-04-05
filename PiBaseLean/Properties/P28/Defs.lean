@@ -1,4 +1,5 @@
 import Mathlib.Topology.Bases
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -7,13 +8,10 @@ namespace PiBase
 
 end PiBase
 
-open TopologicalSpace
-
 namespace PiBase.Formal
 
-abbrev P28 := FirstCountableTopology
-
-class NP28 (X : Type*) [TopologicalSpace X] where
-  not_p28 : ¬ P28 X
+def P28 : Property where
+  toPred := FirstCountableTopology
+  well_defined' φ _ := φ.symm.isInducing.firstCountableTopology
 
 end PiBase.Formal

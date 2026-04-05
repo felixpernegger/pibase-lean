@@ -1,4 +1,5 @@
 import Mathlib.Data.Finite.Defs
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P78 := Finite
-
-class NP78 (X : Type*) where
-  not_p78 : ¬ P78 X
+def P78 : Property where
+  toPred X := Finite X
+  well_defined' φ _ := .of_equiv _ φ.toEquiv
 
 end PiBase.Formal

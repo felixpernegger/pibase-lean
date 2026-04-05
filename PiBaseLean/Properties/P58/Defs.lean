@@ -1,6 +1,8 @@
 import Mathlib.SetTheory.Cardinal.Continuum
+import PiBaseLean.Properties.Bundled.Defs
 
 open Cardinal
+
 namespace PiBase
 
 /- 58. Cardinality < 𝔠 -/
@@ -11,9 +13,11 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P58 := CardLtContinuum
-
-class NP58 (X : Type*) where
-  not_p58 : ¬ P58 X
+def P58 : Property where
+  toPred X := CardLtContinuum X
+  well_defined' φ h := by
+    constructor
+    rw [← Cardinal.mk_congr φ.toEquiv]
+    exact h.card_lt
 
 end PiBase.Formal

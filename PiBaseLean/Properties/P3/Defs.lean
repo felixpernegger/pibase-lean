@@ -1,4 +1,5 @@
 import Mathlib.Topology.Separation.Hausdorff
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P3 := T2Space
-
-class NP3 (X : Type*) [TopologicalSpace X] where
-  not_p3 : ¬ P3 X
+def P3 : Property where
+  toPred := T2Space
+  well_defined' φ _ := φ.t2Space
 
 end PiBase.Formal

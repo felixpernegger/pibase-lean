@@ -1,4 +1,5 @@
 import Mathlib.Topology.Bases
+import PiBaseLean.Properties.Bundled.Defs
 
 open TopologicalSpace
 
@@ -9,13 +10,10 @@ namespace PiBase
 
 end PiBase
 
-open TopologicalSpace
-
 namespace PiBase.Formal
 
-abbrev P26 := SeparableSpace
-
-class NP26 (X : Type*) [TopologicalSpace X] where
-  not_p26 : ¬ P26 X
+def P26 : Property where
+  toPred := SeparableSpace
+  well_defined' φ _ := φ.symm.isOpenEmbedding.separableSpace
 
 end PiBase.Formal

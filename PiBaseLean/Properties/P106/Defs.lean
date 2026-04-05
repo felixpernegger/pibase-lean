@@ -1,4 +1,5 @@
 import Mathlib.Topology.GDelta.Basic
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function Filter TopologicalSpace
 
@@ -12,9 +13,12 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P106 := HasGδDiagonal
-
-class NP106 (X : Type*) [TopologicalSpace X] where
-  not_p106 : ¬ P106 X
+def P106 : Property where
+  toPred := HasGδDiagonal
+  well_defined' {X Y} _ _ φ h := by
+    constructor
+    letI Φ : Y × Y ≃ₜ X × X := φ.symm.prodCongr φ.symm
+    convert isGδ_induced Φ.continuous h.has_g_delta_diagonal
+    simp [Φ, diagonal]
 
 end PiBase.Formal

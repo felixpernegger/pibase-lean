@@ -1,4 +1,5 @@
 import Mathlib.Topology.Metrizable.CompletelyMetrizable
+import PiBaseLean.Properties.Bundled.Defs
 
 open TopologicalSpace
 
@@ -11,9 +12,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P55 := IsCompletelyMetrizableSpace
-
-class NP55 (X : Type*) [TopologicalSpace X] where
-  not_p55 : ¬ P55 X
+def P55 : Property where
+  toPred := IsCompletelyMetrizableSpace
+  well_defined' φ _ := φ.symm.isClosedEmbedding.IsCompletelyMetrizableSpace
 
 end PiBase.Formal

@@ -1,4 +1,5 @@
-import Mathlib.Topology.Defs.Basic
+import Mathlib.Topology.Homeomorph.Lemmas
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P64 := BaireSpace
-
-class NP64 (X : Type*) [TopologicalSpace X] where
-  not_p64 : ¬ P64 X
+def P64 : Property where
+  toPred := BaireSpace
+  well_defined' φ _ := φ.baireSpace
 
 end PiBase.Formal

@@ -1,4 +1,5 @@
 import Mathlib.Topology.Separation.GDelta
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P15 := PerfectlyNormalSpace
-
-class NP15 (X : Type*) [TopologicalSpace X] where
-  not_p15 : ¬ P15 X
+def P15 : Property where
+  toPred := PerfectlyNormalSpace
+  well_defined' φ h := sorry
 
 end PiBase.Formal

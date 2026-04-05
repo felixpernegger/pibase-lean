@@ -1,3 +1,4 @@
+import PiBaseLean.Properties.Bundled.Basic
 import PiBaseLean.Properties.P37.Defs
 import PiBaseLean.Properties.P38.Defs
 
@@ -18,11 +19,6 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev T39 {X : Type*} [TopologicalSpace X] [InjPathConnectedSpace X] :=
-  instInjPathConnectedSpaceOfPrePathConnectedSpace (X := X)
-
-/-- Contrapose -/
-instance T39_contra {X : Type*} [TopologicalSpace X] [h : NP37 X] : NP38 X where
-  not_p38 _ := h.not_p37 (instInjPathConnectedSpaceOfPrePathConnectedSpace (X := X))
+theorem T39 : P38 ≤ P37 := @instInjPathConnectedSpaceOfPrePathConnectedSpace
 
 end PiBase.Formal

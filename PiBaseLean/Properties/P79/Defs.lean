@@ -1,4 +1,5 @@
-import Mathlib.Topology.Defs.Sequences
+import Mathlib.Topology.Sequences
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P79 := SequentialSpace
-
-class NP79 (X : Type*) [TopologicalSpace X] where
-  not_p79 : ¬ P79 X
+def P79 : Property where
+  toPred := SequentialSpace
+  well_defined' φ _ := φ.isQuotientMap.sequentialSpace
 
 end PiBase.Formal

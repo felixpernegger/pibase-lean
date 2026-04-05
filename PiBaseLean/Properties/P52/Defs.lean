@@ -1,4 +1,5 @@
 import Mathlib.Topology.Order
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P52 := DiscreteTopology
-
-class NP52 (X : Type*) [TopologicalSpace X] where
-  not_p52 : ¬ P52 X
+def P52 : Property where
+  toPred := DiscreteTopology
+  well_defined' φ _ := φ.symm.isEmbedding.discreteTopology
 
 end PiBase.Formal

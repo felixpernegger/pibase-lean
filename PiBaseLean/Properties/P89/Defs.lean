@@ -1,4 +1,5 @@
-import Mathlib.Topology.Defs.Basic
+import Mathlib.Topology.ContinuousMap.Basic
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function TopologicalSpace
 
@@ -12,9 +13,11 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P89 := FixedPointSpace
-
-class NP89 (X : Type*) [TopologicalSpace X] where
-  not_p89 : ¬ P89 X
+def P89 : Property where
+  toPred := FixedPointSpace
+  well_defined' {X Y} _ _ φ h := by
+    refine ⟨fun f ↦ ?_⟩
+    rcases h.fixed_point (((φ.symm : C(Y, X)).comp f).comp (φ : C(X, Y))) with ⟨x, xfx⟩
+    exact ⟨φ x, φ.symm_apply_eq.1 xfx⟩
 
 end PiBase.Formal

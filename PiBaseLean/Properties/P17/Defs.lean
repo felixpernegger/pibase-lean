@@ -1,4 +1,5 @@
 import Mathlib.Topology.Compactness.SigmaCompact
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P17 := SigmaCompactSpace
-
-class NP17 (X : Type*) [TopologicalSpace X] where
-  not_p17 : ¬ P17 X
+def P17 : Property where
+  toPred := SigmaCompactSpace
+  well_defined' φ _ := φ.symm.isClosedEmbedding.sigmaCompactSpace
 
 end PiBase.Formal

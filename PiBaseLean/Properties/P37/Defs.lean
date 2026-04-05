@@ -1,4 +1,5 @@
 import Mathlib.Topology.Connected.PathConnected
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function
 
@@ -11,13 +12,12 @@ class PrePathConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
 
 end PiBase
 
-variable (X : Type*) [TopologicalSpace X]
-
 namespace PiBase.Formal
 
-abbrev P37 := PrePathConnectedSpace
-
-class NP37 (X : Type*) [TopologicalSpace X] where
-  not_p37 : ¬ P37 X
+def P37 : Property where
+  toPred := PrePathConnectedSpace
+  well_defined' φ h := by
+    refine ⟨fun x y ↦ (h.joined (φ.symm x) (φ.symm y)).elim fun p => ⟨?_⟩⟩
+    convert p.map φ.continuous <;> simp only [Homeomorph.apply_symm_apply]
 
 end PiBase.Formal

@@ -1,4 +1,5 @@
-import Mathlib.Topology.Defs.Filter
+import Mathlib.Topology.Compactness.LocallyCompact
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -6,3 +7,11 @@ namespace PiBase
 #check WeaklyLocallyCompactSpace
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P23 : Property where
+  toPred := WeaklyLocallyCompactSpace
+  well_defined' φ _ := φ.symm.isClosedEmbedding.weaklyLocallyCompactSpace
+
+end PiBase.Formal

@@ -1,4 +1,5 @@
 import Mathlib.Topology.Compactness.CountablyCompact
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,11 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P19 := CountablyCompactSpace
-
-class NP19 (X : Type*) [TopologicalSpace X] where
-  not_p19 : ¬ P19 X
+def P19 : Property where
+  toPred := CountablyCompactSpace
+  well_defined' φ h := by
+    constructor
+    convert h.isCountablyCompact_univ.image φ.continuous
+    simp only [Set.image_univ, EquivLike.range_eq_univ]
 
 end PiBase.Formal

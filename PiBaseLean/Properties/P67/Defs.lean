@@ -1,4 +1,5 @@
 import Mathlib.Topology.Separation.GDelta
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P67 := T6Space
-
-class NP67 (X : Type*) [TopologicalSpace X] where
-  not_p67 : ¬ P67 X
+def P67 : Property where
+  toPred := T6Space
+  well_defined' φ h := sorry
 
 end PiBase.Formal

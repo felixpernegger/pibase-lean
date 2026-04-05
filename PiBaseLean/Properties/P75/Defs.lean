@@ -1,4 +1,5 @@
 import Mathlib.Topology.Spectral.Basic
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P75 := SpectralSpace
-
-class NP75 (X : Type*) [TopologicalSpace X] where
-  not_p75 : ¬ P75 X
+def P75 : Property where
+  toPred := SpectralSpace
+  well_defined' φ _ := @φ.symm.isOpenEmbedding.spectralSpace _ _ _ _ _ _ φ.compactSpace
 
 end PiBase.Formal

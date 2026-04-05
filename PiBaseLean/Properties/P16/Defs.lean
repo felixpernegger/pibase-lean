@@ -1,4 +1,5 @@
-import Mathlib.Topology.Defs.Filter
+import Mathlib.Topology.Homeomorph.Lemmas
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P16 := CompactSpace
-
-class NP16 (X : Type*) [TopologicalSpace X] where
-  not_p16 : ¬ P16 X
+def P16 : Property where
+  toPred := CompactSpace
+  well_defined' φ _ := φ.compactSpace
 
 end PiBase.Formal
