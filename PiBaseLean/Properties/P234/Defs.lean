@@ -5,7 +5,7 @@ universe u
 namespace PiBase
 
 /- 234. Has open connected components -/
-class CountablyMetacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
+class HasOpenConnectedComponents (X : Type u) [TopologicalSpace X] : Prop where
   component_open (x : X) : IsOpen (connectedComponent x)
 
 end PiBase
