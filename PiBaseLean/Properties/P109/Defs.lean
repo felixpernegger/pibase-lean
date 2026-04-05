@@ -12,5 +12,3 @@ class MonotonicallyNormalSpace (X : Type*) [TopologicalSpace X] : Prop extends T
         (↑(μ x u hu) : Set X) ∩ ↑(μ y v hv) ≠ ∅ → ↑v ∈ 𝓝 x ∨ ↑u ∈ 𝓝 y
 
 end PiBase
-
-#min_imports
