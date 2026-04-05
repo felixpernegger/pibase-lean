@@ -36,6 +36,7 @@ import PiBaseLean.Properties.P19.Defs
 import PiBaseLean.Properties.P192.Defs
 import PiBaseLean.Properties.P2.Defs
 import PiBaseLean.Properties.P20.Defs
+import PiBaseLean.Properties.P200.Defs
 import PiBaseLean.Properties.P203.Defs
 import PiBaseLean.Properties.P208.Defs
 import PiBaseLean.Properties.P21.Defs
@@ -125,8 +126,6 @@ import PiBaseLean.Properties.P96.Defs
 import PiBaseLean.Properties.P97.Defs
 import PiBaseLean.Properties.P98.Defs
 import PiBaseLean.Properties.P99.Defs
-import PiBaseLean.Properties.«P1 copy».Defs
-import PiBaseLean.Properties.«P139 copy».Defs
 import PiBaseLean.Theorems.T1.Theorem
 import PiBaseLean.Theorems.T39.Theorem
 import PiBaseLean.Theorems.T55.Theorem
