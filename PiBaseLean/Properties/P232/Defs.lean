@@ -6,7 +6,7 @@ open Topology Filter PiBase.AdditionalDefs
 
 namespace PiBase
 
-/- 232. LC¹ -/
+/- 232. LC¹ -/ --TODO: Maybe later define LC^n in general with homotopy groups
 class LC1 (X : Type u) [TopologicalSpace X] : Prop where
   contractible_nbhd {x : X} {N : Set X} (hN : N ∈ 𝓝 x) :
     letI x' : N := ⟨x, mem_of_mem_nhds hN⟩
