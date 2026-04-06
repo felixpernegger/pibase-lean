@@ -1,0 +1,17 @@
+import Mathlib.Data.Rel
+import Mathlib.Topology.Constructions.SumProd
+
+open Set
+
+open scoped SetRel
+
+universe u
+
+namespace PiBase
+
+/- 207. Strongly collectionwise normal -/
+class StronglyCollectionwiseNormalSpace (X : Type u) [TopologicalSpace X] : Prop where
+  subset_diagonal {s : Set (X × X)} (ds : diagonal X ⊆ s) (hs : IsOpen s) :
+    ∃ t : Set (X × X), diagonal X ⊆ t ∧ IsOpen t ∧ t ○ t ⊆ s
+
+end PiBase
