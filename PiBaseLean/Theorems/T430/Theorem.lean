@@ -4,8 +4,6 @@ import Mathlib.Tactic
 
 universe u
 
-open Topology Set Function TopologicalSpace
-
 namespace PiBase
 
 /-- Theorem 430: 3 ≤ 4 -/

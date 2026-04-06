@@ -4,8 +4,6 @@ import Mathlib.Tactic
 
 universe u
 
-open Topology Set Function TopologicalSpace
-
 namespace PiBase
 
 --TODO: Maybe change this once negations are properly implemented
