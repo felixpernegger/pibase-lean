@@ -1,19 +1,14 @@
-import PiBaseLean.Properties.P60.Defs
-import PiBaseLean.Properties.P22.Defs
+import PiBaseLean.Properties.P163.Defs
+import PiBaseLean.Properties.P114.Defs
 
-open Topology Set Function
+universe u
+
+open Cardinal
 
 namespace PiBase
 
-/- Theorem 76: a strongly connected space is pseudocompact -/
-instance instStrnglyConnectedSpaceOfPseudocompactSpace
-    {X : Type*} [TopologicalSpace X] [h : StronglyConnectedSpace X] :
-    PseudocompactSpace X where
-  pseudocompact f hf := by
-    obtain ⟨r, hr⟩ := h.strongly_connected f hf
-    by_cases n : Nonempty X
-    · rw [hr]
-      simp_all [(range_eq_singleton_iff (f := const X r) (y := r)).mpr <| congrFun rfl]
-    simp [range_eq_empty_iff.mpr <| not_nonempty_iff.mp n]
+/-- Theorem 190: ℵ₁​ ≤ 𝔠 -/
+instance instCardLeContinuumOfCardEqAlephOne {X : Type u} [h : CardEqAlephOne X] :
+    CardLeContinuum X where card_le := h.card_eq ▸ aleph_one_le_continuum
 
 end PiBase

@@ -1,14 +1,9 @@
-import PiBaseLean.Properties.P163.Defs
-import PiBaseLean.Properties.P114.Defs
-
-universe u
-
-open Cardinal
+import Mathlib.Logic.Nontrivial.Defs
 
 namespace PiBase
 
-/-- Theorem 190: ℵ₁​ ≤ 𝔠 -/
-instance instCardLeContinuumOfCardEqAlephOne {X : Type u} [h : CardEqAlephOne X] :
-    CardLeContinuum X where card_le := h.card_eq ▸ aleph_one_le_continuum
+--TODO: When negations of properties are properly implemented, maybe redo this
+/- Theorem 295: a space with multiple points is nonempty -/
+#check Nontrivial.to_nonempty
 
 end PiBase

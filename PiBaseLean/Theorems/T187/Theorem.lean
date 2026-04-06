@@ -1,9 +1,8 @@
-import Mathlib.Logic.Nontrivial.Defs
+import Mathlib.Data.Countable.Defs
 
 namespace PiBase
 
---TODO: When negations of properties are properly implemented, maybe redo this
-/- Theorem 295: a space with multiple points is nonempty -/
-#check Nontrivial.to_nonempty
+/- Theorem 187: a finite space is countable -/
+#check Finite.to_countable
 
 end PiBase
