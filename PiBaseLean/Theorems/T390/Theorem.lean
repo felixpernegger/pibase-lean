@@ -10,6 +10,6 @@ namespace PiBase
 /-- Theorem 390: |X| ≤ 𝔠 implies |X| ≤ 2^𝔠 -/
 instance instCardLeContinuumOfCardLePowerContinuum (X : Type u) [h : CardLeContinuum X] :
     CardLePowerContinuum X where
-  card_le := lt_of_le_of_lt h.card_le (cantor 𝔠)
+  card_le := le_trans h.card_le (cantor 𝔠)
 
 end PiBase
