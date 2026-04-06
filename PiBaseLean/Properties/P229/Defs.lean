@@ -1,15 +1,14 @@
-import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
+import PiBaseLean.AdditionalDefs
 
 universe u
 
-open Topology
+open Topology PiBase.AdditionalDefs
 
 namespace PiBase
 
 /- 229. Semilocally simply conneced -/
 class SemilocallySimplyConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
   homo_trivial (x : X) : ∃ U : Set X, ∃ hU : U ∈ 𝓝 x,
-    (FundamentalGroup.map (⟨Subtype.val, continuous_subtype_val⟩ : C(U, X))
-      ⟨x, mem_of_mem_nhds hU⟩).range = ⊥
+    HasTrivialFundGroupImageAt ⟨Subtype.val, continuous_subtype_val⟩ ⟨x, mem_of_mem_nhds hU⟩
 
 end PiBase
