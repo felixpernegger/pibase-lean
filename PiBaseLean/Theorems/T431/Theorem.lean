@@ -1,6 +1,5 @@
 import Mathlib.SetTheory.Cardinal.Basic
 import PiBaseLean.Properties.P176.Defs
-import Mathlib.Tactic
 
 universe u
 

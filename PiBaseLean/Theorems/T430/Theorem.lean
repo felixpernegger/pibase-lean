@@ -1,6 +1,6 @@
+import Mathlib.Tactic.NormNum
 import PiBaseLean.Properties.P175.Defs
 import PiBaseLean.Properties.P176.Defs
-import Mathlib.Tactic
 
 universe u
 

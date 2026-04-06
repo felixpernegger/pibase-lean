@@ -1,5 +1,6 @@
+import Mathlib.Data.Set.Card
+import Mathlib.Topology.Homeomorph.Lemmas
 import PiBaseLean.Properties.P219.Defs
-import Mathlib
 
 open Topology Set Function TopologicalSpace Filter Cardinal
 

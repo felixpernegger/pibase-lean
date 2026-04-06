@@ -1,5 +1,4 @@
 import PiBaseLean.Properties.P181.Defs
-import Mathlib.Tactic
 
 universe u
 
