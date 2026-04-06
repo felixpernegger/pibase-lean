@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P199 : Property where
   toPred := ContractibleSpace
-  well_defined' φ _ := φ.contractibleSpace
+  well_defined' φ _ := φ.symm.contractibleSpace
 
 end PiBase.Formal

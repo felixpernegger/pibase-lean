@@ -2,7 +2,7 @@ import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
-/- 128. Has multiple points -/
+/- 125. Has multiple points -/
 #check Nontrivial
 
 end PiBase
