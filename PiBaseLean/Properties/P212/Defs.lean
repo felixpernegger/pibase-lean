@@ -1,4 +1,5 @@
 import Mathlib.Topology.Metrizable.Basic
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Filter Function
 
@@ -11,3 +12,11 @@ class α2Space (X : Type*) [τ : TopologicalSpace X] : Prop where
       Tendsto T atTop (𝓝 x) ∧ range T ⊆ ⋃ n, range (S n) ∧ ∀ n, (range (S n) ∩ range T).Infinite
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P212 : Property where
+  toPred := α2Space
+  well_defined' φ h := sorry
+
+end PiBase.Formal

@@ -1,4 +1,5 @@
 import Mathlib.Topology.MetricSpace.Pseudo.Defs
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function Filter TopologicalSpace
 
@@ -9,3 +10,11 @@ class StronglyConnectedSpace (X : Type*) [TopologicalSpace X] : Prop where
   strongly_connected : ∀ f : X → ℝ, Continuous f → ∃ r : ℝ, f = Function.const X r
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P60 : Property where
+  toPred := StronglyConnectedSpace
+  well_defined' φ h := sorry
+
+end PiBase.Formal

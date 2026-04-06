@@ -1,4 +1,5 @@
 import Mathlib.Topology.MetricSpace.Pseudo.Defs
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function Filter TopologicalSpace
 
@@ -9,3 +10,11 @@ class TotallyPathDisconnectedSpace (X : Type*) [TopologicalSpace X] : Prop where
   totally_path_disconnected : ∀ f : Icc (0 : ℝ) 1 → X, Continuous f → ∃ x : X, f = const (Icc 0 1) x
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P46 : Property where
+  toPred := TotallyPathDisconnectedSpace
+  well_defined' φ h := sorry
+
+end PiBase.Formal

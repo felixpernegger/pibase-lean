@@ -1,5 +1,6 @@
 import Mathlib.Data.Rel
 import Mathlib.Topology.Constructions.SumProd
+import PiBaseLean.Properties.Bundled.Defs
 
 open Set
 
@@ -13,3 +14,11 @@ class StronglyCollectionwiseNormalSpace (X : Type*) [TopologicalSpace X] : Prop 
     ∃ t : Set (X × X), diagonal X ⊆ t ∧ IsOpen t ∧ t ○ t ⊆ s
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P207 : Property where
+  toPred := StronglyCollectionwiseNormalSpace
+  well_defined' φ h := sorry
+
+end PiBase.Formal

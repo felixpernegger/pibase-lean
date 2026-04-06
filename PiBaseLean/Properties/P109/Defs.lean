@@ -1,4 +1,5 @@
 import Mathlib.Topology.Sets.Opens
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function Filter TopologicalSpace
 
@@ -12,3 +13,11 @@ class MonotonicallyNormalSpace (X : Type*) [TopologicalSpace X] : Prop extends T
         (↑(μ x u hu) : Set X) ∩ ↑(μ y v hv) ≠ ∅ → ↑v ∈ 𝓝 x ∨ ↑u ∈ 𝓝 y
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P109 : Property where
+  toPred := MonotonicallyNormalSpace
+  well_defined' φ h := sorry
+
+end PiBase.Formal

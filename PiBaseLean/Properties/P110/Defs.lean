@@ -1,6 +1,7 @@
 import Mathlib.Data.Countable.Defs
 import Mathlib.Topology.Defs.Filter
 import PiBaseLean.AdditionalDefs
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Filter
 
@@ -22,3 +23,11 @@ class DevelopableSpace (X : Type u) [TopologicalSpace X] : Prop where
   developable : Nonempty (Development X)
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P110 : Property where
+  toPred := DevelopableSpace
+  well_defined' φ h := sorry
+
+end PiBase.Formal

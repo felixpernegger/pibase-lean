@@ -1,5 +1,6 @@
 import Mathlib.Order.BourbakiWitt
 import Mathlib.Topology.Separation.Hausdorff
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function Filter TopologicalSpace Set.Notation
 
@@ -12,3 +13,11 @@ class kω3Space (X : Type*) [TopologicalSpace X] : Prop where
       ∀ s : Set X, IsOpen s ↔ ∀ n : ℕ, IsOpen ((K n) ↓∩ s)
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P92 : Property where
+  toPred := kω3Space
+  well_defined' φ h := sorry
+
+end PiBase.Formal

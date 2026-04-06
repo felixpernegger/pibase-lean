@@ -1,4 +1,5 @@
 import PiBaseLean.AdditionalDefs
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Filter PiBase.AdditionalDefs
 
@@ -12,3 +13,11 @@ class LC1 (X : Type*) [TopologicalSpace X] : Prop where
       HasTrivialFundGroupImageAt ⟨Subtype.val, continuous_subtype_val⟩ ⟨x', mem_of_mem_nhds hU⟩
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P232 : Property where
+  toPred := LC1
+  well_defined' φ h := sorry
+
+end PiBase.Formal

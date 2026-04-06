@@ -1,5 +1,6 @@
 import Mathlib.Data.Finset.Defs
 import Mathlib.Topology.Defs.Basic
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function TopologicalSpace
 
@@ -14,3 +15,11 @@ class MengerSpace (X : Type u) [TopologicalSpace X] : Prop where
       ∃ s : ℕ → (Finset ι), univ = ⋃ (n : ℕ), ⋃ i ∈ s n, U n i
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P66 : Property where
+  toPred := MengerSpace
+  well_defined' φ h := sorry
+
+end PiBase.Formal

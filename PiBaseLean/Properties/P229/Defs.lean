@@ -1,4 +1,5 @@
 import PiBaseLean.AdditionalDefs
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology PiBase.AdditionalDefs
 
@@ -10,3 +11,11 @@ class SemilocallySimplyConnectedSpace (X : Type*) [TopologicalSpace X] : Prop wh
     HasTrivialFundGroupImageAt ⟨Subtype.val, continuous_subtype_val⟩ ⟨x, mem_of_mem_nhds hU⟩
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P229 : Property where
+  toPred := SemilocallySimplyConnectedSpace
+  well_defined' φ h := sorry
+
+end PiBase.Formal

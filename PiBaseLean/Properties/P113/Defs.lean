@@ -8,3 +8,11 @@ namespace PiBase
 class MooreSpace (X : Type*) [TopologicalSpace X] extends DevelopableSpace X, T3Space X
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P113 : Property where
+  toPred := MooreSpace
+  well_defined' φ h := sorry
+
+end PiBase.Formal

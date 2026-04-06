@@ -1,4 +1,5 @@
 import PiBaseLean.AdditionalDefs
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function
 
@@ -12,3 +13,11 @@ class CutPointSpace (X : Type*)
   all_cut (p : X) : IsCutPoint p
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P205 : Property where
+  toPred := CutPointSpace
+  well_defined' φ h := sorry
+
+end PiBase.Formal
