@@ -70,20 +70,9 @@ def LocallyCountable (f : ι → Set X) :=
 
 def IsCutPoint (p : X) := ¬ IsConnected {p}ᶜ
 
-def r := True
-
-universe u
-
-open Topology
-
-namespace PiBase
-
 /-- The image of the fundamental group of under f:X → Y at x : X is trivial. -/
 def HasTrivialFundGroupImageAt (f : C(X, Y)) (x : X) : Prop :=
   ((FundamentalGroup.map f) x).range = ⊥
-
-end PiBase
-
 
 end AdditionalDefs
 
