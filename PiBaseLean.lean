@@ -61,8 +61,8 @@ import PiBaseLean.Properties.P220.Defs
 import PiBaseLean.Properties.P224.Defs
 import PiBaseLean.Properties.P226.Defs
 import PiBaseLean.Properties.P227.Defs
+import PiBaseLean.Properties.P228.Defs
 import PiBaseLean.Properties.P23.Defs
-import PiBaseLean.Properties.P231.Defs
 import PiBaseLean.Properties.P233.Defs
 import PiBaseLean.Properties.P234.Defs
 import PiBaseLean.Properties.P24.Defs
