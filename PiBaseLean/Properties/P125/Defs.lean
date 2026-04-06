@@ -9,7 +9,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-def P128 : Property where
+def P125 : Property where
   toPred X := Nontrivial X
   well_defined' φ _ := φ.symm.toEquiv.nontrivial
 

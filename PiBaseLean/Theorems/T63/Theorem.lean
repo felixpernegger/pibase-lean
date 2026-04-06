@@ -1,5 +1,6 @@
-import PiBaseLean.Properties.P43.Defs
+import PiBaseLean.Properties.Bundled.Basic
 import PiBaseLean.Properties.P42.Defs
+import PiBaseLean.Properties.P43.Defs
 
 open Topology Set Function
 
@@ -18,3 +19,9 @@ instance instLocallyPathConnectedSpaceOfLocallyInjPathConnectedSpace
     use r, xr, hr.isPathConnected <| nonempty_of_mem <| mem_of_mem_nhds xr
 
 end PiBase
+
+namespace PiBase.Formal
+
+theorem T63 : P43 ≤ P42 := @instLocallyPathConnectedSpaceOfLocallyInjPathConnectedSpace
+
+end PiBase.Formal

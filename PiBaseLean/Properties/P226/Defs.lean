@@ -13,7 +13,7 @@ end PiBase
 namespace PiBase.Formal
 
 def P226 : Property where
-  toPred := HasCofiniteTopology
+  toPred := ArtinianSpace
   well_defined' φ h := sorry
 
 end PiBase.Formal

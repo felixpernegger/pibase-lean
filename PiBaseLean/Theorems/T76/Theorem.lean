@@ -1,5 +1,6 @@
-import PiBaseLean.Properties.P60.Defs
+import PiBaseLean.Properties.Bundled.Basic
 import PiBaseLean.Properties.P22.Defs
+import PiBaseLean.Properties.P60.Defs
 
 open Topology Set Function
 
@@ -17,3 +18,9 @@ instance instStrnglyConnectedSpaceOfPseudocompactSpace
     simp [range_eq_empty_iff.mpr <| not_nonempty_iff.mp n]
 
 end PiBase
+
+namespace PiBase.Formal
+
+theorem T76 : P60 ≤ P22 := @instStrnglyConnectedSpaceOfPseudocompactSpace
+
+end PiBase.Formal

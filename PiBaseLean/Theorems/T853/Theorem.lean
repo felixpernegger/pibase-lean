@@ -1,3 +1,4 @@
+import PiBaseLean.Properties.Bundled.Basic
 import PiBaseLean.Properties.P230.Defs
 import PiBaseLean.Properties.P231.Defs
 
@@ -14,3 +15,9 @@ instance instWeaklyLocallySimplyConnectedSpaceOfLocallySimplyConnectedSpace
     exact ⟨U, IsOpen.mem_nhds hU.1.2.1 hU.1.1, hU.1.2.2⟩
 
 end PiBase
+
+namespace PiBase.Formal
+
+theorem T853 : P230 ≤ P231 := @instWeaklyLocallySimplyConnectedSpaceOfLocallySimplyConnectedSpace
+
+end PiBase.Formal

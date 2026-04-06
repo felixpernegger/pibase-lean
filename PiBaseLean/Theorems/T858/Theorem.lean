@@ -1,3 +1,4 @@
+import PiBaseLean.Properties.Bundled.Basic
 import PiBaseLean.Properties.P200.Defs
 import PiBaseLean.Properties.P231.Defs
 
@@ -22,3 +23,9 @@ instance instWeaklyLocallySimplyConnectedSpaceOfSimplyConnectedSpace
       exact (ContinuousMap.HomotopyEquiv.simplyConnectedSpace_iff e).mp h'
 
 end PiBase
+
+namespace PiBase.Formal
+
+theorem T853 : P200 ≤ P231 := @instWeaklyLocallySimplyConnectedSpaceOfSimplyConnectedSpace
+
+end PiBase.Formal

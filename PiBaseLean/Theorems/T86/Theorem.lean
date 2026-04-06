@@ -17,17 +17,15 @@ instance instFunctionallyT2SpaceOfT25Space
   obtain ⟨b, b₀, b₁⟩ := exists_between (α := I) zero_lt_one
   obtain ⟨a, a₀, ab⟩ := exists_between b₀
   obtain ⟨c, bc, c₁⟩ := exists_between b₁
-  refine Filter.disjoint_iff.mpr ⟨f ⁻¹' Iio b, ?_, f ⁻¹' Ioi b, ?_, Disjoint.preimage f ?_⟩
+  refine Filter.disjoint_iff.mpr ⟨f ⁻¹' Iio b, ?_, f ⁻¹' Ioi b, ?_, .preimage f ?_⟩
   · refine (Filter.mem_lift'_sets (monotone_closure X)).mpr ⟨f ⁻¹' Iio a, ?_, ?_⟩
     · exact f.continuousAt _ (Iio_mem_nhds (hf.1.trans_lt a₀))
     · refine subset_trans (f.continuous.closure_preimage_subset (Iio a)) <| preimage_mono ?_
-      rw [closure_Iio' (a := a) ⟨0, a₀⟩]
-      simpa only [Iic_subset_Iio]
+      simpa only [closure_Iio' (a := a) ⟨0, a₀⟩, Iic_subset_Iio]
   · refine (Filter.mem_lift'_sets (monotone_closure X)).mpr ⟨f ⁻¹' Ioi c, ?_, ?_⟩
     · exact f.continuousAt _ (Ioi_mem_nhds (c₁.trans_eq hf.2.symm))
     · refine subset_trans (f.continuous.closure_preimage_subset (Ioi c)) <| preimage_mono ?_
-      rw [closure_Ioi' (a := c) ⟨1, c₁⟩]
-      simpa only [Ici_subset_Ioi]
+      simpa only [closure_Ioi' (a := c) ⟨1, c₁⟩, Ici_subset_Ioi]
   · simp
 
 end PiBase
