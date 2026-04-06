@@ -2,6 +2,7 @@ import Mathlib.Data.Set.Card
 import Mathlib.Topology.MetricSpace.Pseudo.Defs
 import Mathlib.Topology.Path
 import Mathlib.Topology.Connected.PathConnected
+import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
 
 universe u
 
@@ -16,7 +17,7 @@ namespace AdditionalDefs
 open Filter Function Set Topology TopologicalSpace
 
 variable
-  {X Y ι ι' α X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f g : ι → Set X}
+  {X Y ι ι' α X : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f g : ι → Set X}
 
 def IsInjPathConnected (s : Set X) :=
   Pairwise fun x y : X ↦ x ∈ s → y ∈ s → ∃ f : Path x y, Injective f ∧ range f ⊆ s
@@ -68,6 +69,21 @@ def LocallyCountable (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
 
 def IsCutPoint (p : X) := ¬ IsConnected {p}ᶜ
+
+def r := True
+
+universe u
+
+open Topology
+
+namespace PiBase
+
+/-- The image of the fundamental group of under f:X → Y at x : X is trivial. -/
+def HasTrivialFundGroupImageAt (f : C(X, Y)) (x : X) : Prop :=
+  ((FundamentalGroup.map f) x).range = ⊥
+
+end PiBase
+
 
 end AdditionalDefs
 
