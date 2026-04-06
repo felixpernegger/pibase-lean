@@ -26,6 +26,6 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T853 : P200 ≤ P231 := @instWeaklyLocallySimplyConnectedSpaceOfSimplyConnectedSpace
+theorem T858 : P200 ≤ P231 := @instWeaklyLocallySimplyConnectedSpaceOfSimplyConnectedSpace
 
 end PiBase.Formal
