@@ -53,11 +53,8 @@ def IsDiscreteFamily {X : Type u} {ι : Type u} [TopologicalSpace X] (F : ι →
 def SigmaProduct {ι : Type*} {Y : ι → Type u} (x : (i : ι) → Y i) : Set ((i : ι) → Y i) :=
   {s : (i : ι) → Y i | {i : ι | s i ≠ x i}.Countable}
 
-def IsRetraction {X : Type u} [TopologicalSpace X] {A : Set X} (f : X → A) : Prop :=
-  Continuous f ∧ ∀ a ∈ A, f a = a
-
-def IsRetract {X : Type u} [TopologicalSpace X] (A : Set X) : Prop :=
-  ∃ f : X → A, IsRetraction f
+def IsRetraction {X : Type u} [TopologicalSpace X] (A : Set X) : Prop :=
+  ∃ f : C(X, X), f.comp f = f ∧ A = Set.range f
 
 /-- Star of an open cover. -/
 def CoverStar {X ι : Type*} (U : ι → Set X) [TopologicalSpace X] (x : X) :
