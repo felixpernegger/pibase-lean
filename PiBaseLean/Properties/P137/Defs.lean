@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P137 : Property where
   toPred X := IsEmpty X
-  well_defined' φ _ := Equiv.isEmpty φ.symm
+  well_defined' φ _ := φ.symm.toEquiv.isEmpty
 
 end PiBase.Formal

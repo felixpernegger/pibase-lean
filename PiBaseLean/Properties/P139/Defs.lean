@@ -1,6 +1,8 @@
 import Mathlib.Topology.Defs.Basic
 import PiBaseLean.Properties.Bundled.Defs
 
+open Set
+
 namespace PiBase
 
 /-- 139. Has an isolated point -/

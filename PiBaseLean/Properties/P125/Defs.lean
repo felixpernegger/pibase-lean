@@ -11,6 +11,6 @@ namespace PiBase.Formal
 
 def P128 : Property where
   toPred X := Nontrivial X
-  well_defined' φ _ := Equiv.nontrivial φ.symm
+  well_defined' φ _ := φ.symm.toEquiv.nontrivial
 
 end PiBase.Formal
