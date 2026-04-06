@@ -4,7 +4,7 @@ open Cardinal
 
 namespace PiBase
 
-/- 59. Cardinality < 2 ^ 𝔠 -/
+/- 59. Cardinality ≤ 2 ^ 𝔠 -/
 class CardLePowerContinuum (X : Type*) where
   card_lt : #X < 2 ^ 𝔠
 
