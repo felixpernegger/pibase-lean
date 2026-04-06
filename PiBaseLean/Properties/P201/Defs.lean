@@ -1,4 +1,4 @@
-import Mathlib.Topology.Defs.Filter
+import Mathlib.Topology.Sober
 
 open Set Topology Filter
 
