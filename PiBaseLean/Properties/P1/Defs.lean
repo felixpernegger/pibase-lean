@@ -1,17 +1,8 @@
-import Mathlib.Topology.Separation.Basic
+import Mathlib.Topology.Defs.Filter
 
 namespace PiBase
 
-/- 1. T₀-Space -/
-#check T0Space
+/- 130. Locally compact space -/
+#check LocallyCompactSpace
 
 end PiBase
-
-namespace PiBase.Formal
-
-abbrev P1 := T0Space
-
-class NP1 (X : Type*) [TopologicalSpace X] where
-  not_p1 : ¬ P1 X
-
-end PiBase.Formal
