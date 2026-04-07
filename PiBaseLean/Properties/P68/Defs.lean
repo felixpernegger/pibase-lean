@@ -19,6 +19,6 @@ namespace PiBase.Formal
 
 def P68 : Property where
   toPred := RothbergerSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

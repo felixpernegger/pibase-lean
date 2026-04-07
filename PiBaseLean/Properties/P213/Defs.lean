@@ -18,6 +18,6 @@ namespace PiBase.Formal
 
 def P213 : Property where
   toPred := α3Space
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

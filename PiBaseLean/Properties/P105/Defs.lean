@@ -20,6 +20,6 @@ namespace PiBase.Formal
 
 def P105 : Property where
   toPred := ParaLindelofSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

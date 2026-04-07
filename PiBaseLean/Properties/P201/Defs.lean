@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P201 : Property where
   toPred := HasGenericPoint
-  well_defined' φ h := by
+  well_defined φ h := by
     rcases h.ex_generic_point with ⟨x, xg⟩
     refine ⟨φ x, ?_⟩
     simp only [IsGenericPoint] at xg ⊢

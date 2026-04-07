@@ -16,7 +16,7 @@ namespace PiBase.Formal
 
 def P37 : Property where
   toPred := PrePathConnectedSpace
-  well_defined' φ h := by
+  well_defined φ h := by
     refine ⟨fun x y ↦ (h.joined (φ.symm x) (φ.symm y)).elim fun p => ⟨?_⟩⟩
     convert p.map φ.continuous <;> simp only [Homeomorph.apply_symm_apply]
 

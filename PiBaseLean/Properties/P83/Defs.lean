@@ -20,6 +20,6 @@ namespace PiBase.Formal
 
 def P83 : Property where
   toPred := MetaLindelofSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

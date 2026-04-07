@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P34 : Property where
   toPred := FullyNormalSpace
-  well_defined' φ _ := @FullyNormalSpace.mk _ _
+  well_defined φ _ := @FullyNormalSpace.mk _ _
     φ.symm.isClosedEmbedding.paracompactSpace φ.normalSpace
 
 end PiBase.Formal

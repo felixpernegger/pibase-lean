@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P97 : Property where
   toPred := EmbeddableInR
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

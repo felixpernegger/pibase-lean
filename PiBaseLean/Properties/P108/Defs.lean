@@ -14,6 +14,6 @@ namespace PiBase.Formal
 
 def P108 : Property where
   toPred := HereditarilyCollectionwiseNormalSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

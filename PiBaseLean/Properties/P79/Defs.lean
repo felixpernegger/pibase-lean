@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P79 : Property where
   toPred := SequentialSpace
-  well_defined' φ _ := φ.isQuotientMap.sequentialSpace
+  well_defined φ _ := φ.isQuotientMap.sequentialSpace
 
 end PiBase.Formal

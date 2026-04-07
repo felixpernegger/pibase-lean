@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P10 : Property where
   toPred := SemiregularSpace
-  well_defined' φ h := by
+  well_defined φ h := by
     rcases h.semiregular with ⟨B, Bβ, Br⟩
     refine ⟨Set.image φ '' B, Bβ.isQuotientMap φ.isQuotientMap φ.isOpenMap, ?_⟩
     rintro _ ⟨s, sB, rfl⟩

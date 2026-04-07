@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P50 : Property where
   toPred := ZeroDimensionalSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

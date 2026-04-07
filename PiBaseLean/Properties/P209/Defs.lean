@@ -16,6 +16,6 @@ namespace PiBase.Formal
 
 def P209 : Property where
   toPred := DensityLeContinuum
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

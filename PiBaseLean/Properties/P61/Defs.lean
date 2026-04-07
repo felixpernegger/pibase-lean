@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P61 : Property where
   toPred := CozeroComplementedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

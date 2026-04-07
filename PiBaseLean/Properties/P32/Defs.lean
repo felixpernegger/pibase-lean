@@ -20,6 +20,6 @@ namespace PiBase.Formal
 
 def P32 : Property where
   toPred := CountablyParacompactSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P75 : Property where
   toPred := SpectralSpace
-  well_defined' φ _ := @φ.symm.isOpenEmbedding.spectralSpace _ _ _ _ _ _ φ.compactSpace
+  well_defined φ _ := @φ.symm.isOpenEmbedding.spectralSpace _ _ _ _ _ _ φ.compactSpace
 
 end PiBase.Formal

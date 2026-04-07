@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P8 : Property where
   toPred := T5Space
-  well_defined' φ _ := φ.t5Space
+  well_defined φ _ := φ.t5Space
 
 end PiBase.Formal

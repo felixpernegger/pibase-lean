@@ -12,7 +12,7 @@ namespace PiBase.Formal
 
 def P19 : Property where
   toPred := CountablyCompactSpace
-  well_defined' φ h := by
+  well_defined φ h := by
     constructor
     convert h.isCountablyCompact_univ.image φ.continuous
     simp only [Set.image_univ, EquivLike.range_eq_univ]

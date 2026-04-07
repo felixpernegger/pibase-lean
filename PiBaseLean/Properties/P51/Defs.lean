@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P51 : Property where
   toPred := ScatteredSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

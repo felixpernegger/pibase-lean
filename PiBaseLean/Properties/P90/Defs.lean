@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P90 : Property where
   toPred := AlexandrovDiscrete
-  well_defined' φ _ := φ.symm.isInducing.alexandrovDiscrete
+  well_defined φ _ := φ.symm.isInducing.alexandrovDiscrete
 
 end PiBase.Formal

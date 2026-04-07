@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P48 : Property where
   toPred := TotallySeparatedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

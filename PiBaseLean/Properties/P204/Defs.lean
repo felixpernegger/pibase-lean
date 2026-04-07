@@ -18,6 +18,6 @@ namespace PiBase.Formal
 
 def P204 : Property where
   toPred := HasACutPoint
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

@@ -17,6 +17,6 @@ namespace PiBase.Formal
 
 def P38 : Property where
   toPred := InjPathConnectedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

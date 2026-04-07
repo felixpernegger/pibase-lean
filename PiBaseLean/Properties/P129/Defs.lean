@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P129 : Property where
   toPred := IndiscreteTopology
-  well_defined' φ _ := φ.symm.isInducing.indiscreteTopology
+  well_defined φ _ := φ.symm.isInducing.indiscreteTopology
 
 end PiBase.Formal

@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P119 : Property where
   toPred X := StoneanSpace X
-  well_defined' φ _ := @StoneanSpace.mk _ _ φ.compactSpace
+  well_defined φ _ := @StoneanSpace.mk _ _ φ.compactSpace
     (extremallyDisconnected_of_homeo φ) φ.t2Space
 
 end PiBase.Formal

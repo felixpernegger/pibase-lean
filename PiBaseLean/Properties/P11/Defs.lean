@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P11 : Property where
   toPred := RegularSpace
-  well_defined' φ _ := φ.symm.isInducing.regularSpace
+  well_defined φ _ := φ.symm.isInducing.regularSpace
 
 end PiBase.Formal

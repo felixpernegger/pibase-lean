@@ -18,6 +18,6 @@ namespace PiBase.Formal
 
 def P205 : Property where
   toPred := CutPointSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

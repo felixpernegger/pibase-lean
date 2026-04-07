@@ -16,7 +16,7 @@ namespace PiBase.Formal
 
 def P94 : Property where
   toPred := LocallyFiniteSpace
-  well_defined' φ h := by
+  well_defined φ h := by
     refine ⟨fun y => ?_⟩
     rcases h.locally_finite (φ.symm y) with ⟨U, nU, cU⟩
     refine ⟨φ '' U, ?_, cU.image φ⟩

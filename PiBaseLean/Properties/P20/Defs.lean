@@ -12,7 +12,7 @@ namespace PiBase.Formal
 
 def P20 : Property where
   toPred := SeqCompactSpace
-  well_defined' φ _ := by
+  well_defined φ _ := by
     constructor
     convert IsSeqCompact.range φ.continuous.seqContinuous
     simp only [EquivLike.range_eq_univ]

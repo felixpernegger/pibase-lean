@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P112 : Property where
   toPred := SubmetrizableSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

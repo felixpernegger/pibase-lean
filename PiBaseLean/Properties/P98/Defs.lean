@@ -18,6 +18,6 @@ namespace PiBase.Formal
 
 def P98 : Property where
   toPred := kω1Space
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

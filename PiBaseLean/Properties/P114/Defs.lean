@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P114 : Property where
   toPred X := CardEqAlephOne X
-  well_defined' φ h := by
+  well_defined φ h := by
     constructor
     rw [← Cardinal.mk_congr φ.toEquiv]
     exact h.card_eq

@@ -17,6 +17,6 @@ namespace PiBase.Formal
 
 def P81 : Property where
   toPred := CountablyTightSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

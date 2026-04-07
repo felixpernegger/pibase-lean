@@ -16,6 +16,6 @@ namespace PiBase.Formal
 
 def P219 : Property where
   toPred := TorontoSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

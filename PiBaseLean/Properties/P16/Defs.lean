@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P16 : Property where
   toPred := CompactSpace
-  well_defined' φ _ := φ.compactSpace
+  well_defined φ _ := φ.compactSpace
 
 end PiBase.Formal

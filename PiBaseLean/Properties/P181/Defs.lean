@@ -12,7 +12,7 @@ namespace PiBase.Formal
 
 def P181 : Property where
   toPred X := CountablyInfinite X
-  well_defined' φ h := @CountablyInfinite.mk _ (.of_equiv _ φ.toEquiv)
+  well_defined φ h := @CountablyInfinite.mk _ (.of_equiv _ φ.toEquiv)
     ((Equiv.infinite_iff φ.toEquiv).1 h.toInfinite)
 
 end PiBase.Formal

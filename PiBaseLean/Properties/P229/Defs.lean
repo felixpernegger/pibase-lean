@@ -16,6 +16,6 @@ namespace PiBase.Formal
 
 def P229 : Property where
   toPred := SemilocallySimplyConnectedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

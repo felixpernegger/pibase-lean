@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P45 : Property where
   toPred := HasDispersionPoint
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

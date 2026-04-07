@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P41 : Property where
   toPred := LocallyConnectedSpace
-  well_defined' φ _ := φ.symm.isOpenEmbedding.locallyConnectedSpace
+  well_defined φ _ := φ.symm.isOpenEmbedding.locallyConnectedSpace
 
 end PiBase.Formal

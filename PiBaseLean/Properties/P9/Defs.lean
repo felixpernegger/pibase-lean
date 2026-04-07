@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P9 : Property where
   toPred := FunctionallyT2Space
-  well_defined' {X Y} _ _ φ h := by
+  well_defined {X Y} _ _ φ h := by
     constructor
     rw [← EquivLike.pairwise_comp_iff φ]
     intro x y hxy

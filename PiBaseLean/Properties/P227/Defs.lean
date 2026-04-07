@@ -16,6 +16,6 @@ namespace PiBase.Formal
 
 def P227 : Property where
   toPred := HasClosedDiscreteSubsetCardContinuum
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

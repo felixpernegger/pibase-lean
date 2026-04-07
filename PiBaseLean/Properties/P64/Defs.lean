@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P64 : Property where
   toPred := BaireSpace
-  well_defined' φ _ := φ.baireSpace
+  well_defined φ _ := φ.baireSpace
 
 end PiBase.Formal

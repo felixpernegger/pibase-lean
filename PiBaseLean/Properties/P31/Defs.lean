@@ -20,6 +20,6 @@ namespace PiBase.Formal
 
 def P31 : Property where
   toPred := MetacompactSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

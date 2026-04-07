@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P23 : Property where
   toPred := WeaklyLocallyCompactSpace
-  well_defined' φ _ := φ.symm.isClosedEmbedding.weaklyLocallyCompactSpace
+  well_defined φ _ := φ.symm.isClosedEmbedding.weaklyLocallyCompactSpace
 
 end PiBase.Formal

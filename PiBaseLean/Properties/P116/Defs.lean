@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P116 : Property where
   toPred X := PolishSpace X
-  well_defined' φ _ := φ.symm.isClosedEmbedding.polishSpace
+  well_defined φ _ := φ.symm.isClosedEmbedding.polishSpace
 
 end PiBase.Formal

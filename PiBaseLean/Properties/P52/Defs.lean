@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P52 : Property where
   toPred := DiscreteTopology
-  well_defined' φ _ := φ.symm.isEmbedding.discreteTopology
+  well_defined φ _ := φ.symm.isEmbedding.discreteTopology
 
 end PiBase.Formal

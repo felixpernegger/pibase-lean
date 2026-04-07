@@ -16,7 +16,7 @@ namespace PiBase.Formal
 
 def P87 : Property where
   toPred := HasGroupTopology
-  well_defined' {_ Y} _ _ φ h := by
+  well_defined {_ Y} _ _ φ h := by
     rcases h with ⟨G, h⟩
     letI H := φ.symm.toEquiv.group
     refine ⟨H, @IsTopologicalGroup.mk Y _ H

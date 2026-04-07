@@ -12,7 +12,7 @@ namespace PiBase.Formal
 
 def P47 : Property where
   toPred := TotallyDisconnectedSpace
-  well_defined' φ h := by
+  well_defined φ h := by
     constructor
     convert φ.isEmbedding.isTotallyDisconnected_range.2 h
     simp only [EquivLike.range_eq_univ]

@@ -16,6 +16,6 @@ namespace PiBase.Formal
 
 def P24 : Property where
   toPred := LocallyRelativelyCompactSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

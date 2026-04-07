@@ -18,6 +18,6 @@ namespace PiBase.Formal
 
 def P232 : Property where
   toPred := LC1
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

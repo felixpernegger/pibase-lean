@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P22 : Property where
   toPred := PseudocompactSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P84 : Property where
   toPred := LocallyT2Space
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

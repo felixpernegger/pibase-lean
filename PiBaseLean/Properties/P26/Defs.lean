@@ -14,6 +14,6 @@ namespace PiBase.Formal
 
 def P26 : Property where
   toPred := SeparableSpace
-  well_defined' φ _ := φ.symm.isOpenEmbedding.separableSpace
+  well_defined φ _ := φ.symm.isOpenEmbedding.separableSpace
 
 end PiBase.Formal

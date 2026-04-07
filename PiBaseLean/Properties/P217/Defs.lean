@@ -16,6 +16,6 @@ namespace PiBase.Formal
 
 def P217 : Property where
   toPred := StronglyZeroDimensionalSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

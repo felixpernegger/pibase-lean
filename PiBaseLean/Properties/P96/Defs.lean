@@ -14,6 +14,6 @@ namespace PiBase.Formal
 
 def P96 : Property where
   toPred := LocallyArcConnectedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

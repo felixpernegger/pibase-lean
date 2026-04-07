@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P82 : Property where
   toPred := LocallyMetrizableSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

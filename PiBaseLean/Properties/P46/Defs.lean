@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P46 : Property where
   toPred := TotallyPathDisconnectedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

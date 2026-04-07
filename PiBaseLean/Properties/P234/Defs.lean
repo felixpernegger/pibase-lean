@@ -13,6 +13,6 @@ namespace PiBase.Formal
 
 def P234 : Property where
   toPred := HasOpenConnectedComponents
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

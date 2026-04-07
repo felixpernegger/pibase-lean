@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P202 : Property where
   toPred := HasPointWithUniqueNeighborhood
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

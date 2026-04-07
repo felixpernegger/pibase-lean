@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P107 : Property where
   toPred := HasClosedPoint
-  well_defined' φ h := by
+  well_defined φ h := by
     rcases h.has_closed_point with ⟨x, hx⟩
     refine ⟨φ x, ?_⟩
     convert φ.isClosed_image.2 hx

@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P100 : Property where
   toPred := KcSpace
-  well_defined' φ h := by
+  well_defined φ h := by
     refine ⟨fun s Ks ↦ ?_⟩
     simpa only [Homeomorph.isClosed_image] using h.kc (φ.symm '' s) (Ks.image φ.symm.continuous)
 

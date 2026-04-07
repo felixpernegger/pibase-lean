@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P85 : Property where
   toPred := BasicallyDisconnectedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

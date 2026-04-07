@@ -14,6 +14,6 @@ namespace PiBase.Formal
 
 def P226 : Property where
   toPred := ArtinianSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

@@ -20,6 +20,6 @@ namespace PiBase.Formal
 
 def P66 : Property where
   toPred := MengerSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

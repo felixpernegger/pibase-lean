@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P60 : Property where
   toPred := StronglyConnectedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

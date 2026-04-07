@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P192 : Property where
   toPred := QuasiSober
-  well_defined' φ _ := φ.symm.isClosedEmbedding.quasiSober
+  well_defined φ _ := φ.symm.isClosedEmbedding.quasiSober
 
 end PiBase.Formal

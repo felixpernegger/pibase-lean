@@ -14,6 +14,6 @@ namespace PiBase.Formal
 
 def P222 : Property where
   toPred := HasCofiniteTopology
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

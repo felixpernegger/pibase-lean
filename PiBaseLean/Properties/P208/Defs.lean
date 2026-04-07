@@ -14,6 +14,6 @@ namespace PiBase.Formal
 
 def P208 : Property where
   toPred := NoetherianSpace
-  well_defined' φ _ := φ.symm.isInducing.noetherianSpace
+  well_defined φ _ := φ.symm.isInducing.noetherianSpace
 
 end PiBase.Formal

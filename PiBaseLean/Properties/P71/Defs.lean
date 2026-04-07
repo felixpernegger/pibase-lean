@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P71 : Property where
   toPred := SigmaRelativelyCompactSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

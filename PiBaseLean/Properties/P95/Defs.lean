@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P95 : Property where
   toPred := ArcConnectedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

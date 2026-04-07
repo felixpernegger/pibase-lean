@@ -13,6 +13,6 @@ namespace PiBase.Formal
 
 def P133 : Property where
   toPred := LOTS
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

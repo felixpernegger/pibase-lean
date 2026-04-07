@@ -18,6 +18,6 @@ namespace PiBase.Formal
 
 def P109 : Property where
   toPred := MonotonicallyNormalSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

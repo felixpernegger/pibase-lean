@@ -16,6 +16,6 @@ namespace PiBase.Formal
 
 def P44 : Property where
   toPred := BiconnectedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

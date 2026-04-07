@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P28 : Property where
   toPred := FirstCountableTopology
-  well_defined' φ _ := φ.symm.isInducing.firstCountableTopology
+  well_defined φ _ := φ.symm.isInducing.firstCountableTopology
 
 end PiBase.Formal

@@ -16,6 +16,6 @@ namespace PiBase.Formal
 
 def P182 : Property where
   toPred := HasCountableNetwork
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

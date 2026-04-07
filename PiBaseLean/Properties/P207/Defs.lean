@@ -19,6 +19,6 @@ namespace PiBase.Formal
 
 def P207 : Property where
   toPred := StronglyCollectionwiseNormalSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

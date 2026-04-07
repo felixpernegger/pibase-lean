@@ -13,6 +13,6 @@ namespace PiBase.Formal
 
 def P233 : Property where
   toPred := HasOpenPathComponents
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

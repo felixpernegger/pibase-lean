@@ -16,6 +16,6 @@ namespace PiBase.Formal
 
 def P99 : Property where
   toPred := UsSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

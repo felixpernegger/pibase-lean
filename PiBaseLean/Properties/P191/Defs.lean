@@ -13,7 +13,7 @@ namespace PiBase.Formal
 
 def P191 : Property where
   toPred := HasGδSingletons
-  well_defined' φ h := by
+  well_defined φ h := by
     refine ⟨fun x ↦ ?_⟩
     convert isGδ_induced φ.symm.continuous (@h.isGδ_singleton (φ.symm x))
     ext

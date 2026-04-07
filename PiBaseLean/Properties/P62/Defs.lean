@@ -19,6 +19,6 @@ namespace PiBase.Formal
 
 def P62 : Property where
   toPred := WeaklyLindelofSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

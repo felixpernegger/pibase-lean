@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P59 : Property where
   toPred X := CardLePowerContinuum X
-  well_defined' φ h := by
+  well_defined φ h := by
     constructor
     rw [← Cardinal.mk_congr φ.toEquiv]
     exact h.card_le

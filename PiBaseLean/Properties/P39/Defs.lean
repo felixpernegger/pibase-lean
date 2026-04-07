@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P39 : Property where
   toPred := PreirreducibleSpace
-  well_defined' φ _ := φ.surjective.preirreducibleSpace φ.continuous
+  well_defined φ _ := φ.surjective.preirreducibleSpace φ.continuous
 
 end PiBase.Formal

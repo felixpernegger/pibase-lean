@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P25 : Property where
   toPred := ExhaustibleByCompacts
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

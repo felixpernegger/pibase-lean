@@ -14,6 +14,6 @@ namespace PiBase.Formal
 
 def P55 : Property where
   toPred := IsCompletelyMetrizableSpace
-  well_defined' φ _ := φ.symm.isClosedEmbedding.IsCompletelyMetrizableSpace
+  well_defined φ _ := φ.symm.isClosedEmbedding.IsCompletelyMetrizableSpace
 
 end PiBase.Formal

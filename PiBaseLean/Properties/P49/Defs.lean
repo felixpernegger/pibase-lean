@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P49 : Property where
   toPred := ExtremallyDisconnected
-  well_defined' φ _ := extremallyDisconnected_of_homeo φ
+  well_defined φ _ := extremallyDisconnected_of_homeo φ
 
 end PiBase.Formal

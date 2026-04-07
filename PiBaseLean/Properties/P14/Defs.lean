@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P14 : Property where
   toPred := CompletelyNormalSpace
-  well_defined' φ _ := φ.symm.isEmbedding.completelyNormalSpace
+  well_defined φ _ := φ.symm.isEmbedding.completelyNormalSpace
 
 end PiBase.Formal

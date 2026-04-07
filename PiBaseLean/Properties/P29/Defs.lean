@@ -18,6 +18,6 @@ namespace PiBase.Formal
 
 def P29 : Property where
   toPred := CountableChainCondition
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

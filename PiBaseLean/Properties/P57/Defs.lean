@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P57 : Property where
   toPred X := Countable X
-  well_defined' φ _ := .of_equiv _ φ.toEquiv
+  well_defined φ _ := .of_equiv _ φ.toEquiv
 
 end PiBase.Formal

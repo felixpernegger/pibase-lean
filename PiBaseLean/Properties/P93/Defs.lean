@@ -16,7 +16,7 @@ namespace PiBase.Formal
 
 def P93 : Property where
   toPred := LocallyCountableSpace
-  well_defined' φ h := by
+  well_defined φ h := by
     refine ⟨fun y => ?_⟩
     rcases h.locally_countable (φ.symm y) with ⟨U, nU, cU⟩
     refine ⟨φ '' U, ?_, cU.image φ⟩

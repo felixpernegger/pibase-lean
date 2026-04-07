@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P80 : Property where
   toPred := FrechetUrysohnSpace
-  well_defined' φ _ := φ.symm.isInducing.frechetUrysohnSpace
+  well_defined φ _ := φ.symm.isInducing.frechetUrysohnSpace
 
 end PiBase.Formal

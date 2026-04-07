@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P101 : Property where
   toPred := HasClosedRetract
-  well_defined' {X Y} _ _ φ h := by
+  well_defined {X Y} _ _ φ h := by
     refine ⟨fun s rs ↦ ?_⟩
     suffices r' : IsRetraction (⇑φ ⁻¹' s) by simpa using h.has_closed_retract _ r'
     rcases rs with ⟨f, ff, rf⟩

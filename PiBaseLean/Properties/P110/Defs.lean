@@ -28,6 +28,6 @@ namespace PiBase.Formal
 
 def P110 : Property where
   toPred := DevelopableSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

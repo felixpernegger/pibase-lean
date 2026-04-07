@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P1 : Property where
   toPred := T0Space
-  well_defined' φ _ := φ.t0Space
+  well_defined φ _ := φ.t0Space
 
 end PiBase.Formal

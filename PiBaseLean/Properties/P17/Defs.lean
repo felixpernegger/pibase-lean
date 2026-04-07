@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P17 : Property where
   toPred := SigmaCompactSpace
-  well_defined' φ _ := φ.symm.isClosedEmbedding.sigmaCompactSpace
+  well_defined φ _ := φ.symm.isClosedEmbedding.sigmaCompactSpace
 
 end PiBase.Formal

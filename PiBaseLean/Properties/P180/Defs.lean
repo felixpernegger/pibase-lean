@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P180 : Property where
   toPred := HereditarilySeparableSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

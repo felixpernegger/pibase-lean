@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P130 : Property where
   toPred := LocallyCompactSpace
-  well_defined' φ _ := φ.symm.isClosedEmbedding.locallyCompactSpace
+  well_defined φ _ := φ.symm.isClosedEmbedding.locallyCompactSpace
 
 end PiBase.Formal

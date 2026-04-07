@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P216 : Property where
   toPred := HereditarilyParacompact
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

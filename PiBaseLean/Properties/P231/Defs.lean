@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P231 : Property where
   toPred := WeaklyLocallySimplyConnectedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

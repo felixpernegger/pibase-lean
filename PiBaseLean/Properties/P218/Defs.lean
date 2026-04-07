@@ -14,6 +14,6 @@ namespace PiBase.Formal
 
 def P218 : Property where
   toPred := UltranormalSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

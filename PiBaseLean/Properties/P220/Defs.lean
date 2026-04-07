@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P220 : Property where
   toPred := UltraMetrizableSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

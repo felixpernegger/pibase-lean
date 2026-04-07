@@ -19,6 +19,6 @@ namespace PiBase.Formal
 
 def P211 : Property where
   toPred := α15Space
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

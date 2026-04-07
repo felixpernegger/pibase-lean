@@ -14,6 +14,6 @@ namespace PiBase.Formal
 
 def P40 : Property where
   toPred := UltraconnectedSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

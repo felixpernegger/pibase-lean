@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P106 : Property where
   toPred := HasGδDiagonal
-  well_defined' {X Y} _ _ φ h := by
+  well_defined {X Y} _ _ φ h := by
     constructor
     letI Φ : Y × Y ≃ₜ X × X := φ.symm.prodCongr φ.symm
     convert isGδ_induced Φ.continuous h.has_g_delta_diagonal

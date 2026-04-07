@@ -13,6 +13,6 @@ namespace PiBase.Formal
 
 def P74 : Property where
   toPred := CosmicSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

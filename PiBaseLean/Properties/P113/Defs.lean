@@ -13,6 +13,6 @@ namespace PiBase.Formal
 
 def P113 : Property where
   toPred := MooreSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

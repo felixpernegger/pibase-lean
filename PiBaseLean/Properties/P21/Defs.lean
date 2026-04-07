@@ -16,6 +16,6 @@ namespace PiBase.Formal
 
 def P21 : Property where
   toPred := WeaklyCountablyCompact
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

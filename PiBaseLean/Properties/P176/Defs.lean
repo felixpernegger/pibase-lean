@@ -16,7 +16,7 @@ namespace PiBase.Formal
 
 def P176 : Property where
   toPred X := CardGeFour X
-  well_defined' φ h := by
+  well_defined φ h := by
     constructor
     rw [← Cardinal.mk_congr φ.toEquiv]
     exact h.card_ge

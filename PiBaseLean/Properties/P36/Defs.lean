@@ -12,7 +12,7 @@ namespace PiBase.Formal
 
 def P36 : Property where
   toPred := PreconnectedSpace
-  well_defined' φ _ := by
+  well_defined φ _ := by
     constructor
     convert isPreconnected_range φ.continuous
     simp only [EquivLike.range_eq_univ]

@@ -13,7 +13,7 @@ namespace PiBase.Formal
 
 def P200 : Property where
   toPred := PreSimplyConnectedSpace
-  well_defined' φ h := by
+  well_defined φ h := by
     refine ⟨h.presimplyconnected.imp ?_ ?_⟩
     · exact fun _ ↦ φ.symm.toEquiv.isEmpty
     · exact fun _ ↦ φ.symm.toHomotopyEquiv.simplyConnectedSpace

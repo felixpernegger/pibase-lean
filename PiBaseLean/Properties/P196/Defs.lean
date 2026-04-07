@@ -15,6 +15,6 @@ namespace PiBase.Formal
 
 def P196 : Property where
   toPred := HereditarilyConnected
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

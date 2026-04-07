@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P42 : Property where
   toPred := LocPathConnectedSpace
-  well_defined' φ _ := φ.symm.isOpenEmbedding.locPathConnectedSpace
+  well_defined φ _ := φ.symm.isOpenEmbedding.locPathConnectedSpace
 
 end PiBase.Formal

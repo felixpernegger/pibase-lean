@@ -14,6 +14,6 @@ namespace PiBase.Formal
 
 def P53 : Property where
   toPred := MetrizableSpace
-  well_defined' φ _ := φ.symm.isEmbedding.metrizableSpace
+  well_defined φ _ := φ.symm.isEmbedding.metrizableSpace
 
 end PiBase.Formal

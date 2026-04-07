@@ -12,6 +12,6 @@ namespace PiBase.Formal
 
 def P78 : Property where
   toPred X := Finite X
-  well_defined' φ _ := .of_equiv _ φ.toEquiv
+  well_defined φ _ := .of_equiv _ φ.toEquiv
 
 end PiBase.Formal

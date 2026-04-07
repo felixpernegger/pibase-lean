@@ -15,7 +15,7 @@ namespace PiBase.Formal
 
 def P139 : Property where
   toPred := HasAnIsolatedPoint
-  well_defined' φ h := by
+  well_defined φ h := by
     rcases h.ex_isolated with ⟨x, hx⟩
     refine ⟨φ x, ?_⟩
     convert φ.isOpen_image.2 hx

@@ -16,6 +16,6 @@ namespace PiBase.Formal
 
 def P136 : Property where
   toPred := AnticompactSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal

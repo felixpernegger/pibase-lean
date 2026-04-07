@@ -14,7 +14,7 @@ namespace PiBase.Formal
 
 def P86 : Property where
   toPred := HomogeneousSpace
-  well_defined' φ h := by
+  well_defined φ h := by
     refine ⟨fun x y ↦ ?_⟩
     rcases h.homogeneous (φ.symm x) (φ.symm y) with ⟨e, ex⟩
     refine ⟨(φ.symm.trans e).trans φ, ?_⟩

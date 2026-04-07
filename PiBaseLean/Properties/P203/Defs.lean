@@ -13,6 +13,6 @@ namespace PiBase.Formal
 
 def P203 : Property where
   toPred := AlmostDiscreteSpace
-  well_defined' φ h := sorry
+  well_defined φ h := sorry
 
 end PiBase.Formal
