@@ -1,5 +1,9 @@
-import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

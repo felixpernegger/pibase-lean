@@ -1,6 +1,10 @@
-import PiBaseLean.Properties.Bundled.Basic
-import PiBaseLean.Properties.P59.Defs
-import PiBaseLean.Properties.P163.Defs
+module
+
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P59.Defs
+public import PiBaseLean.Properties.P163.Defs
+
+@[expose] public section
 
 universe u
 

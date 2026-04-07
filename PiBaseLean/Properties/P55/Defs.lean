@@ -1,5 +1,9 @@
-import Mathlib.Topology.Metrizable.CompletelyMetrizable
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Metrizable.CompletelyMetrizable
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open TopologicalSpace
 

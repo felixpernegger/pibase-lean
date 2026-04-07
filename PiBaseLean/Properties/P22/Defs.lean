@@ -1,5 +1,9 @@
-import Mathlib.Topology.MetricSpace.Pseudo.Defs
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.MetricSpace.Pseudo.Defs
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Topology Set Function
 

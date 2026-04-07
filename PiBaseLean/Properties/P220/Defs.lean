@@ -1,6 +1,10 @@
-import Mathlib.Topology.MetricSpace.Defs
-import Mathlib.Topology.MetricSpace.Ultra.Basic
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.MetricSpace.Defs
+public import Mathlib.Topology.MetricSpace.Ultra.Basic
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

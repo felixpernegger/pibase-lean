@@ -1,5 +1,9 @@
-import Mathlib.Topology.Separation.Hausdorff
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Separation.Hausdorff
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Topology Set Function Filter TopologicalSpace
 

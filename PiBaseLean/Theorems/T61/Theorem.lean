@@ -1,6 +1,10 @@
-import PiBaseLean.Properties.Bundled.Basic
-import PiBaseLean.Properties.P5.Defs
-import PiBaseLean.Properties.P74.Defs
+module
+
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P5.Defs
+public import PiBaseLean.Properties.P74.Defs
+
+@[expose] public section
 
 open Topology Set Function
 

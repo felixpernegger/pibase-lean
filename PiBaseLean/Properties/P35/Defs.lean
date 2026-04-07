@@ -1,4 +1,8 @@
-import PiBaseLean.Properties.P34.Defs
+module
+
+public import PiBaseLean.Properties.P34.Defs
+
+@[expose] public section
 
 open Topology Set Function Filter TopologicalSpace
 

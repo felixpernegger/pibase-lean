@@ -1,7 +1,11 @@
-import Mathlib.Data.Fintype.EquivFin
-import PiBaseLean.Properties.Bundled.Basic
-import PiBaseLean.Properties.P78.Defs
-import PiBaseLean.Properties.P125.Defs
+module
+
+public import Mathlib.Data.Fintype.EquivFin
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P78.Defs
+public import PiBaseLean.Properties.P125.Defs
+
+@[expose] public section
 
 namespace PiBase
 

@@ -1,7 +1,11 @@
-import Mathlib.Data.Countable.Defs
-import PiBaseLean.Properties.Bundled.Basic
-import PiBaseLean.Properties.P57.Defs
-import PiBaseLean.Properties.P78.Defs
+module
+
+public import Mathlib.Data.Countable.Defs
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P57.Defs
+public import PiBaseLean.Properties.P78.Defs
+
+@[expose] public section
 
 namespace PiBase
 

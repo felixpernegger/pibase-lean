@@ -1,6 +1,10 @@
-import Mathlib.Algebra.Group.TransferInstance
-import Mathlib.Topology.Algebra.Group.Defs
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Algebra.Group.TransferInstance
+public import Mathlib.Topology.Algebra.Group.Defs
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Topology Set Function Filter TopologicalSpace
 

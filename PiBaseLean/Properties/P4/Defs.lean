@@ -1,5 +1,9 @@
-import Mathlib.Topology.Separation.Regular
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Separation.Regular
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

@@ -1,8 +1,12 @@
-import Mathlib.Data.Set.Card
-import Mathlib.Topology.MetricSpace.Pseudo.Defs
-import Mathlib.Topology.Path
-import Mathlib.Topology.Connected.PathConnected
-import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
+module
+
+public import Mathlib.Data.Set.Card
+public import Mathlib.Topology.MetricSpace.Pseudo.Defs
+public import Mathlib.Topology.Path
+public import Mathlib.Topology.Connected.PathConnected
+public import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
+
+@[expose] public section
 
 universe u
 

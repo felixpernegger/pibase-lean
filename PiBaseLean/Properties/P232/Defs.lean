@@ -1,5 +1,9 @@
-import PiBaseLean.AdditionalDefs
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import PiBaseLean.AdditionalDefs
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Topology Filter PiBase.AdditionalDefs
 

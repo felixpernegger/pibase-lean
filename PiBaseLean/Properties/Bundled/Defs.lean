@@ -1,4 +1,8 @@
-import Mathlib.Topology.Homeomorph.Defs
+module
+
+public import Mathlib.Topology.Homeomorph.Defs
+
+@[expose] public section
 
 namespace PiBase.Formal
 

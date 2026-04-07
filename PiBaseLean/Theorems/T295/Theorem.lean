@@ -1,7 +1,11 @@
-import Mathlib.Logic.Nontrivial.Defs
-import PiBaseLean.Properties.Bundled.Basic
-import PiBaseLean.Properties.P125.Defs
-import PiBaseLean.Properties.P137.Defs
+module
+
+public import Mathlib.Logic.Nontrivial.Defs
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P125.Defs
+public import PiBaseLean.Properties.P137.Defs
+
+@[expose] public section
 
 namespace PiBase
 

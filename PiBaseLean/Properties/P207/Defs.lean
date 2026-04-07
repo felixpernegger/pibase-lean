@@ -1,6 +1,10 @@
-import Mathlib.Data.Rel
-import Mathlib.Topology.Constructions.SumProd
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Data.Rel
+public import Mathlib.Topology.Constructions.SumProd
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Set
 

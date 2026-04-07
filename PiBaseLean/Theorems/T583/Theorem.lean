@@ -1,6 +1,10 @@
-import PiBaseLean.Properties.Bundled.Basic
-import PiBaseLean.Properties.P199.Defs
-import PiBaseLean.Properties.P200.Defs
+module
+
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P199.Defs
+public import PiBaseLean.Properties.P200.Defs
+
+@[expose] public section
 
 namespace PiBase
 

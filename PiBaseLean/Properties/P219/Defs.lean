@@ -1,6 +1,10 @@
-import Mathlib.SetTheory.Cardinal.Defs
-import Mathlib.Topology.Homeomorph.Defs
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.SetTheory.Cardinal.Defs
+public import Mathlib.Topology.Homeomorph.Defs
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Cardinal
 

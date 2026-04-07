@@ -1,5 +1,9 @@
-import Mathlib.SetTheory.Cardinal.Aleph
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.SetTheory.Cardinal.Aleph
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Cardinal
 

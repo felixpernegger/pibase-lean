@@ -1,6 +1,10 @@
-import Mathlib.Logic.Equiv.Pairwise
-import Mathlib.Topology.UnitInterval
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Logic.Equiv.Pairwise
+public import Mathlib.Topology.UnitInterval
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Topology Set Function unitInterval
 namespace PiBase

@@ -1,8 +1,12 @@
-import Mathlib.Data.Set.Card
-import Mathlib.Topology.Homeomorph.Lemmas
-import PiBaseLean.Properties.Bundled.Basic
-import PiBaseLean.Properties.P78.Defs
-import PiBaseLean.Properties.P219.Defs
+module
+
+public import Mathlib.Data.Set.Card
+public import Mathlib.Topology.Homeomorph.Lemmas
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P78.Defs
+public import PiBaseLean.Properties.P219.Defs
+
+@[expose] public section
 
 open Topology Set Function TopologicalSpace Filter Cardinal
 

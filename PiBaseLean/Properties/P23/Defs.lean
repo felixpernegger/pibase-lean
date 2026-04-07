@@ -1,5 +1,9 @@
-import Mathlib.Topology.Compactness.LocallyCompact
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Compactness.LocallyCompact
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

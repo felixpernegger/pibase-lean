@@ -1,5 +1,9 @@
-import Mathlib.Topology.Sober
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Sober
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Topology Set Function Filter TopologicalSpace
 

@@ -1,7 +1,11 @@
-import Mathlib.Tactic.NormNum
-import PiBaseLean.Properties.Bundled.Basic
-import PiBaseLean.Properties.P175.Defs
-import PiBaseLean.Properties.P176.Defs
+module
+
+public import Mathlib.Tactic.NormNum
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P175.Defs
+public import PiBaseLean.Properties.P176.Defs
+
+@[expose] public section
 
 universe u
 

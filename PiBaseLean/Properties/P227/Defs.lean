@@ -1,6 +1,10 @@
-import Mathlib.SetTheory.Cardinal.Continuum
-import Mathlib.Topology.Constructions
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.SetTheory.Cardinal.Continuum
+public import Mathlib.Topology.Constructions
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open TopologicalSpace Cardinal
 

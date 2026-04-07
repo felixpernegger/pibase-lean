@@ -1,5 +1,9 @@
-import Mathlib.Topology.Homotopy.Contractible
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Homotopy.Contractible
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

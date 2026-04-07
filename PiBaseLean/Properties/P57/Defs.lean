@@ -1,5 +1,9 @@
-import Mathlib.Data.Countable.Defs
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Data.Countable.Defs
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

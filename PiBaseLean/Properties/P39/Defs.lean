@@ -1,5 +1,9 @@
-import Mathlib.Topology.Irreducible
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Irreducible
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

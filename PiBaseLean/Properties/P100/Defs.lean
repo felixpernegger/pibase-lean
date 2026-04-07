@@ -1,5 +1,9 @@
-import Mathlib.Topology.Compactness.Compact
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Compactness.Compact
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Topology Set Function Filter TopologicalSpace
 

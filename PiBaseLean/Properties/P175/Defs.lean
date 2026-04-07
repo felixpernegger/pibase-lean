@@ -1,6 +1,10 @@
-import Mathlib.SetTheory.Cardinal.Order
-import Mathlib.Topology.Defs.Basic
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.SetTheory.Cardinal.Order
+public import Mathlib.Topology.Defs.Basic
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Cardinal
 
