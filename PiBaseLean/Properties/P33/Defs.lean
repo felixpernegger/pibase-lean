@@ -1,4 +1,5 @@
 import PiBaseLean.AdditionalDefs
+import PiBaseLean.Properties.Bundled.Defs
 
 universe u
 
@@ -14,3 +15,11 @@ class CountablyMetacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ PointFinite t ∧ ∀ b, ∃ a, t b ⊆ s a
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P33 : Property where
+  toPred := CountablyMetacompactSpace
+  well_defined φ h := sorry
+
+end PiBase.Formal

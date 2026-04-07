@@ -1,4 +1,5 @@
 import Mathlib.Topology.Separation.Regular
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P14 := CompletelyNormalSpace
-
-class NP14 (X : Type*) [TopologicalSpace X] where
-  not_p14 : ¬ P14 X
+def P14 : Property where
+  toPred := CompletelyNormalSpace
+  well_defined φ _ := φ.symm.isEmbedding.completelyNormalSpace
 
 end PiBase.Formal

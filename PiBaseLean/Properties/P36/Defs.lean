@@ -1,4 +1,5 @@
 import Mathlib.Topology.Connected.Basic
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,11 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P36 := PreconnectedSpace
-
-class NP36 (X : Type*) [TopologicalSpace X] where
-  not_p36 : ¬ P36 X
+def P36 : Property where
+  toPred := PreconnectedSpace
+  well_defined φ _ := by
+    constructor
+    convert isPreconnected_range φ.continuous
+    simp only [EquivLike.range_eq_univ]
 
 end PiBase.Formal

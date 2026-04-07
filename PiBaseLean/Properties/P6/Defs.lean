@@ -1,4 +1,5 @@
 import Mathlib.Topology.Separation.CompletelyRegular
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P6 := T35Space
-
-class NP6 (X : Type*) [TopologicalSpace X] where
-  not_p6 : ¬ P6 X
+def P6 : Property where
+  toPred := T35Space
+  well_defined φ _ := φ.symm.isEmbedding.t35Space
 
 end PiBase.Formal

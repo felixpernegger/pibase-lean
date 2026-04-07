@@ -1,4 +1,5 @@
 import Mathlib.Topology.Compactness.Paracompact
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function Filter TopologicalSpace
 
@@ -12,9 +13,9 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P34 := FullyNormalSpace
-
-class NP34 (X : Type*) [TopologicalSpace X] where
-  not_p34 : ¬ P34 X
+def P34 : Property where
+  toPred := FullyNormalSpace
+  well_defined φ _ := @FullyNormalSpace.mk _ _
+    φ.symm.isClosedEmbedding.paracompactSpace φ.normalSpace
 
 end PiBase.Formal

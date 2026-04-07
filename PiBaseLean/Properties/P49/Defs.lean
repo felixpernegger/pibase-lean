@@ -1,4 +1,5 @@
 import Mathlib.Topology.ExtremallyDisconnected
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P49 := ExtremallyDisconnected
-
-class NP49 (X : Type*) [TopologicalSpace X] where
-  not_p49 : ¬ P49 X
+def P49 : Property where
+  toPred := ExtremallyDisconnected
+  well_defined φ _ := extremallyDisconnected_of_homeo φ
 
 end PiBase.Formal

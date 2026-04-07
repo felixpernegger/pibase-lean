@@ -1,3 +1,4 @@
+import PiBaseLean.Properties.Bundled.Basic
 import PiBaseLean.Properties.P16.Defs
 import PiBaseLean.Properties.P19.Defs
 
@@ -16,11 +17,6 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev T1 {X : Type*} [TopologicalSpace X] [CompactSpace X] :=
-  instCompactSpaceOfCountablyCompactSpace (X := X)
-
-/-- Contrapose -/
-instance T1_contra {X : Type*} [TopologicalSpace X] [h : NP19 X] : NP16 X where
-  not_p16 _ := h.not_p19 (instCompactSpaceOfCountablyCompactSpace (X := X))
+theorem T1 : P16 ≤ P19 := @instCompactSpaceOfCountablyCompactSpace
 
 end PiBase.Formal

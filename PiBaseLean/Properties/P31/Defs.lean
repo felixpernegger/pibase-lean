@@ -1,4 +1,5 @@
 import PiBaseLean.AdditionalDefs
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function Filter TopologicalSpace Topology.PiBase.AdditionalDefs
 
@@ -14,3 +15,11 @@ class MetacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ PointFinite t ∧ ∀ b, ∃ a, t b ⊆ s a
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P31 : Property where
+  toPred := MetacompactSpace
+  well_defined φ h := sorry
+
+end PiBase.Formal

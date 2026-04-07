@@ -1,4 +1,5 @@
 import Mathlib.Topology.Compactness.Lindelof
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P18 := LindelofSpace
-
-class NP18 (X : Type*) [TopologicalSpace X] where
-  not_p18 : ¬ P18 X
+def P18 : Property where
+  toPred := LindelofSpace
+  well_defined φ _ := φ.symm.isClosedEmbedding.LindelofSpace
 
 end PiBase.Formal

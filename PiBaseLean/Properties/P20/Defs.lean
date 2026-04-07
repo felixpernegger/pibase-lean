@@ -1,4 +1,5 @@
-import Mathlib.Topology.Defs.Sequences
+import Mathlib.Topology.Sequences
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,11 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P20 := SeqCompactSpace
-
-class NP20 (X : Type*) [TopologicalSpace X] where
-  not_p20 : ¬ P20 X
+def P20 : Property where
+  toPred := SeqCompactSpace
+  well_defined φ _ := by
+    constructor
+    convert IsSeqCompact.range φ.continuous.seqContinuous
+    simp only [EquivLike.range_eq_univ]
 
 end PiBase.Formal

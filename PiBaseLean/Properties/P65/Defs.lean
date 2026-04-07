@@ -1,4 +1,5 @@
 import Mathlib.SetTheory.Cardinal.Continuum
+import PiBaseLean.Properties.Bundled.Defs
 
 open Cardinal
 
@@ -12,9 +13,11 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P65 := CardEqContinuum
-
-class NP65 (X : Type*) where
-  not_p65 : ¬ P65 X
+def P65 : Property where
+  toPred X := CardEqContinuum X
+  well_defined φ h := by
+    constructor
+    rw [← Cardinal.mk_congr φ.toEquiv]
+    exact h.card_eq
 
 end PiBase.Formal

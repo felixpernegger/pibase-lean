@@ -1,4 +1,5 @@
 import PiBaseLean.AdditionalDefs
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function
 
@@ -13,3 +14,11 @@ class LocallyInjPathConnectedSpace (X : Type*)
     (fun s : Set X => s ∈ 𝓝 x ∧ IsInjPathConnected s) id
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P43 : Property where
+  toPred := LocallyInjPathConnectedSpace
+  well_defined φ h := sorry
+
+end PiBase.Formal

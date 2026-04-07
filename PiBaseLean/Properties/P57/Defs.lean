@@ -1,4 +1,5 @@
 import Mathlib.Data.Countable.Defs
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P57 := Countable
-
-class NP57 (X : Type*) where
-  not_p57 : ¬ P57 X
+def P57 : Property where
+  toPred X := Countable X
+  well_defined φ _ := .of_equiv _ φ.toEquiv
 
 end PiBase.Formal

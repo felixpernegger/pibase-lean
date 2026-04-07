@@ -1,3 +1,5 @@
+import PiBaseLean.Properties.Bundled.Basic
+import PiBaseLean.Properties.P57.Defs
 import PiBaseLean.Properties.P181.Defs
 
 universe u
@@ -9,3 +11,9 @@ theorem instCountableOfCountablyInfiniteOfCountablyInfinite {X : Type u} [Counta
     Countable X := by infer_instance
 
 end PiBase
+
+namespace PiBase.Formal
+
+theorem T454 : P181 ≤ P57 := fun X _ ↦ @instCountableOfCountablyInfiniteOfCountablyInfinite X
+
+end PiBase.Formal

@@ -1,4 +1,5 @@
 import Mathlib.Topology.Compactness.Paracompact
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P30 := ParacompactSpace
-
-class NP30 (X : Type*) [TopologicalSpace X] where
-  not_p30 : ¬ P30 X
+def P30 : Property where
+  toPred := ParacompactSpace
+  well_defined φ _ := φ.symm.isClosedEmbedding.paracompactSpace
 
 end PiBase.Formal

@@ -1,36 +1,37 @@
 import Mathlib.Analysis.Normed.Order.Lattice
 import Mathlib.Analysis.RCLike.Basic
+import PiBaseLean.Properties.Bundled.Basic
+import PiBaseLean.Properties.P4.Defs
 import PiBaseLean.Properties.P9.Defs
 
-open Topology Set Function TopologicalSpace
+open Topology Set Function TopologicalSpace unitInterval
 
 namespace PiBase
 
 /- Theorem 86, functionally hausdorff implies T25 -/
-instance instCompletelyT2SpaceOfT25Space
-    {X : Type*} [TopologicalSpace X] [h : CompletelyT2Space X] :
+instance instFunctionallyT2SpaceOfT25Space
+    {X : Type*} [TopologicalSpace X] [h : FunctionallyT2Space X] :
     T25Space X := by
-  apply T25Space.mk
-  intro _ _ h'
-  obtain ⟨f, cf, hf⟩ := h.completelyT2 h'
-  apply Filter.disjoint_iff.mpr
-  refine ⟨f ⁻¹' (Ioo (-0.5 : ℝ) 0.5), ?_, ?_⟩
-  · apply (Filter.mem_lift'_sets (monotone_closure X)).mpr
-    refine ⟨f ⁻¹' Ioo (-0.25  : ℝ) 0.25, ?_, ?_⟩
-    · apply ContinuousAt.preimage_mem_nhds (Continuous.continuousAt cf)
-      exact Ioo_mem_nhds (by norm_num [hf.1]) (by norm_num [hf.1])
-    apply subset_trans (Continuous.closure_preimage_subset cf (Ioo (-0.25  : ℝ) 0.25))
-    apply preimage_mono
-    rw [closure_Ioo (by norm_num)]
-    exact Icc_subset_Ioo (by norm_num) (by norm_num)
-  refine ⟨f ⁻¹' (Ioo (0.5 : ℝ) 1.5), ?_, Disjoint.symm (Disjoint.preimage f (by simp))⟩
-  apply (Filter.mem_lift'_sets (monotone_closure X)).mpr
-  refine ⟨f ⁻¹' Ioo 0.75 1.25, ?_, ?_⟩
-  · apply ContinuousAt.preimage_mem_nhds <| Continuous.continuousAt cf
-    exact Ioo_mem_nhds (by norm_num [hf.2]) (by norm_num [hf.2])
-  apply subset_trans <| Continuous.closure_preimage_subset cf (Ioo (0.75 : ℝ) 1.25)
-  apply preimage_mono
-  rw [closure_Ioo (by norm_num)]
-  exact Icc_subset_Ioo (by norm_num) (by norm_num)
+  refine ⟨fun _ _ h' ↦ ?_⟩
+  obtain ⟨f, hf⟩ := h.functionally_t2 h'
+  obtain ⟨b, b₀, b₁⟩ := exists_between (α := I) zero_lt_one
+  obtain ⟨a, a₀, ab⟩ := exists_between b₀
+  obtain ⟨c, bc, c₁⟩ := exists_between b₁
+  refine Filter.disjoint_iff.mpr ⟨f ⁻¹' Iio b, ?_, f ⁻¹' Ioi b, ?_, .preimage f ?_⟩
+  · refine (Filter.mem_lift'_sets (monotone_closure X)).mpr ⟨f ⁻¹' Iio a, ?_, ?_⟩
+    · exact f.continuousAt _ (Iio_mem_nhds (hf.1.trans_lt a₀))
+    · refine subset_trans (f.continuous.closure_preimage_subset (Iio a)) <| preimage_mono ?_
+      simpa only [closure_Iio' (a := a) ⟨0, a₀⟩, Iic_subset_Iio]
+  · refine (Filter.mem_lift'_sets (monotone_closure X)).mpr ⟨f ⁻¹' Ioi c, ?_, ?_⟩
+    · exact f.continuousAt _ (Ioi_mem_nhds (c₁.trans_eq hf.2.symm))
+    · refine subset_trans (f.continuous.closure_preimage_subset (Ioi c)) <| preimage_mono ?_
+      simpa only [closure_Ioi' (a := c) ⟨1, c₁⟩, Ici_subset_Ioi]
+  · simp
 
 end PiBase
+
+namespace PiBase.Formal
+
+theorem T86 : P9 ≤ P4 := @instFunctionallyT2SpaceOfT25Space
+
+end PiBase.Formal

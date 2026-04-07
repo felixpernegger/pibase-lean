@@ -1,4 +1,6 @@
+import Mathlib.Algebra.Group.TransferInstance
 import Mathlib.Topology.Algebra.Group.Defs
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function Filter TopologicalSpace
 
@@ -12,9 +14,13 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P87 := HasGroupTopology
-
-class NP87 (X : Type*) [TopologicalSpace X] where
-  not_p87 : ¬ P87 X
+def P87 : Property where
+  toPred := HasGroupTopology
+  well_defined {_ Y} _ _ φ h := by
+    rcases h with ⟨G, h⟩
+    letI H := φ.symm.toEquiv.group
+    refine ⟨H, @IsTopologicalGroup.mk Y _ H
+      ⟨(?_ : Continuous fun (p : Y × Y) ↦ φ (φ.symm p.1 * φ.symm p.2))⟩
+      ⟨(?_ : Continuous fun p ↦ φ (φ.symm p)⁻¹)⟩⟩ <;> fun_prop
 
 end PiBase.Formal

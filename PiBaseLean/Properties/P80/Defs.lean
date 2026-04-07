@@ -1,4 +1,5 @@
-import Mathlib.Topology.Defs.Sequences
+import Mathlib.Topology.Sequences
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P80 := FrechetUrysohnSpace
-
-class NP80 (X : Type*) [TopologicalSpace X] where
-  not_p80 : ¬ P80 X
+def P80 : Property where
+  toPred := FrechetUrysohnSpace
+  well_defined φ _ := φ.symm.isInducing.frechetUrysohnSpace
 
 end PiBase.Formal

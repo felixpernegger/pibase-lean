@@ -1,4 +1,5 @@
 import Mathlib.Topology.AlexandrovDiscrete
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P90 := AlexandrovDiscrete
-
-class NP90 (X : Type*) [TopologicalSpace X] where
-  not_p90 : ¬ P90 X
+def P90 : Property where
+  toPred := AlexandrovDiscrete
+  well_defined φ _ := φ.symm.isInducing.alexandrovDiscrete
 
 end PiBase.Formal

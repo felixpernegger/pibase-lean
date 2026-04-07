@@ -1,5 +1,8 @@
+import Mathlib.Data.Set.Card
+import Mathlib.Topology.Homeomorph.Lemmas
+import PiBaseLean.Properties.Bundled.Basic
+import PiBaseLean.Properties.P78.Defs
 import PiBaseLean.Properties.P219.Defs
-import Mathlib
 
 open Topology Set Function TopologicalSpace Filter Cardinal
 
@@ -16,3 +19,9 @@ instance instTorontoSpaceOfFinite (X : Type*) [TopologicalSpace X] [Finite X] : 
     eq ▸ (Nonempty.intro <| Homeomorph.Set.univ X)
 
 end PiBase
+
+namespace PiBase.Formal
+
+theorem T818 : P78 ≤ P219 := @instTorontoSpaceOfFinite
+
+end PiBase.Formal

@@ -1,4 +1,5 @@
-import Mathlib.Topology.Defs.Filter
+import Mathlib.Topology.Compactness.Compact
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function Filter TopologicalSpace
 
@@ -12,9 +13,10 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P100 := KcSpace
-
-class NP100 (X : Type*) [TopologicalSpace X] where
-  not_p100 : ¬ P100 X
+def P100 : Property where
+  toPred := KcSpace
+  well_defined φ h := by
+    refine ⟨fun s Ks ↦ ?_⟩
+    simpa only [Homeomorph.isClosed_image] using h.kc (φ.symm '' s) (Ks.image φ.symm.continuous)
 
 end PiBase.Formal

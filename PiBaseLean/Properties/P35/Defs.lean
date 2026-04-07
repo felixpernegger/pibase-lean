@@ -11,9 +11,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P35 := FullyT4Space
-
-class NP35 (X : Type*) [TopologicalSpace X] where
-  not_p35 : ¬ P35 X
+def P35 : Property where
+  toPred := FullyT4Space
+  well_defined φ h := @FullyT4Space.mk _ _ φ.t1Space (P34.well_defined φ h.toFullyNormalSpace)
 
 end PiBase.Formal

@@ -1,4 +1,5 @@
 import Mathlib.Topology.LocallyFinite
+import PiBaseLean.Properties.Bundled.Defs
 
 universe u
 
@@ -14,3 +15,11 @@ class CountablyParacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
         (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ LocallyFinite t ∧ ∀ b, ∃ a, t b ⊆ s a
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P32 : Property where
+  toPred := CountablyParacompactSpace
+  well_defined φ h := sorry
+
+end PiBase.Formal

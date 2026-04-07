@@ -1,13 +1,12 @@
 import Mathlib.Topology.Metrizable.Basic
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Filter Function
-
-universe u
 
 namespace PiBase
 
 /- 211. α₁.₅ space -/
-class α15Space (X : Type u) [TopologicalSpace X] : Prop where
+class α15Space (X : Type*) [TopologicalSpace X] : Prop where
   subset_converge {x : X} {S : ℕ → ℕ → X} (S_inj : ∀ n, Injective (S n))
     (S_disj : Pairwise (fun n m ↦ range (S n) ∩ range (S m) = ∅))
     (hS : ∀ n : ℕ, Tendsto (S n) atTop (𝓝 x)) : ∃ T : ℕ → X,
@@ -15,3 +14,11 @@ class α15Space (X : Type u) [TopologicalSpace X] : Prop where
         ∀ᶠ n in atTop, (range (S n) \ range T).Finite
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P211 : Property where
+  toPred := α15Space
+  well_defined φ h := sorry
+
+end PiBase.Formal

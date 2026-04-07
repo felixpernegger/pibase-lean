@@ -1,4 +1,5 @@
 import Mathlib.Topology.Separation.Regular
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,8 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P4 := T2Space
-
-class NP4 (X : Type*) [TopologicalSpace X] where
-  not_p4 : ¬ P4 X
+def P4 : Property where
+  toPred := T25Space
+  well_defined φ _ := φ.t25Space
 
 end PiBase.Formal

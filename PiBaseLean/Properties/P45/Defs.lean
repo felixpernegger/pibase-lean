@@ -1,4 +1,5 @@
 import Mathlib.Topology.Connected.TotallyDisconnected
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function Filter TopologicalSpace
 
@@ -9,3 +10,11 @@ class HasDispersionPoint (X : Type*) [TopologicalSpace X] extends ConnectedSpace
   ex_dispersion_point : ∃ p : X, IsTotallyDisconnected {p}ᶜ
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P45 : Property where
+  toPred := HasDispersionPoint
+  well_defined φ h := sorry
+
+end PiBase.Formal

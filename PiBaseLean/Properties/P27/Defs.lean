@@ -1,4 +1,5 @@
-import Mathlib.Topology.Bases
+import Mathlib.Topology.Homeomorph.Lemmas
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -7,13 +8,10 @@ namespace PiBase
 
 end PiBase
 
-open TopologicalSpace
-
 namespace PiBase.Formal
 
-abbrev P27 := SecondCountableTopology
-
-class NP27 (X : Type*) [TopologicalSpace X] where
-  not_p27 : ¬ P27 X
+def P27 : Property where
+  toPred := SecondCountableTopology
+  well_defined φ _ := φ.symm.secondCountableTopology
 
 end PiBase.Formal

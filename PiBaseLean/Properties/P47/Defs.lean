@@ -1,4 +1,5 @@
 import Mathlib.Topology.Connected.TotallyDisconnected
+import PiBaseLean.Properties.Bundled.Defs
 
 namespace PiBase
 
@@ -9,9 +10,11 @@ end PiBase
 
 namespace PiBase.Formal
 
-abbrev P47 := TotallyDisconnectedSpace
-
-class NP47 (X : Type*) [TopologicalSpace X] where
-  not_p47 : ¬ P47 X
+def P47 : Property where
+  toPred := TotallyDisconnectedSpace
+  well_defined φ h := by
+    constructor
+    convert φ.isEmbedding.isTotallyDisconnected_range.2 h
+    simp only [EquivLike.range_eq_univ]
 
 end PiBase.Formal

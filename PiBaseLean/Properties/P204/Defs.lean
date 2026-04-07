@@ -1,4 +1,5 @@
 import PiBaseLean.AdditionalDefs
+import PiBaseLean.Properties.Bundled.Defs
 
 open Topology Set Function
 
@@ -12,3 +13,11 @@ class HasACutPoint (X : Type*)
   ex_cut : ∃ p : X, IsCutPoint p
 
 end PiBase
+
+namespace PiBase.Formal
+
+def P204 : Property where
+  toPred := HasACutPoint
+  well_defined φ h := sorry
+
+end PiBase.Formal

@@ -1,7 +1,8 @@
+import Mathlib.Topology.Compactness.Compact
+import PiBaseLean.Properties.Bundled.Basic
 import PiBaseLean.Properties.P23.Defs
 import PiBaseLean.Properties.P24.Defs
 import PiBaseLean.Properties.P100.Defs
-import Mathlib.Topology.Compactness.Compact
 
 open Topology Set Function TopologicalSpace Filter
 
@@ -20,3 +21,10 @@ instance instLocallyRelativelyCompactSpaceOfWeaklyLocallyCompactSpaceOfKc
     exact closure_mono inter_subset_left
 
 end PiBase
+
+namespace PiBase.Formal
+
+theorem T81 : P23 ⊓ P100 ≤ P24 := fun X _ ↦ and_imp.2
+  (@instLocallyRelativelyCompactSpaceOfWeaklyLocallyCompactSpaceOfKc X _)
+
+end PiBase.Formal
