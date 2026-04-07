@@ -1,7 +1,11 @@
-import Mathlib.Data.Countable.Defs
-import Mathlib.Order.BourbakiWitt
-import Mathlib.Topology.Defs.Basic
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Data.Countable.Defs
+public import Mathlib.Order.BourbakiWitt
+public import Mathlib.Topology.Defs.Basic
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Topology Set Function TopologicalSpace
 

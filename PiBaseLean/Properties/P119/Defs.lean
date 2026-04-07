@@ -1,5 +1,9 @@
-import Mathlib.Topology.ExtremallyDisconnected
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.ExtremallyDisconnected
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open TopologicalSpace
 

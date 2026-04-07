@@ -1,5 +1,9 @@
-import Mathlib.Topology.LocallyFinite
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.LocallyFinite
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 universe u
 

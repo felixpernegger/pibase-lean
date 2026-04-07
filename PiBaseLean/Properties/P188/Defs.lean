@@ -1,5 +1,9 @@
-import Mathlib.Topology.Homeomorph.Lemmas
-import PiBaseLean.Properties.P36.Defs
+module
+
+public import Mathlib.Topology.Homeomorph.Lemmas
+public import PiBaseLean.Properties.P36.Defs
+
+@[expose] public section
 
 namespace PiBase
 

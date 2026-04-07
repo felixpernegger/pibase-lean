@@ -1,5 +1,9 @@
-import Mathlib.Topology.AlexandrovDiscrete
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.AlexandrovDiscrete
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

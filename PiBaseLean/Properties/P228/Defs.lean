@@ -1,6 +1,10 @@
-import Mathlib.Order.ConditionallyCompleteLattice.Basic
-import Mathlib.Topology.Defs.Basic
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Order.ConditionallyCompleteLattice.Basic
+public import Mathlib.Topology.Defs.Basic
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

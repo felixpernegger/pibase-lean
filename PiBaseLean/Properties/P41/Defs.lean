@@ -1,5 +1,9 @@
-import Mathlib.Topology.Connected.LocallyConnected
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Connected.LocallyConnected
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

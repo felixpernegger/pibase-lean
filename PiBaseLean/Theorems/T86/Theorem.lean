@@ -1,8 +1,12 @@
-import Mathlib.Analysis.Normed.Order.Lattice
-import Mathlib.Analysis.RCLike.Basic
-import PiBaseLean.Properties.Bundled.Basic
-import PiBaseLean.Properties.P4.Defs
-import PiBaseLean.Properties.P9.Defs
+module
+
+public import Mathlib.Analysis.Normed.Order.Lattice
+public import Mathlib.Analysis.RCLike.Basic
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P4.Defs
+public import PiBaseLean.Properties.P9.Defs
+
+@[expose] public section
 
 open Topology Set Function TopologicalSpace unitInterval
 

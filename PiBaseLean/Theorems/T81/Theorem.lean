@@ -1,8 +1,12 @@
-import Mathlib.Topology.Compactness.Compact
-import PiBaseLean.Properties.Bundled.Basic
-import PiBaseLean.Properties.P23.Defs
-import PiBaseLean.Properties.P24.Defs
-import PiBaseLean.Properties.P100.Defs
+module
+
+public import Mathlib.Topology.Compactness.Compact
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P23.Defs
+public import PiBaseLean.Properties.P24.Defs
+public import PiBaseLean.Properties.P100.Defs
+
+@[expose] public section
 
 open Topology Set Function TopologicalSpace Filter
 

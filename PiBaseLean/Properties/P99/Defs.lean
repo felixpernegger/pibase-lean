@@ -1,6 +1,10 @@
-import Mathlib.Order.Filter.AtTopBot.Defs
-import Mathlib.Topology.Defs.Filter
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Order.Filter.AtTopBot.Defs
+public import Mathlib.Topology.Defs.Filter
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Topology Set Function Filter TopologicalSpace
 

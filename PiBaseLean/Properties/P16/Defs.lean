@@ -1,5 +1,9 @@
-import Mathlib.Topology.Homeomorph.Lemmas
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Homeomorph.Lemmas
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

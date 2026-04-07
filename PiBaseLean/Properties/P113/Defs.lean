@@ -1,4 +1,8 @@
-import PiBaseLean.Properties.P110.Defs
+module
+
+public import PiBaseLean.Properties.P110.Defs
+
+@[expose] public section
 
 open Topology Set
 

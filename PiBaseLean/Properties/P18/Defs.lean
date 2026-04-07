@@ -1,5 +1,9 @@
-import Mathlib.Topology.Compactness.Lindelof
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Compactness.Lindelof
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

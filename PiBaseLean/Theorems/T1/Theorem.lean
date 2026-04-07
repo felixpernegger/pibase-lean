@@ -1,6 +1,10 @@
-import PiBaseLean.Properties.Bundled.Basic
-import PiBaseLean.Properties.P16.Defs
-import PiBaseLean.Properties.P19.Defs
+module
+
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P16.Defs
+public import PiBaseLean.Properties.P19.Defs
+
+@[expose] public section
 
 open Topology Set Function TopologicalSpace
 

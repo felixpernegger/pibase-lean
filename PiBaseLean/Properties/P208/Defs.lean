@@ -1,5 +1,9 @@
-import Mathlib.Topology.NoetherianSpace
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.NoetherianSpace
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open TopologicalSpace
 

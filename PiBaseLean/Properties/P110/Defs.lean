@@ -1,7 +1,11 @@
-import Mathlib.Data.Countable.Defs
-import Mathlib.Topology.Defs.Filter
-import PiBaseLean.AdditionalDefs
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Data.Countable.Defs
+public import Mathlib.Topology.Defs.Filter
+public import PiBaseLean.AdditionalDefs
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Topology Set Filter
 

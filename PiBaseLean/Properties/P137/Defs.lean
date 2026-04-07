@@ -1,5 +1,9 @@
-import Mathlib.Logic.IsEmpty.Defs
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Logic.IsEmpty.Defs
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

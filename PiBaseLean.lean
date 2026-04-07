@@ -1,5 +1,6 @@
 import PiBaseLean.AdditionalDefs
 import PiBaseLean.Properties.Bundled.Basic
+import PiBaseLean.Properties.Bundled.Defs
 import PiBaseLean.Properties.P1.Defs
 import PiBaseLean.Properties.P10.Defs
 import PiBaseLean.Properties.P100.Defs

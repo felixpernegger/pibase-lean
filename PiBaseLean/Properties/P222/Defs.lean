@@ -1,6 +1,10 @@
-import Mathlib.Data.Finite.Defs
-import Mathlib.Topology.Defs.Basic
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Data.Finite.Defs
+public import Mathlib.Topology.Defs.Basic
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 namespace PiBase
 

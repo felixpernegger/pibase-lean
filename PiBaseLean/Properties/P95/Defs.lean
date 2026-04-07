@@ -1,5 +1,9 @@
-import Mathlib.Topology.Path
-import PiBaseLean.Properties.Bundled.Defs
+module
+
+public import Mathlib.Topology.Path
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
 
 open Topology
 
