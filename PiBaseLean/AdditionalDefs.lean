@@ -123,6 +123,10 @@ def IsKNetwork {X ι : Type*} [TopologicalSpace X] (f : ι → Set X) : Prop :=
 def IsKCover {X ι : Type*} [TopologicalSpace X] (f : ι → Opens X) : Prop :=
   IsOpenCover f ∧ ⊤ ∉ range f ∧ ∀ ⦃K : Set X⦄, IsCompact K → ∃ i : ι, K ⊆ f i
 
+/-- A set is called regular open if it is equal to the interior of its closure. -/
+def IsRegularOpen {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
+  interior (closure s) = s
+
 end AdditionalDefs
 
 end PiBase
