@@ -1,6 +1,6 @@
 module
 
-public import Mathlib.Topology.Instances.Real
+public import Mathlib.Topology.MetricSpace.Pseudo.Defs
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
