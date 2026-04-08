@@ -5,10 +5,11 @@ public import Mathlib.Topology.MetricSpace.Pseudo.Defs
 public import Mathlib.Topology.Path
 public import Mathlib.Topology.Connected.PathConnected
 public import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
+public import Mathlib.Topology.Sets.OpenCover
 
 @[expose] public section
 
-universe u
+universe u v
 
 /-! This file contains additional definitions which are useful for properties and theorems. -/
 
@@ -54,6 +55,9 @@ def IsRelativelyCompact {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
 def IsDiscreteFamily {X : Type u} {ι : Type u} [TopologicalSpace X] (F : ι → Set X) : Prop :=
   ∀ x : X, ∃ U ∈ 𝓝 x, {i : ι | F i ∩ U ≠ ∅}.encard ≤ 1
 
+--TODO: Notation Σ' for this?
+/-- Sigma product (of topological spaces).
+Not to be confused with the disjoint union (topological sum). -/
 def SigmaProduct {ι : Type*} {Y : ι → Type u} (x : (i : ι) → Y i) : Set ((i : ι) → Y i) :=
   {s : (i : ι) → Y i | {i : ι | s i ≠ x i}.Countable}
 
@@ -66,7 +70,23 @@ def CoverStar {X ι : Type*} (U : ι → Set X) [TopologicalSpace X] (x : X) :
 
 variable (A : Set ℕ)
 
-def LocallyCountable (f : ι → Set X) :=
+/-- A collection of sets which is the countable union of collection of sets
+which have some property. (I.e. sigma locally finite) -/
+def Sigma {X : Type v} [TopologicalSpace X] (P : {α : Type u} → (α → Set X) → Prop)
+    {ι : Type u} (f : ι → Set X) :=
+  ∃ (ω : Type u) (r : ω → Set ι), Countable ω ∧ (⋃ i : ω, r i = univ) ∧
+    (∀ i : ω, P (fun (j : r i) ↦ f j.val))
+
+-- I think one needs a (very) weak condition on P for this to be true
+/- A collection of sets with a property also has the sigma version of the property. -/
+--theorem property_to_sigma
+--    {X : Type v} [TopologicalSpace X] {P : {α : Type u} → (α → Set X) → Prop}
+--    {ι : Type u} {f : ι → Set X} (h : P f) : Sigma P f := by
+--  refine ⟨(ULift (Fin 1)), (fun _ ↦ univ), instCountableULift, iUnion_const univ, fun i ↦ ?_⟩
+--  simp
+-- sorry -/
+
+def LocallyCountable {ι : Type u} (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
 
 def IsCutPoint (p : X) := ¬ IsConnected {p}ᶜ
@@ -74,6 +94,38 @@ def IsCutPoint (p : X) := ¬ IsConnected {p}ᶜ
 /-- The image of the fundamental group of under f:X → Y at x : X is trivial. -/
 def HasTrivialFundGroupImageAt (f : C(X, Y)) (x : X) : Prop :=
   ((FundamentalGroup.map f) x).range = ⊥
+
+/-- A symmetric for of a set. -/
+class Symmetric (α : Type u) extends Dist α where
+  dist_self (x : α) : dist x x = 0
+  dist_comm (x y : α) : dist x y = dist y x
+  eq_of_dist_eq_zero : ∀ {x y : α}, dist x y = 0 → x = y
+
+def Symmetric.ball {α : Type u} [Symmetric α] (a : α) (ε : ℝ) : Set α := {x : α | dist x a ≤ ε}
+
+/-- A semimetric space -/
+class SemimetricSpace (X : Type u) [TopologicalSpace X] extends Symmetric X where
+  symmetric_nbhd (x : X) : (𝓝 x).HasBasis (fun ε => 0 < ε) (Symmetric.ball x)
+
+/-- A symmetric space -/
+class SymmetricSpace (X : Type u) [TopologicalSpace X] extends Symmetric X where
+  isOpen_iff (s : Set X) : IsOpen s ↔ ∀ x ∈ s, ∃ ε > 0, Symmetric.ball x ε ⊆ s
+
+/-- A network of a topological space. -/
+def IsNetwork {X ι : Type*} [TopologicalSpace X] (f : ι → Set X) : Prop :=
+  ∀ᵉ (x : X) (s ∈ 𝓝 x), ∃ i : ι, x ∈ f i ∧ f i ⊆ s
+
+/-- A k-network of a topological space. -/
+def IsKNetwork {X ι : Type*} [TopologicalSpace X] (f : ι → Set X) : Prop :=
+  ∀ ⦃U K : Set X⦄, IsOpen U → IsCompact K → K ⊆ U → ∃ s : Set ι, K ⊆ ⋃ i ∈ s, f i ∧ ⋃ i ∈ s, f i ⊆ U
+
+/-- K-cover of a topological space -/
+def IsKCover {X ι : Type*} [TopologicalSpace X] (f : ι → Opens X) : Prop :=
+  IsOpenCover f ∧ ⊤ ∉ range f ∧ ∀ ⦃K : Set X⦄, IsCompact K → ∃ i : ι, K ⊆ f i
+
+/-- A set is called regular open if it is equal to the interior of its closure. -/
+def IsRegularOpen {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
+  interior (closure s) = s
 
 end AdditionalDefs
 

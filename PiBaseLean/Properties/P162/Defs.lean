@@ -1,0 +1,26 @@
+module
+
+public import Mathlib.Topology.MetricSpace.Pseudo.Defs
+public import PiBaseLean.Properties.Bundled.Defs
+
+@[expose] public section
+
+open Topology Set Function Filter TopologicalSpace
+
+universe u
+
+namespace PiBase
+
+/- 162. Realcompact -/
+class RealcompactSpace (X : Type u) [TopologicalSpace X] : Prop where
+  homeo_closed : ∃ (ι : Type u) (s : Set (ι → ℝ)), IsClosed s ∧ Nonempty (X ≃ₜ s)
+
+end PiBase
+
+namespace PiBase.Formal
+
+def P162 : Property where
+  toPred := RealcompactSpace
+  well_defined φ h := sorry
+
+end PiBase.Formal
