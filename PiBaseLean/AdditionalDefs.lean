@@ -134,6 +134,26 @@ def IsKCover {X ι : Type*} [TopologicalSpace X] (f : ι → Opens X) : Prop :=
 def IsRegularOpen {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   interior (closure s) = s
 
+/-- For a property P on topological spaces, we say Omega P, is every power of a space satisfies P -/
+def Omega (P : (Y : Type u) → [TopologicalSpace Y] → Prop)
+    (X : Type u) [TopologicalSpace X] : Prop := ∀ n : ℕ, P (Fin n → X)
+
+--TODO: Put this in mathlib, there is only another (in my opinion worse) version
+/-- A empty set is a topologicalspace -/
+instance instTopologicalSpaceOfIsEmpty (α : Type u) [IsEmpty α] : TopologicalSpace α where
+  IsOpen := fun _ ↦ True
+  isOpen_univ := trivial
+  isOpen_inter _ _ _ _ := trivial
+  isOpen_sUnion _ _ := trivial
+
+/-- If Omega P X holds, then P X holds for well defined properties. -/
+theorem omega_id {Z : Type u} [TopologicalSpace Z] (P : (X : Type u) → [TopologicalSpace X] → Prop)
+    (hP : ∀ {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y]
+    (_ : X ≃ₜ Y), P X → P Y) (hZ : Omega P Z) :
+  P Z := hP (Homeomorph.funUnique (Fin 1) Z) <| hZ 1
+
+--TODO: Omega P X for some nonempty X implies P holds for singleton space
+
 end AdditionalDefs
 
 end PiBase
