@@ -89,6 +89,9 @@ def Sigma {X : Type v} [TopologicalSpace X] (P : {α : Type u} → (α → Set X
 def LocallyCountable {ι : Type u} (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
 
+def SigmaLocallyCountable {ω : ι → Type v} (f : (i : ι) → ω i → Set X) :=
+  Countable ι ∧ ∀ i, LocallyCountable (f i)
+
 def IsCutPoint (p : X) := ¬ IsConnected {p}ᶜ
 
 /-- The image of the fundamental group of under f:X → Y at x : X is trivial. -/
