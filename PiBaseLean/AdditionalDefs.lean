@@ -55,6 +55,10 @@ def IsRelativelyCompact {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
 def IsDiscreteFamily {X : Type u} {ι : Type u} [TopologicalSpace X] (F : ι → Set X) : Prop :=
   ∀ x : X, ∃ U ∈ 𝓝 x, {i : ι | F i ∩ U ≠ ∅}.encard ≤ 1
 
+/-- An omega cover -/
+def IsOmegaCover {X ι : Type*} [TopologicalSpace X] (f : ι → Opens X) : Prop :=
+  IsOpenCover f ∧ ⊤ ∉ range f ∧ ∀ s : Finset X, ∃ i : ι, (↑s : Set X) ⊆ (↑(f i) : Set X)
+
 --TODO: Notation Σ' for this?
 /-- Sigma product (of topological spaces).
 Not to be confused with the disjoint union (topological sum). -/
