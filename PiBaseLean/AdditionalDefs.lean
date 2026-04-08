@@ -69,14 +69,16 @@ def CoverStar {X ι : Type*} (U : ι → Set X) [TopologicalSpace X] (x : X) :
 
 variable (A : Set ℕ)
 
-def SigmaLocallyFinite {ω : ι → Type v} (f : (i : ι) → ω i → Set X) :=
-  Countable ι ∧ ∀ i, LocallyFinite (f i)
+def SigmaLocallyFinite (f : ι → Set X) :=
+  ∃ (ω : Type u) (r : ω → Set ι), Countable ω ∧ (⋃ i : ω, r i = univ) ∧
+    (∀ i : ω, LocallyFinite (fun (j : r i) ↦ f j.val))
 
 def LocallyCountable (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
 
-def SigmaLocallyCountable {ω : ι → Type v} (f : (i : ι) → ω i → Set X) :=
-  Countable ι ∧ ∀ i, LocallyCountable (f i)
+def SigmaLocallyCountable (f : ι → Set X) :=
+  ∃ (ω : Type u) (r : ω → Set ι), Countable ω ∧ (⋃ i : ω, r i = univ) ∧
+    (∀ i : ω, LocallyCountable (fun (j : r i) ↦ f j.val))
 
 def IsCutPoint (p : X) := ¬ IsConnected {p}ᶜ
 
@@ -99,6 +101,14 @@ class SemimetricSpace (X : Type u) [TopologicalSpace X] extends Symmetric X wher
 /-- A symmetric space -/
 class SymmetricSpace (X : Type u) [TopologicalSpace X] extends Symmetric X where
   isOpen_iff (s : Set X) : IsOpen s ↔ ∀ x ∈ s, ∃ ε > 0, Symmetric.ball x ε ⊆ s
+
+/-- A network of a topological space. -/
+def IsNetwork {X ι : Type*} [TopologicalSpace X] (f : ι → Set X) : Prop :=
+  ∀ᵉ (x : X) (s ∈ 𝓝 x), ∃ i : ι, x ∈ f i ∧ f i ⊆ s
+
+/-- A k-network of a topological space. -/
+def IsKNetwork {X ι : Type*} [TopologicalSpace X] (f : ι → Set X) : Prop :=
+  ∀ ⦃U K : Set X⦄, IsOpen U → IsCompact K → K ⊆ U → ∃ s : Set ι, K ⊆ ⋃ i ∈ s, f i ∧ ⋃ i ∈ s, f i ⊆ U
 
 end AdditionalDefs
 
