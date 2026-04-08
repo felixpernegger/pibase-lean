@@ -16,8 +16,8 @@ open PiBase.AdditionalDefs
 
 /-- 54. Has a σ-locally finite basis -/ --TODO: Maybe make extra definition for "SigmaLocallyFinite"
 class HasSigmaLocallyFiniteBasis (X : Type u) [TopologicalSpace X] : Prop where
-  ex_basis : ∃ ι : Type u, Countable ι ∧ ∃ ω : ι → Type u, ∃ f : (i : ι) → (ω i) → Set X,
-    (∀ i, LocallyFinite (f i)) ∧ (∀ᵉ (i : ι) (t : ω i), IsOpen (f i t)) ∧
+  ex_basis : ∃ ι : Type u, ∃ ω : ι → Type u, ∃ f : (i : ι) → (ω i) → Set X,
+    SigmaLocallyFinite f ∧ (∀ᵉ (i : ι) (t : ω i), IsOpen (f i t)) ∧
       ∀ᵉ (x : X) (s ∈ 𝓝 x), ∃ (i : ι) (t : ω i), x ∈ f i t ∧ f i t ⊆ s
 
 --TODO: General notion of compactification in mathlib would be cool
