@@ -5,6 +5,7 @@ public import Mathlib.Topology.MetricSpace.Pseudo.Defs
 public import Mathlib.Topology.Path
 public import Mathlib.Topology.Connected.PathConnected
 public import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
+public import Mathlib.Topology.Sets.OpenCover
 
 @[expose] public section
 
@@ -69,12 +70,21 @@ def CoverStar {X ι : Type*} (U : ι → Set X) [TopologicalSpace X] (x : X) :
 
 variable (A : Set ℕ)
 
-/-- A cover which is the countable union of covers which have some property.
-(I.e. sigma locally finite) -/
+/-- A collection of sets which is the countable union of collection of sets
+which have some property. (I.e. sigma locally finite) -/
 def Sigma {X : Type v} [TopologicalSpace X] (P : {α : Type u} → (α → Set X) → Prop)
     {ι : Type u} (f : ι → Set X) :=
   ∃ (ω : Type u) (r : ω → Set ι), Countable ω ∧ (⋃ i : ω, r i = univ) ∧
     (∀ i : ω, P (fun (j : r i) ↦ f j.val))
+
+-- I think one needs a (very) weak condition on P for this to be true
+/- A collection of sets with a property also has the sigma version of the property. -/
+--theorem property_to_sigma
+--    {X : Type v} [TopologicalSpace X] {P : {α : Type u} → (α → Set X) → Prop}
+--    {ι : Type u} {f : ι → Set X} (h : P f) : Sigma P f := by
+--  refine ⟨(ULift (Fin 1)), (fun _ ↦ univ), instCountableULift, iUnion_const univ, fun i ↦ ?_⟩
+--  simp
+-- sorry -/
 
 def LocallyCountable {ι : Type u} (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
@@ -108,6 +118,10 @@ def IsNetwork {X ι : Type*} [TopologicalSpace X] (f : ι → Set X) : Prop :=
 /-- A k-network of a topological space. -/
 def IsKNetwork {X ι : Type*} [TopologicalSpace X] (f : ι → Set X) : Prop :=
   ∀ ⦃U K : Set X⦄, IsOpen U → IsCompact K → K ⊆ U → ∃ s : Set ι, K ⊆ ⋃ i ∈ s, f i ∧ ⋃ i ∈ s, f i ⊆ U
+
+/-- K-cover of a topological space -/
+def IsKCover {X ι : Type*} [TopologicalSpace X] (f : ι → Opens X) : Prop :=
+  IsOpenCover f ∧ ⊤ ∉ range f ∧ ∀ ⦃K : Set X⦄, IsCompact K → ∃ i : ι, K ⊆ f i
 
 end AdditionalDefs
 
