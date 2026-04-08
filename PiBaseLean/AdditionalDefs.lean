@@ -68,6 +68,10 @@ def IsRetraction {X : Type u} [TopologicalSpace X] (A : Set X) : Prop :=
 def CoverStar {X ι : Type*} (U : ι → Set X) [TopologicalSpace X] (x : X) :
     Set X := ⋃ i : ι, ⋃ (_ : x ∈ U i), U i
 
+/-- A star finite collection of sets. -/
+def StarFinite {X ι : Type*} (U : ι → Set X) [TopologicalSpace X] : Prop :=
+  ∀ i : ι, {j : ι | U i ∩ U j ≠ ∅}.Finite
+
 variable (A : Set ℕ)
 
 /-- A collection of sets which is the countable union of collection of sets
@@ -77,14 +81,13 @@ def Sigma {X : Type v} [TopologicalSpace X] (P : {α : Type u} → (α → Set X
   ∃ (ω : Type u) (r : ω → Set ι), Countable ω ∧ (⋃ i : ω, r i = univ) ∧
     (∀ i : ω, P (fun (j : r i) ↦ f j.val))
 
--- I think one needs a (very) weak condition on P for this to be true
-/- A collection of sets with a property also has the sigma version of the property. -/
---theorem property_to_sigma
---    {X : Type v} [TopologicalSpace X] {P : {α : Type u} → (α → Set X) → Prop}
---    {ι : Type u} {f : ι → Set X} (h : P f) : Sigma P f := by
---  refine ⟨(ULift (Fin 1)), (fun _ ↦ univ), instCountableULift, iUnion_const univ, fun i ↦ ?_⟩
---  simp
--- sorry -/
+/-- A collection of sets with a property also has the sigma version of the property. -/
+theorem property_to_sigma
+    {X : Type v} [TopologicalSpace X] {P : {α : Type u} → (α → Set X) → Prop}
+    (hP : ∀ {α β : Type u} (l : α → Set X) (e : β ≃ α), P l → P (l ∘ e))
+    {ι : Type u} {f : ι → Set X} (h : P f) : Sigma P f := by
+  refine ⟨ULift (Fin 1), fun _ ↦ univ, instCountableULift, iUnion_const univ, fun i ↦ ?_⟩
+  exact hP f (Equiv.Set.univ ι) h
 
 def LocallyCountable {ι : Type u} (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
