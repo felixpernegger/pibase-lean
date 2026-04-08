@@ -8,7 +8,7 @@ public import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
 
 @[expose] public section
 
-universe u
+universe u v
 
 /-! This file contains additional definitions which are useful for properties and theorems. -/
 
@@ -54,6 +54,9 @@ def IsRelativelyCompact {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
 def IsDiscreteFamily {X : Type u} {ι : Type u} [TopologicalSpace X] (F : ι → Set X) : Prop :=
   ∀ x : X, ∃ U ∈ 𝓝 x, {i : ι | F i ∩ U ≠ ∅}.encard ≤ 1
 
+--TODO: Notation Σ' for this?
+/-- Sigma product (of topological spaces).
+Not to be confused with the disjoint union (topological sum). -/
 def SigmaProduct {ι : Type*} {Y : ι → Type u} (x : (i : ι) → Y i) : Set ((i : ι) → Y i) :=
   {s : (i : ι) → Y i | {i : ι | s i ≠ x i}.Countable}
 
@@ -66,14 +69,36 @@ def CoverStar {X ι : Type*} (U : ι → Set X) [TopologicalSpace X] (x : X) :
 
 variable (A : Set ℕ)
 
+def SigmaLocallyFinite {ω : ι → Type v} (f : (i : ι) → ω i → Set X) :=
+  Countable ι ∧ ∀ i, LocallyFinite (f i)
+
 def LocallyCountable (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
+
+def SigmaLocallyCountable {ω : ι → Type v} (f : (i : ι) → ω i → Set X) :=
+  Countable ι ∧ ∀ i, LocallyCountable (f i)
 
 def IsCutPoint (p : X) := ¬ IsConnected {p}ᶜ
 
 /-- The image of the fundamental group of under f:X → Y at x : X is trivial. -/
 def HasTrivialFundGroupImageAt (f : C(X, Y)) (x : X) : Prop :=
   ((FundamentalGroup.map f) x).range = ⊥
+
+/-- A symmetric for of a set. -/
+class Symmetric (α : Type u) extends Dist α where
+  dist_self (x : α) : dist x x = 0
+  dist_comm (x y : α) : dist x y = dist y x
+  eq_of_dist_eq_zero : ∀ {x y : α}, dist x y = 0 → x = y
+
+def Symmetric.ball {α : Type u} [Symmetric α] (a : α) (ε : ℝ) : Set α := {x : α | dist x a ≤ ε}
+
+/-- A semimetric space -/
+class SemimetricSpace (X : Type u) [TopologicalSpace X] extends Symmetric X where
+  symmetric_nbhd (x : X) : (𝓝 x).HasBasis (fun ε => 0 < ε) (Symmetric.ball x)
+
+/-- A symmetric space -/
+class SymmetricSpace (X : Type u) [TopologicalSpace X] extends Symmetric X where
+  isOpen_iff (s : Set X) : IsOpen s ↔ ∀ x ∈ s, ∃ ε > 0, Symmetric.ball x ε ⊆ s
 
 end AdditionalDefs
 
