@@ -13,7 +13,7 @@ namespace PiBase
 
 /- 132. Gδ space -/
 class GδSpace (X : Type u) [TopologicalSpace X] : Prop where
-  isOpen_isGδ : ∀ ⦃s : Set X⦄, IsOpen s → IsGδ s
+  closed_gdelta : ∀ ⦃s : Set X⦄, IsClosed s → IsGδ s
 
 end PiBase
 
