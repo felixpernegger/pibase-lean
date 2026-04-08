@@ -14,11 +14,11 @@ namespace PiBase
 
 open PiBase.AdditionalDefs
 
-/-- 54. Has a σ-locally finite basis -/ --TODO: Maybe make extra definition for "SigmaLocallyFinite"
+/-- 54. Has a σ-locally finite basis -/
 class HasSigmaLocallyFiniteBasis (X : Type u) [TopologicalSpace X] : Prop where
-  ex_basis : ∃ ι : Type u, ∃ ω : ι → Type u, ∃ f : (i : ι) → (ω i) → Set X,
-    SigmaLocallyFinite f ∧ (∀ᵉ (i : ι) (t : ω i), IsOpen (f i t)) ∧
-      ∀ᵉ (x : X) (s ∈ 𝓝 x), ∃ (i : ι) (t : ω i), x ∈ f i t ∧ f i t ⊆ s
+  ex_basis : ∃ (ι : Type u), ∃ (f : ι → Set X),
+    SigmaLocallyFinite f ∧ (∀ (i : ι), IsOpen (f i)) ∧
+      ∀ᵉ (x : X) (s ∈ 𝓝 x), ∃ (i : ι), x ∈ f i ∧ f i ⊆ s
 
 --TODO: General notion of compactification in mathlib would be cool
 /-- 63. Cech complete. Note: We use the Stone Chech compactification. -/

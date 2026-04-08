@@ -69,11 +69,11 @@ def CoverStar {X ι : Type*} (U : ι → Set X) [TopologicalSpace X] (x : X) :
 
 variable (A : Set ℕ)
 
-def SigmaLocallyFinite (f : ι → Set X) :=
+def SigmaLocallyFinite {ι : Type u} (f : ι → Set X) :=
   ∃ (ω : Type u) (r : ω → Set ι), Countable ω ∧ (⋃ i : ω, r i = univ) ∧
     (∀ i : ω, LocallyFinite (fun (j : r i) ↦ f j.val))
 
-def LocallyCountable (f : ι → Set X) :=
+def LocallyCountable {ι : Type u} (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
 
 def SigmaLocallyCountable (f : ι → Set X) :=
