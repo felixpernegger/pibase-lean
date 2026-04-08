@@ -2,6 +2,7 @@ module
 
 public import PiBaseLean.AdditionalDefs
 public import PiBaseLean.Properties.Bundled.Defs
+public import PiBaseLean.Properties.P133.Defs
 public import Mathlib.Topology.Separation.CompletelyRegular
 
 @[expose] public section
@@ -37,5 +38,16 @@ class SemimetrizableSpace (X : Type u) [TopologicalSpace X] : Prop where
 /-- 104. Symmetrizable -/
 class SymmetrizableSpace (X : Type u) [TopologicalSpace X] : Prop where
   nonempty_symmetric : Nonempty (SymmetricSpace X)
+
+/-- 115. Subparacompact -/
+class SubparacompactlSpace (X : Type u) [TopologicalSpace X] : Prop where
+  locallyFinite_refinement :
+    ∀ (α : Type u) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →
+      ∃ (β : Type u) (t : β → Set X),
+        (∀ b, IsClosed (t b)) ∧ (⋃ b, t b = univ) ∧ SigmaLocallyFinite t ∧ ∀ b, ∃ a, t b ⊆ s a
+
+/-- 120. Locally orderable -/
+class LocallyOrderableSpace (X : Type u) [TopologicalSpace X] : Prop where
+  ex_nbhd_lots (x : X) : ∃ s ∈ 𝓝 x, LOTS s
 
 end PiBase
