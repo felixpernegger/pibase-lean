@@ -12,7 +12,7 @@ universe u
 namespace PiBase
 
 /- 148. CWGH -/
-class CWGH (X : Type u) [TopologicalSpace X] : Prop extends K2Space X, WeakT2Space X
+class CWGH (X : Type u) [TopologicalSpace X] : Prop extends CompactlyGeneratedSpace X, WeakT2Space X
 
 end PiBase
 
