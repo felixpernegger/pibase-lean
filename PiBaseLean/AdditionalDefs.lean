@@ -36,6 +36,9 @@ theorem IsInjPathConnected.isPathConnected {s : Set X} (h : IsInjPathConnected s
   obtain ⟨f, f_inj, fs⟩ := h xy xs ys
   exact ⟨f, fun t ↦ fs (by simp)⟩
 
+def PointFiniteAt (U : ι → Set X) (x : X) :=
+  { i | x ∈ U i }.Finite
+
 def PointFinite (U : ι → Set X) :=
   ∀ x : X, { i | x ∈ U i }.Finite
 
@@ -149,8 +152,7 @@ instance instTopologicalSpaceOfIsEmpty (α : Type u) [IsEmpty α] : TopologicalS
 /-- If Omega P X holds, then P X holds for well defined properties. -/
 theorem omega_id {Z : Type u} [TopologicalSpace Z] (P : (X : Type u) → [TopologicalSpace X] → Prop)
     (hP : ∀ {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y]
-    (_ : X ≃ₜ Y), P X → P Y) (hZ : Omega P Z) :
-  P Z := hP (Homeomorph.funUnique (Fin 1) Z) <| hZ 1
+    (_ : X ≃ₜ Y), P X → P Y) (hZ : Omega P Z) : P Z := hP (Homeomorph.funUnique (Fin 1) Z) <| hZ 1
 
 --TODO: Omega P X for some nonempty X implies P holds for singleton space
 
