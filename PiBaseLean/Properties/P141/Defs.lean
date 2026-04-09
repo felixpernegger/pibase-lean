@@ -19,7 +19,7 @@ end PiBase
 namespace PiBase.Formal
 
 def P141 : Property where
-  toPred := K2Space
+  toPred := CompactlyGeneratedSpace
   well_defined φ h := sorry
 
 end PiBase.Formal
