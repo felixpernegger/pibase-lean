@@ -13,9 +13,7 @@ universe u
 namespace PiBase
 
 /- 141. k₂-space -/
-class K2Space (X : Type u) [TopologicalSpace X] : Prop where
-  isCoherentWith : IsCoherentWith {s : Set X | ∀ (Y : Type u) (_ : TopologicalSpace Y) (f : Y → X),
-    CompactSpace Y → T2Space Y → Continuous f → IsOpen (f ⁻¹' s)}
+#check CompactlyGeneratedSpace
 
 end PiBase
 
