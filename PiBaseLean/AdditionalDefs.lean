@@ -1,10 +1,8 @@
 module
 
-public import Mathlib.Data.Set.Card
-public import Mathlib.Topology.MetricSpace.Pseudo.Defs
-public import Mathlib.Topology.Path
-public import Mathlib.Topology.Connected.PathConnected
 public import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
+public import Mathlib.Data.Set.Card
+public import Mathlib.SetTheory.Ordinal.Basic
 public import Mathlib.Topology.Sets.OpenCover
 
 @[expose] public section
@@ -19,7 +17,7 @@ namespace PiBase
 
 namespace AdditionalDefs
 
-open Filter Function Set Topology TopologicalSpace Cardinal
+open Filter Function Set Topology TopologicalSpace
 
 variable
   {X Y ι ι' α X : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f g : ι → Set X}
@@ -156,13 +154,19 @@ theorem omega_id {Z : Type u} [TopologicalSpace Z] (P : (X : Type u) → [Topolo
 
 --TODO: Omega P X for some nonempty X implies P holds for singleton space
 
+open Cardinal Ordinal
+
 /-- Spread of a topological space -/
 noncomputable def Spread (X : Type u) [TopologicalSpace X] : Cardinal.{u} :=
-  sSup {ω : Cardinal.{u} | ∃ D : Set X, #D = ω ∧ IsDiscrete D} + ℵ₀
+  sSup {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsDiscrete D} + ℵ₀
 
 /-- Spread of a topological space -/
 noncomputable def Extent (X : Type u) [TopologicalSpace X] : Cardinal.{u} :=
-  sSup {ω : Cardinal.{u} | ∃ D : Set X, #D = ω ∧ IsClosed D ∧ IsDiscrete D} + ℵ₀
+  sSup {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsClosed D ∧ IsDiscrete D} + ℵ₀
+
+/-- A radially closed set -/
+def IsRadiallyClosed {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
+  ∀ x : X, (∃ (s : Ordinal.{u}) (f : Iio s → X), Tendsto f atTop (𝓝 x)) → x ∈ s
 
 end AdditionalDefs
 

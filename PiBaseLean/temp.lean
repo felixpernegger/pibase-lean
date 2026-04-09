@@ -79,4 +79,8 @@ class HasCountableSpread (X : Type u) [TopologicalSpace X] : Prop where
 class HasCountableExtent (X : Type u) [TopologicalSpace X] : Prop where
   spread_eq : Extent X = ℵ₀
 
+/-- 172. Radial -/ --TODO: Maybe define via "radically closed" set
+class RadialSpace (X : Type u) [TopologicalSpace X] : Prop where
+  ex_seq (A : Set X) : ∀ x ∈ closure A, ∃ (s : Ordinal.{u}) (f : Iio s → X), Tendsto f atTop (𝓝 x)
+
 end PiBase
