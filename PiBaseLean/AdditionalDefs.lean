@@ -20,7 +20,21 @@ namespace AdditionalDefs
 open Filter Function Set Topology TopologicalSpace
 
 variable
-  {X Y ι ι' α X : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f g : ι → Set X}
+  {X Y ι ι' α X : Type*} [TopologicalSpace Y] {f g : ι → Set X}
+
+def PointFiniteAt (U : ι → Set X) (x : X) :=
+  { i | x ∈ U i }.Finite
+
+def PointFinite (U : ι → Set X) :=
+  ∀ x : X, { i | x ∈ U i }.Finite
+
+def PointCountable (U : ι → Set X) :=
+  ∀ x : X, { i | x ∈ U i }.Countable
+
+theorem PointFinite.PointCountable {U : ι → Set X} (h : PointFinite U) : PointCountable U :=
+  fun x ↦ (h x).countable
+
+variable [TopologicalSpace X]
 
 def IsInjPathConnected (s : Set X) :=
   Pairwise fun x y : X ↦ x ∈ s → y ∈ s → ∃ f : Path x y, Injective f ∧ range f ⊆ s
@@ -33,15 +47,6 @@ theorem IsInjPathConnected.isPathConnected {s : Set X} (h : IsInjPathConnected s
   · exact xy ▸ JoinedIn.refl xs
   obtain ⟨f, f_inj, fs⟩ := h xy xs ys
   exact ⟨f, fun t ↦ fs (by simp)⟩
-
-def PointFiniteAt (U : ι → Set X) (x : X) :=
-  { i | x ∈ U i }.Finite
-
-def PointFinite (U : ι → Set X) :=
-  ∀ x : X, { i | x ∈ U i }.Finite
-
-def PointCountable (U : ι → Set X) :=
-  ∀ x : X, { i | x ∈ U i }.Countable
 
 def IsZero {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∃ f : C(X, ℝ), f.toFun ⁻¹' {0} = s

@@ -1039,8 +1039,11 @@ instance instParaLindelofSpaceOfLindelofSpace (X : Type u)
 /-- Theorem T655: P105 (ParaLindelofSpace) => P83 (MetaLindelofSpace) -/
 instance instMetaLindelofSpaceOfParaLindelofSpace (X : Type u)
     [TopologicalSpace X] [h : ParaLindelofSpace X] :
-    MetaLindelofSpace X := by
-  sorry
+    MetaLindelofSpace X where
+  meta_lindelof ι s s_open s_cover := by
+    obtain ⟨β, t, β_open, t_cover, lct, ts⟩ := h.para_lindelof ι s s_open s_cover
+    refine ⟨β, t, β_open, t_cover, ?_, ts⟩
+    sorry
 
 /-- Theorem T657: P208 (NoetherianSpace) => P131 (HereditarilyLindelofSpace) -/
 instance instHereditarilyLindelofSpaceOfNoetherianSpace (X : Type u)
@@ -1179,8 +1182,9 @@ instance instNormalSpaceOfUltranormalSpace (X : Type u)
     [TopologicalSpace X] [h : UltranormalSpace X] :
     NormalSpace X where
   normal s t hs ht st := by
-    obtain ⟨r, hr⟩ := h.disjoint_clopen
-    sorry
+    obtain ⟨r, hr, sr, tr⟩ := h.disjoint_clopen st hs ht
+    exact ⟨r, rᶜ, hr.isOpen, isOpen_compl_iff.mpr hr.isClosed, sr, tr,
+      HasSubset.Subset.disjoint_compl_right fun ⦃_⦄ a ↦ a⟩
 
 /-- Theorem T770: P220 (UltraMetrizableSpace) => P53 (MetrizableSpace) -/
 instance instMetrizableSpaceOfUltraMetrizableSpace (X : Type u)
