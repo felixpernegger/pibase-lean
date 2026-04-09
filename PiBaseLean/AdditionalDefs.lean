@@ -19,7 +19,7 @@ namespace PiBase
 
 namespace AdditionalDefs
 
-open Filter Function Set Topology TopologicalSpace
+open Filter Function Set Topology TopologicalSpace Cardinal
 
 variable
   {X Y ι ι' α X : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f g : ι → Set X}
@@ -155,6 +155,14 @@ theorem omega_id {Z : Type u} [TopologicalSpace Z] (P : (X : Type u) → [Topolo
     (_ : X ≃ₜ Y), P X → P Y) (hZ : Omega P Z) : P Z := hP (Homeomorph.funUnique (Fin 1) Z) <| hZ 1
 
 --TODO: Omega P X for some nonempty X implies P holds for singleton space
+
+/-- Spread of a topological space -/
+noncomputable def Spread (X : Type u) [TopologicalSpace X] : Cardinal.{u} :=
+  sSup {ω : Cardinal.{u} | ∃ D : Set X, #D = ω ∧ IsDiscrete D} + ℵ₀
+
+/-- Spread of a topological space -/
+noncomputable def Extent (X : Type u) [TopologicalSpace X] : Cardinal.{u} :=
+  sSup {ω : Cardinal.{u} | ∃ D : Set X, #D = ω ∧ IsClosed D ∧ IsDiscrete D} + ℵ₀
 
 end AdditionalDefs
 
