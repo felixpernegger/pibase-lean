@@ -170,6 +170,20 @@ def IsRadiallyClosed {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
 
 --TODO: limit of transfinite sequence must lie in closure
 
+--TODO: Insert this everywhere its applied (a lot of places)
+--TODO: Make notation for this?
+abbrev IsHomeo (X : Type u) (Y : Type v) [TopologicalSpace X] [TopologicalSpace Y] : Prop :=
+  Nonempty (X ≃ₜ Y)
+
+theorem IsHomeo.refl (X : Type u) [TopologicalSpace X] : IsHomeo X X := .intro <| Homeomorph.refl X
+
+theorem IsHomeo.symm (X : Type u) (Y : Type v) [TopologicalSpace X] [TopologicalSpace Y]
+    (h : IsHomeo X Y) : IsHomeo Y X := .intro <| .symm h.some
+
+theorem IsHomeo.trans {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y]
+    [TopologicalSpace Z] (xy : IsHomeo X Y) (yz : IsHomeo Y Z) :
+    IsHomeo X Z := .intro <| xy.some.trans yz.some
+
 end AdditionalDefs
 
 end PiBase

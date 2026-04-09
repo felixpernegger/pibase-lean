@@ -256,7 +256,8 @@ instance instHasSigmaLocallyFiniteNetworkOfHasCountableNetwork (X : Type u)
     [TopologicalSpace X] [h : HasCountableNetwork X] :
     HasSigmaLocallyFiniteNetwork X where
   ex_network := by
-    obtain ⟨e, he⟩ := h.has_countable_network
+    obtain ⟨ι, he⟩ := h.has_countable_network
+    sorry
 
 /-- Theorem T31: P123 (LocallyNEuclideanSpace) + P3 (T2Space) +
 P27 (SecondCountableTopology) => P124 (TopologicalNManifold) -/
@@ -269,8 +270,11 @@ theorem instTopologicalNManifoldOfLocallyNEuclideanSpaceOfT2SpaceOfSecondCountab
 /-- Theorem T34: P118 (HasSigmaLocallyFiniteKNetwork) => P117 (HasSigmaLocallyFiniteNetwork) -/
 instance instHasSigmaLocallyFiniteNetworkOfHasSigmaLocallyFiniteKNetwork (X : Type u)
     [TopologicalSpace X] [h : HasSigmaLocallyFiniteKNetwork X] :
-    HasSigmaLocallyFiniteNetwork X := by
-  sorry
+    HasSigmaLocallyFiniteNetwork X where
+  ex_network := by
+    obtain ⟨ι, f, hf, hf'⟩ := h.ex_network
+    refine ⟨ι, f, ?_⟩
+    sorry
 
 /-- Theorem T41: P45 (HasDispersionPoint) => P137 (¬IsEmpty) -/
 theorem instNonemptyOfHasDispersionPoint (X : Type u)
@@ -281,20 +285,25 @@ theorem instNonemptyOfHasDispersionPoint (X : Type u)
 /-- Theorem T60: P140 (CompactlyCoherentSpace) + P170 (K1T2Space) => P142 (K3Space) -/
 instance instK3SpaceOfCompactlyCoherentSpaceOfK1T2Space (X : Type u)
     [TopologicalSpace X] [h : CompactlyCoherentSpace X] [h' : K1T2Space X] :
-    K3Space X := by
-  sorry
+    K3Space X where
+  isCoherentWith := by
+    refine { isOpen_of_forall_induced := ?_ }
+    intro s hs
+    apply (h.isOpen_iff (A := s)).2
+    intro K hK
+
+    sorry
 
 /-- Theorem T66: P133 (LOTS) => P154 (GoSpace) -/
 instance instGoSpaceOfLOTS (X : Type u)
-    [TopologicalSpace X] [h : LOTS X] :
-    GoSpace X := by
-  sorry
+    [τ : TopologicalSpace X] [h : LOTS X] :
+    GoSpace X where
+  subset_lots := ⟨X, univ, τ, h, Nonempty.intro (Homeomorph.Set.univ X).symm⟩
 
 /-- Theorem T84: P177 (SigmaSpace) => P5 (T3Space) -/
 theorem instT3SpaceOfSigmaSpace (X : Type u)
     [TopologicalSpace X] [SigmaSpace X] :
-    T3Space X := by
-  tauto
+    T3Space X := instT3Space
 
 /-- Theorem T87: P40 (UltraconnectedSpace) => P218 (UltranormalSpace) -/
 instance instUltranormalSpaceOfUltraconnectedSpace (X : Type u)
@@ -376,8 +385,11 @@ theorem instT0SpaceOfT1Space (X : Type u)
 /-- Theorem T120: P97 (EmbeddableInR) => P154 (GoSpace) -/
 instance instGoSpaceOfEmbeddableInR (X : Type u)
     [TopologicalSpace X] [h : EmbeddableInR X] :
-    GoSpace X := by
-  sorry
+    GoSpace X where
+  subset_lots := by
+    obtain ⟨f, hf⟩ := h.embeddable
+    use ULift ℝ
+    sorry
 
 /-- Theorem T121: P16 (CompactSpace) => P17 (SigmaCompactSpace) -/
 theorem instSigmaCompactSpaceOfCompactSpace (X : Type u)
@@ -395,8 +407,12 @@ theorem instStoneanSpaceOfCompactSpaceOfT2SpaceOfExtremallyDisconnected (X : Typ
 /-- Theorem T128: P18 (LindelofSpace) => P62 (WeaklyLindelofSpace) -/
 instance instWeaklyLindelofSpaceOfLindelofSpace (X : Type u)
     [TopologicalSpace X] [h : LindelofSpace X] :
-    WeaklyLindelofSpace X := by
-  sorry
+    WeaklyLindelofSpace X where
+  weakly_lindelof := by
+    intro ι U U_open U_cover
+    obtain ⟨r, rc, hr⟩ := h.isLindelof_univ.elim_countable_subcover (ι := ι) U U_open
+      <| univ_subset_iff.mpr U_cover
+    exact ⟨r, rc, by simp_all⟩
 
 /-- Theorem T137: P54 (HasSigmaLocallyFiniteBasis) => P118 (HasSigmaLocallyFiniteKNetwork) -/
 instance instHasSigmaLocallyFiniteKNetworkOfHasSigmaLocallyFiniteBasis (X : Type u)
@@ -407,8 +423,9 @@ instance instHasSigmaLocallyFiniteKNetworkOfHasSigmaLocallyFiniteBasis (X : Type
 /-- Theorem T144: P52 (DiscreteTopology) => P126 (DoorSpace) -/
 instance instDoorSpaceOfDiscreteTopology (X : Type u)
     [TopologicalSpace X] [h : DiscreteTopology X] :
-    DoorSpace X := by
-  sorry
+    DoorSpace X where
+  isOpen_or_isClosed s := Or.inl <| isOpen_discrete s
+
 
 /-- Theorem T147: P177 (SigmaSpace) => P117 (HasSigmaLocallyFiniteNetwork) -/
 theorem instHasSigmaLocallyFiniteNetworkOfSigmaSpace (X : Type u)
@@ -444,8 +461,7 @@ theorem instT4SpaceOfDowkerSpace (X : Type u)
 /-- Theorem T158: P127 (DowkerSpace) => P32 (¬CountablyParacompactSpace) -/
 theorem not_CountablyParacompactSpaceOfDowkerSpace (X : Type u)
     [TopologicalSpace X] [h : DowkerSpace X] :
-    ¬ CountablyParacompactSpace X := by
-  sorry
+    ¬ CountablyParacompactSpace X := by exact DowkerSpace.not_countably_paracompact
 
 /-- Theorem T159: P7 (T4Space) + P32 (¬CountablyParacompactSpace) => P127 (DowkerSpace) -/
 theorem instDowkerSpaceOfT4SpaceOfNotCountablyParacompactSpace (X : Type u)
@@ -676,8 +692,7 @@ theorem instT1SpaceOfR0SpaceOfT0Space (X : Type u)
 /-- Theorem T303: P136 (AnticompactSpace) + P16 (CompactSpace) => P78 (Finite) -/
 instance instFiniteOfAnticompactSpaceOfCompactSpace (X : Type u)
     [TopologicalSpace X] [h : AnticompactSpace X] [h' : CompactSpace X] :
-    Finite X := by
-  sorry
+    Finite X := finite_univ_iff.mp <| h.compact_finite univ h'.isCompact_univ
 
 /-- Theorem T304: P136 (AnticompactSpace) + P17 (SigmaCompactSpace) => P57 (Countable) -/
 instance instCountableOfAnticompactSpaceOfSigmaCompactSpace (X : Type u)
@@ -787,14 +802,14 @@ instance instKLindelofSpaceOfAnticompactSpaceOfOmegaLindelof (X : Type u)
 /-- Theorem T401: P13 (NormalSpace) => P165 (PseudonormalSpace) -/
 instance instPseudonormalSpaceOfNormalSpace (X : Type u)
     [TopologicalSpace X] [h : NormalSpace X] :
-    PseudonormalSpace X := by
-  sorry
+    PseudonormalSpace X where
+  pseudonormal _ _ _ hs ht st := normal_separation hs ht st
 
 /-- Theorem T406: P165 (PseudonormalSpace) + P57 (Countable) => P13 (NormalSpace) -/
 instance instNormalSpaceOfPseudonormalSpaceOfCountable (X : Type u)
     [TopologicalSpace X] [h : PseudonormalSpace X] [h' : Countable X] :
-    NormalSpace X := by
-  sorry
+    NormalSpace X where
+  normal s t hs ht st := h.pseudonormal s t (to_countable s) hs ht st
 
 -- Most likely redundant
 /-- Theorem T407: P53 (MetrizableSpace) => P112 (SubmetrizableSpace) -/
@@ -930,8 +945,10 @@ instance instHasCountableExtentOfHasCountableSpread (X : Type u)
 /-- Theorem T564: P94 (LocallyFiniteSpace) => P93 (LocallyCountableSpace) -/
 instance instLocallyCountableSpaceOfLocallyFiniteSpace (X : Type u)
     [TopologicalSpace X] [h : LocallyFiniteSpace X] :
-    LocallyCountableSpace X := by
-  sorry
+    LocallyCountableSpace X where
+  locally_countable x := by
+    obtain ⟨s, sx, hs⟩ := h.locally_finite x
+    exact ⟨s, sx, Finite.countable hs⟩
 
 /-- Theorem T569: P21 (WeaklyCountablyCompact) => P198 (HasCountableExtent) -/
 instance instHasCountableExtentOfWeaklyCountablyCompact (X : Type u)
@@ -1089,20 +1106,30 @@ theorem instMooreSpaceOfDevelopableSpaceOfT3Space (X : Type u)
 /-- Theorem T733: P210 (α1Space) => P211 (α15Space) -/
 instance instα15SpaceOfα1Space (X : Type u)
     [TopologicalSpace X] [h : α1Space X] :
-    α15Space X := by
-  sorry
+    α15Space X where
+  subset_converge := by
+    intro x S S_inj S_disj hS
+    obtain ⟨T, Tx, rT, hT⟩ := h.subset_converge S_inj hS
+    refine ⟨T, Tx, rT, .of_forall hT⟩
 
 /-- Theorem T735: P212 (α2Space) => P213 (α3Space) -/
 instance instα3SpaceOfα2Space (X : Type u)
     [TopologicalSpace X] [h : α2Space X] :
-    α3Space X := by
-  sorry
+    α3Space X where
+  subset_converge := by
+    intro x S S_inj hS
+    obtain ⟨T, Tx, rT, hT⟩ := h.subset_converge S_inj hS
+    exact ⟨T, Tx, rT, .of_forall hT⟩
 
 /-- Theorem T736: P213 (α3Space) => P214 (α4Space) -/
 instance instα4SpaceOfα3Space (X : Type u)
     [TopologicalSpace X] [h : α3Space X] :
-    α4Space X := by
-  sorry
+    α4Space X where
+  subset_converge := by
+    intro x S S_inj hS
+    obtain ⟨T, Tx, rT, hT⟩ := h.subset_converge S_inj hS
+    obtain ⟨a, ha⟩ := eventually_atTop.mp hT
+    exact ⟨T, Tx, rT, eventually_atTop.mpr ⟨a, fun b hb ↦ Set.Infinite.nonempty (ha b hb)⟩⟩
 
 /-- Theorem T740: P215 (HereditarilyRealcompactSpace) => P162 (RealcompactSpace) -/
 instance instRealcompactSpaceOfHereditarilyRealcompactSpace (X : Type u)
@@ -1119,8 +1146,9 @@ instance instParacompactSpaceOfHereditarilyParacompact (X : Type u)
 /-- Theorem T750: P133 (LOTS) => P120 (LocallyOrderableSpace) -/
 instance instLocallyOrderableSpaceOfLOTS (X : Type u)
     [TopologicalSpace X] [h : LOTS X] :
-    LocallyOrderableSpace X := by
-  sorry
+    LocallyOrderableSpace X where
+  ex_nbhd_lots x := by
+    sorry
 
 /-- Theorem T751: P120 (LocallyOrderableSpace) => P84 (LocallyT2Space) -/
 instance instLocallyT2SpaceOfLocallyOrderableSpace (X : Type u)
@@ -1131,8 +1159,12 @@ instance instLocallyT2SpaceOfLocallyOrderableSpace (X : Type u)
 /-- Theorem T759: P155 (LocallyOneEuclideanSpace) => P123 (LocallyNEuclideanSpace) -/
 instance instLocallyNEuclideanSpaceOfLocallyOneEuclideanSpace (X : Type u)
     [TopologicalSpace X] [h : LocallyOneEuclideanSpace X] :
-    LocallyNEuclideanSpace X := by
-  sorry
+    LocallyNEuclideanSpace X where
+  locally_homeomorph := by
+    refine ⟨1, fun x ↦ ?_⟩
+    obtain ⟨s, sx, hs⟩ := h.locally_homeomorph x
+    refine ⟨s, sx, ?_⟩
+
 
 /-- Theorem T765: P218 (UltranormalSpace) => P13 (NormalSpace) -/
 instance instNormalSpaceOfUltranormalSpace (X : Type u)
@@ -1186,6 +1218,7 @@ instance instHereditarilySeparableSpaceOfArtinianSpace (X : Type u)
 theorem not_CardLtContinuumOfHasClosedDiscreteSubsetCardContinuum (X : Type u)
     [TopologicalSpace X] [h : HasClosedDiscreteSubsetCardContinuum X] :
     ¬ CardLtContinuum X := by
+  intro h'
   sorry
 
 /-- Theorem T855: P231 (WeaklyLocallySimplyConnectedSpace) =>
@@ -1234,7 +1267,7 @@ instance instHasOpenConnectedComponentsOfLocallyConnectedSpace (X : Type u)
 /-- Theorem T864: P36 (PreconnectedSpace) => P234 (HasOpenConnectedComponents) -/
 instance instHasOpenConnectedComponentsOfPreconnectedSpace (X : Type u)
     [TopologicalSpace X] [h : PreconnectedSpace X] :
-    HasOpenConnectedComponents X := by
-  sorry
+    HasOpenConnectedComponents X where
+  component_open x := PreconnectedSpace.connectedComponent_eq_univ x ▸ isOpen_univ
 
 end PiBase
