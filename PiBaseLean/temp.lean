@@ -69,4 +69,14 @@ class SubmetacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
       ∃ (ω : ℕ → Type u) (t : (n : ℕ) → ω n → Set X), (∀ n : ℕ, (∀ (a : ω n), IsOpen (t n a)) ∧
         ⋃ a, t n a = univ ∧ ∀ (b : ω n), ∃ (a : α), t n b ⊆ s a) ∧ ∀ x, ∃ n, PointFiniteAt (t n) x
 
+open Cardinal
+
+/-- 197. Has countable spread -/
+class HasCountableSpread (X : Type u) [TopologicalSpace X] : Prop where
+  spread_eq : Spread X = ℵ₀
+
+/-- 197. Has countable extent -/
+class HasCountableExtent (X : Type u) [TopologicalSpace X] : Prop where
+  spread_eq : Extent X = ℵ₀
+
 end PiBase
