@@ -1,6 +1,6 @@
 module
 
-public import PiBaseLean.Properties.P141.Defs
+public import Mathlib.Topology.Compactness.CompactlyGeneratedSpace
 public import PiBaseLean.Properties.P143.Defs
 
 @[expose] public section
