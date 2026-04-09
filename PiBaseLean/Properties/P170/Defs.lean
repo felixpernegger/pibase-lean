@@ -1,7 +1,7 @@
 module
 
+public import Mathlib.Topology.Separation.Hausdorff
 public import PiBaseLean.Properties.P100.Defs
-public import Mathlib.Topology.Compactness.LocallyCompact
 
 @[expose] public section
 
@@ -12,7 +12,8 @@ universe u
 namespace PiBase
 
 /- 170. k₁-Hausdorff -/
-class K1T2Space (X : Type u) [TopologicalSpace X] : Prop extends KcSpace X, LocallyCompactSpace X
+class K1T2Space (X : Type u) [TopologicalSpace X] : Prop where
+  compact_t2 (s : Set X) : IsCompact s → T2Space s
 
 end PiBase
 
