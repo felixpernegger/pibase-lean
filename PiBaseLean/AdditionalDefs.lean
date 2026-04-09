@@ -11,6 +11,8 @@ universe u v
 
 /-! This file contains additional definitions which are useful for properties and theorems. -/
 
+namespace Topology
+
 namespace PiBase
 
 namespace AdditionalDefs
@@ -185,3 +187,5 @@ theorem IsHomeo.trans {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 end AdditionalDefs
 
 end PiBase
+
+end Topology
