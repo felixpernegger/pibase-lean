@@ -1071,18 +1071,25 @@ instance instExtremallyDisconnectedOfBasicallyDisconnectedSpaceOfPerfectlyNormal
 instance instInjPathConnectedSpaceOfArcConnectedSpace (X : Type u)
     [TopologicalSpace X] [h : ArcConnectedSpace X] :
     InjPathConnectedSpace X where
-  joined x y xy _ := by sorry
+  joined x y xy _ _ := by
+    obtain ⟨f, hf⟩ := h.joined xy
+    refine ⟨f, hf.injective, subset_univ <| range f⟩
 
 /-- Theorem T704: P96 (LocallyArcConnectedSpace) => P43 (LocallyInjPathConnectedSpace) -/
 instance instLocallyInjPathConnectedSpaceOfLocallyArcConnectedSpace (X : Type u)
     [TopologicalSpace X] [h : LocallyArcConnectedSpace X] :
-    LocallyInjPathConnectedSpace X := by
-  sorry
+    LocallyInjPathConnectedSpace X where
+  inj_path_connected_basis x := by
+    apply hasBasis_self.mpr (fun t ht ↦ ?_)
+    obtain ⟨r, rx, hr, rt⟩ := hasBasis_self.mp (h.arc_connected_basis x) t ht
+    refine ⟨r, rx, ?_, rt⟩
+    sorry
 
 /-- Theorem T710: P110 (DevelopableSpace) => P28 (FirstCountableTopology) -/
 instance instFirstCountableTopologyOfDevelopableSpace (X : Type u)
     [TopologicalSpace X] [h : DevelopableSpace X] :
     FirstCountableTopology X := by
+
   sorry
 
 /-- Theorem T715: P113 (MooreSpace) => P110 (DevelopableSpace) -/
@@ -1153,8 +1160,10 @@ instance instLocallyOrderableSpaceOfLOTS (X : Type u)
 /-- Theorem T751: P120 (LocallyOrderableSpace) => P84 (LocallyT2Space) -/
 instance instLocallyT2SpaceOfLocallyOrderableSpace (X : Type u)
     [TopologicalSpace X] [h : LocallyOrderableSpace X] :
-    LocallyT2Space X := by
-  sorry
+    LocallyT2Space X where
+  locally_t2 x := by
+
+    sorry
 
 /-- Theorem T759: P155 (LocallyOneEuclideanSpace) => P123 (LocallyNEuclideanSpace) -/
 instance instLocallyNEuclideanSpaceOfLocallyOneEuclideanSpace (X : Type u)
@@ -1163,20 +1172,22 @@ instance instLocallyNEuclideanSpaceOfLocallyOneEuclideanSpace (X : Type u)
   locally_homeomorph := by
     refine ⟨1, fun x ↦ ?_⟩
     obtain ⟨s, sx, hs⟩ := h.locally_homeomorph x
-    refine ⟨s, sx, ?_⟩
-
+    exact ⟨s, sx, IsHomeo.trans hs <| Nonempty.intro (Homeomorph.funUnique (Fin 1) ℝ).symm⟩
 
 /-- Theorem T765: P218 (UltranormalSpace) => P13 (NormalSpace) -/
 instance instNormalSpaceOfUltranormalSpace (X : Type u)
     [TopologicalSpace X] [h : UltranormalSpace X] :
-    NormalSpace X := by
-  sorry
+    NormalSpace X where
+  normal s t hs ht st := by
+    obtain ⟨r, hr⟩ := h.disjoint_clopen
+    sorry
 
 /-- Theorem T770: P220 (UltraMetrizableSpace) => P53 (MetrizableSpace) -/
 instance instMetrizableSpaceOfUltraMetrizableSpace (X : Type u)
-    [TopologicalSpace X] [h : UltraMetrizableSpace X] :
+    [τ : TopologicalSpace X] [h : UltraMetrizableSpace X] :
     MetrizableSpace X := by
-  sorry
+  obtain ⟨m, _, eq⟩ := h.ex_ultrametric
+  exact eq ▸ EMetricSpace.metrizableSpace
 
 /-- Theorem T779: P222 (HasCofiniteTopology) => P2 (T1Space) -/
 instance instT1SpaceOfHasCofiniteTopology (X : Type u)
