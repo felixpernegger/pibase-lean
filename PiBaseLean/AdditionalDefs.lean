@@ -38,7 +38,7 @@ def PointFiniteAt (U : ι → Set X) (x : X) :=
   { i | x ∈ U i }.Finite
 
 def PointFinite (U : ι → Set X) :=
-  ∀ x : X, { i | x ∈ U i }.Finite
+  ∀ x : X, PointFiniteAt U x
 
 def PointCountable (U : ι → Set X) :=
   ∀ x : X, { i | x ∈ U i }.Countable
