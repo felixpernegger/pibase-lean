@@ -1045,8 +1045,8 @@ instance instMetaLindelofSpaceOfParaLindelofSpace (X : Type u)
 /-- Theorem T657: P208 (NoetherianSpace) => P131 (HereditarilyLindelofSpace) -/
 instance instHereditarilyLindelofSpaceOfNoetherianSpace (X : Type u)
     [TopologicalSpace X] [h : NoetherianSpace X] :
-    HereditarilyLindelofSpace X := by
-  sorry
+    HereditarilyLindelofSpace X where
+  isHereditarilyLindelof_univ := fun _ _ ↦ IsLindelof.of_coe
 
 /-- Theorem T665: P108 (HereditarilyCollectionwiseNormalSpace) => P88 (CollectionwiseNormalSpace) -/
 instance instCollectionwiseNormalSpaceOfHereditarilyCollectionwiseNormalSpace (X : Type u)
@@ -1070,8 +1070,8 @@ instance instExtremallyDisconnectedOfBasicallyDisconnectedSpaceOfPerfectlyNormal
 /-- Theorem T703: P95 (ArcConnectedSpace) => P38 (InjPathConnectedSpace) -/
 instance instInjPathConnectedSpaceOfArcConnectedSpace (X : Type u)
     [TopologicalSpace X] [h : ArcConnectedSpace X] :
-    InjPathConnectedSpace X := by
-  sorry
+    InjPathConnectedSpace X where
+  joined x y xy _ := by sorry
 
 /-- Theorem T704: P96 (LocallyArcConnectedSpace) => P43 (LocallyInjPathConnectedSpace) -/
 instance instLocallyInjPathConnectedSpaceOfLocallyArcConnectedSpace (X : Type u)
@@ -1181,14 +1181,14 @@ instance instMetrizableSpaceOfUltraMetrizableSpace (X : Type u)
 /-- Theorem T779: P222 (HasCofiniteTopology) => P2 (T1Space) -/
 instance instT1SpaceOfHasCofiniteTopology (X : Type u)
     [TopologicalSpace X] [h : HasCofiniteTopology X] :
-    T1Space X := by
-  sorry
+    T1Space X where
+  t1 x := isOpen_compl_iff.mp <| (h.open_iff_cofinite {x}ᶜ).2 (by simp)
 
 /-- Theorem T782: P52 (DiscreteTopology) + P78 (Finite) => P222 (HasCofiniteTopology) -/
 instance instHasCofiniteTopologyOfDiscreteTopologyOfFinite (X : Type u)
-    [TopologicalSpace X] [h : DiscreteTopology X] [h' : Finite X] :
-    HasCofiniteTopology X := by
-  sorry
+    [TopologicalSpace X] [DiscreteTopology X] [Finite X] :
+    HasCofiniteTopology X where
+  open_iff_cofinite s := ⟨fun _ ↦ fun _ ↦ toFinite sᶜ, fun _ ↦ isOpen_discrete s⟩
 
 /-- Theorem T802: P119 (StoneanSpace) => P195 (StoneSpace) -/
 theorem instStoneSpaceOfStoneanSpace (X : Type u)
