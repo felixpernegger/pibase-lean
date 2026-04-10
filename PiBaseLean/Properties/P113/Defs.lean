@@ -1,5 +1,6 @@
 module
 
+public import Mathlib.Topology.Separation.Regular
 public import PiBaseLean.Properties.P110.Defs
 
 @[expose] public section
