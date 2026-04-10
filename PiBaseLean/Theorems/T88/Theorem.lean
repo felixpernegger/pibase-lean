@@ -15,7 +15,7 @@ namespace PiBase
 
 /-- Theorem T88: P37 (PrePathConnectedSpace) + P125 (Nontrivial) =>
 P46 (¬TotallyPathDisconnectedSpace) -/
-theorem not_TotallyPathDisconnectedSpaceOfPrePathConnectedSpaceOfNontrivial (X : Type u)
+theorem instNotTotallyPathDisconnectedSpaceOfPrePathConnectedSpaceOfNontrivial (X : Type u)
     [TopologicalSpace X] [h : PrePathConnectedSpace X] [h' : Nontrivial X] :
     ¬ TotallyPathDisconnectedSpace X := by
   contrapose! h'
@@ -30,6 +30,6 @@ end PiBase
 namespace PiBase.Formal
 
 theorem T88 : P37 ⊓ P125 ≤ P46ᶜ := fun X _ ⟨h1, h2⟩ ↦
-  @not_TotallyPathDisconnectedSpaceOfPrePathConnectedSpaceOfNontrivial X _ h1 h2
+  @instNotTotallyPathDisconnectedSpaceOfPrePathConnectedSpaceOfNontrivial X _ h1 h2
 
 end PiBase.Formal

@@ -13,7 +13,7 @@ namespace PiBase
 
 /- 127. Dowker -/
 class DowkerSpace (X : Type u) [TopologicalSpace X] : Prop extends T4Space X where
-  ncountably_paracompact : ¬ CountablyParacompactSpace X
+  not_countablyparacompact : ¬ CountablyParacompactSpace X
 
 end PiBase
 

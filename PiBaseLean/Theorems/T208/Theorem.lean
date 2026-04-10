@@ -15,7 +15,7 @@ namespace PiBase
 
 -- Most likely redundant
 /-- Theorem T208: P129 (IndiscreteTopology) + P125 (Nontrivial) => P139 (¬HasAnIsolatedPoint) -/
-theorem not_HasAnIsolatedPointOfIndiscreteTopologyOfNontrivial (X : Type u)
+theorem instNotHasAnIsolatedPointOfIndiscreteTopologyOfNontrivial (X : Type u)
     [TopologicalSpace X] [h : IndiscreteTopology X] [h' : Nontrivial X] :
     ¬ HasAnIsolatedPoint X := by
   contrapose! h'
@@ -30,6 +30,6 @@ end PiBase
 namespace PiBase.Formal
 
 theorem T208 : P129 ⊓ P125 ≤ P139ᶜ := fun X _ ⟨h1, h2⟩ ↦
-  @not_HasAnIsolatedPointOfIndiscreteTopologyOfNontrivial X _ h1 h2
+  @instNotHasAnIsolatedPointOfIndiscreteTopologyOfNontrivial X _ h1 h2
 
 end PiBase.Formal
