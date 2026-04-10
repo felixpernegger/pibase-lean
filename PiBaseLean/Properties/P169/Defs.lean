@@ -1,6 +1,6 @@
 module
 
-public import PiBaseLean.AdditionalDefs
+public import PiBaseLean.AdditionalDefs.Constructions
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section

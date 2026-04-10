@@ -53,13 +53,6 @@ theorem omega_id {Z : Type u} [TopologicalSpace Z] (P : (X : Type u) → [Topolo
 
 --TODO: Omega P X for some nonempty X implies P holds for singleton space
 
-/-- A *radially closed* set is a set such that all limits of transfinite of sequences in the set lie
-in the set themselves -/
-def IsRadiallyClosed {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
-  ∀ x : X, (∃ (s : Ordinal.{u}) (f : Iio s → X), Tendsto f atTop (𝓝 x)) → x ∈ s
-
---TODO: limit of transfinite sequence must lie in closure
-
 --TODO: Insert this everywhere its applied (a lot of places)
 --TODO: Make notation for this?
 /-- A proposition for two spaces being homeomorphic. -/
