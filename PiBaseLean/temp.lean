@@ -249,7 +249,7 @@ instance instHasCountableNetworkOfHasCountableKNetwork (X : Type u)
     HasCountableNetwork X where
   has_countable_network := by
     obtain ⟨ι, f, ιc, fh⟩ := h.ex_network
-    refine ⟨ι, f, ιc, fh.IsNetwork⟩
+    exact ⟨ι, f, ιc, fh.IsNetwork⟩
 
 /-- Theorem T25: P124 (TopologicalNManifold) => P123 (LocallyNEuclideanSpace) -/
 theorem instLocallyNEuclideanSpaceOfTopologicalNManifold (X : Type u)
@@ -297,7 +297,6 @@ instance instK3SpaceOfCompactlyCoherentSpaceOfK1T2Space (X : Type u)
     intro s hs
     apply (h.isOpen_iff (A := s)).2
     intro K hK
-
     sorry
 
 /-- Theorem T66: P133 (LOTS) => P154 (GoSpace) -/
@@ -314,15 +313,29 @@ theorem instT3SpaceOfSigmaSpace (X : Type u)
 /-- Theorem T87: P40 (UltraconnectedSpace) => P218 (UltranormalSpace) -/
 instance instUltranormalSpaceOfUltraconnectedSpace (X : Type u)
     [TopologicalSpace X] [h : UltraconnectedSpace X] :
-    UltranormalSpace X := by
-  sorry
+    UltranormalSpace X where
+  disjoint_clopen := by
+    intro s t st sc tc
+    rcases eq_or_ne s ∅ with h'|h'
+    · exact ⟨∅, isClopen_empty, by simpa⟩
+    refine ⟨univ, isClopen_univ, subset_univ s, ?_⟩
+    simp only [compl_univ, subset_empty_iff]
+    by_contra h0
+    have := h.ultraconnected s t sc tc (nonempty_iff_empty_ne.mpr h'.symm)
+      (nonempty_iff_empty_ne.mpr (Ne.symm h0))
+    exact Set.not_disjoint_iff_nonempty_inter.2 this st
 
 /-- Theorem T88: P37 (PrePathConnectedSpace) + P125 (Nontrivial) =>
 P46 (¬TotallyPathDisconnectedSpace) -/
 theorem not_TotallyPathDisconnectedSpaceOfPrePathConnectedSpaceOfNontrivial (X : Type u)
     [TopologicalSpace X] [h : PrePathConnectedSpace X] [h' : Nontrivial X] :
     ¬ TotallyPathDisconnectedSpace X := by
-  sorry
+  contrapose! h'
+  refine {allEq := fun x y ↦ ?_}
+  obtain ⟨f, fx, fy⟩ := h.joined x y
+  obtain ⟨z, hz⟩ := h'.totally_path_disconnected f f.continuous
+  rw [ContinuousMap.toFun_eq_coe.trans hz] at fx fy
+  simp_all
 
 -- Most likely redundant
 /-- Theorem T98: P7 (T4Space) => P2 (T1Space) -/
@@ -395,7 +408,9 @@ instance instGoSpaceOfEmbeddableInR (X : Type u)
   subset_lots := by
     obtain ⟨f, hf⟩ := h.embeddable
     use ULift ℝ
-    sorry
+    let lift : ℝ → ULift.{u, 0} ℝ := by exact fun a ↦ { down := a }
+    let g  : X → ULift.{u, 0} ℝ := fun x ↦ lift (f x)
+    refine ⟨range g, by sorry⟩
 
 /-- Theorem T121: P16 (CompactSpace) => P17 (SigmaCompactSpace) -/
 theorem instSigmaCompactSpaceOfCompactSpace (X : Type u)
@@ -502,9 +517,9 @@ theorem instHasSigmaLocallyFiniteKNetworkOfAlephSpace (X : Type u)
 
 /-- Theorem T193: P3 (T2Space) => P84 (LocallyT2Space) -/
 instance instLocallyT2SpaceOfT2Space (X : Type u)
-    [TopologicalSpace X] [h : T2Space X] :
-    LocallyT2Space X := by
-  sorry
+    [TopologicalSpace X] [T2Space X] :
+    LocallyT2Space X where
+  locally_t2 _ := ⟨univ, univ_mem, instT2SpaceSubtype⟩
 
 /-- Theorem T197: P118 (HasSigmaLocallyFiniteKNetwork) + P5 (T3Space) => P178 (AlephSpace) -/
 theorem instAlephSpaceOfHasSigmaLocallyFiniteKNetworkOfT3Space (X : Type u)
@@ -530,17 +545,30 @@ theorem instPolishSpaceOfSeparableSpaceOfIsCompletelyMetrizableSpace (X : Type u
     PolishSpace X := by
   tauto
 
-/-- Theorem T204: P52 (DiscreteTopology) => P86 (HomogeneousSpace) -/
+
+/-- Theorem T204: P52 (DiscreteTopology) => P86 (HomogeneousSpace)
+Note the use of `classical` -/
 instance instHomogeneousSpaceOfDiscreteTopology (X : Type u)
     [TopologicalSpace X] [h : DiscreteTopology X] :
-    HomogeneousSpace X := by
-  sorry
+    HomogeneousSpace X where
+  homogeneous x y := by
+    classical
+    exact ⟨Homeomorph.ofDiscrete <| Equiv.swap x y, by simp [Homeomorph.ofDiscrete]⟩
 
-/-- Theorem T205: P172 (RadialSpace) => P173 (PseudoradialSpace) -/
+/-- Theorem T205: P172 (RadialSpace) => P173 (PseudoradialSpace)
+TODO: Shorten this by using alternative def for PseudoRadial -/
 instance instPseudoradialSpaceOfRadialSpace (X : Type u)
     [TopologicalSpace X] [h : RadialSpace X] :
-    PseudoradialSpace X := by
-  sorry
+    PseudoradialSpace X where
+  radiallyClosed_isClosed s hs := by
+    unfold IsRadiallyClosed at hs
+    contrapose! hs
+    have : (closure s \ s).Nonempty := by
+      apply nonempty_of_ssubset <| Set.ssubset_iff_subset_ne.mpr ⟨subset_closure, ?_⟩
+      contrapose! hs
+      exact closure_eq_iff_isClosed.mp <| Eq.symm hs
+    obtain ⟨r, rc, rs⟩ := this
+    exact ⟨r, h.ex_seq s r rc, rs⟩
 
 /-- Theorem T206: P80 (FrechetUrysohnSpace) => P172 (RadialSpace) -/
 instance instRadialSpaceOfFrechetUrysohnSpace (X : Type u)
@@ -559,7 +587,12 @@ instance instPseudoradialSpaceOfSequentialSpace (X : Type u)
 theorem not_HasAnIsolatedPointOfIndiscreteTopologyOfNontrivial (X : Type u)
     [TopologicalSpace X] [h : IndiscreteTopology X] [h' : Nontrivial X] :
     ¬ HasAnIsolatedPoint X := by
-  sorry
+  contrapose! h'
+  obtain ⟨p, ph⟩ := h'.ex_isolated
+  refine (subsingleton_iff_forall_eq p).mpr fun x ↦ ?_
+  have puniv := (h.isOpen_iff {p}).1 ph
+  simp only [singleton_ne_empty, false_or] at puniv
+  exact mem_singleton_iff.mp <| puniv ▸ mem_univ x
 
 /-- Theorem T212: P57 (Countable) + P28 (FirstCountableTopology) => P27 (SecondCountableTopology) -/
 theorem instSecondCountableTopologyOfCountableOfFirstCountableTopology (X : Type u)
@@ -625,8 +658,8 @@ theorem instLindelofSpaceOfHereditarilyLindelofSpace (X : Type u)
 /-- Theorem T256: P15 (PerfectlyNormalSpace) => P132 (GδSpace) -/
 instance instGδSpaceOfPerfectlyNormalSpace (X : Type u)
     [TopologicalSpace X] [h : PerfectlyNormalSpace X] :
-    GδSpace X := by
-  sorry
+    GδSpace X where
+  closed_gdelta := h.closed_gdelta
 
 /-- Theorem T257: P13 (NormalSpace) + P132 (GδSpace) => P15 (PerfectlyNormalSpace) -/
 instance instPerfectlyNormalSpaceOfNormalSpaceOfGδSpace (X : Type u)
@@ -649,8 +682,8 @@ theorem instPseudoMetrizableSpaceOfMetrizableSpace (X : Type u)
 /-- Theorem T266: P78 (Finite) => P94 (LocallyFiniteSpace) -/
 instance instLocallyFiniteSpaceOfFinite (X : Type u)
     [TopologicalSpace X] [h : Finite X] :
-    LocallyFiniteSpace X := by
-  sorry
+    LocallyFiniteSpace X where
+  locally_finite _ := ⟨univ, univ_mem, finite_univ⟩
 
 -- Most likely redundant
 /-- Theorem T271: P27 (SecondCountableTopology) => P183 (HasCountableKNetwork) -/
@@ -902,8 +935,8 @@ instance instLOTSOfOrdinalSpace (X : Type u)
 /-- Theorem T502: P132 (GδSpace) + P2 (T1Space) => P191 (HasGδSingletons) -/
 instance instHasGδSingletonsOfGδSpaceOfT1Space (X : Type u)
     [TopologicalSpace X] [h : GδSpace X] [h' : T1Space X] :
-    HasGδSingletons X := by
-  sorry
+    HasGδSingletons X where
+  isGδ_singleton x := h.closed_gdelta <| T1Space.t1 x
 
 /-- Theorem T504: P92 (kω3Space) => P98 (kω1Space) -/
 instance instkω1SpaceOfkω3Space (X : Type u)
@@ -926,8 +959,10 @@ theorem instQuasiSoberOfSoberSpace (X : Type u)
 /-- Theorem T535: P123 (LocallyNEuclideanSpace) => P122 (LocallyEuclideanSpace) -/
 instance instLocallyEuclideanSpaceOfLocallyNEuclideanSpace (X : Type u)
     [TopologicalSpace X] [h : LocallyNEuclideanSpace X] :
-    LocallyEuclideanSpace X := by
-  sorry
+    LocallyEuclideanSpace X where
+  locally_homeomorph x :=
+    let ⟨n, hn⟩ := h.locally_homeomorph
+    ⟨n, hn x⟩
 
 /-- Theorem T558: P204 (HasACutPoint) => P175 (CardGeThree) -/
 instance instCardGeThreeOfHasACutPoint (X : Type u)
