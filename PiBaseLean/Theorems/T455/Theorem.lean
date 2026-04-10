@@ -13,8 +13,7 @@ namespace PiBase
 
 --TODO: When negations of properties are properly implemented, maybe redo this
 /-- Theorem 455: a countable, infinite space is countably infinite -/
-theorem instInfiniteOfCountableInfinite {X : Type u} [CountablyInfinite X] : Infinite X := by
-  infer_instance
+theorem instInfiniteOfCountableInfinite {X : Type u} [CountablyInfinite X] : Infinite X := by infer_instance
 
 end PiBase
 

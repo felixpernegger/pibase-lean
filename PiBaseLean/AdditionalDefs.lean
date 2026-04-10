@@ -20,7 +20,60 @@ namespace AdditionalDefs
 open Filter Function Set Topology TopologicalSpace
 
 variable
-  {X Y ι ι' α X : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f g : ι → Set X}
+  {X Y ι ι' α X : Type*} [TopologicalSpace Y] {f g : ι → Set X}
+
+def PointFiniteAt (U : ι → Set X) (x : X) :=
+  { i | x ∈ U i }.Finite
+
+def PointFinite (U : ι → Set X) :=
+  ∀ x : X, { i | x ∈ U i }.Finite
+
+def PointCountable (U : ι → Set X) :=
+  ∀ x : X, { i | x ∈ U i }.Countable
+
+theorem PointFinite.PointCountable {U : ι → Set X} (h : PointFinite U) : PointCountable U :=
+  fun x ↦ (h x).countable
+
+variable [TopologicalSpace X]
+
+def LocallyCountable (U : ι → Set X) :=
+  ∀ x : X, ∃ t ∈ 𝓝 x, {i | (U i ∩ t).Nonempty}.Countable
+
+theorem LocallyFinite.LocallyCountable {U : ι → Set X} (h : LocallyFinite U) :
+    LocallyCountable U := by
+  intro x
+  obtain ⟨t, tx, ht⟩ := h x
+  exact ⟨t, tx, ht.countable⟩
+
+theorem LocallyFinite.PointFinite {U : ι → Set X} (h : LocallyFinite U) : PointFinite U :=
+  LocallyFinite.point_finite h
+
+--TODO: Add to mathlib
+instance _root.Countable.Set.countable_sep (s : Set α) (p : α → Prop) [h : Countable s] :
+    Countable ({ a ∈ s | p a } : Set α) := by
+  obtain ⟨f, hf⟩ := (countable_iff_exists_injective s).mp h
+  refine (countable_iff_exists_injective ↑{a | a ∈ s ∧ p a}).mpr ?_
+  refine ⟨fun x ↦ f ⟨x.val, x.2.1⟩, ?_⟩
+  apply Injective.comp hf
+  intro x y xy
+  simp only [mem_setOf_eq, Subtype.mk.injEq] at xy
+  ext
+  exact xy
+
+--TODO: Add to mathlib
+theorem _root_.Countable.subset {s : Set α} (hs : s.Countable) {t : Set α} (h : t ⊆ s) :
+    t.Countable := by
+  have := hs.to_subtype
+  rw [← sep_eq_of_subset h]
+  change Countable {x | x ∈ s ∧ x ∈ t}
+  infer_instance
+
+theorem LocallyCountable.PointCountable {U : ι → Set X} (h : LocallyCountable U) :
+    PointCountable U := fun x ↦ by
+  obtain ⟨t, hxt, ht⟩ := h x
+  exact Countable.subset ht <| fun _ h ↦ ⟨x, h, mem_of_mem_nhds hxt⟩
+
+  --ht.subset fun _b hb => ⟨x, hb, mem_of_mem_nhds hxt⟩
 
 def IsInjPathConnected (s : Set X) :=
   Pairwise fun x y : X ↦ x ∈ s → y ∈ s → ∃ f : Path x y, Injective f ∧ range f ⊆ s
@@ -33,15 +86,6 @@ theorem IsInjPathConnected.isPathConnected {s : Set X} (h : IsInjPathConnected s
   · exact xy ▸ JoinedIn.refl xs
   obtain ⟨f, f_inj, fs⟩ := h xy xs ys
   exact ⟨f, fun t ↦ fs (by simp)⟩
-
-def PointFiniteAt (U : ι → Set X) (x : X) :=
-  { i | x ∈ U i }.Finite
-
-def PointFinite (U : ι → Set X) :=
-  ∀ x : X, PointFiniteAt U x
-
-def PointCountable (U : ι → Set X) :=
-  ∀ x : X, { i | x ∈ U i }.Countable
 
 def IsZero {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∃ f : C(X, ℝ), f.toFun ⁻¹' {0} = s
@@ -94,9 +138,6 @@ theorem property_to_sigma
   refine ⟨ULift (Fin 1), fun _ ↦ univ, instCountableULift, iUnion_const univ, fun i ↦ ?_⟩
   exact hP f (Equiv.Set.univ ι) h
 
-def LocallyCountable {ι : Type u} (f : ι → Set X) :=
-  ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
-
 def IsCutPoint (p : X) := ¬ IsConnected {p}ᶜ
 
 /-- The image of the fundamental group of under f:X → Y at x : X is trivial. -/
@@ -125,7 +166,21 @@ def IsNetwork {X ι : Type*} [TopologicalSpace X] (f : ι → Set X) : Prop :=
 
 /-- A k-network of a topological space. -/
 def IsKNetwork {X ι : Type*} [TopologicalSpace X] (f : ι → Set X) : Prop :=
-  ∀ ⦃U K : Set X⦄, IsOpen U → IsCompact K → K ⊆ U → ∃ s : Set ι, K ⊆ ⋃ i ∈ s, f i ∧ ⋃ i ∈ s, f i ⊆ U
+  ∀ U K : Set X, IsOpen U → IsCompact K → K ⊆ U → ∃ s : Set ι, K ⊆ ⋃ i ∈ s, f i ∧ ⋃ i ∈ s, f i ⊆ U
+
+/-- Every k-network is a network -/
+theorem IsKNetwork.IsNetwork {X : Type u} {ι : Type v} [TopologicalSpace X]
+    {f : ι → Set X} (h : IsKNetwork f) : IsNetwork f := by
+  intro x s sx
+  obtain ⟨t, xt, ft⟩ := h (interior s) {x} isOpen_interior isCompact_singleton
+    (by simp [mem_interior_iff_mem_nhds.mpr sx])
+  simp only [singleton_subset_iff, mem_iUnion, exists_prop] at xt
+  obtain ⟨i, it, xi⟩ := xt
+  refine ⟨i, xi, ?_⟩
+  calc
+    f i ⊆ ⋃ i ∈ t, f i := by exact subset_iUnion₂_of_subset i it <| .refl (f i)
+      _ ⊆ interior s := ft
+      _ ⊆ s := interior_subset
 
 /-- K-cover of a topological space -/
 def IsKCover {X ι : Type*} [TopologicalSpace X] (f : ι → Opens X) : Prop :=
@@ -169,6 +224,20 @@ def IsRadiallyClosed {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∀ x : X, (∃ (s : Ordinal.{u}) (f : Iio s → X), Tendsto f atTop (𝓝 x)) → x ∈ s
 
 --TODO: limit of transfinite sequence must lie in closure
+
+--TODO: Insert this everywhere its applied (a lot of places)
+--TODO: Make notation for this?
+abbrev IsHomeo (X : Type u) (Y : Type v) [TopologicalSpace X] [TopologicalSpace Y] : Prop :=
+  Nonempty (X ≃ₜ Y)
+
+theorem IsHomeo.refl (X : Type u) [TopologicalSpace X] : IsHomeo X X := .intro <| Homeomorph.refl X
+
+theorem IsHomeo.symm (X : Type u) (Y : Type v) [TopologicalSpace X] [TopologicalSpace Y]
+    (h : IsHomeo X Y) : IsHomeo Y X := .intro <| .symm h.some
+
+theorem IsHomeo.trans {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y]
+    [TopologicalSpace Z] (xy : IsHomeo X Y) (yz : IsHomeo Y Z) :
+    IsHomeo X Z := .intro <| xy.some.trans yz.some
 
 end AdditionalDefs
 
