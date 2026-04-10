@@ -1,6 +1,6 @@
 module
 
-public import PiBaseLean.AdditionalDefs
+public import PiBaseLean.AdditionalDefs.Cardinal
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
@@ -13,7 +13,7 @@ namespace PiBase
 
 /- 198. Has countable extent -/
 class HasCountableExtent (X : Type u) [TopologicalSpace X] : Prop where
-  spread_eq : Extent X = ℵ₀
+  extent_eq : Extent X = ℵ₀
 
 end PiBase
 

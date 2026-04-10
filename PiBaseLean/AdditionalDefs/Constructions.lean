@@ -35,7 +35,7 @@ theorem IsCozero.IsOpen {s : Set X} (hs : IsCozero s) :
   apply Continuous.isOpen_preimage f.continuous_toFun {0}ᶜ
   simp
 
-def IsRelativelyCompact (s : Set X) : Prop :=
+def IsRelativelyCompact {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∀ {ι : Type u} (U : ι → Set X),
     ∃ t : Finset ι, s ⊆ ⋃ i ∈ t, U i
 

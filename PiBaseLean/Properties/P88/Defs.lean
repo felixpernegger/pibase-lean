@@ -1,6 +1,6 @@
 module
 
-public import PiBaseLean.AdditionalDefs
+public import PiBaseLean.AdditionalDefs.Cover
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
@@ -15,8 +15,8 @@ namespace PiBase
 class CollectionwiseNormalSpace (X : Type u) [TopologicalSpace X] : Prop where
   collectionwise_normal : ∀ {ι : Type u} (F : ι → Set X),
       IsDiscreteFamily F → (∀ i : ι, IsClosed (F i)) →
-        ∃ U : ι → Set X, (univ.PairwiseDisjoint U)
-          ∧ (∀ i : ι, IsOpen (U i)) ∧ (∀ i : ι, U i ⊆ F i)
+        ∃ U : ι → Set X, (univ.PairwiseDisjoint U) ∧
+          (∀ i : ι, IsOpen (U i)) ∧ (∀ i : ι, U i ⊆ F i)
 
 end PiBase
 
