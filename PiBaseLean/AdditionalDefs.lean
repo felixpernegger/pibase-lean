@@ -36,6 +36,48 @@ theorem PointFinite.PointCountable {U : ι → Set X} (h : PointFinite U) : Poin
 
 variable [TopologicalSpace X]
 
+def LocallyCountable (U : ι → Set X) :=
+  ∀ x : X, ∃ t ∈ 𝓝 x, {i | (U i ∩ t).Nonempty}.Countable
+
+theorem LocallyFinite.LocallyCountable {U : ι → Set X} (h : LocallyFinite U) :
+    LocallyCountable U := by
+  intro x
+  obtain ⟨t, tx, ht⟩ := h x
+  exact ⟨t, tx, ht.countable⟩
+
+theorem LocallyFinite.PointFinite {U : ι → Set X} (h : LocallyFinite U) : PointFinite U :=
+  LocallyFinite.point_finite h
+
+--TODO: Add to mathlib
+instance _root.Countable.Set.countable_sep (s : Set α) (p : α → Prop) [h : Countable s] :
+    Countable ({ a ∈ s | p a } : Set α) := by
+  obtain ⟨f, hf⟩ := (countable_iff_exists_injective s).mp h
+  refine (countable_iff_exists_injective ↑{a | a ∈ s ∧ p a}).mpr ?_
+  refine ⟨fun x ↦ f ⟨x.val, x.2.1⟩, ?_⟩
+  apply Injective.comp hf
+  intro x y xy
+  simp only [mem_setOf_eq, Subtype.mk.injEq] at xy
+  ext
+  exact xy
+
+--TODO: Add to mathlib
+theorem _root_.Countable.subset {s : Set α} (hs : s.Countable) {t : Set α} (h : t ⊆ s) :
+    t.Countable := by
+  have := hs.to_subtype
+  rw [← sep_eq_of_subset h]
+  change Countable {x | x ∈ s ∧ x ∈ t}
+  infer_instance
+
+theorem LocallyCountable.PointCountable {U : ι → Set X} (h : LocallyCountable U) :
+    PointCountable U := by
+  intro x
+  obtain ⟨t, hxt, ht⟩ := h x
+  apply Countable.subset ht
+  intro a ha
+  refine ⟨x, ha, mem_of_mem_nhds hxt⟩
+
+  --ht.subset fun _b hb => ⟨x, hb, mem_of_mem_nhds hxt⟩
+
 def IsInjPathConnected (s : Set X) :=
   Pairwise fun x y : X ↦ x ∈ s → y ∈ s → ∃ f : Path x y, Injective f ∧ range f ⊆ s
 
@@ -98,9 +140,6 @@ theorem property_to_sigma
     {ι : Type u} {f : ι → Set X} (h : P f) : Sigma P f := by
   refine ⟨ULift (Fin 1), fun _ ↦ univ, instCountableULift, iUnion_const univ, fun i ↦ ?_⟩
   exact hP f (Equiv.Set.univ ι) h
-
-def LocallyCountable {ι : Type u} (f : ι → Set X) :=
-  ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
 
 def IsCutPoint (p : X) := ¬ IsConnected {p}ᶜ
 
