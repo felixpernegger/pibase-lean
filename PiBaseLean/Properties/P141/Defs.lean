@@ -1,7 +1,6 @@
 module
 
-public import Mathlib.Topology.Compactness.CompactlyCoherentSpace
-public import Mathlib.Topology.Separation.Hausdorff
+public import Mathlib.Topology.Compactness.CompactlyGeneratedSpace
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
