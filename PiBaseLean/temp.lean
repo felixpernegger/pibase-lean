@@ -236,13 +236,18 @@ theorem instStoneSpaceOfCompactSpaceOfT2SpaceOfTotallyDisconnectedSpace (X : Typ
 /-- Theorem T8: P25 (ExhaustibleByCompacts) => P23 (WeaklyLocallyCompactSpace) -/
 instance instWeaklyLocallyCompactSpaceOfExhaustibleByCompacts (X : Type u)
     [TopologicalSpace X] [h : ExhaustibleByCompacts X] :
-    WeaklyLocallyCompactSpace X := by
-  sorry
+    WeaklyLocallyCompactSpace X where
+  exists_compact_mem_nhds x := by
+    obtain ⟨s, s_compact, si, s_cover⟩ := h.exhaustion.some
+
+
+    sorry
 
 /-- Theorem T11: P183 (HasCountableKNetwork) => P182 (HasCountableNetwork) -/
 instance instHasCountableNetworkOfHasCountableKNetwork (X : Type u)
     [TopologicalSpace X] [h : HasCountableKNetwork X] :
     HasCountableNetwork X := by
+
   sorry
 
 /-- Theorem T25: P124 (TopologicalNManifold) => P123 (LocallyNEuclideanSpace) -/
@@ -1091,9 +1096,12 @@ instance instLocallyInjPathConnectedSpaceOfLocallyArcConnectedSpace (X : Type u)
 /-- Theorem T710: P110 (DevelopableSpace) => P28 (FirstCountableTopology) -/
 instance instFirstCountableTopologyOfDevelopableSpace (X : Type u)
     [TopologicalSpace X] [h : DevelopableSpace X] :
-    FirstCountableTopology X := by
+    FirstCountableTopology X where
+  nhds_generated_countable := fun x ↦ by
+    obtain ⟨D,s, so, sc,  sb⟩ := h.developable.some
+    refine { out := ?_ }
 
-  sorry
+    sorry
 
 /-- Theorem T715: P113 (MooreSpace) => P110 (DevelopableSpace) -/
 theorem instDevelopableSpaceOfMooreSpace (X : Type u)
@@ -1165,7 +1173,9 @@ instance instLocallyT2SpaceOfLocallyOrderableSpace (X : Type u)
     [TopologicalSpace X] [h : LocallyOrderableSpace X] :
     LocallyT2Space X where
   locally_t2 x := by
-
+    obtain ⟨C, Cx, hC⟩ := h.ex_nbhd_lots x
+    refine ⟨C, Cx, ?_⟩
+    #check hC.from_linear_order
     sorry
 
 /-- Theorem T759: P155 (LocallyOneEuclideanSpace) => P123 (LocallyNEuclideanSpace) -/

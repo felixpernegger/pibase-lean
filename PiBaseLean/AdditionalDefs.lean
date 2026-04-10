@@ -166,7 +166,21 @@ def IsNetwork {X ι : Type*} [TopologicalSpace X] (f : ι → Set X) : Prop :=
 
 /-- A k-network of a topological space. -/
 def IsKNetwork {X ι : Type*} [TopologicalSpace X] (f : ι → Set X) : Prop :=
-  ∀ ⦃U K : Set X⦄, IsOpen U → IsCompact K → K ⊆ U → ∃ s : Set ι, K ⊆ ⋃ i ∈ s, f i ∧ ⋃ i ∈ s, f i ⊆ U
+  ∀ U K : Set X, IsOpen U → IsCompact K → K ⊆ U → ∃ s : Set ι, K ⊆ ⋃ i ∈ s, f i ∧ ⋃ i ∈ s, f i ⊆ U
+
+/-- Every k-network is a network -/
+theorem IsKNetwork.IsNetwork {X : Type u} {ι : Type v} [TopologicalSpace X]
+    {f : ι → Set X} (h : IsKNetwork f) : IsNetwork f := by
+  intro x s sx
+  obtain ⟨t, xt, ft⟩ := h (interior s) {x} isOpen_interior isCompact_singleton
+    (by simp [mem_interior_iff_mem_nhds.mpr sx])
+  simp only [singleton_subset_iff, mem_iUnion, exists_prop] at xt
+  obtain ⟨i, it, xi⟩ := xt
+  refine ⟨i, xi, ?_⟩
+  calc
+    f i ⊆ ⋃ i ∈ t, f i := by exact subset_iUnion₂_of_subset i it <| .refl (f i)
+      _ ⊆ interior s := ft
+      _ ⊆ s := interior_subset
 
 /-- K-cover of a topological space -/
 def IsKCover {X ι : Type*} [TopologicalSpace X] (f : ι → Opens X) : Prop :=
