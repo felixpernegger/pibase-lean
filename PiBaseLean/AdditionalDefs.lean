@@ -69,12 +69,9 @@ theorem _root_.Countable.subset {s : Set α} (hs : s.Countable) {t : Set α} (h 
   infer_instance
 
 theorem LocallyCountable.PointCountable {U : ι → Set X} (h : LocallyCountable U) :
-    PointCountable U := by
-  intro x
+    PointCountable U := fun x ↦ by
   obtain ⟨t, hxt, ht⟩ := h x
-  apply Countable.subset ht
-  intro a ha
-  refine ⟨x, ha, mem_of_mem_nhds hxt⟩
+  exact Countable.subset ht <| fun _ h ↦ ⟨x, h, mem_of_mem_nhds hxt⟩
 
   --ht.subset fun _b hb => ⟨x, hb, mem_of_mem_nhds hxt⟩
 
