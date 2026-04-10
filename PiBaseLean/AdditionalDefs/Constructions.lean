@@ -47,8 +47,8 @@ def SigmaProduct {Y : ι → Type u} (x : (i : ι) → Y i) : Set ((i : ι) → 
 
 /-- A set `s : Set X` is called a *retract*, if there is a continuous map `f : X → s` such that
 `∀ x ∈ s, f x = x` -/
-def IsRetract (s : Set X) : Prop :=
-  ∃ f : C(X, X), range f = s ∧ ∀ x ∈ s, f x = x
+def IsRetract {X : Type u} [TopologicalSpace X] (A : Set X) : Prop :=
+  ∃ f : C(X, X), f.comp f = f ∧ A = Set.range f
 
 /-- A set is called regular open if it is equal to the interior of its closure. -/
 def IsRegularOpen (s : Set X) : Prop :=
