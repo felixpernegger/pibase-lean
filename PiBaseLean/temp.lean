@@ -246,9 +246,10 @@ instance instWeaklyLocallyCompactSpaceOfExhaustibleByCompacts (X : Type u)
 /-- Theorem T11: P183 (HasCountableKNetwork) => P182 (HasCountableNetwork) -/
 instance instHasCountableNetworkOfHasCountableKNetwork (X : Type u)
     [TopologicalSpace X] [h : HasCountableKNetwork X] :
-    HasCountableNetwork X := by
-
-  sorry
+    HasCountableNetwork X where
+  has_countable_network := by
+    obtain ⟨ι, f, ιc, fh⟩ := h.ex_network
+    refine ⟨ι, f, ιc, fh.IsNetwork⟩
 
 /-- Theorem T25: P124 (TopologicalNManifold) => P123 (LocallyNEuclideanSpace) -/
 theorem instLocallyNEuclideanSpaceOfTopologicalNManifold (X : Type u)
