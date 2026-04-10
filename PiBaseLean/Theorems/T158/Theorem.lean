@@ -14,7 +14,7 @@ namespace PiBase
 
 /-- Theorem T158: P127 (DowkerSpace) => P32 (¬CountablyParacompactSpace) -/
 theorem instNotCountablyParacompactSpaceOfDowkerSpace (X : Type u)
-    [TopologicalSpace X] [h : DowkerSpace X] :
+    [TopologicalSpace X] [DowkerSpace X] :
     ¬ CountablyParacompactSpace X := by exact DowkerSpace.not_countably_paracompact
 
 end PiBase
