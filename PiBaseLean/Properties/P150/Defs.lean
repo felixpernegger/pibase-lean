@@ -5,7 +5,7 @@ public import PiBaseLean.AdditionalDefs
 
 @[expose] public section
 
-open Topology Set Filter TopologicalSpace Topology.PiBase.AdditionalDefs
+open Topology Set Filter TopologicalSpace PiBase.AdditionalDefs
 
 universe u
 

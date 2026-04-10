@@ -9,7 +9,7 @@ public import PiBaseLean.Properties.P173.Defs
 
 universe u
 
-open Topology Set Function Topology.PiBase.AdditionalDefs
+open Topology Set Function PiBase.AdditionalDefs
 
 namespace PiBase
 
