@@ -1,10 +1,8 @@
 module
 
-public import Mathlib.Data.Set.Card
-public import Mathlib.Topology.MetricSpace.Pseudo.Defs
-public import Mathlib.Topology.Path
-public import Mathlib.Topology.Connected.PathConnected
 public import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
+public import Mathlib.Data.Set.Card
+public import Mathlib.SetTheory.Ordinal.Basic
 public import Mathlib.Topology.Sets.OpenCover
 
 @[expose] public section
@@ -36,8 +34,11 @@ theorem IsInjPathConnected.isPathConnected {s : Set X} (h : IsInjPathConnected s
   obtain ⟨f, f_inj, fs⟩ := h xy xs ys
   exact ⟨f, fun t ↦ fs (by simp)⟩
 
+def PointFiniteAt (U : ι → Set X) (x : X) :=
+  { i | x ∈ U i }.Finite
+
 def PointFinite (U : ι → Set X) :=
-  ∀ x : X, { i | x ∈ U i }.Finite
+  ∀ x : X, PointFiniteAt U x
 
 def PointCountable (U : ι → Set X) :=
   ∀ x : X, { i | x ∈ U i }.Countable
@@ -55,6 +56,10 @@ def IsRelativelyCompact {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
 def IsDiscreteFamily {X : Type u} {ι : Type u} [TopologicalSpace X] (F : ι → Set X) : Prop :=
   ∀ x : X, ∃ U ∈ 𝓝 x, {i : ι | F i ∩ U ≠ ∅}.encard ≤ 1
 
+/-- An omega cover -/
+def IsOmegaCover {X ι : Type*} [TopologicalSpace X] (f : ι → Opens X) : Prop :=
+  IsOpenCover f ∧ ⊤ ∉ range f ∧ ∀ s : Finset X, ∃ i : ι, (↑s : Set X) ⊆ (↑(f i) : Set X)
+
 --TODO: Notation Σ' for this?
 /-- Sigma product (of topological spaces).
 Not to be confused with the disjoint union (topological sum). -/
@@ -68,6 +73,10 @@ def IsRetraction {X : Type u} [TopologicalSpace X] (A : Set X) : Prop :=
 def CoverStar {X ι : Type*} (U : ι → Set X) [TopologicalSpace X] (x : X) :
     Set X := ⋃ i : ι, ⋃ (_ : x ∈ U i), U i
 
+/-- A star finite collection of sets. -/
+def StarFinite {X ι : Type*} (U : ι → Set X) [TopologicalSpace X] : Prop :=
+  ∀ i : ι, {j : ι | U i ∩ U j ≠ ∅}.Finite
+
 variable (A : Set ℕ)
 
 /-- A collection of sets which is the countable union of collection of sets
@@ -77,14 +86,13 @@ def Sigma {X : Type v} [TopologicalSpace X] (P : {α : Type u} → (α → Set X
   ∃ (ω : Type u) (r : ω → Set ι), Countable ω ∧ (⋃ i : ω, r i = univ) ∧
     (∀ i : ω, P (fun (j : r i) ↦ f j.val))
 
--- I think one needs a (very) weak condition on P for this to be true
-/- A collection of sets with a property also has the sigma version of the property. -/
---theorem property_to_sigma
---    {X : Type v} [TopologicalSpace X] {P : {α : Type u} → (α → Set X) → Prop}
---    {ι : Type u} {f : ι → Set X} (h : P f) : Sigma P f := by
---  refine ⟨(ULift (Fin 1)), (fun _ ↦ univ), instCountableULift, iUnion_const univ, fun i ↦ ?_⟩
---  simp
--- sorry -/
+/-- A collection of sets with a property also has the sigma version of the property. -/
+theorem property_to_sigma
+    {X : Type v} [TopologicalSpace X] {P : {α : Type u} → (α → Set X) → Prop}
+    (hP : ∀ {α β : Type u} (l : α → Set X) (e : β ≃ α), P l → P (l ∘ e))
+    {ι : Type u} {f : ι → Set X} (h : P f) : Sigma P f := by
+  refine ⟨ULift (Fin 1), fun _ ↦ univ, instCountableULift, iUnion_const univ, fun i ↦ ?_⟩
+  exact hP f (Equiv.Set.univ ι) h
 
 def LocallyCountable {ι : Type u} (f : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, {i | (f i ∩ t).Nonempty}.Countable
@@ -126,6 +134,41 @@ def IsKCover {X ι : Type*} [TopologicalSpace X] (f : ι → Opens X) : Prop :=
 /-- A set is called regular open if it is equal to the interior of its closure. -/
 def IsRegularOpen {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   interior (closure s) = s
+
+/-- For a property P on topological spaces, we say Omega P, is every power of a space satisfies P -/
+def Omega (P : (Y : Type u) → [TopologicalSpace Y] → Prop)
+    (X : Type u) [TopologicalSpace X] : Prop := ∀ n : ℕ, P (Fin n → X)
+
+--TODO: Put this in mathlib, there is only another (in my opinion worse) version
+/-- A empty set is a topologicalspace -/
+instance instTopologicalSpaceOfIsEmpty (α : Type u) [IsEmpty α] : TopologicalSpace α where
+  IsOpen := fun _ ↦ True
+  isOpen_univ := trivial
+  isOpen_inter _ _ _ _ := trivial
+  isOpen_sUnion _ _ := trivial
+
+/-- If Omega P X holds, then P X holds for well defined properties. -/
+theorem omega_id {Z : Type u} [TopologicalSpace Z] (P : (X : Type u) → [TopologicalSpace X] → Prop)
+    (hP : ∀ {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y]
+    (_ : X ≃ₜ Y), P X → P Y) (hZ : Omega P Z) : P Z := hP (Homeomorph.funUnique (Fin 1) Z) <| hZ 1
+
+--TODO: Omega P X for some nonempty X implies P holds for singleton space
+
+open Cardinal Ordinal
+
+/-- Spread of a topological space -/
+noncomputable def Spread (X : Type u) [TopologicalSpace X] : Cardinal.{u} :=
+  sSup {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsDiscrete D} + ℵ₀
+
+/-- Spread of a topological space -/
+noncomputable def Extent (X : Type u) [TopologicalSpace X] : Cardinal.{u} :=
+  sSup {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsClosed D ∧ IsDiscrete D} + ℵ₀
+
+/-- A radially closed set -/
+def IsRadiallyClosed {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
+  ∀ x : X, (∃ (s : Ordinal.{u}) (f : Iio s → X), Tendsto f atTop (𝓝 x)) → x ∈ s
+
+--TODO: limit of transfinite sequence must lie in closure
 
 end AdditionalDefs
 
