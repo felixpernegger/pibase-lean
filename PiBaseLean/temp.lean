@@ -223,6 +223,7 @@ public import PiBaseLean.Properties.P234.Defs
 public import PiBaseLean.Properties.P233.Lemmas
 public import PiBaseLean.Properties.P234.Lemmas
 public import PiBaseLean.Properties.P37.Lemmas
+public import PiBaseLean.Properties.P46.Lemmas
 
 universe u
 
@@ -646,13 +647,14 @@ instance instPrepathConnectedSpaceOfInjPathConnectedSpace (X : Type u)
     obtain ⟨f, hf⟩ := h.joined xy (mem_univ x) (mem_univ y)
     exact .intro f
 
-/-- Theorem T40: Path connected (P37) + Totally path disconnected (P46) => Discrete (P52) -/
-instance instDiscreteTopologyOfHasOpenConnectedComponentsOfTotallyPathDisconnectedSpace (X : Type u)
-    [TopologicalSpace X] [h : HasOpenConnectedComponents X] [h' : TotallyPathDisconnectedSpace X] :
+/-- Theorem T89: Has open path components (P233)
++ Totally path disconnected (P46) => Discrete (P52) -/
+instance instDiscreteTopologyOfHasOpenPathComponentsOfTotallyPathDisconnectedSpace (X : Type u)
+    [TopologicalSpace X] [h : HasOpenPathComponents X] [h' : TotallyPathDisconnectedSpace X] :
       DiscreteTopology X := by
   apply discreteTopology_iff_isOpen_singleton.mpr (fun x ↦ ?_)
-  sorry
-
+  rw [← (totallyPathDisconnectedSpace_iff_pathComponent_singleton X).mp h' x]
+  exact h.component_open x
 
 --TODO: golf
 /-- Theorem T95: Connected (P36) + Has open path components (P233) => Path connected (P37) -/
@@ -661,15 +663,29 @@ instance instPrepathconnectedSpaceOfPreconnectedSpaceOfHasOpenPathComponents (X 
       PrepathConnectedSpace X where
     joined x y := by
       apply (pathComponent_eq_iff_joined x y).mp
-      have hx := preconnectedSpace_iff_clopen.mp h (pathComponent x)
-        (HasOpenPathComponents.pathComponent_isClopen x)
-      have hy := preconnectedSpace_iff_clopen.mp h (pathComponent y)
-        (HasOpenPathComponents.pathComponent_isClopen y)
+      have hx := preconnectedSpace_iff_clopen.mp h (pathComponent x) (h'.pathComponent_isClopen x)
+      have hy := preconnectedSpace_iff_clopen.mp h (pathComponent y) (h'.pathComponent_isClopen y)
       simp_all [(pathComponent.nonempty x).ne_empty, (pathComponent.nonempty y).ne_empty]
 
-/-- Theorem T89: Has open path components (P233) => Path connected (P37) -/
-instance instPrepathconnectedSpaceOfPreconnectedSpaceOfHasOpenPathComponents (X : Type u)
-    [TopologicalSpace X] [h : PreconnectedSpace X] [h' : HasOpenPathComponents X] :
-      PrepathConnectedSpace X where
+/-- Theorem T108: Has open connected components (P234)
++ Totally disconnected (P47) => Discrete (P52) -/
+instance instDiscreteTopologyOfHasOpenConnectedComponentsOfTotallyDisconnectedSpace (X : Type u)
+    [TopologicalSpace X] [h : HasOpenConnectedComponents X] [h' : TotallyDisconnectedSpace X] :
+      DiscreteTopology X := by
+  apply discreteTopology_iff_isOpen_singleton.mpr (fun x ↦ ?_)
+  rw [← totallyDisconnectedSpace_iff_connectedComponent_singleton.1 h' x]
+  exact h.component_open x
+
+/- Theorem T267: Alexadrov + T₁ => Discrete -/
+#check instDiscreteTopologyOfAlexandrovDiscreteOfT1Space
+
+/- Theorem T284: Alexandrov => Locally compact -/
+#check AlexandrovDiscrete.toLocallyCompactSpace
+
+/- Theorem T285: Alexandrov => First countable -/
+#check AlexandrovDiscrete.toFirstCountable
+
+/- Theorem T316: Alexandrov => Locally path connected -/
+#check AlexandrovDiscrete.locPathConnectedSpace
 
 end PiBase

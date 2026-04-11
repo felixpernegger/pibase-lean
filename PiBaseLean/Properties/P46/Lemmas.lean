@@ -32,7 +32,7 @@ theorem totallyPathDisconnectedSpace_iff_joined :
   exact Nonempty.elim this fun a ↦ h (id (Joined.symm this))
 
 /-- A space is totally path disconnected iff all of its path components are singletons. -/
-theorem totallyPathDisconnectedSpace_iff_pathComponents_eq_singleton :
+theorem totallyPathDisconnectedSpace_iff_pathComponent_singleton :
     TotallyPathDisconnectedSpace X ↔ ∀ x : X, pathComponent x = {x} := by
   rw  [totallyPathDisconnectedSpace_iff_joined]
   refine ⟨fun h x ↦ ?_, fun h x y xy ↦ ?_⟩
