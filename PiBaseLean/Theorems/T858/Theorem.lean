@@ -17,7 +17,7 @@ namespace PiBase
 
 /- Theorem 858: a simply connected space is weakly locally simply connected -/
 instance instWeaklyLocallySimplyConnectedSpaceOfSimplyConnectedSpace
-    {X : Type*} [TopologicalSpace X] [h : PreSimplyConnectedSpace X] :
+    {X : Type*} [TopologicalSpace X] [h : PresimplyConnectedSpace X] :
     WeaklyLocallySimplyConnectedSpace X where
   simply_connected_nbhd x := by
     obtain h'|h' := h.presimplyconnected

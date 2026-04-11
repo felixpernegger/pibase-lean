@@ -12,9 +12,9 @@ namespace PiBase
 
 /- Theorem 39, injectively path connected
 implies (pre-) path connected -/
-instance instInjPathConnectedSpaceOfPrePathConnectedSpace
+instance instInjPathConnectedSpaceOfPrepathConnectedSpace
     {X : Type*} [TopologicalSpace X] [h : InjPathConnectedSpace X] :
-    PrePathConnectedSpace X where
+    PrepathConnectedSpace X where
   joined x y :=
     (eq_or_ne x y).elim (fun xy => xy ▸ Joined.refl x)
       (fun xy => ((h.joined xy) (mem_univ x) (mem_univ y)).nonempty)
@@ -23,6 +23,6 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T39 : P38 ≤ P37 := @instInjPathConnectedSpaceOfPrePathConnectedSpace
+theorem T39 : P38 ≤ P37 := @instInjPathConnectedSpaceOfPrepathConnectedSpace
 
 end PiBase.Formal

@@ -13,10 +13,10 @@ open Topology Set Function
 
 namespace PiBase
 
-/-- Theorem T88: P37 (PrePathConnectedSpace) + P125 (Nontrivial) =>
+/-- Theorem T88: P37 (PrepathConnectedSpace) + P125 (Nontrivial) =>
 P46 (¬TotallyPathDisconnectedSpace) -/
-theorem instNotTotallyPathDisconnectedSpaceOfPrePathConnectedSpaceOfNontrivial (X : Type u)
-    [TopologicalSpace X] [h : PrePathConnectedSpace X] [h' : Nontrivial X] :
+theorem instNotTotallyPathDisconnectedSpaceOfPrepathConnectedSpaceOfNontrivial (X : Type u)
+    [TopologicalSpace X] [h : PrepathConnectedSpace X] [h' : Nontrivial X] :
     ¬ TotallyPathDisconnectedSpace X := by
   contrapose! h'
   refine {allEq := fun x y ↦ ?_}
@@ -30,6 +30,6 @@ end PiBase
 namespace PiBase.Formal
 
 theorem T88 : P37 ⊓ P125 ≤ P46ᶜ := fun X _ ⟨h1, h2⟩ ↦
-  @instNotTotallyPathDisconnectedSpaceOfPrePathConnectedSpaceOfNontrivial X _ h1 h2
+  @instNotTotallyPathDisconnectedSpaceOfPrepathConnectedSpaceOfNontrivial X _ h1 h2
 
 end PiBase.Formal

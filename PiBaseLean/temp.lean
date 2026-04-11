@@ -220,6 +220,7 @@ public import PiBaseLean.Properties.P231.Defs
 public import PiBaseLean.Properties.P232.Defs
 public import PiBaseLean.Properties.P233.Defs
 public import PiBaseLean.Properties.P234.Defs
+public import PiBaseLean.Properties.P233.Lemmas
 public import PiBaseLean.Properties.P234.Lemmas
 
 universe u
@@ -483,10 +484,10 @@ instance instMetaLindelofSpaceOfLindelofSpace (X : Type u)
   meta_lindelof ι s s_open s_cover := by
     sorry
 
-/-- Theorem T590: P200 (PreSimplyConnectedSpace) => P37 (PrePathConnectedSpace) -/
-instance instPrePathConnectedSpaceOfPreSimplyConnectedSpace (X : Type u)
-    [TopologicalSpace X] [h : PreSimplyConnectedSpace X] :
-    PrePathConnectedSpace X := by
+/-- Theorem T590: P200 (PresimplyConnectedSpace) => P37 (PrepathConnectedSpace) -/
+instance instPrepathConnectedSpaceOfPresimplyConnectedSpace (X : Type u)
+    [TopologicalSpace X] [h : PresimplyConnectedSpace X] :
+    PrepathConnectedSpace X := by
   by_cases! hX : IsEmpty X
   · sorry
   have : SimplyConnectedSpace X := by sorry
@@ -599,20 +600,24 @@ instance instHasOpenPathComponentsOfWeaklyLocallySimplyConnectedSpace (X : Type 
     HasOpenPathComponents X := by
   sorry
 
-/-- Theorem T860: P37 (PrePathConnectedSpace) => P233 (HasOpenPathComponents) -/
-instance instHasOpenPathComponentsOfPrePathConnectedSpace (X : Type u)
-    [TopologicalSpace X] [h : PrePathConnectedSpace X] : HasOpenPathComponents X := by
+/-- Theorem T860: P37 (PrepathConnectedSpace) => P233 (HasOpenPathComponents) -/
+instance instHasOpenPathComponentsOfPrepathConnectedSpace (X : Type u)
+    [TopologicalSpace X] [h : PrepathConnectedSpace X] : HasOpenPathComponents X := by
   sorry
 
 /-- Theorem T861: P42 (LocPathConnectedSpace) => P233 (HasOpenPathComponents) -/
 instance instHasOpenPathComponentsOfLocPathConnectedSpace (X : Type u)
     [TopologicalSpace X] [h : LocPathConnectedSpace X] : HasOpenPathComponents X := by
-  sorry
+  apply (hasOpenPathComponents_iff_ex_connected_nbhd X).mpr fun x ↦ ?_
+  obtain ⟨s, ⟨so, sc⟩, _⟩ := (hasBasis_iff.mp (h.path_connected_basis x) univ).mp univ_mem
+  exact ⟨s, Filter.mem_sets.mp so, sc⟩
 
 /-- Theorem T862: P233 (HasOpenPathComponents) => P234 (HasOpenConnectedComponents) -/
 instance instHasOpenConnectedComponentsOfHasOpenPathComponents (X : Type u)
     [TopologicalSpace X] [h : HasOpenPathComponents X] : HasOpenConnectedComponents X := by
-  sorry
+  refine (hasOpenConnectedComponents_iff_ex_connected_nbhd X).mpr (fun x ↦ ?_)
+  obtain ⟨s, sx, hs⟩ := (hasOpenPathComponents_iff_ex_connected_nbhd X).mp h x
+  exact ⟨s, sx, hs.isConnected⟩
 
 /-- Theorem T863: P41 (LocallyConnectedSpace) => P234 (HasOpenConnectedComponents) -/
 instance instHasOpenConnectedComponentsOfLocallyConnectedSpace (X : Type u)

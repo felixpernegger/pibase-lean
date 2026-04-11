@@ -8,7 +8,7 @@ public import PiBaseLean.Properties.Bundled.Defs
 namespace PiBase
 
 /- 200. Simply connected -/
-class PreSimplyConnectedSpace (X : Type*) [TopologicalSpace X] : Prop where
+class PresimplyConnectedSpace (X : Type*) [TopologicalSpace X] : Prop where
   presimplyconnected : IsEmpty X ∨ SimplyConnectedSpace X
 
 end PiBase
@@ -16,7 +16,7 @@ end PiBase
 namespace PiBase.Formal
 
 def P200 : Property where
-  toPred := PreSimplyConnectedSpace
+  toPred := PresimplyConnectedSpace
   well_defined φ h := by
     refine ⟨h.presimplyconnected.imp ?_ ?_⟩
     · exact fun _ ↦ φ.symm.toEquiv.isEmpty
