@@ -222,6 +222,7 @@ public import PiBaseLean.Properties.P233.Defs
 public import PiBaseLean.Properties.P234.Defs
 public import PiBaseLean.Properties.P233.Lemmas
 public import PiBaseLean.Properties.P234.Lemmas
+public import PiBaseLean.Properties.P37.Lemmas
 
 universe u
 
@@ -603,12 +604,9 @@ instance instHasOpenPathComponentsOfWeaklyLocallySimplyConnectedSpace (X : Type 
 /-- Theorem T860: P37 (PrepathConnectedSpace) => P233 (HasOpenPathComponents) -/
 instance instHasOpenPathComponentsOfPrepathConnectedSpace (X : Type u)
     [TopologicalSpace X] [h : PrepathConnectedSpace X] : HasOpenPathComponents X where
-  component_open x := by
-    have : pathComponent x = univ := by
-
-      sorry
-    rw [this]
-    exact isOpen_univ
+  component_open x :=
+    have : Nonempty X := .intro x
+    PathconnectedSpace.connectedComponent_eq_univ x ▸ isOpen_univ
 
 /-- Theorem T861: P42 (LocPathConnectedSpace) => P233 (HasOpenPathComponents) -/
 instance instHasOpenPathComponentsOfLocPathConnectedSpace (X : Type u)
@@ -638,5 +636,35 @@ instance instDiscretTopologyOfHasOpenConnectedComponentsOfTotallyDisconnectedSpa
   apply discreteTopology_iff_isOpen_singleton.mpr fun x ↦ ?_
   rw [← totallyDisconnectedSpace_iff_connectedComponent_singleton.mp h' x]
   exact HasOpenConnectedComponents.component_open x
+
+/-- Theorem T39: Injectively path connected (P38) => Path connected (P37) -/
+instance instPrepathConnectedSpaceOfInjPathConnectedSpace (X : Type u)
+    [TopologicalSpace X] [h : InjPathConnectedSpace X] : PrepathConnectedSpace X where
+  joined x y := by
+    rcases eq_or_ne x y with xy|xy
+    · exact xy ▸ Joined.refl y
+    obtain ⟨f, hf⟩ := h.joined xy (mem_univ x) (mem_univ y)
+    exact .intro f
+
+/-- Theorem T40: Path connected (P37) => Connected (P36) -/
+instance instPreconnectedSpaceOfPrepathConnectedSpace (X : Type u)
+    [TopologicalSpace X] [PrepathConnectedSpace X] : PreconnectedSpace X := by
+  by_cases h : IsEmpty X
+  · infer_instance
+  have : Nonempty X := not_isEmpty_iff.mp h
+  infer_instance
+
+/-- Theorem T95: Connected (P36) + Has open path components (P233) => Path connected (P37) -/
+instance instPrepathconnectedSpaceOfPreconnectedSpaceOfHasOpenPathComponents (X : Type u)
+    [TopologicalSpace X] [h : PreconnectedSpace X] [h' : HasOpenPathComponents X] :
+      PrepathConnectedSpace X where
+    joined x y := by
+      apply (connectedComponent_eq_iff_joined x y).mpr
+      sorry
+    /- by_cases h'' : IsEmpty X
+    · exact { joined := fun x ↦ False.elim <| h''.false x}
+    simp at h''
+    show PathConnectedSpace X -/
+
 
 end PiBase

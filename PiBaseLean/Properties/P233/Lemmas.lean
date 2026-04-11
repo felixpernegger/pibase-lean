@@ -22,6 +22,14 @@ theorem _root_.PathconnectedSpace.connectedComponent_eq_univ [PathConnectedSpace
     pathComponent x = univ :=
   subset_antisymm (subset_univ _) (isPathConnected_univ.subset_pathComponent trivial)
 
+--to mathlib
+/-- Two points are joined iff there path components are the same. -/
+theorem _root_.pathComponent_eq_iff_joined (x y : X) :
+    pathComponent x = pathComponent y ↔ Joined x y := by
+  refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
+  · exact mem_pathComponent_iff.mp <| h ▸ mem_pathComponent_self y
+  exact pathComponent_congr (id h.symm)
+
 variable (X)
 
 /-- A space has open connected components iff each point has a connected neighborhood. -/
