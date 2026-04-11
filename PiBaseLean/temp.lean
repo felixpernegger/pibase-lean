@@ -220,6 +220,7 @@ public import PiBaseLean.Properties.P231.Defs
 public import PiBaseLean.Properties.P232.Defs
 public import PiBaseLean.Properties.P233.Defs
 public import PiBaseLean.Properties.P234.Defs
+public import PiBaseLean.Properties.P234.Lemmas
 
 universe u
 
@@ -562,15 +563,13 @@ instance instParacompactSpaceOfHereditarilyParacompact (X : Type u)
 
 /-- Theorem T750: P133 (LOTS) => P120 (LocallyOrderableSpace) -/
 instance instLocallyOrderableSpaceOfLOTS (X : Type u)
-    [TopologicalSpace X] [h : LOTS X] :
-    LocallyOrderableSpace X where
+    [TopologicalSpace X] [h : LOTS X] : LocallyOrderableSpace X where
   ex_nbhd_lots x := by
     sorry
 
 /-- Theorem T751: P120 (LocallyOrderableSpace) => P84 (LocallyT2Space) -/
 instance instLocallyT2SpaceOfLocallyOrderableSpace (X : Type u)
-    [TopologicalSpace X] [h : LocallyOrderableSpace X] :
-    LocallyT2Space X where
+    [TopologicalSpace X] [h : LocallyOrderableSpace X] : LocallyT2Space X where
   locally_t2 x := by
     obtain ⟨C, Cx, hC⟩ := h.ex_nbhd_lots x
     refine ⟨C, Cx, ?_⟩
@@ -591,8 +590,7 @@ instance instSemilocallySimplyConnectedSpaceOfWeaklyLocallySimplyConnectedSpace 
 
 /-- Theorem T857: P232 (LC1) => P42 (LocPathConnectedSpace) -/
 instance instLocPathConnectedSpaceOfLC1 (X : Type u)
-    [TopologicalSpace X] [h : LC1 X] :
-    LocPathConnectedSpace X := by
+    [TopologicalSpace X] [h : LC1 X] : LocPathConnectedSpace X := by
   sorry
 
 /-- Theorem T859: P231 (WeaklyLocallySimplyConnectedSpace) => P233 (HasOpenPathComponents) -/
@@ -603,26 +601,32 @@ instance instHasOpenPathComponentsOfWeaklyLocallySimplyConnectedSpace (X : Type 
 
 /-- Theorem T860: P37 (PrePathConnectedSpace) => P233 (HasOpenPathComponents) -/
 instance instHasOpenPathComponentsOfPrePathConnectedSpace (X : Type u)
-    [TopologicalSpace X] [h : PrePathConnectedSpace X] :
-    HasOpenPathComponents X := by
+    [TopologicalSpace X] [h : PrePathConnectedSpace X] : HasOpenPathComponents X := by
   sorry
 
 /-- Theorem T861: P42 (LocPathConnectedSpace) => P233 (HasOpenPathComponents) -/
 instance instHasOpenPathComponentsOfLocPathConnectedSpace (X : Type u)
-    [TopologicalSpace X] [h : LocPathConnectedSpace X] :
-    HasOpenPathComponents X := by
+    [TopologicalSpace X] [h : LocPathConnectedSpace X] : HasOpenPathComponents X := by
   sorry
 
 /-- Theorem T862: P233 (HasOpenPathComponents) => P234 (HasOpenConnectedComponents) -/
 instance instHasOpenConnectedComponentsOfHasOpenPathComponents (X : Type u)
-    [TopologicalSpace X] [h : HasOpenPathComponents X] :
-    HasOpenConnectedComponents X := by
+    [TopologicalSpace X] [h : HasOpenPathComponents X] : HasOpenConnectedComponents X := by
   sorry
 
 /-- Theorem T863: P41 (LocallyConnectedSpace) => P234 (HasOpenConnectedComponents) -/
 instance instHasOpenConnectedComponentsOfLocallyConnectedSpace (X : Type u)
-    [TopologicalSpace X] [h : LocallyConnectedSpace X] :
-    HasOpenConnectedComponents X := by
-  sorry
+    [TopologicalSpace X] [h : LocallyConnectedSpace X] : HasOpenConnectedComponents X := by
+  apply (hasOpenConnectedComponents_iff_ex_connected_nbhd X).mpr fun x ↦ ?_
+  obtain ⟨s, ⟨so, xs, sc⟩, _⟩ := (hasBasis_iff.mp (h.open_connected_basis x) univ).mp univ_mem
+  exact ⟨s, so.mem_nhds_iff.mpr xs, sc⟩
+
+/-- Theorem T863: P41 (LocallyConnectedSpace) => P234 (HasOpenConnectedComponents) -/
+instance instDiscretTopologyOfHasOpenConnectedComponentsOfTotallyDisconnectedSpace (X : Type u)
+    [TopologicalSpace X] [HasOpenConnectedComponents X] [h' : TotallyDisconnectedSpace X] :
+    DiscreteTopology X := by
+  apply discreteTopology_iff_isOpen_singleton.mpr fun x ↦ ?_
+  rw [← totallyDisconnectedSpace_iff_connectedComponent_singleton.mp h' x]
+  exact HasOpenConnectedComponents.component_open x
 
 end PiBase

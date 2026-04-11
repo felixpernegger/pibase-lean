@@ -1,6 +1,5 @@
 module
 
-public import Mathlib
 public import PiBaseLean.Properties.P234.Defs
 
 @[expose] public section
