@@ -646,26 +646,30 @@ instance instPrepathConnectedSpaceOfInjPathConnectedSpace (X : Type u)
     obtain ⟨f, hf⟩ := h.joined xy (mem_univ x) (mem_univ y)
     exact .intro f
 
-/-- Theorem T40: Path connected (P37) => Connected (P36) -/
-instance instPreconnectedSpaceOfPrepathConnectedSpace (X : Type u)
-    [TopologicalSpace X] [PrepathConnectedSpace X] : PreconnectedSpace X := by
-  by_cases h : IsEmpty X
-  · infer_instance
-  have : Nonempty X := not_isEmpty_iff.mp h
-  infer_instance
+/-- Theorem T40: Path connected (P37) + Totally path disconnected (P46) => Discrete (P52) -/
+instance instDiscreteTopologyOfHasOpenConnectedComponentsOfTotallyPathDisconnectedSpace (X : Type u)
+    [TopologicalSpace X] [h : HasOpenConnectedComponents X] [h' : TotallyPathDisconnectedSpace X] :
+      DiscreteTopology X := by
+  apply discreteTopology_iff_isOpen_singleton.mpr (fun x ↦ ?_)
+  sorry
 
+
+--TODO: golf
 /-- Theorem T95: Connected (P36) + Has open path components (P233) => Path connected (P37) -/
 instance instPrepathconnectedSpaceOfPreconnectedSpaceOfHasOpenPathComponents (X : Type u)
     [TopologicalSpace X] [h : PreconnectedSpace X] [h' : HasOpenPathComponents X] :
       PrepathConnectedSpace X where
     joined x y := by
       apply (pathComponent_eq_iff_joined x y).mp
+      have hx := preconnectedSpace_iff_clopen.mp h (pathComponent x)
+        (HasOpenPathComponents.pathComponent_isClopen x)
+      have hy := preconnectedSpace_iff_clopen.mp h (pathComponent y)
+        (HasOpenPathComponents.pathComponent_isClopen y)
+      simp_all [(pathComponent.nonempty x).ne_empty, (pathComponent.nonempty y).ne_empty]
 
-      sorry
-    /- by_cases h'' : IsEmpty X
-    · exact { joined := fun x ↦ False.elim <| h''.false x}
-    simp at h''
-    show PathConnectedSpace X -/
-
+/-- Theorem T89: Has open path components (P233) => Path connected (P37) -/
+instance instPrepathconnectedSpaceOfPreconnectedSpaceOfHasOpenPathComponents (X : Type u)
+    [TopologicalSpace X] [h : PreconnectedSpace X] [h' : HasOpenPathComponents X] :
+      PrepathConnectedSpace X where
 
 end PiBase
