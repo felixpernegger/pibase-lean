@@ -6,7 +6,7 @@ public import PiBaseLean.Properties.P233.Defs
 
 namespace PiBase
 
-open Topology Filter
+open Topology Filter Set
 
 variable {X : Type*} [TopologicalSpace X]
 
@@ -15,6 +15,12 @@ variable {X : Type*} [TopologicalSpace X]
 lemma _root_.IsPathConnected.subset_pathComponent_of_mem {x y : X} {s : Set X}
     (hs : IsPathConnected s) (ys : y ∈ s) (xy : y ∈ pathComponent x) : s ⊆ pathComponent x :=
   pathComponent_congr xy ▸ hs.subset_pathComponent ys
+
+--to mathlib
+/-- In a path connected space, all path components are the entire space. -/
+theorem _root_.PathconnectedSpace.connectedComponent_eq_univ [PathConnectedSpace X] (x : X) :
+    pathComponent x = univ :=
+  subset_antisymm (subset_univ _) (isPathConnected_univ.subset_pathComponent trivial)
 
 variable (X)
 

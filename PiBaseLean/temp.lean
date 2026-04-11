@@ -602,8 +602,13 @@ instance instHasOpenPathComponentsOfWeaklyLocallySimplyConnectedSpace (X : Type 
 
 /-- Theorem T860: P37 (PrepathConnectedSpace) => P233 (HasOpenPathComponents) -/
 instance instHasOpenPathComponentsOfPrepathConnectedSpace (X : Type u)
-    [TopologicalSpace X] [h : PrepathConnectedSpace X] : HasOpenPathComponents X := by
-  sorry
+    [TopologicalSpace X] [h : PrepathConnectedSpace X] : HasOpenPathComponents X where
+  component_open x := by
+    have : pathComponent x = univ := by
+
+      sorry
+    rw [this]
+    exact isOpen_univ
 
 /-- Theorem T861: P42 (LocPathConnectedSpace) => P233 (HasOpenPathComponents) -/
 instance instHasOpenPathComponentsOfLocPathConnectedSpace (X : Type u)
