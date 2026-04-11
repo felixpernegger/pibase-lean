@@ -1,10 +1,15 @@
 module
 
-public import PiBaseLean.Properties.P200.Defs
+public import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
+public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
 namespace PiBase
+
+/- 200. Simply connected -/
+class PresimplyConnectedSpace (X : Type*) [TopologicalSpace X] : Prop where
+  presimplyconnected : IsEmpty X ∨ SimplyConnectedSpace X
 
 open Topology Filter
 
