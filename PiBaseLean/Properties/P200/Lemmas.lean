@@ -14,7 +14,8 @@ variable (X : Type*) [TopologicalSpace X]
 instance instSimplyConnectedSpaceOfPresimplyConnectedSpaceOfNonempty [h : PresimplyConnectedSpace X]
     [h' : Nonempty X] : SimplyConnectedSpace X := by
   rcases h.presimplyconnected with h|h
-  · exact SimplyConnectedSpace.ofContractible X
+  · have : ContractibleSpace X := by infer_instance
+    exact SimplyConnectedSpace.ofContractible X
   · exact h
 
 /-- A simply connected space is pre simply connected. -/
