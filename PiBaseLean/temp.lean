@@ -331,12 +331,6 @@ instance instEmbeddableInEuclideanSpaceOfEmbeddableInR (X : Type u)
     · sorry
     sorry
 
-/-- Theorem T234: P103 (StronglyKcSpace) => P100 (KcSpace) -/
-instance instKcSpaceOfStronglyKcSpace (X : Type u)
-    [TopologicalSpace X] [h : StronglyKcSpace X] :
-    KcSpace X where
-  kc s hs := h.countablycompact_closed s hs.isCountablyCompact
-
 /-- Theorem T241: P179 (AlephZeroSpace) => P74 (CosmicSpace) -/
 instance instCosmicSpaceOfAlephZeroSpace (X : Type u)
     [TopologicalSpace X] [h : AlephZeroSpace X] :
@@ -361,12 +355,6 @@ instance instSigmaSpaceOfAlephSpace (X : Type u)
     [TopologicalSpace X] [h : AlephSpace X] :
     SigmaSpace X := by
   sorry
-
-/-- Theorem T257: P13 (NormalSpace) + P132 (GδSpace) => P15 (PerfectlyNormalSpace) -/
-instance instPerfectlyNormalSpaceOfNormalSpaceOfGδSpace (X : Type u)
-    [TopologicalSpace X] [NormalSpace X] [h' : GδSpace X] :
-    PerfectlyNormalSpace X where
-  closed_gdelta := h'.closed_gdelta
 
 /-- Theorem T259: P57 (Countable) => P182 (HasCountableNetwork) -/
 instance instHasCountableNetworkOfCountable (X : Type u)
@@ -394,12 +382,6 @@ instance instSigmaConnectedSpaceOfUltraconnectedSpace (X : Type u)
     [TopologicalSpace X] [h : UltraconnectedSpace X] :
     SigmaConnectedSpace X := by
   sorry
-
-/-- Theorem T350: P90 (AlexandrovDiscrete) => P147 (PSpace) -/
-instance instPSpaceOfAlexandrovDiscrete (X : Type u)
-    [TopologicalSpace X] [AlexandrovDiscrete X] :
-    PSpace X where
-  inter_open _ _ _ _ h := isOpen_iInter h
 
 /-- Theorem T352: P183 (HasCountableKNetwork) => P118 (HasSigmaLocallyFiniteKNetwork) -/
 instance instHasSigmaLocallyFiniteKNetworkOfHasCountableKNetwork (X : Type u)
@@ -443,29 +425,6 @@ instance instKLindelofSpaceOfAnticompactSpaceOfOmegaLindelof (X : Type u)
     KLindelofSpace X := by
   sorry
 
--- Most likely redundant
-/-- Theorem T407: P53 (MetrizableSpace) => P112 (SubmetrizableSpace) -/
-instance instSubmetrizableSpaceOfMetrizableSpace (X : Type u)
-    [τ : TopologicalSpace X] [MetrizableSpace X] :
-    SubmetrizableSpace X where
-  le_metrizable := ⟨metrizableSpaceMetric X, le_refl τ⟩
-
-/-- Theorem T410: P166 (HasCoarseSepsrableMetrizableTopology) => P112 (SubmetrizableSpace) -/
-instance instSubmetrizableSpaceOfHasCoarseSepsrableMetrizableTopology (X : Type u)
-    [TopologicalSpace X] [h : HasCoarseSepsrableMetrizableTopology X] :
-    SubmetrizableSpace X where
-  le_metrizable :=
-    let ⟨m, hm, _⟩ := h.ex_coarser_metrizable_separable
-    ⟨m, hm⟩
-
-/-- Theorem T419: P169 (SemiT2Space) => P2 (T1Space) -/
-instance instT1SpaceOfSemiT2Space (X : Type u)
-    [TopologicalSpace X] [h : SemiT2Space X] :
-    T1Space X := by
-  apply (t1Space_iff_exists_open).mpr (fun x y xy ↦ ?_)
-  obtain ⟨s, hs, xs, ys⟩ := h.ex_regular_open xy
-  exact ⟨s, hs.IsOpen, xs, ys⟩
-
 /-- Theorem T429: P36 (PreconnectedSpace) + P175 (¬CardGeThree) +
 P137 (¬IsEmpty) => P45 (HasDispersionPoint) -/
 instance instHasDispersionPointOfPreconnectedSpaceOfNotCardGeThreeOfNonempty (X : Type u)
@@ -478,11 +437,6 @@ instance instSeparableSpaceOfHereditarilySeparableSpace (X : Type u)
     [TopologicalSpace X] [h : HereditarilySeparableSpace X] :
     SeparableSpace X := by
   sorry
-
-/-- Theorem T457: P77 (CorsonCompactSpace) => P16 (CompactSpace) -/
-instance instCompactSpaceOfCorsonCompactSpace (X : Type u)
-    [TopologicalSpace X] [CorsonCompactSpace X] :
-    CompactSpace X := by infer_instance
 
 /-- Theorem T489: P190 (OrdinalSpace) => P133 (LOTS) -/
 instance instLOTSOfOrdinalSpace (X : Type u)
@@ -515,32 +469,10 @@ instance instCountableOfHasCountableExtentOfDiscreteTopology (X : Type u)
     Countable X := by
   sorry
 
-/-- Theorem T561: P197 (HasCountableSpread) => P198 (HasCountableExtent) -/
-instance instHasCountableExtentOfHasCountableSpread (X : Type u)
-    [TopologicalSpace X] [h : HasCountableSpread X] :
-    HasCountableExtent X where
-  extent_eq := le_antisymm (h.spread_eq ▸ extent_le_spread X) (aleph_zero_le_extent X)
-
 /-- Theorem T569: P21 (WeaklyCountablyCompact) => P198 (HasCountableExtent) -/
 instance instHasCountableExtentOfWeaklyCountablyCompact (X : Type u)
     [TopologicalSpace X] [h : WeaklyCountablyCompact X] :
     HasCountableExtent X := by sorry
-
-/-- Theorem T571: P203 (AlmostDiscreteSpace) => P52 (¬DiscreteTopology) -/
-theorem not_DiscreteTopologyOfAlmostDiscreteSpace (X : Type u)
-    [TopologicalSpace X] [h : AlmostDiscreteSpace X] :
-    ¬ DiscreteTopology X := by
-  obtain ⟨p, hp⟩ := h.ex_point
-  contrapose! hp
-  exact ⟨p, Or.inr ⟨.refl p, isOpen_discrete {p}⟩⟩
-
-/-- Theorem T586: P31 (MetacompactSpace) => P83 (MetaLindelofSpace) -/
-instance instMetaLindelofSpaceOfMetacompactSpace (X : Type u)
-    [TopologicalSpace X] [h : MetacompactSpace X] :
-    MetaLindelofSpace X where
-  meta_lindelof ι s s_open s_cover :=
-    let ⟨β, t, t_open, t_cover, ht, ts⟩ := h.metacompact ι s s_open s_cover
-    ⟨β, t, t_open, t_cover, ht.PointCountable, ts⟩
 
 -- Most likely redundant
 /-- Theorem T587: P18 (LindelofSpace) => P83 (MetaLindelofSpace) -/
@@ -566,33 +498,11 @@ instance instHasGenericPointOfQuasiSoberOfPreirreducibleSpaceOfNonempty (X : Typ
     HasGenericPoint X := by
   sorry
 
-/-- Theorem T620: P196 (HereditarilyConnected) => P204 (¬HasACutPoint) -/
-theorem not_HasACutPointOfHereditarilyConnected (X : Type u)
-    [TopologicalSpace X] [h : HereditarilyConnected X] :
-    ¬ HasACutPoint X := by
-  intro h0
-  obtain ⟨p, hp⟩ := h0.ex_cut
-  exact hp <| h.subset_connected {p}ᶜ
-
-/-- Theorem T621: P107 (HasClosedPoint) => P137 (¬IsEmpty) -/
-instance instNonemptyOfHasClosedPoint (X : Type u)
-    [TopologicalSpace X] [h : HasClosedPoint X] :
-    Nonempty X :=
-  let ⟨p, _⟩ := h.has_closed_point
-  .intro p
-
 /-- Theorem T624: P102 (SemimetrizableSpace) => P104 (SymmetrizableSpace) -/
 instance instSymmetrizableSpaceOfSemimetrizableSpace (X : Type u)
     [TopologicalSpace X] [h : SemimetrizableSpace X] :
     SymmetrizableSpace X where
   nonempty_symmetric := by sorry
-
-/-- Theorem T635: P205 (CutPointSpace) => P204 (HasACutPoint) -/
-instance instHasACutPointOfCutPointSpace (X : Type u)
-    [TopologicalSpace X] [h : CutPointSpace X] :
-    HasACutPoint X :=
-  have : Nonempty X := by infer_instance
-  ⟨this.some, h.all_cut this.some⟩
 
 /-- Theorem T653: P30 (ParacompactSpace) => P105 (ParaLindelofSpace) -/
 instance instParaLindelofSpaceOfParacompactSpace (X : Type u)
@@ -621,12 +531,6 @@ instance instCollectionwiseNormalSpaceOfHereditarilyCollectionwiseNormalSpace (X
     CollectionwiseNormalSpace X := by
   sorry
 
-/-- Theorem T693: P49 (ExtremallyDisconnected) => P85 (BasicallyDisconnectedSpace) -/
-instance instBasicallyDisconnectedSpaceOfExtremallyDisconnected (X : Type u)
-    [TopologicalSpace X] [h : ExtremallyDisconnected X] :
-    BasicallyDisconnectedSpace X where
-  basically_disconnected  U hU := h.open_closure U hU.IsOpen
-
 /-- Theorem T694: P85 (BasicallyDisconnectedSpace) +
 P15 (PerfectlyNormalSpace) => P49 (ExtremallyDisconnected) -/
 instance instExtremallyDisconnectedOfBasicallyDisconnectedSpaceOfPerfectlyNormalSpace (X : Type u)
@@ -643,14 +547,6 @@ instance instLocallyInjPathConnectedSpaceOfLocallyArcConnectedSpace (X : Type u)
     obtain ⟨r, rx, hr, rt⟩ := hasBasis_self.mp (h.arc_connected_basis x) t ht
     refine ⟨r, rx, ?_, rt⟩
     sorry
-
-/-- Theorem T710: P110 (DevelopableSpace) => P28 (FirstCountableTopology) -/
-instance instFirstCountableTopologyOfDevelopableSpace (X : Type u)
-    [TopologicalSpace X] [h : DevelopableSpace X] :
-    FirstCountableTopology X where
-  nhds_generated_countable x :=
-    let ⟨_, _, _, _, h'⟩ := h.developable.some
-    (h' x).isCountablyGenerated
 
 /-- Theorem T740: P215 (HereditarilyRealcompactSpace) => P162 (RealcompactSpace) -/
 instance instRealcompactSpaceOfHereditarilyRealcompactSpace (X : Type u)
@@ -685,17 +581,6 @@ instance instHereditarilySeparableSpaceOfArtinianSpace (X : Type u)
     [TopologicalSpace X] [h : ArtinianSpace X] :
     HereditarilySeparableSpace X := by
   sorry
-
-/-- Theorem T834: P227 (HasClosedDiscreteSubsetCardContinuum) => P58 (¬CardLtContinuum) -/
-theorem not_CardLtContinuumOfHasClosedDiscreteSubsetCardContinuum (X : Type u)
-    [TopologicalSpace X] [h : HasClosedDiscreteSubsetCardContinuum X] :
-    ¬ CardLtContinuum X := by
-  intro h'
-  obtain ⟨s, _, _, hs⟩ := h.ex_subset
-  have h0 := h'.card_lt
-  contrapose! h0
-  rw [← hs]
-  exact Cardinal.mk_set_le s
 
 /-- Theorem T855: P231 (WeaklyLocallySimplyConnectedSpace) =>
 P229 (SemilocallySimplyConnectedSpace) -/
