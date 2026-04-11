@@ -16,6 +16,21 @@ lemma _root_.IsConnected.subset_connectedComponent_of_mem {x y : X} {s : Set X} 
     (ys : y ∈ s) (xy : y ∈ connectedComponent x) : s ⊆ connectedComponent x :=
   connectedComponent_eq_iff_mem.mpr xy ▸ hs.subset_connectedComponent ys
 
+lemma HasOpenConnectedComponents.connectedComponent_nbhd [HasOpenConnectedComponents X] (x : X) :
+    connectedComponent x ∈ 𝓝 x :=
+  (IsOpen.mem_nhds_iff (component_open x)).mpr <| mem_connectedComponent
+
+/-- In a space with open connected components, every connected component is clopen. -/
+theorem HasOpenConnectedComponents.connectedComponent_isClopen
+    [h : HasOpenConnectedComponents X] (x : X) :
+    IsClopen (connectedComponent x) := by
+  refine ⟨?_, h.component_open x⟩
+  apply isOpen_compl_iff.mp <| isOpen_iff_mem_nhds.mpr (fun y hy ↦ ?_)
+  apply Filter.sets_of_superset (𝓝 y) <| h.connectedComponent_nbhd y
+  apply (connectedComponent_disjoint ?_).subset_compl_right
+  contrapose! hy
+  simp [← hy, mem_connectedComponent]
+
 variable (X)
 
 /-- A space has open connected components iff each point has a connected neighborhood. -/

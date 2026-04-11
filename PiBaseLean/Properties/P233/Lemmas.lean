@@ -30,6 +30,28 @@ theorem _root_.pathComponent_eq_iff_joined (x y : X) :
   · exact mem_pathComponent_iff.mp <| h ▸ mem_pathComponent_self y
   exact pathComponent_congr (id h.symm)
 
+lemma HasOpenPathComponents.pathComponent_nbhd [HasOpenPathComponents X] (x : X) :
+    pathComponent x ∈ 𝓝 x :=
+  (IsOpen.mem_nhds_iff (component_open x)).mpr <| mem_pathComponent_self x
+
+--to mathlib, golf
+/-- Two different path components are disjoint. -/
+theorem _root_.pathComponent_disjoint {x y : X} (h : pathComponent x ≠ pathComponent y) :
+    Disjoint (pathComponent x) (pathComponent y) := by
+  apply Set.disjoint_left.2 (fun z hz ↦ ?_)
+  contrapose! h
+  exact (pathComponent_eq_iff_joined x y).mpr <| hz.trans h.symm
+
+/-- In a space with open path components, every path component is clopen. -/
+theorem HasOpenPathComponents.pathComponent_isClopen [h : HasOpenPathComponents X] (x : X) :
+    IsClopen (pathComponent x) := by
+  refine ⟨?_, h.component_open x⟩
+  apply isOpen_compl_iff.mp <| isOpen_iff_mem_nhds.mpr (fun y hy ↦ ?_)
+  apply Filter.sets_of_superset (𝓝 y) <| h.pathComponent_nbhd y
+  apply (pathComponent_disjoint ?_).subset_compl_right
+  contrapose! hy
+  simp [← hy]
+
 variable (X)
 
 /-- A space has open connected components iff each point has a connected neighborhood. -/
@@ -41,7 +63,6 @@ theorem hasOpenPathComponents_iff_ex_connected_nbhd :
   apply isOpen_iff_mem_nhds.mpr fun y hy ↦ ?_
   obtain ⟨s, sy, hs⟩ := h y
   exact mem_of_superset sy <| hs.subset_pathComponent_of_mem (mem_of_mem_nhds sy) hy
-
 section Meta
 
 end Meta

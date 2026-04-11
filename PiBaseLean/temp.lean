@@ -659,7 +659,8 @@ instance instPrepathconnectedSpaceOfPreconnectedSpaceOfHasOpenPathComponents (X 
     [TopologicalSpace X] [h : PreconnectedSpace X] [h' : HasOpenPathComponents X] :
       PrepathConnectedSpace X where
     joined x y := by
-      apply (connectedComponent_eq_iff_joined x y).mpr
+      apply (pathComponent_eq_iff_joined x y).mp
+
       sorry
     /- by_cases h'' : IsEmpty X
     · exact { joined := fun x ↦ False.elim <| h''.false x}
