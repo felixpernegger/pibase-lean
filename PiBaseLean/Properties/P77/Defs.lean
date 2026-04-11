@@ -1,20 +1,21 @@
 module
 
 public import PiBaseLean.AdditionalDefs.Constructions
+public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace PiBase.AdditionalDefs
+open PiBase.AdditionalDefs
 
 universe u
 
 namespace PiBase
 
 /- 77. Corson compact -/
-class CorsonCompactSpace (X : Type u) [TopologicalSpace X] : Prop where
-  homoeo_compact : ∃ α : Type u, ∃ s : Set (SigmaProduct (fun (_ : α) ↦ (0 : ℝ))),
-    IsCompact s ∧ Nonempty (s ≃ₜ X)
+class CorsonCompactSpace (X : Type u) [TopologicalSpace X] : Prop extends CompactSpace X where
+  isHomoeo_subset : ∃ α : Type u, ∃ s : Set (SigmaProduct (fun (_ : α) ↦ (0 : ℝ))),
+    IsHomeo X s
 
 end PiBase
 
