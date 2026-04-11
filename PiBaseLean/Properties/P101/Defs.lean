@@ -1,17 +1,17 @@
 module
 
-public import PiBaseLean.AdditionalDefs
+public import PiBaseLean.AdditionalDefs.Constructions
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace Topology.PiBase.AdditionalDefs
+open Topology Set Function Filter TopologicalSpace PiBase.AdditionalDefs
 
 namespace PiBase
 
 /- 101. Has closed retracts -/
 class HasClosedRetract (X : Type*) [TopologicalSpace X] : Prop where
-  has_closed_retract : ∀ A : Set X, IsRetraction A → IsClosed A
+  has_closed_retract : ∀ A : Set X, IsRetract A → IsClosed A
 
 end PiBase
 
@@ -21,7 +21,7 @@ def P101 : Property where
   toPred := HasClosedRetract
   well_defined {X Y} _ _ φ h := by
     refine ⟨fun s rs ↦ ?_⟩
-    suffices r' : IsRetraction (⇑φ ⁻¹' s) by simpa using h.has_closed_retract _ r'
+    suffices r' : IsRetract (⇑φ ⁻¹' s) by simpa using h.has_closed_retract _ r'
     rcases rs with ⟨f, ff, rf⟩
     refine ⟨((φ.symm : C(Y, X)).comp f).comp (φ : C(X, Y)), ?_, ?_⟩
     · ext x

@@ -1,4 +1,7 @@
-import PiBaseLean.AdditionalDefs
+import PiBaseLean.AdditionalDefs.Cardinal
+import PiBaseLean.AdditionalDefs.Constructions
+import PiBaseLean.AdditionalDefs.Cover
+import PiBaseLean.AdditionalDefs.Meta
 import PiBaseLean.Properties.Bundled.Basic
 import PiBaseLean.Properties.Bundled.Defs
 import PiBaseLean.Properties.P1.Defs

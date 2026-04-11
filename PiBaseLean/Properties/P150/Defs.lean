@@ -1,11 +1,11 @@
 module
 
+public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P68.Defs
-public import PiBaseLean.AdditionalDefs
 
 @[expose] public section
 
-open Topology Set Filter TopologicalSpace Topology.PiBase.AdditionalDefs
+open Topology Set Filter TopologicalSpace PiBase.AdditionalDefs
 
 universe u
 

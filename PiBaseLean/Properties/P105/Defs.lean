@@ -1,13 +1,13 @@
 module
 
-public import PiBaseLean.AdditionalDefs
+public import PiBaseLean.AdditionalDefs.Cover
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
 universe u
 
-open Topology Set Filter TopologicalSpace Topology.PiBase.AdditionalDefs
+open Topology Set Filter TopologicalSpace PiBase.AdditionalDefs
 
 namespace PiBase
 

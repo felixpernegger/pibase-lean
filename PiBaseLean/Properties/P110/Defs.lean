@@ -2,7 +2,7 @@ module
 
 public import Mathlib.Data.Countable.Defs
 public import Mathlib.Topology.Defs.Filter
-public import PiBaseLean.AdditionalDefs
+public import PiBaseLean.AdditionalDefs.Cover
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
