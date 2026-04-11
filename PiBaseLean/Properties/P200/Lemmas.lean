@@ -21,8 +21,7 @@ instance instSimplyConnectedSpaceOfPresimplyConnectedSpaceOfNonempty [h : Presim
 example [h : PresimplyConnectedSpace X]
     [h' : Nonempty X] : SimplyConnectedSpace X := by
   rcases h.presimplyconnected with h|h
-  · have : ContractibleSpace X := by infer_instance
-    exact SimplyConnectedSpace.ofContractible X
+  · infer_instance
   · exact h
 
 /-- A simply connected space is pre simply connected. -/
