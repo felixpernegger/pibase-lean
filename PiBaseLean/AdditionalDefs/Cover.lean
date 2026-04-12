@@ -10,8 +10,6 @@ which are useful for properties and theorems. -/
 
 namespace PiBase
 
-
-
 open Function Set Topology TopologicalSpace
 
 variable {X ι : Type*}
@@ -134,7 +132,5 @@ theorem IsKNetwork.IsNetwork {f : ι → Set X} (h : IsKNetwork f) : IsNetwork f
 /-- K-cover of a topological space -/
 def IsKCover (f : ι → Opens X) : Prop :=
   IsOpenCover f ∧ ⊤ ∉ range f ∧ ∀ ⦃K : Set X⦄, IsCompact K → ∃ i : ι, K ⊆ f i
-
-
 
 end PiBase

@@ -9,8 +9,6 @@ open Topology Set Function
 
 namespace PiBase
 
-
-
 /- 205. Cut point space -/
 class CutPointSpace (X : Type*)
     [TopologicalSpace X] extends ConnectedSpace X where

@@ -12,8 +12,6 @@ open Topology Set Function Filter
 
 namespace PiBase
 
-
-
 /-- Theorem T710: P110 (DevelopableSpace) => P28 (FirstCountableTopology) -/
 instance instFirstCountableTopologyOfDevelopableSpace (X : Type u)
     [TopologicalSpace X] [h : DevelopableSpace X] :
