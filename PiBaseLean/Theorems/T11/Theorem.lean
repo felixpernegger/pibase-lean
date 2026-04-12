@@ -12,7 +12,7 @@ open Topology Set Function
 
 namespace PiBase
 
-open PiBase.AdditionalDefs
+
 
 /-- Theorem T11: P183 (HasCountableKNetwork) => P182 (HasCountableNetwork) -/
 instance instHasCountableNetworkOfHasCountableKNetwork (X : Type u)

@@ -13,7 +13,7 @@ open Topology Set Function
 
 namespace PiBase
 
-open PiBase.AdditionalDefs
+
 
 /-- Theorem T759: P155 (LocallyOneEuclideanSpace) => P123 (LocallyNEuclideanSpace) -/
 instance instLocallyNEuclideanSpaceOfLocallyOneEuclideanSpace (X : Type u)

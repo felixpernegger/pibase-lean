@@ -12,7 +12,7 @@ open Topology Set Function Filter TopologicalSpace
 
 namespace PiBase
 
-open PiBase.AdditionalDefs
+
 
 /- 182. Has a countable network -/ --NOTE: We use `Type` instead of `Type u` to be able to use `ℕ`
 class HasCountableNetwork (X : Type u) [TopologicalSpace X] : Prop where

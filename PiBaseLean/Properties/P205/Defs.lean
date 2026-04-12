@@ -9,7 +9,7 @@ open Topology Set Function
 
 namespace PiBase
 
-open PiBase.AdditionalDefs
+
 
 /- 205. Cut point space -/
 class CutPointSpace (X : Type*)

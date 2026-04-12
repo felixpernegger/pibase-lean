@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Topology.Bases
+public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
@@ -11,7 +12,7 @@ namespace PiBase
 
 /- 180. Hereditarily separable -/
 class HereditarilySeparableSpace (X : Type*) [TopologicalSpace X] : Prop where
-  subset_separable (s : Set X) : SeparableSpace s
+  subset_separable : Hereditarily SeparableSpace X
 
 end PiBase
 

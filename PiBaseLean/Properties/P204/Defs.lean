@@ -9,7 +9,7 @@ open Topology Set Function
 
 namespace PiBase
 
-open PiBase.AdditionalDefs
+
 
 /- 204. Has a cut point -/
 class HasACutPoint (X : Type*)

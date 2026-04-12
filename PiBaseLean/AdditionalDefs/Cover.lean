@@ -10,7 +10,7 @@ which are useful for properties and theorems. -/
 
 namespace PiBase
 
-namespace AdditionalDefs
+
 
 open Function Set Topology TopologicalSpace
 
@@ -135,6 +135,6 @@ theorem IsKNetwork.IsNetwork {f : ι → Set X} (h : IsKNetwork f) : IsNetwork f
 def IsKCover (f : ι → Opens X) : Prop :=
   IsOpenCover f ∧ ⊤ ∉ range f ∧ ∀ ⦃K : Set X⦄, IsCompact K → ∃ i : ι, K ⊆ f i
 
-end AdditionalDefs
+
 
 end PiBase

@@ -13,7 +13,7 @@ universe u
 
 namespace PiBase
 
-open PiBase.AdditionalDefs
+
 
 structure Development (X : Type u) [TopologicalSpace X] where
   idx : ℕ → Type u

@@ -8,7 +8,7 @@ public import PiBaseLean.Properties.P83.Defs
 
 universe u
 
-open Topology Set Function Filter PiBase.AdditionalDefs
+open Topology Set Function Filter
 
 namespace PiBase
 

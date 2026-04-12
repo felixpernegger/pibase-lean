@@ -9,7 +9,7 @@ open Topology Set Function
 
 namespace PiBase
 
-open PiBase.AdditionalDefs
+
 
 /- 43. Locally injectively path conneced -/
 class LocallyInjPathConnectedSpace (X : Type*)
