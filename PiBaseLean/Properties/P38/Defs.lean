@@ -9,8 +9,6 @@ open Function
 
 namespace PiBase
 
-open PiBase.AdditionalDefs
-
 /- 38. Injectively path connected -/
 class InjPathConnectedSpace (X : Type*) [TopologicalSpace X] : Prop where
   joined : IsInjPathConnected (Set.univ (α := X))

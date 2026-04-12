@@ -5,7 +5,7 @@ public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
-open Topology Filter PiBase.AdditionalDefs
+open Topology Filter
 
 namespace PiBase
 

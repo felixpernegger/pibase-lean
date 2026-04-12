@@ -8,7 +8,7 @@ public import PiBaseLean.Properties.P198.Defs
 
 universe u
 
-open Topology Set Function Filter PiBase.AdditionalDefs Cardinal
+open Topology Set Function Filter Cardinal
 
 namespace PiBase
 

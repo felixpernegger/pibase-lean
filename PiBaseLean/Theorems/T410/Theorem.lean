@@ -12,9 +12,9 @@ open Topology Set Function
 
 namespace PiBase
 
-/-- Theorem T410: P166 (HasCoarseSepsrableMetrizableTopology) => P112 (SubmetrizableSpace) -/
-instance instSubmetrizableSpaceOfHasCoarseSepsrableMetrizableTopology (X : Type u)
-    [TopologicalSpace X] [h : HasCoarseSepsrableMetrizableTopology X] :
+/-- Theorem T410: P166 (HasCoarserSeparableMetrizableTopology ) => P112 (SubmetrizableSpace) -/
+instance instSubmetrizableSpaceOfHasCoarserSeparableMetrizableTopology (X : Type u)
+    [TopologicalSpace X] [h : HasCoarserSeparableMetrizableTopology X] :
     SubmetrizableSpace X where
   le_metrizable :=
     let ⟨m, hm, _⟩ := h.ex_coarser_metrizable_separable
@@ -24,6 +24,6 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T410 : P166 ≤ P112 := fun X _ ↦ @instSubmetrizableSpaceOfHasCoarseSepsrableMetrizableTopology X _
+theorem T410 : P166 ≤ P112 := fun X _ ↦ @instSubmetrizableSpaceOfHasCoarserSeparableMetrizableTopology X _
 
 end PiBase.Formal

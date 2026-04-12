@@ -6,8 +6,6 @@ public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
-open PiBase.AdditionalDefs
-
 universe u
 
 namespace PiBase

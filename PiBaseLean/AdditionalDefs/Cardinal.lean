@@ -12,8 +12,6 @@ universe u
 
 namespace PiBase
 
-namespace AdditionalDefs
-
 open Cardinal Set Filter Topology
 
 variable (X : Type u) [TopologicalSpace X]
@@ -62,7 +60,5 @@ def IsRadiallyClosed {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∀ x : X, (∃ (s : Ordinal.{u}) (f : Iio s → X), Tendsto f atTop (𝓝 x)) → x ∈ s
 
 --TODO: limit of transfinite sequence must lie in closure
-
-end AdditionalDefs
 
 end PiBase

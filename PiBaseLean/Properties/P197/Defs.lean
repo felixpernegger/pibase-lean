@@ -5,7 +5,7 @@ public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
-open Topology Set Filter TopologicalSpace PiBase.AdditionalDefs Cardinal
+open Topology Set Filter TopologicalSpace Cardinal
 
 universe u
 

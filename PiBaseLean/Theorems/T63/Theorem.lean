@@ -10,8 +10,6 @@ open Topology Set Function
 
 namespace PiBase
 
-open PiBase.AdditionalDefs
-
 /- Theorem 63: a locally injectively path connected space
 is locally path connected -/
 instance instLocallyPathConnectedSpaceOfLocallyInjPathConnectedSpace

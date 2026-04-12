@@ -11,8 +11,6 @@ which are useful for properties and theorems. -/
 
 namespace PiBase
 
-namespace AdditionalDefs
-
 open Set Filter Function Topology
 
 variable {X Y ι : Type*} [TopologicalSpace X] [TopologicalSpace Y]
@@ -105,7 +103,5 @@ def HasTrivialFundGroupImageAt (f : C(X, Y)) (x : X) : Prop :=
   ((FundamentalGroup.map f) x).range = ⊥
 
 end Path
-
-end AdditionalDefs
 
 end PiBase
