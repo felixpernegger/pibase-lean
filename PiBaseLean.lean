@@ -107,6 +107,7 @@ import PiBaseLean.Properties.P199.Defs
 import PiBaseLean.Properties.P2.Defs
 import PiBaseLean.Properties.P20.Defs
 import PiBaseLean.Properties.P200.Defs
+import PiBaseLean.Properties.P200.Lemmas
 import PiBaseLean.Properties.P201.Defs
 import PiBaseLean.Properties.P202.Defs
 import PiBaseLean.Properties.P203.Defs
@@ -138,7 +139,9 @@ import PiBaseLean.Properties.P230.Defs
 import PiBaseLean.Properties.P231.Defs
 import PiBaseLean.Properties.P232.Defs
 import PiBaseLean.Properties.P233.Defs
+import PiBaseLean.Properties.P233.Lemmas
 import PiBaseLean.Properties.P234.Defs
+import PiBaseLean.Properties.P234.Lemmas
 import PiBaseLean.Properties.P24.Defs
 import PiBaseLean.Properties.P25.Defs
 import PiBaseLean.Properties.P26.Defs
@@ -154,6 +157,7 @@ import PiBaseLean.Properties.P34.Defs
 import PiBaseLean.Properties.P35.Defs
 import PiBaseLean.Properties.P36.Defs
 import PiBaseLean.Properties.P37.Defs
+import PiBaseLean.Properties.P37.Lemmas
 import PiBaseLean.Properties.P38.Defs
 import PiBaseLean.Properties.P39.Defs
 import PiBaseLean.Properties.P4.Defs
@@ -164,6 +168,7 @@ import PiBaseLean.Properties.P43.Defs
 import PiBaseLean.Properties.P44.Defs
 import PiBaseLean.Properties.P45.Defs
 import PiBaseLean.Properties.P46.Defs
+import PiBaseLean.Properties.P46.Lemmas
 import PiBaseLean.Properties.P47.Defs
 import PiBaseLean.Properties.P48.Defs
 import PiBaseLean.Properties.P49.Defs
@@ -222,6 +227,7 @@ import PiBaseLean.Theorems.T100.Theorem
 import PiBaseLean.Theorems.T101.Theorem
 import PiBaseLean.Theorems.T104.Theorem
 import PiBaseLean.Theorems.T105.Theorem
+import PiBaseLean.Theorems.T108.Theorem
 import PiBaseLean.Theorems.T11.Theorem
 import PiBaseLean.Theorems.T116.Theorem
 import PiBaseLean.Theorems.T117.Theorem
@@ -261,15 +267,19 @@ import PiBaseLean.Theorems.T256.Theorem
 import PiBaseLean.Theorems.T257.Theorem
 import PiBaseLean.Theorems.T264.Theorem
 import PiBaseLean.Theorems.T266.Theorem
+import PiBaseLean.Theorems.T267.Theorem
 import PiBaseLean.Theorems.T281.Theorem
 import PiBaseLean.Theorems.T282.Theorem
 import PiBaseLean.Theorems.T283.Theorem
+import PiBaseLean.Theorems.T284.Theorem
+import PiBaseLean.Theorems.T285.Theorem
 import PiBaseLean.Theorems.T286.Theorem
 import PiBaseLean.Theorems.T287.Theorem
 import PiBaseLean.Theorems.T288.Theorem
 import PiBaseLean.Theorems.T295.Theorem
 import PiBaseLean.Theorems.T303.Theorem
 import PiBaseLean.Theorems.T31.Theorem
+import PiBaseLean.Theorems.T316.Theorem
 import PiBaseLean.Theorems.T333.Theorem
 import PiBaseLean.Theorems.T335.Theorem
 import PiBaseLean.Theorems.T336.Theorem
@@ -348,8 +358,14 @@ import PiBaseLean.Theorems.T84.Theorem
 import PiBaseLean.Theorems.T853.Theorem
 import PiBaseLean.Theorems.T858.Theorem
 import PiBaseLean.Theorems.T86.Theorem
+import PiBaseLean.Theorems.T860.Theorem
+import PiBaseLean.Theorems.T861.Theorem
+import PiBaseLean.Theorems.T862.Theorem
+import PiBaseLean.Theorems.T863.Theorem
 import PiBaseLean.Theorems.T864.Theorem
 import PiBaseLean.Theorems.T87.Theorem
 import PiBaseLean.Theorems.T88.Theorem
+import PiBaseLean.Theorems.T89.Theorem
+import PiBaseLean.Theorems.T95.Theorem
 import PiBaseLean.Theorems.T98.Theorem
 import PiBaseLean.Theorems.T99.Theorem
