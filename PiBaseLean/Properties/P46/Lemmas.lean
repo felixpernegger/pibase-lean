@@ -2,6 +2,7 @@ module
 
 public import PiBaseLean.Properties.P46.Defs
 public import Mathlib.Topology.Connected.PathConnected
+public import PiBaseLean.AdditionalDefs.Meta
 
 @[expose] public section
 
@@ -44,6 +45,9 @@ theorem totallyPathDisconnectedSpace_iff_pathComponent_singleton :
   simp_all
 
 section Meta
+
+theorem WellDefined.totallyPathDisconnectedSpace : WellDefined TotallyPathDisconnectedSpace :=
+  sorry
 
 end Meta
 

@@ -29,7 +29,7 @@ theorem Homeomorph.scatteredSpace [h : ScatteredSpace X] (f : X ≃ₜ Y) : Scat
       rw [← rz, ((tp r) (rz.symm ▸ zs)).mp rt]
     exact ⟨p, (tp p <| h.symm ▸ zs).mpr <| .refl p, h.symm⟩
 
-theorem WellDefined.scatteredSpace : WellDefined ScatteredSpace :=
+theorem scatteredSpace : WellDefined ScatteredSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.scatteredSpace h.some
 
 end Meta

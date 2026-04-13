@@ -1,6 +1,7 @@
 module
 
 public import PiBaseLean.Properties.P200.Defs
+public import PiBaseLean.AdditionalDefs.Meta
 
 @[expose] public section
 
@@ -30,6 +31,9 @@ theorem SimplyConnectedSpace.presimplyConnectedSpace [h : SimplyConnectedSpace X
   presimplyconnected := .inr h
 
 section Meta
+
+theorem WellDefined.presimplyConnectedSpace : WellDefined PresimplyConnectedSpace :=
+  sorry
 
 end Meta
 

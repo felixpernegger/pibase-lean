@@ -78,6 +78,14 @@ class SemimetricSpace (X : Type u) [TopologicalSpace X] extends Symmetric X wher
 class SymmetricSpace (X : Type u) [TopologicalSpace X] extends Symmetric X where
   isOpen_iff (s : Set X) : IsOpen s ↔ ∀ x ∈ s, ∃ ε > 0, Symmetric.ball x ε ⊆ s
 
+/-- Every semimetric space is a symmetric space. -/
+abbrev SemimetricSpace.symmetricSpace (X : Type u) [TopologicalSpace X] [h : SemimetricSpace X] :
+    SymmetricSpace X where
+  isOpen_iff s := by
+    refine ⟨fun hs ↦ ?_, fun hs ↦ ?_⟩
+    · exact fun x xs ↦ (hasBasis_iff.1 (h.symmetric_nbhd x) s).mp <| (IsOpen.mem_nhds_iff hs).mpr xs
+    · exact isOpen_iff_mem_nhds.2 (fun x xs ↦ ((hasBasis_iff).1 (h.symmetric_nbhd x) s).2 (hs x xs))
+
 end Symmetric
 
 section Path --TODO: If we get significantly more, make this its own file

@@ -1,6 +1,7 @@
 module
 
 public import PiBaseLean.Properties.P234.Defs
+public import PiBaseLean.AdditionalDefs.Meta
 
 @[expose] public section
 
@@ -44,6 +45,9 @@ theorem hasOpenConnectedComponents_iff_ex_connected_nbhd :
   exact mem_of_superset sy <| hs.subset_connectedComponent_of_mem (mem_of_mem_nhds sy) hy
 
 section Meta
+
+theorem WellDefined.hasOpenConnectedComponents : WellDefined HasOpenConnectedComponents :=
+  sorry
 
 end Meta
 

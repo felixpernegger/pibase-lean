@@ -122,7 +122,12 @@ theorem Omega.wellDefined {P : (X : Type u) → [TopologicalSpace X] → Prop}
 --TODO: Omega P X for some nonempty X implies P holds for singleton space
 --TODO: Omega Omega P = Omega P
 --TODO (though it's doubtable this actually saves time):
---If P X => Q X, Omega P X => Omega Q X
+
+/-- If `P` => `Q`, then `Omega P` => `Omega Q`. -/
+theorem omega_of_imp {Z : Type u} [TopologicalSpace Z]
+    {P Q : (X : Type u) → [TopologicalSpace X] → Prop}
+    (h : ∀ (X : Type u) (_ : TopologicalSpace X), P X → Q X) (hP : Omega P Z) : Omega Q Z :=
+  fun n ↦ h (Fin n → Z) _ <| hP n
 
 /-- For a property `P` of topological spaces, `Hereditarily P` means `P` holds for all subspaces. -/
 def Hereditarily (P : (Y : Type u) → [TopologicalSpace Y] → Prop)

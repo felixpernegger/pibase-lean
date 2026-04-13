@@ -18,7 +18,7 @@ instance instHasCountableNetworkOfHasCountableKNetwork (X : Type u)
     HasCountableNetwork X where
   has_countable_network := by
     obtain ⟨ι, f, ιc, fh⟩ := h.ex_network
-    exact ⟨ι, f, ιc, fh.IsNetwork⟩
+    exact ⟨ι, f, ιc, fh.isNetwork⟩
 
 end PiBase
 

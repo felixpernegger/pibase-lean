@@ -20,6 +20,11 @@ variable (X : Type u) [TopologicalSpace X]
 noncomputable def Spread : Cardinal.{u} :=
   sSup {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsDiscrete D} + ℵ₀
 
+lemma bddAbove_spread : BddAbove {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsDiscrete D} := by
+  use #X
+  simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
+  exact fun a x xa _ ↦ xa ▸ mk_set_le x
+
 --TODO: golf
 /-- The spread is less then the cardinality of the space + ℵ₀. -/
 theorem spread_le_card : Spread X ≤ #X + ℵ₀ := by
@@ -35,6 +40,12 @@ theorem spread_le_card : Spread X ≤ #X + ℵ₀ := by
 noncomputable def Extent : Cardinal.{u} :=
   sSup {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsClosed D ∧ IsDiscrete D} + ℵ₀
 
+lemma bddAbove_extent :
+    BddAbove {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsClosed D ∧ IsDiscrete D} := by
+  use #X
+  simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
+  exact fun a x xa _ _ ↦ xa ▸ mk_set_le x
+
 --TODO: golf
 /-- The extent of a space is less or equal to the spread. -/
 theorem extent_le_spread : Extent X ≤ Spread X := by
@@ -42,11 +53,8 @@ theorem extent_le_spread : Extent X ≤ Spread X := by
   gcongr 3 with t
   · refine ⟨#X, ?_⟩
     simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
-    intro t s st sd
-    rw [← st]
-    exact mk_set_le s
-  intro ⟨D, Dt, _, Dd⟩
-  exact ⟨D, Dt, Dd⟩
+    exact fun t s st sd ↦ st ▸ mk_set_le s
+  exact fun ⟨D, Dt, _, Dd⟩ ↦ ⟨D, Dt, Dd⟩
 
 /-- The extent of a space is at least ℵ₀. -/
 theorem aleph_zero_le_extent : ℵ₀ ≤ Extent X := self_le_add_left _ _

@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.SetTheory.Ordinal.Topology
+public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
@@ -13,7 +14,7 @@ namespace PiBase
 
 /- 190. Ordinal space -/
 class OrdinalSpace (X : Type u) [TopologicalSpace X] : Prop where
-  homeo_ordinal : ∃ a, Nonempty (X ≃ₜ (Iio a : Set Ordinal.{u}))
+  homeo_ordinal : ∃ a : Ordinal.{u}, IsHomeo X (Iio a : Set Ordinal.{u})
 
 end PiBase
 
