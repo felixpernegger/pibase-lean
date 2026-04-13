@@ -12,6 +12,8 @@ open Topology Filter Set TopologicalSpace
 
 variable {X Y : Type*} [t : TopologicalSpace X] [s : TopologicalSpace Y]
 
+instance instLotsOfOrderTopology {X : Type*} [TopologicalSpace X] [h : LinearOrder X]
+    [h' : OrderTopology X] : Lots X where from_linear_order := ⟨h, h'⟩
 section Meta
 
 /- TODO (horrible)
@@ -154,6 +156,8 @@ theorem Homeomorph.lots [h : Lots X] (f : X ≃ₜ Y) : Lots Y where
       sorry
     sorry -/
     sorry
+
+-/
 
 theorem WellDefined.lots : WellDefined Lots :=
   sorry
