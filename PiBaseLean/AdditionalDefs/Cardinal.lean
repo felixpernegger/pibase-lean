@@ -1,7 +1,6 @@
 module
 
-public import Mathlib.SetTheory.Ordinal.Basic
-public import Mathlib.Topology.Constructions
+public import Mathlib
 
 @[expose] public section
 
@@ -68,5 +67,28 @@ def IsRadiallyClosed {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∀ x : X, (∃ (s : Ordinal.{u}) (f : Iio s → X), Tendsto f atTop (𝓝 x)) → x ∈ s
 
 --TODO: limit of transfinite sequence must lie in closure
+
+/-- A type `α` is denumerable iff `univ : Set α` is denumerable. -/
+lemma Denumerable.Set.univ (α : Type u) :
+    Nonempty (Denumerable α) ↔ Nonempty (Denumerable (@univ α)) := by
+  refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
+  · have := h.some
+    exact Nonempty.intro <| Denumerable.ofEquiv α <| Equiv.Set.univ α
+  · have := h.some
+    exact Nonempty.intro <| Denumerable.ofEquiv _ <| (Equiv.Set.univ α).symm
+
+/-- If `α : Type u` is countable, it is bijective to some countable `r : Type`. -/
+theorem countable_equiv_type (α : Type u) [h : Countable α] :
+    ∃ (ι : Type) (_ : α ≃ ι), Countable ι := by
+  by_cases! f : Finite α
+  · obtain ⟨n, hn⟩ := finite_iff_exists_equiv_fin.mp f
+    refine ⟨Fin n, ?_⟩
+    rw [exists_const]
+    infer_instance
+  let : Nonempty (Denumerable α) := by
+    rw [nonempty_denumerable_iff]
+    exact ⟨h, f⟩
+  have := this.some
+  exact ⟨ℕ, Denumerable.equiv₂ α ℕ, instCountableNat⟩
 
 end PiBase
