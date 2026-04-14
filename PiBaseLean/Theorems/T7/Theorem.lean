@@ -8,7 +8,7 @@ public import PiBaseLean.Properties.P24.Defs
 
 universe u
 
-open Topology Set Function
+open Topology Set Function Filter
 
 namespace PiBase
 

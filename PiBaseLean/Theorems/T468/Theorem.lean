@@ -3,7 +3,7 @@ module
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P36.Defs
 public import PiBaseLean.Properties.P129.Defs
-public import PiBaseLean.Properties.P185.Defs
+public import PiBaseLean.Properties.P185.Lemmas
 
 @[expose] public section
 
