@@ -1,7 +1,6 @@
 module
 
-public import Mathlib.SetTheory.Ordinal.Basic
-public import Mathlib.Topology.Constructions
+public import Mathlib
 
 @[expose] public section
 

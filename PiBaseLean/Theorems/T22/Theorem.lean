@@ -1,6 +1,5 @@
 module
 
-public import PiBaseLean.AdditionalDefs.Cardinal
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P57.Defs
 public import PiBaseLean.Properties.P136.Defs
