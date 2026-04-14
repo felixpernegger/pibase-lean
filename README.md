@@ -8,3 +8,10 @@ Any property and theorem should have abbreviations, see property P37 and theorem
 To contribute please open an issue and then a PR. Note we are strictly using the definitions from pi-base and *not* mathlib in cases they differ.
 
 As of writing, this project is still in its infancy, so the structure of the repo etc. might and probably will change later.
+
+---
+
+<p align="center">
+  <img src="scripts/theorems_growth.png" alt="Theorems growth graph"><br>
+  <em>Number of theorems (out of 872) formalised as of April 12 2026</em>
+</p>
