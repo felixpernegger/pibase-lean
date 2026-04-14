@@ -38,8 +38,16 @@ def StarFinite (U : ι → Set X) : Prop :=
   ∀ i : ι, {j : ι | (U j ∩ U i).Nonempty}.Finite
 
 /-- A point finite collection of sets is point countable. -/
-theorem PointFinite.PointCountable {U : ι → Set X} (h : PointFinite U) : PointCountable U :=
+theorem PointFinite.pointCountable {U : ι → Set X} (h : PointFinite U) : PointCountable U :=
   fun x ↦ (h x).countable
+
+/-- A finite family of sets is star finite. -/
+theorem Finite.starFinite (U : ι → Set X) (h : Finite ι) : StarFinite U :=
+  fun _ ↦ toFinite _
+
+/-- A finite family of sets is locally finite. -/
+theorem Finite.locallyFinite [TopologicalSpace X] (U : ι → Set X) (h : Finite ι) :
+    LocallyFinite U := fun _ ↦ ⟨univ, Filter.univ_mem, toFinite {i | (U i ∩ univ).Nonempty}⟩
 
 /-- A star finite collection of sets is point finite. -/
 theorem StarFinite.PointFinite {U : ι → Set X} (h : StarFinite U) : PointFinite U := by
@@ -56,8 +64,12 @@ there is a neighborhood of `x` which meets only countably many sets in the famil
 def LocallyCountable (U : ι → Set X) :=
   ∀ x : X, ∃ t ∈ 𝓝 x, {i | (U i ∩ t).Nonempty}.Countable
 
+/-- A countable family of sets is locally countable. -/
+theorem Countable.locallyCountable (U : ι → Set X) (h : Countable ι) : LocallyCountable U :=
+  fun _ ↦ ⟨univ, Filter.univ_mem, to_countable {i | (U i ∩ univ).Nonempty}⟩
+
 /-- A locally finite collection of sets is locally countable. -/
-theorem LocallyFinite.LocallyCountable {U : ι → Set X} (h : LocallyFinite U) :
+theorem LocallyFinite.locallyCountable {U : ι → Set X} (h : LocallyFinite U) :
     LocallyCountable U := fun x ↦
   let ⟨t, tx, ht⟩ := h x
   ⟨t, tx, ht.countable⟩
@@ -75,7 +87,7 @@ theorem LocallyFinite.PointFinite {U : ι → Set X} (h : LocallyFinite U) : Poi
   LocallyFinite.point_finite h
 
 /-- A star finite open cover is locally finite. -/
-theorem StarFinite.LocallyFinite {U : ι → Set X} (h : StarFinite U)
+theorem StarFinite.locallyFinite {U : ι → Set X} (h : StarFinite U)
     (U_open : ∀ (a : ι), IsOpen (U a)) (U_cover : ⋃ (a : ι), U a = univ) : LocallyFinite U := by
   intro x
   obtain ⟨s, ⟨⟨i, hi⟩, xs⟩⟩ := U_cover ▸ mem_univ x
@@ -103,7 +115,7 @@ theorem _root_.Countable.subset {s : Set ι} (hs : s.Countable) {t : Set ι} (h 
   infer_instance
 
 /-- A locally countable collection of sets is point countable. -/
-theorem LocallyCountable.PointCountable {U : ι → Set X} (h : LocallyCountable U) :
+theorem LocallyCountable.pointCountable {U : ι → Set X} (h : LocallyCountable U) :
     PointCountable U := fun x ↦ by
   obtain ⟨t, hxt, ht⟩ := h x
   exact Countable.subset ht <| fun _ h ↦ ⟨x, h, mem_of_mem_nhds hxt⟩
@@ -117,7 +129,7 @@ def IsKNetwork (f : ι → Set X) : Prop :=
   ∀ U K : Set X, IsOpen U → IsCompact K → K ⊆ U → ∃ s : Set ι, K ⊆ ⋃ i ∈ s, f i ∧ ⋃ i ∈ s, f i ⊆ U
 
 /-- Every k-network is a network -/
-theorem IsKNetwork.IsNetwork {f : ι → Set X} (h : IsKNetwork f) : IsNetwork f := by
+theorem IsKNetwork.isNetwork {f : ι → Set X} (h : IsKNetwork f) : IsNetwork f := by
   intro x s sx
   obtain ⟨t, xt, ft⟩ := h (interior s) {x} isOpen_interior isCompact_singleton
     (by simp [mem_interior_iff_mem_nhds.mpr sx])

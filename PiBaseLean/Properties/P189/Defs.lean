@@ -13,7 +13,7 @@ universe u
 namespace PiBase
 
 /- 189. σ-connected -/
-class SigmaConnectedSpace (X : Type u) [TopologicalSpace X] : Prop extends ConnectedSpace X where
+class SigmaConnectedSpace (X : Type u) [TopologicalSpace X] : Prop extends PreconnectedSpace X where
   no_partition : ∀ f : ℕ → Set X, Setoid.IsPartition (range f) → ∃ n : ℕ, ¬ IsClosed (f n)
 
 end PiBase

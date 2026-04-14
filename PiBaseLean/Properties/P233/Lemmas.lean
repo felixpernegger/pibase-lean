@@ -1,6 +1,7 @@
 module
 
 public import PiBaseLean.Properties.P233.Defs
+public import PiBaseLean.AdditionalDefs.Meta
 
 @[expose] public section
 
@@ -64,6 +65,9 @@ theorem hasOpenPathComponents_iff_ex_connected_nbhd :
   obtain ⟨s, sy, hs⟩ := h y
   exact mem_of_superset sy <| hs.subset_pathComponent_of_mem (mem_of_mem_nhds sy) hy
 section Meta
+
+theorem WellDefined.hasOpenPathComponents : WellDefined HasOpenPathComponents :=
+  sorry
 
 end Meta
 

@@ -18,7 +18,7 @@ instance instMetaLindelofSpaceOfMetacompactSpace (X : Type u)
     MetaLindelofSpace X where
   meta_lindelof ι s s_open s_cover :=
     let ⟨β, t, t_open, t_cover, ht, ts⟩ := h.metacompact ι s s_open s_cover
-    ⟨β, t, t_open, t_cover, ht.PointCountable, ts⟩
+    ⟨β, t, t_open, t_cover, ht.pointCountable, ts⟩
 
 end PiBase
 

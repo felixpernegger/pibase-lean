@@ -122,7 +122,12 @@ theorem Omega.wellDefined {P : (X : Type u) → [TopologicalSpace X] → Prop}
 --TODO: Omega P X for some nonempty X implies P holds for singleton space
 --TODO: Omega Omega P = Omega P
 --TODO (though it's doubtable this actually saves time):
---If P X => Q X, Omega P X => Omega Q X
+
+/-- If `P` => `Q`, then `Omega P` => `Omega Q`. -/
+theorem omega_of_imp {Z : Type u} [TopologicalSpace Z]
+    {P Q : (X : Type u) → [TopologicalSpace X] → Prop}
+    (h : ∀ (X : Type u) (_ : TopologicalSpace X), P X → Q X) (hP : Omega P Z) : Omega Q Z :=
+  fun n ↦ h (Fin n → Z) _ <| hP n
 
 /-- For a property `P` of topological spaces, `Hereditarily P` means `P` holds for all subspaces. -/
 def Hereditarily (P : (Y : Type u) → [TopologicalSpace Y] → Prop)
@@ -145,5 +150,27 @@ theorem Hereditarily.toProperty {Z : Type u} [TopologicalSpace Z]
     {P : (X : Type u) → [TopologicalSpace X] → Prop}
     (hP : WellDefined P) (hZ : Hereditarily P Z) : P Z :=
   hP (IsHomeo.Set.univ Z) <| hZ univ
+
+/-- For a property `P`, `Locally P` means every point has a neighborhood basis satisfying `P`.
+*Note*: Usage of `Locally` is sometimes inconsistent in the π-base. -/
+def Locally (P : (Y : Type u) → [TopologicalSpace Y] → Prop)
+    (X : Type u) [TopologicalSpace X] : Prop :=
+  ∀ x : X, (𝓝 x).HasBasis (fun (s : Set X) => s ∈ 𝓝 x ∧ P s) id
+
+/-- For a property `P`, `WeaklyLocally P` means every point has a neighborhood satisfying `P`.
+*Note*: Usage of `WeaklyLocally` is sometimes inconsistent in the π-base. -/
+def WeaklyLocally (P : (Y : Type u) → [TopologicalSpace Y] → Prop)
+    (X : Type u) [TopologicalSpace X] : Prop := ∀ x : X, ∃ s ∈ 𝓝 x, P s
+
+/-
+
+/-- `Locally P` implies `WeaklyLocally P`. -/
+theorem Locally.weaklyLocally {Z : Type u} [TopologicalSpace Z]
+    {P : (X : Type u) → [TopologicalSpace X] → Prop}
+    (hZ : Locally P Z) : WeaklyLocally P Z := by
+  intro x
+  sorry
+
+-/
 
 end PiBase
