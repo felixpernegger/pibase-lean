@@ -614,4 +614,3 @@ import PiBaseLean.Theorems.T9.Theorem
 import PiBaseLean.Theorems.T95.Theorem
 import PiBaseLean.Theorems.T98.Theorem
 import PiBaseLean.Theorems.T99.Theorem
-import PiBaseLean.newtemps
