@@ -317,14 +317,21 @@ instance instPerfectlyNormalSpaceOfRegularSpaceOfHereditarilyLindelofSpace (X : 
 
 /-- Theorem T262: P134 (R1Space) + P39 (PreirreducibleSpace) => P129 (IndiscreteTopology) -/
 instance instIndiscreteTopologyOfR1SpaceOfPreirreducibleSpace (X : Type u)
-    [TopologicalSpace X] [R1Space X] [PreirreducibleSpace X] : IndiscreteTopology X := by
-  apply (TopologicalSpace.indiscrete_iff_isOpen_iff_empty_or_univ X).mpr
-  sorry
+    [TopologicalSpace X] [R1Space X] [i : PreirreducibleSpace X] : IndiscreteTopology X := by
+  refine IndiscreteTopology.of_forall_inseparable (fun x y ↦ ?_)
+  by_contra h0
+  obtain ⟨s, t, hs, ht, xs, yt, st⟩ := r1_separation h0
+  have := i.isPreirreducible_univ s t hs ht (by simp [nonempty_of_mem xs])
+    (by simp [nonempty_of_mem yt])
+  rw [univ_inter] at this
+  exact (not_disjoint_iff_nonempty_inter.mpr this) st
 
 /-- Theorem T302: P57 (Countable) + P16 (CompactSpace) + P134 (R1Space)
 => P121 (PseudoMetrizableSpace) -/
 instance instPseudoMetrizableSpaceOfCountableOfCompactSpaceOfR1Space (X : Type u)
     [TopologicalSpace X] [Countable X] [CompactSpace X] [R1Space X] : PseudoMetrizableSpace X := by
+  suffices FirstCountableTopology X by infer_instance
+
   sorry
 
 /-- Theorem T439: P16 (CompactSpace) + P57 (Countable) => P20 (SeqCompactSpace) -/
@@ -337,6 +344,7 @@ instance instSeqCompactSpaceOfCompactSpaceOfCountable (X : Type u)
 instance instIndiscreteTopologyOfQuasiSoberOfPreirreducibleSpaceOfR0Space (X : Type u)
     [TopologicalSpace X] [QuasiSober X] [PreirreducibleSpace X] [R0Space X] :
     IndiscreteTopology X := by
+
   sorry
 
 /-- Theorem T557: P1 (T0Space) + P90 (AlexandrovDiscrete) + P27 (SecondCountableTopology)
