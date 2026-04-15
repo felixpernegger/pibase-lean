@@ -272,9 +272,14 @@ instance instCompletelyRegularSpaceOfWeaklyLocallyCompactSpaceOfR1Space (X : Typ
     [TopologicalSpace X] [WeaklyLocallyCompactSpace X] [R1Space X] : CompletelyRegularSpace X := by
   sorry
 
+--make lemma for this
 /-- Theorem T51: P39 (PreirreducibleSpace) => P41 (LocallyConnectedSpace) -/
 instance instLocallyConnectedSpaceOfPreirreducibleSpace (X : Type u)
-    [TopologicalSpace X] [PreirreducibleSpace X] : LocallyConnectedSpace X := by
+    [TopologicalSpace X] [h : PreirreducibleSpace X] : LocallyConnectedSpace X := by
+  refine locallyConnectedSpace_iff_connected_subsets.mpr (fun x U hU ↦ ?_)
+  refine ⟨interior U, by simpa, ?_, interior_subset⟩
+  #check IsPreirreducible.isPreconnected
+  #check IsPreirreducible.open_subset
   sorry
 
 /-- Theorem T65: P23 (WeaklyLocallyCompactSpace) + P53 (MetrizableSpace)
@@ -344,16 +349,16 @@ instance instSeqCompactSpaceOfCompactSpaceOfCountable (X : Type u)
 instance instIndiscreteTopologyOfQuasiSoberOfPreirreducibleSpaceOfR0Space (X : Type u)
     [TopologicalSpace X] [QuasiSober X] [PreirreducibleSpace X] [R0Space X] :
     IndiscreteTopology X := by
-
   sorry
 
 /-- Theorem T557: P1 (T0Space) + P90 (AlexandrovDiscrete) + P27 (SecondCountableTopology)
 => P57 (Countable) -/
 instance instCountableOfT0SpaceOfAlexandrovDiscreteOfSecondCountableTopology (X : Type u)
-    [TopologicalSpace X] [T0Space X] [AlexandrovDiscrete X] [SecondCountableTopology X] :
+    [τ : TopologicalSpace X] [T0Space X] [h : AlexandrovDiscrete X] [h' : SecondCountableTopology X] :
     Countable X := by
   sorry
 
+--this can be generalised, see stacks project
 /-- Theorem T651: P208 (NoetherianSpace) => P41 (LocallyConnectedSpace) -/
 instance instLocallyConnectedSpaceOfNoetherianSpace (X : Type u)
     [TopologicalSpace X] [NoetherianSpace X] : LocallyConnectedSpace X := by
