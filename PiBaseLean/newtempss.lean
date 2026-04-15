@@ -235,8 +235,7 @@ namespace PiBase
 
 /-- Theorem T6: P16 (CompactSpace) => P24 (LocallyRelativelyCompactSpace) -/
 instance instLocallyRelativelyCompactSpaceOfCompactSpace (X : Type u)
-    [TopologicalSpace X] [CompactSpace X] :
-    LocallyRelativelyCompactSpace X := by
+    [TopologicalSpace X] [CompactSpace X] : LocallyRelativelyCompactSpace X := by
   sorry
 
 /-- Theorem T21: P26 (SeparableSpace) => P29 (CountableChainCondition) -/
@@ -253,8 +252,7 @@ instance instT3SpaceOfT2SpaceOfCountablyCompactSpaceOfFirstCountableTopology (X 
 
 /-- Theorem T38: P40 (UltraconnectedSpace) => P37 (PrepathConnectedSpace) -/
 instance instPrepathConnectedSpaceOfUltraconnectedSpace (X : Type u)
-    [TopologicalSpace X] [UltraconnectedSpace X] :
-    PrepathConnectedSpace X := by
+    [TopologicalSpace X] [UltraconnectedSpace X] : PrepathConnectedSpace X := by
   sorry
 
 /-- Theorem T43: P2 (T1Space) + P51 (ScatteredSpace) => P47 (TotallyDisconnectedSpace) -/
@@ -271,8 +269,8 @@ section Math
 
 /-- Theorem T27: P23 (WeaklyLocallyCompactSpace) + P134 (R1Space) => P12 (CompletelyRegularSpace) -/
 instance instCompletelyRegularSpaceOfWeaklyLocallyCompactSpaceOfR1Space (X : Type u)
-    [TopologicalSpace X] [WeaklyLocallyCompactSpace X] [R1Space X] :
-    CompletelyRegularSpace X := by sorry
+    [TopologicalSpace X] [WeaklyLocallyCompactSpace X] [R1Space X] : CompletelyRegularSpace X := by
+  sorry
 
 /-- Theorem T51: P39 (PreirreducibleSpace) => P41 (LocallyConnectedSpace) -/
 instance instLocallyConnectedSpaceOfPreirreducibleSpace (X : Type u)
@@ -290,15 +288,20 @@ instance instIsCompletelyMetrizableSpaceOfWeaklyLocallyCompactSpaceOfMetrizableS
 instance instExtremallyDisconnectedOfPreirreducibleSpace (X : Type u)
     [TopologicalSpace X] [h : PreirreducibleSpace X] : ExtremallyDisconnected X where
   open_closure U hU := by
-    have := h.isPreirreducible_univ
-    unfold IsPreirreducible at this
-    sorry
+    by_cases! Un : U = ∅
+    · simp_all
+    · exact ((preirreducibleSpace_iff_open_dense X).mp h hU Un).closure_eq ▸ isOpen_univ
 
 /-- Theorem T97: P49 (ExtremallyDisconnected) + P36 (PreconnectedSpace)
 => P39 (PreirreducibleSpace) -/
 instance instPreirreducibleSpaceOfExtremallyDisconnectedOfPreconnectedSpace (X : Type u)
-    [TopologicalSpace X] [ExtremallyDisconnected X] [PreconnectedSpace X] :
-    PreirreducibleSpace X := sorry
+    [TopologicalSpace X] [h : ExtremallyDisconnected X] [h' : PreconnectedSpace X] :
+    PreirreducibleSpace X := by
+  apply (preirreducibleSpace_iff_open_dense X).mpr (fun s hs sn ↦ ?_)
+  apply dense_iff_closure_eq.mpr
+  cases preconnectedSpace_iff_clopen.mp h' (closure s) ⟨isClosed_closure, h.open_closure s hs⟩
+  · simp_all
+  · assumption
 
 /-- Theorem T223: P19 (CountablyCompactSpace) + P79 (SequentialSpace) => P20 (SeqCompactSpace) -/
 instance instSeqCompactSpaceOfCountablyCompactSpaceOfSequentialSpace (X : Type u)
@@ -315,6 +318,7 @@ instance instPerfectlyNormalSpaceOfRegularSpaceOfHereditarilyLindelofSpace (X : 
 /-- Theorem T262: P134 (R1Space) + P39 (PreirreducibleSpace) => P129 (IndiscreteTopology) -/
 instance instIndiscreteTopologyOfR1SpaceOfPreirreducibleSpace (X : Type u)
     [TopologicalSpace X] [R1Space X] [PreirreducibleSpace X] : IndiscreteTopology X := by
+  apply (TopologicalSpace.indiscrete_iff_isOpen_iff_empty_or_univ X).mpr
   sorry
 
 /-- Theorem T302: P57 (Countable) + P16 (CompactSpace) + P134 (R1Space)
