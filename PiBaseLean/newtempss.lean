@@ -238,10 +238,37 @@ instance instLocallyRelativelyCompactSpaceOfCompactSpace (X : Type u)
     [TopologicalSpace X] [CompactSpace X] : LocallyRelativelyCompactSpace X := by
   sorry
 
+--proof can probably be golfed a lot
 /-- Theorem T21: P26 (SeparableSpace) => P29 (CountableChainCondition) -/
 instance instCountableChainConditionOfSeparableSpace (X : Type u)
-    [TopologicalSpace X] [SeparableSpace X] : CountableChainCondition X := by
-  sorry
+    [TopologicalSpace X] [h : SeparableSpace X] : CountableChainCondition X := by
+  refine (countableChainCondition_iff_ex_nonempty_chain X).mpr (fun S Sd So Sn ↦ ?_)
+  obtain ⟨r, rc, dr⟩ := h.exists_countable_dense
+  by_contra h0
+  have : ∃ i ∈ S, Disjoint i r := by
+    contrapose! h0
+    rw [← countable_coe_iff] at rc ⊢
+    let f : S → r := fun ⟨i, iS⟩ ↦
+      letI hi := not_disjoint_iff_nonempty_inter.1 (h0 i iS)
+      ⟨hi.choose, mem_of_mem_inter_right hi.choose_spec⟩
+    apply Injective.countable (f := f)
+    intro ⟨a, ha⟩ ⟨b, hb⟩ ab
+    simp only [Subtype.mk.injEq]
+    have (u : S) : (f u).val ∈ u.val :=
+      mem_of_mem_inter_left (not_disjoint_iff_nonempty_inter.1 (h0 u.val u.prop)).choose_spec
+    have ha' := this ⟨a, ha⟩
+    have hb' := this ⟨b, hb⟩
+    by_contra! h1
+    have := disjoint_of_subset_left (fun ⦃a_1⦄ a ↦ a) <| Sd ha hb h1
+    contrapose! this
+    apply not_disjoint_iff_nonempty_inter.mpr
+    refine ⟨f ⟨a, ha⟩, ?_⟩
+    simp_all
+  obtain ⟨i, iS, ri⟩ := this
+  have iN : i.Nonempty := by
+    contrapose! Sn
+    rwa [← Sn]
+  exact Set.not_disjoint_iff_nonempty_inter.mpr (dense_iff_inter_open.mp dr i (So i iS) iN) ri
 
 /-- Theorem T28: P3 (T2Space) + P19 (CountablyCompactSpace) + P28 (FirstCountableTopology)
 => P5 (T3Space) -/
@@ -266,21 +293,6 @@ instance instFunctionallyT2SpaceOfTotallySeparatedSpace (X : Type u)
   sorry
 
 section Math
-
-/-- Theorem T27: P23 (WeaklyLocallyCompactSpace) + P134 (R1Space) => P12 (CompletelyRegularSpace) -/
-instance instCompletelyRegularSpaceOfWeaklyLocallyCompactSpaceOfR1Space (X : Type u)
-    [TopologicalSpace X] [WeaklyLocallyCompactSpace X] [R1Space X] : CompletelyRegularSpace X := by
-  sorry
-
---make lemma for this
-/-- Theorem T51: P39 (PreirreducibleSpace) => P41 (LocallyConnectedSpace) -/
-instance instLocallyConnectedSpaceOfPreirreducibleSpace (X : Type u)
-    [TopologicalSpace X] [h : PreirreducibleSpace X] : LocallyConnectedSpace X := by
-  refine locallyConnectedSpace_iff_connected_subsets.mpr (fun x U hU ↦ ?_)
-  refine ⟨interior U, by simpa, ?_, interior_subset⟩
-  #check IsPreirreducible.isPreconnected
-  #check IsPreirreducible.open_subset
-  sorry
 
 /-- Theorem T65: P23 (WeaklyLocallyCompactSpace) + P53 (MetrizableSpace)
 => P55 (IsCompletelyMetrizableSpace) -/
@@ -354,8 +366,8 @@ instance instIndiscreteTopologyOfQuasiSoberOfPreirreducibleSpaceOfR0Space (X : T
 /-- Theorem T557: P1 (T0Space) + P90 (AlexandrovDiscrete) + P27 (SecondCountableTopology)
 => P57 (Countable) -/
 instance instCountableOfT0SpaceOfAlexandrovDiscreteOfSecondCountableTopology (X : Type u)
-    [τ : TopologicalSpace X] [T0Space X] [h : AlexandrovDiscrete X] [h' : SecondCountableTopology X] :
-    Countable X := by
+    [τ : TopologicalSpace X] [T0Space X] [h : AlexandrovDiscrete X]
+    [h' : SecondCountableTopology X] : Countable X := by
   sorry
 
 --this can be generalised, see stacks project
@@ -370,5 +382,10 @@ instance instSeqCompactSpaceOfCompactSpaceOfHereditarilyLindelofSpace (X : Type 
   sorry
 
 end Math
+
+/-- Theorem T510: P147 (P space) + P191 (Has points Gδ) => P52 (Discrete) -/
+instance instDiscreteTopologyOfPSpaceOfHasGδSingletons (X : Type u)
+    [TopologicalSpace X] [h : PSpace X] [h' : HasGδSingletons X] : DiscreteTopology X :=
+  discreteTopology_iff_isOpen_singleton.mpr (fun a ↦ h.isGδ_open <| h'.isGδ_singleton a)
 
 end PiBase
