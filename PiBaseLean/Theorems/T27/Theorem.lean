@@ -26,8 +26,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T27 : P23 + P134 ≤ P12 := fun X _ _ ↦ by
-  simp_all only [P23, 134, P12]
-  infer_instance
+theorem T27 : P23 ⊓ P134 ≤ P12 :=
+  fun X _ ⟨h1, h2⟩ ↦ @instCompletelyRegularSpaceOfWeaklyLocallyCompactSpaceOfR1Space X _ h1 h2
 
 end PiBase.Formal
