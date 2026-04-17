@@ -513,6 +513,8 @@ import PiBaseLean.Theorems.T295.Theorem
 import PiBaseLean.Theorems.T3.Theorem
 import PiBaseLean.Theorems.T303.Theorem
 import PiBaseLean.Theorems.T304.Theorem
+import PiBaseLean.Theorems.T308.BackgroundLemmas
+import PiBaseLean.Theorems.T308.Theorem
 import PiBaseLean.Theorems.T31.Theorem
 import PiBaseLean.Theorems.T316.Theorem
 import PiBaseLean.Theorems.T32.Theorem
@@ -664,4 +666,3 @@ import PiBaseLean.Theorems.T96.Theorem
 import PiBaseLean.Theorems.T97.Theorem
 import PiBaseLean.Theorems.T98.Theorem
 import PiBaseLean.Theorems.T99.Theorem
-import PiBaseLean.newtempss

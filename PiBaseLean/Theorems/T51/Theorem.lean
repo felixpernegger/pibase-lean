@@ -22,6 +22,6 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T78 : P39 ≤ P41 := instLocallyConnectedSpaceOfPreirreducibleSpace
+theorem T51 : P39 ≤ P41 := instLocallyConnectedSpaceOfPreirreducibleSpace
 
 end PiBase.Formal
