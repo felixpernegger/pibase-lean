@@ -441,6 +441,7 @@ import PiBaseLean.Theorems.T13.Theorem
 import PiBaseLean.Theorems.T136.Theorem
 import PiBaseLean.Theorems.T139.Theorem
 import PiBaseLean.Theorems.T14.Theorem
+import PiBaseLean.Theorems.T143.Theorem
 import PiBaseLean.Theorems.T144.Theorem
 import PiBaseLean.Theorems.T146.Theorem
 import PiBaseLean.Theorems.T147.Theorem
@@ -513,6 +514,7 @@ import PiBaseLean.Theorems.T295.Theorem
 import PiBaseLean.Theorems.T3.Theorem
 import PiBaseLean.Theorems.T303.Theorem
 import PiBaseLean.Theorems.T304.Theorem
+import PiBaseLean.Theorems.T306.Theorem
 import PiBaseLean.Theorems.T308.BackgroundLemmas
 import PiBaseLean.Theorems.T308.Theorem
 import PiBaseLean.Theorems.T31.Theorem
@@ -537,6 +539,7 @@ import PiBaseLean.Theorems.T360.Theorem
 import PiBaseLean.Theorems.T361.Theorem
 import PiBaseLean.Theorems.T362.Theorem
 import PiBaseLean.Theorems.T37.Theorem
+import PiBaseLean.Theorems.T38.Theorem
 import PiBaseLean.Theorems.T39.Theorem
 import PiBaseLean.Theorems.T390.Theorem
 import PiBaseLean.Theorems.T391.Theorem
@@ -549,6 +552,7 @@ import PiBaseLean.Theorems.T410.Theorem
 import PiBaseLean.Theorems.T419.Theorem
 import PiBaseLean.Theorems.T42.Theorem
 import PiBaseLean.Theorems.T428.Theorem
+import PiBaseLean.Theorems.T43.Theorem
 import PiBaseLean.Theorems.T430.Theorem
 import PiBaseLean.Theorems.T431.Theorem
 import PiBaseLean.Theorems.T440.Theorem
@@ -564,12 +568,16 @@ import PiBaseLean.Theorems.T457.Theorem
 import PiBaseLean.Theorems.T46.Theorem
 import PiBaseLean.Theorems.T468.Theorem
 import PiBaseLean.Theorems.T47.Theorem
+import PiBaseLean.Theorems.T48.Theorem
 import PiBaseLean.Theorems.T480.Theorem
 import PiBaseLean.Theorems.T481.Theorem
 import PiBaseLean.Theorems.T482.Theorem
 import PiBaseLean.Theorems.T483.Theorem
 import PiBaseLean.Theorems.T484.Theorem
 import PiBaseLean.Theorems.T49.Theorem
+import PiBaseLean.Theorems.T500.Lemmas
+import PiBaseLean.Theorems.T500.Theorem
+import PiBaseLean.Theorems.T501.Theorem
 import PiBaseLean.Theorems.T502.Theorem
 import PiBaseLean.Theorems.T504.Theorem
 import PiBaseLean.Theorems.T505.Theorem
@@ -587,6 +595,8 @@ import PiBaseLean.Theorems.T559.Theorem
 import PiBaseLean.Theorems.T561.Theorem
 import PiBaseLean.Theorems.T564.Theorem
 import PiBaseLean.Theorems.T571.Theorem
+import PiBaseLean.Theorems.T572.Theorem
+import PiBaseLean.Theorems.T573.Theorem
 import PiBaseLean.Theorems.T58.Theorem
 import PiBaseLean.Theorems.T583.Theorem
 import PiBaseLean.Theorems.T584.Theorem
@@ -639,6 +649,7 @@ import PiBaseLean.Theorems.T770.Theorem
 import PiBaseLean.Theorems.T779.Theorem
 import PiBaseLean.Theorems.T78.Theorem
 import PiBaseLean.Theorems.T782.Theorem
+import PiBaseLean.Theorems.T790.Theorem
 import PiBaseLean.Theorems.T8.Theorem
 import PiBaseLean.Theorems.T802.Theorem
 import PiBaseLean.Theorems.T803.Theorem
@@ -657,6 +668,7 @@ import PiBaseLean.Theorems.T861.Theorem
 import PiBaseLean.Theorems.T862.Theorem
 import PiBaseLean.Theorems.T863.Theorem
 import PiBaseLean.Theorems.T864.Theorem
+import PiBaseLean.Theorems.T865.Theorem
 import PiBaseLean.Theorems.T87.Theorem
 import PiBaseLean.Theorems.T88.Theorem
 import PiBaseLean.Theorems.T89.Theorem

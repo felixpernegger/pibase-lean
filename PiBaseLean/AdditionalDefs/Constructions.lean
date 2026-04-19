@@ -67,6 +67,15 @@ def InseparableComponent (x : X) : Set X :=
 theorem mem_self_inseparableComponent (x : X) : x ∈ InseparableComponent x :=
   SeparationQuotient.mk_eq_mk.mp rfl
 
+@[simp]
+theorem inseparableComponent_nonempty {x : X} : (InseparableComponent x).Nonempty :=
+  .intro x <| mem_self_inseparableComponent x
+
+theorem inseparableComponent_eq {x y : X} (h : Inseparable x y) :
+    InseparableComponent x = InseparableComponent y := by
+  ext
+  exact ⟨fun xz ↦ h.symm.trans xz, fun yz ↦ h.trans yz⟩
+
 /-- A space is T₀ iff all its inseparable components are trivial. -/
 theorem t0Space_iff_inseparableComponent_eq_singleton : T0Space X ↔
     ∀ x : X, InseparableComponent x = {x} := by
@@ -94,6 +103,23 @@ theorem inseparableComponent_of_closed {x : X} (h : IsClosed {x}) :
   ext y
   refine ⟨fun e ↦ ?_, fun h ↦ h ▸ mem_self_inseparableComponent y⟩
   exact (Inseparable.mem_closed_iff e h).mp rfl
+
+theorem inseparableComponent_subset_open {x : X} {s : Set X} (hs : IsOpen s) (xs : x ∈ s) :
+    InseparableComponent x ⊆ s := fun _ h ↦ (Inseparable.mem_open_iff h hs).mp xs
+
+theorem inseparableComponent_subset_closed {x : X} {s : Set X} (hs : IsClosed s) (xs : x ∈ s) :
+    InseparableComponent x ⊆ s := fun _ h ↦ (Inseparable.mem_closed_iff h hs).mp xs
+
+/-- The inseparable component is irreducible. -/
+theorem IsIrreducible.inseparableComponent (x : X) : IsIrreducible (InseparableComponent x) := by
+  refine ⟨inseparableComponent_nonempty, ?_⟩
+  intro U V Uo Vo Ux Vx
+  refine ⟨x, ?_, ?_, ?_⟩
+  · exact mem_self_inseparableComponent x
+  · obtain ⟨_, px, pU⟩ := Ux
+    exact (Inseparable.mem_open_iff px Uo).mpr pU
+  · obtain ⟨_, px, pV⟩ := Vx
+    exact (Inseparable.mem_open_iff px Vo).mpr pV
 
 --to mathlib
 theorem subsingleton_iff_singleton_univ {α : Type u} (a : α) :
