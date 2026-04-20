@@ -40,8 +40,7 @@ instance instHasGδSingletonsOfLocallyCountableSpaceOfT1Space (X : Type u)
     · let f : (s \ {x} : Set X) → Set X := fun y ↦
         (t1Space_iff_exists_open.mp h' fun (a : x = y) ↦ y.2.2 a.symm).choose ∩ (interior s)
       have : Countable (s \ {x} : Set X) := countable_coe_iff.mpr <| Countable.diff sc
-      suffices T ⊆ range f by
-        apply Countable.subset (countable_range f) this
+      suffices T ⊆ range f from (countable_range f).mono this
       intro t ⟨z, zs, xz, ht⟩
       simp only [mem_range, Subtype.exists, mem_diff, mem_singleton_iff, f]
       refine ⟨z, ⟨zs, xz.symm⟩, ?_⟩

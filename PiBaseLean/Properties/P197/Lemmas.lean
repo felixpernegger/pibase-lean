@@ -22,7 +22,7 @@ theorem hasCountableSpread_iff_discrete_countable :
     calc
       _ < sSup {t | ∃ D : Set X, #↑D = t ∧ IsDiscrete D} := by
           refine (lt_csSup_iff ?_ ?_).mpr ?_
-          · exact bddAbove_spread X
+          · exact ⟨_, upperBounds_spread X⟩
           · exact ⟨0, ∅, by simp [DiscreteTopology.isDiscrete]⟩
           · simp only [mem_setOf_eq, ↓existsAndEq, true_and]
             refine ⟨s, hs, ?_⟩

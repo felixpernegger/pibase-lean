@@ -1,6 +1,8 @@
 module
 
-public import Mathlib
+public import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
+public import Mathlib.Topology.GDelta.MetrizableSpace
+public import Mathlib.Topology.Metrizable.Uniformity
 
 @[expose] public section
 
@@ -26,8 +28,7 @@ def IsCozero (s : Set X) : Prop :=
   ∃ f : C(X, ℝ), f.toFun ⁻¹' {0}ᶜ = s
 
 /-- A cozero set is open. -/
-theorem IsCozero.IsOpen {s : Set X} (hs : IsCozero s) :
-    IsOpen s := by
+theorem IsCozero.isOpen {s : Set X} (hs : IsCozero s) : IsOpen s := by
   obtain ⟨f, hf⟩ := hs
   rw [← hf]
   apply Continuous.isOpen_preimage f.continuous_toFun {0}ᶜ
@@ -53,7 +54,7 @@ def IsRegularOpen (s : Set X) : Prop :=
   interior (closure s) = s
 
 /-- A regular open set is open -/
-theorem IsRegularOpen.IsOpen {s : Set X} (hs : IsRegularOpen s) : IsOpen s := hs ▸ isOpen_interior
+theorem IsRegularOpen.isOpen {s : Set X} (hs : IsRegularOpen s) : IsOpen s := hs ▸ isOpen_interior
 
 --TODO: Better to require `X` connected in this def?
 /-- A point *cut point* `p` in a space, is a space such that `X \ {p}` is disconnected. -/
@@ -161,7 +162,7 @@ if for any two point in `s` there is an injective path in `x` joining them. -/
 def IsInjPathConnected (s : Set X) :=
   Pairwise fun x y : X ↦ x ∈ s → y ∈ s → ∃ f : Path x y, Injective f ∧ range f ⊆ s
 
-/-- An injectivley path connected set is path connected. -/
+/-- An injectively path connected set is path connected. -/
 theorem IsInjPathConnected.isPathConnected {s : Set X} (h : IsInjPathConnected s)
     (hs : s.Nonempty) : IsPathConnected s := by
   rw [isPathConnected_iff]

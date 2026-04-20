@@ -94,35 +94,15 @@ theorem StarFinite.locallyFinite {U : ι → Set X} (h : StarFinite U)
   dsimp at hi
   exact ⟨U i, (IsOpen.mem_nhds_iff (U_open i)).mpr <| hi ▸ xs, h i⟩
 
---TODO: Add to mathlib
-instance _root.Countable.Set.countable_sep (s : Set ι) (p : ι → Prop) [h : Countable s] :
-    Countable ({ a ∈ s | p a } : Set ι) := by
-  obtain ⟨f, hf⟩ := (countable_iff_exists_injective s).mp h
-  refine (countable_iff_exists_injective ↑{a | a ∈ s ∧ p a}).mpr ?_
-  refine ⟨fun x ↦ f ⟨x.val, x.2.1⟩, ?_⟩
-  apply Injective.comp hf
-  intro x y xy
-  simp only [mem_setOf_eq, Subtype.mk.injEq] at xy
-  ext
-  exact xy
-
---TODO: Add to mathlib
-theorem _root_.Countable.subset {s : Set ι} (hs : s.Countable) {t : Set ι} (h : t ⊆ s) :
-    t.Countable := by
-  have := hs.to_subtype
-  rw [← sep_eq_of_subset h]
-  change Countable {x | x ∈ s ∧ x ∈ t}
-  infer_instance
-
 --to mathlib
 theorem _root_.Set.Countable.diff {α : Type u} {s t : Set α} (hs : s.Countable) :
-    (s \ t).Countable := Countable.subset hs diff_subset
+    (s \ t).Countable := hs.mono diff_subset
 
 /-- A locally countable collection of sets is point countable. -/
 theorem LocallyCountable.pointCountable {U : ι → Set X} (h : LocallyCountable U) :
     PointCountable U := fun x ↦ by
   obtain ⟨t, hxt, ht⟩ := h x
-  exact Countable.subset ht <| fun _ h ↦ ⟨x, h, mem_of_mem_nhds hxt⟩
+  exact ht.mono fun i h ↦ (⟨x, h, mem_of_mem_nhds hxt⟩ : (U i ∩ t).Nonempty)
 
 /-- A network of a topological space. -/
 def IsNetwork (f : ι → Set X) : Prop :=

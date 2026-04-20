@@ -18,7 +18,7 @@ instance instT1SpaceOfSemiT2Space (X : Type u)
     T1Space X := by
   apply (t1Space_iff_exists_open).mpr (fun x y xy ↦ ?_)
   obtain ⟨s, hs, xs, ys⟩ := h.ex_regular_open xy
-  exact ⟨s, hs.IsOpen, xs, ys⟩
+  exact ⟨s, hs.isOpen, xs, ys⟩
 
 end PiBase
 

@@ -16,7 +16,7 @@ namespace PiBase
 instance instBasicallyDisconnectedSpaceOfExtremallyDisconnected (X : Type u)
     [TopologicalSpace X] [h : ExtremallyDisconnected X] :
     BasicallyDisconnectedSpace X where
-  basically_disconnected U hU := h.open_closure U hU.IsOpen
+  basically_disconnected U hU := h.open_closure U hU.isOpen
 
 end PiBase
 
