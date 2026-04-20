@@ -114,6 +114,10 @@ theorem _root_.Countable.subset {s : Set ι} (hs : s.Countable) {t : Set ι} (h 
   change Countable {x | x ∈ s ∧ x ∈ t}
   infer_instance
 
+--to mathlib
+theorem _root_.Set.Countable.diff {α : Type u} {s t : Set α} (hs : s.Countable) :
+    (s \ t).Countable := Countable.subset hs diff_subset
+
 /-- A locally countable collection of sets is point countable. -/
 theorem LocallyCountable.pointCountable {U : ι → Set X} (h : LocallyCountable U) :
     PointCountable U := fun x ↦ by
