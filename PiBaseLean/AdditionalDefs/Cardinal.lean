@@ -25,6 +25,9 @@ lemma upperBounds_spread :
   simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
   exact fun a x xa _ ↦ xa ▸ mk_set_le x
 
+lemma bddAbove_spread : BddAbove {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsDiscrete D} :=
+  ⟨_, upperBounds_spread X⟩
+
 /-- The spread is less then the cardinality of the space + ℵ₀. -/
 theorem spread_le_card : Spread X ≤ #X + ℵ₀ := by
   unfold Spread
@@ -40,11 +43,15 @@ lemma upperBounds_extent :
   simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
   exact fun a x xa _ _ ↦ xa ▸ mk_set_le x
 
+lemma bddAbove_extent :
+    BddAbove {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsClosed D ∧ IsDiscrete D} :=
+  ⟨_, upperBounds_extent X⟩
+
 /-- The extent of a space is less or equal to the spread. -/
 theorem extent_le_spread : Extent X ≤ Spread X := by
   unfold Extent Spread
   gcongr 3 with t
-  · exact ⟨_, upperBounds_spread X⟩
+  · exact bddAbove_spread X
   exact fun ⟨D, Dt, _, Dd⟩ ↦ ⟨D, Dt, Dd⟩
 
 /-- The extent of a space is at least ℵ₀. -/

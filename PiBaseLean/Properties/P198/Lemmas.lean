@@ -22,7 +22,7 @@ theorem hasCountableExtent_iff_discrete_countable :
     calc
       _ < sSup {t | ∃ D : Set X, #↑D = t ∧ IsClosed D ∧ IsDiscrete D} := by
           refine (lt_csSup_iff ?_ ?_).mpr ?_
-          · exact ⟨_, upperBounds_extent X⟩
+          · exact bddAbove_extent X
           · exact ⟨0, ∅, by simp [DiscreteTopology.isDiscrete]⟩
           · simp only [mem_setOf_eq, ↓existsAndEq, true_and]
             refine ⟨s, ⟨sc, hs⟩, ?_⟩
