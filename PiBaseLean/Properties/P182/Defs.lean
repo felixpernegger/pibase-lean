@@ -1,6 +1,5 @@
 module
 
-public import Mathlib
 public import PiBaseLean.AdditionalDefs.Cover
 public import PiBaseLean.Properties.Bundled.Defs
 

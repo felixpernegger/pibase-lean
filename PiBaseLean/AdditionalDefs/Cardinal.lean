@@ -1,6 +1,7 @@
 module
 
-public import Mathlib
+public import Mathlib.SetTheory.Ordinal.Basic
+public import Mathlib.Topology.Constructions
 
 @[expose] public section
 
@@ -19,40 +20,38 @@ variable (X : Type u) [TopologicalSpace X]
 noncomputable def Spread : Cardinal.{u} :=
   sSup {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsDiscrete D} + ℵ₀
 
-lemma bddAbove_spread : BddAbove {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsDiscrete D} := by
-  use #X
+lemma upperBounds_spread :
+    #X ∈ upperBounds {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsDiscrete D} := by
   simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
   exact fun a x xa _ ↦ xa ▸ mk_set_le x
 
---TODO: golf
+lemma bddAbove_spread : BddAbove {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsDiscrete D} :=
+  ⟨_, upperBounds_spread X⟩
+
 /-- The spread is less then the cardinality of the space + ℵ₀. -/
 theorem spread_le_card : Spread X ≤ #X + ℵ₀ := by
   unfold Spread
   gcongr
-  refine csSup_le' ?_
-  simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
-  intro t s st sd
-  rw [← st]
-  exact mk_set_le s
+  exact csSup_le' (upperBounds_spread X)
 
 /-- Spread of a topological space -/
 noncomputable def Extent : Cardinal.{u} :=
   sSup {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsClosed D ∧ IsDiscrete D} + ℵ₀
 
-lemma bddAbove_extent :
-    BddAbove {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsClosed D ∧ IsDiscrete D} := by
-  use #X
+lemma upperBounds_extent :
+    #X ∈ upperBounds {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsClosed D ∧ IsDiscrete D} := by
   simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
   exact fun a x xa _ _ ↦ xa ▸ mk_set_le x
 
---TODO: golf
+lemma bddAbove_extent :
+    BddAbove {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsClosed D ∧ IsDiscrete D} :=
+  ⟨_, upperBounds_extent X⟩
+
 /-- The extent of a space is less or equal to the spread. -/
 theorem extent_le_spread : Extent X ≤ Spread X := by
   unfold Extent Spread
   gcongr 3 with t
-  · refine ⟨#X, ?_⟩
-    simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
-    exact fun t s st sd ↦ st ▸ mk_set_le s
+  · exact bddAbove_spread X
   exact fun ⟨D, Dt, _, Dd⟩ ↦ ⟨D, Dt, Dd⟩
 
 /-- The extent of a space is at least ℵ₀. -/
@@ -70,25 +69,13 @@ def IsRadiallyClosed {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
 
 /-- A type `α` is denumerable iff `univ : Set α` is denumerable. -/
 lemma Denumerable.Set.univ (α : Type u) :
-    Nonempty (Denumerable α) ↔ Nonempty (Denumerable (@univ α)) := by
-  refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
-  · have := h.some
-    exact Nonempty.intro <| Denumerable.ofEquiv α <| Equiv.Set.univ α
-  · have := h.some
-    exact Nonempty.intro <| Denumerable.ofEquiv _ <| (Equiv.Set.univ α).symm
+    Nonempty (Denumerable α) ↔ Nonempty (Denumerable (@univ α)) :=
+  ⟨.map fun _ ↦ .ofEquiv _ (Equiv.Set.univ α), .map fun _ ↦ .ofEquiv _ ((Equiv.Set.univ α).symm)⟩
 
 /-- If `α : Type u` is countable, it is bijective to some countable `r : Type`. -/
 theorem countable_equiv_type (α : Type u) [h : Countable α] :
     ∃ (ι : Type) (_ : α ≃ ι), Countable ι := by
-  by_cases! f : Finite α
-  · obtain ⟨n, hn⟩ := finite_iff_exists_equiv_fin.mp f
-    refine ⟨Fin n, ?_⟩
-    rw [exists_const]
-    infer_instance
-  let : Nonempty (Denumerable α) := by
-    rw [nonempty_denumerable_iff]
-    exact ⟨h, f⟩
-  have := this.some
-  exact ⟨ℕ, Denumerable.equiv₂ α ℕ, instCountableNat⟩
+  rcases Small.equiv_small.{0} (α := α) with ⟨ι, ⟨φ⟩⟩
+  refine ⟨ι, φ, .of_equiv α φ⟩
 
 end PiBase

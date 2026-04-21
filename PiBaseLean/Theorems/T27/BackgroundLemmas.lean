@@ -1,10 +1,10 @@
 module
 
+public import Mathlib.Topology.Compactification.OnePoint.Basic
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P23.Defs
 public import PiBaseLean.Properties.P134.Defs
 public import PiBaseLean.Properties.P12.Lemmas
-public import Mathlib
 
 @[expose] public section
 
@@ -79,7 +79,7 @@ theorem OnePoint.isCompact_of_closed {X : Type u} [TopologicalSpace X] {s : Set 
   rw [← image_preimage_eq_of_subset <| subset_range_some hi]
   exact IsCompact.image hs.2 OnePoint.continuous_coe
 
-def OnePoint.SeparationQuotient (X : Type u) [TopologicalSpace X] :
+def OnePoint.SeparationQuotientHomeomorph (X : Type u) [TopologicalSpace X] :
     SeparationQuotient (OnePoint X) ≃ₜ OnePoint (SeparationQuotient X) where
   toFun := SeparationQuotient.lift ofSeparationQuotient ofSeparationQuotient_wellDefined
   invFun x := match x with
@@ -129,8 +129,9 @@ def OnePoint.SeparationQuotient (X : Type u) [TopologicalSpace X] :
 
 instance OnePoint.instR0Space {X : Type u}
     [TopologicalSpace X] [t : R0Space X] : R0Space (OnePoint X) :=
-  have : T1Space (OnePoint (_root_.SeparationQuotient X)) :=
-    @OnePoint.instT1Space (_root_.SeparationQuotient X) _ <| SeparationQuotient.t1Space_iff.mpr t
-  SeparationQuotient.t1Space_iff.mp <| Homeomorph.t1Space (OnePoint.SeparationQuotient X).symm
+  have : T1Space (OnePoint (SeparationQuotient X)) :=
+    @OnePoint.instT1Space (SeparationQuotient X) _ <| SeparationQuotient.t1Space_iff.mpr t
+  SeparationQuotient.t1Space_iff.mp <|
+    Homeomorph.t1Space (OnePoint.SeparationQuotientHomeomorph X).symm
 
 end PiBase

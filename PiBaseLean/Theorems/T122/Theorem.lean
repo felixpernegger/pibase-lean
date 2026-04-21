@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /- Theorem T122: P17 (SigmaCompactSpace) => P18 (LindelofSpace) -/
-#check _root_.instLindelofSpaceOfSigmaCompactSpace
+#check instLindelofSpaceOfSigmaCompactSpace
 
 end PiBase
 
