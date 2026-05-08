@@ -24,7 +24,7 @@ theorem instSequentialSpaceOfWeaklyFirstCountableSpace (X : Type u)
   obtain ⟨x, hx₁, hx₂⟩ := hs
   choose y hy using hx₂
   simp only [IsSeqClosed, not_forall]
-  refine ⟨y, x, fun n ↦  (hy n).right, ?_, hx₁⟩
+  refine ⟨y, x, fun n ↦ (hy n).right, ?_, hx₁⟩
   rw [tendsto_atTop_nhds]
   intro U hx hU
   obtain ⟨N, hN⟩ := (hV₂ _ |>.mp hU) x hx
