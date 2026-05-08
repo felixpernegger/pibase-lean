@@ -18,15 +18,14 @@ instance instPseudocompactSpaceOfCountablyCompactSpace
   pseudocompact f hf := by
     /- have countableOpenCover := isCountablyCompact_iff_countable_open_cover.mp  -/
     let S (n : ℕ) : Set ℝ := Set.Ioo (-n : ℝ) (n : ℝ)
-    let preim (n : ℕ) : Set X := Set.preimage f (S n)
-    let hh := isOpen_Ioo (a := (-1 : ℝ)) (b := (1 : ℝ))
+    let preimS (n : ℕ) : Set X := Set.preimage f (S n)
     let Sn_open (n : ℕ) : IsOpen (S n) := by
       unfold S
       exact isOpen_Ioo
-    let preim_open (n : ℕ) : IsOpen (preim n) :=
+    let preim_open (n : ℕ) : IsOpen (preimS n) :=
       (continuous_def.mp hf) (S n) (Sn_open n)
 
-    have S_union : (Set.univ : Set ℝ) = (⋃ (i : ℕ), S i) := by
+    have S_union_eq_R : (Set.univ : Set ℝ) = (⋃ (i : ℕ), S i) := by
       ext x
       constructor
       · simp only [mem_univ, mem_iUnion, forall_const]
@@ -46,36 +45,55 @@ instance instPseudocompactSpaceOfCountablyCompactSpace
         -- AI stuff ends
 
       · simp
-
-    let h_cover : (Set.univ : Set X) ⊆ ⋃ (i : ℕ), preim i := by sorry
+    
+    let h_cover : (Set.univ : Set X) ⊆ ⋃ (i : ℕ), preimS i := by
+      intro x hx
+      clear hx
+      unfold preimS
+      rw [← Set.preimage_iUnion, Set.mem_preimage]
+      simp [← S_union_eq_R]
 
     have X_IsCountablyCompact : IsCountablyCompact (Set.univ : Set X) := CountablyCompactSpace.isCountablyCompact_univ
-    have finite_subcover_ofX := isCountablyCompact_iff_countable_open_cover.mp X_IsCountablyCompact preim preim_open h_cover
+    have finite_subcover_ofX := isCountablyCompact_iff_countable_open_cover.mp
+      X_IsCountablyCompact preimS preim_open h_cover
     obtain ⟨t, ht⟩ := finite_subcover_ofX
 
-    have ht_nonempty : t.Nonempty := sorry
-    /- let t_max : ℕ := t.max' ht_nonempty -/
+    let St_union := ⋃ i ∈ t, S i
+    have St_union_subset_range: range f ⊆ St_union := by 
+      rw [Set.range_subset_iff]
+      intro x
+      unfold St_union
+      have hx := ht (Set.mem_univ x)
 
-    /- have t_max_covers_X : ⋃ (i ∈ t), S i ⊆ S t_max := by -/
-    /-   intro x hx -/
-    /-   unfold S t_max -/
+      /- rw [Finset.mem_biUnion] at hx -/
 
-    /- have h_range : range f ⊆ (S t_max) := by -/
-    /-   intro y hy -/
-    /-   unfold range at hy -/
-      
-      
-      
+      simp only [mem_iUnion, exists_prop] at hx ⊢
+      unfold preimS at hx
+      obtain ⟨i, hi1, hi2⟩ := hx
+      use i
+      simpa [hi1]
 
-      sorry
-    
+    constructor
+    · apply BddBelow.mono St_union_subset_range
+      unfold St_union
+      conv =>
+        right
+        right
+        intro i
+        rw [← Finset.mem_coe]
+      rw [Set.Finite.bddBelow_biUnion t.finite_toSet]
+      simp [S]
 
+    · apply BddAbove.mono St_union_subset_range
+      unfold St_union
+      conv =>
+        right
+        right
+        intro i
+        rw [← Finset.mem_coe]
 
-
-    
-
-
-    sorry
+      rw [Set.Finite.bddAbove_biUnion t.finite_toSet]
+      simp [S]
 
 end PiBase
 
