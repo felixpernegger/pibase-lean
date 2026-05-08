@@ -1,9 +1,9 @@
 module
 
+public import Mathlib.Topology.Constructions
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P52.Defs
 public import PiBaseLean.Properties.P219.Defs
-public import Mathlib
 
 @[expose] public section
 
