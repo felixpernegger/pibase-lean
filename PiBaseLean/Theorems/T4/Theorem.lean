@@ -1,9 +1,9 @@
 module
 
+public import Mathlib.Analysis.Normed.Order.Lattice
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P19.Defs
 public import PiBaseLean.Properties.P22.Defs
-public import Mathlib
 
 @[expose] public section
 
@@ -11,89 +11,28 @@ open Topology Set Function TopologicalSpace
 
 namespace PiBase
 
-/- Theorem 4, countably compact implies pseudocompact -/
-instance instPseudocompactSpaceOfCountablyCompactSpace
-    {X : Type*} [TopologicalSpace X] [h : CountablyCompactSpace X] :
+/- Theorem T4: P19 (CountablyCompactSpace) => P22 (PseudocompactSpace) -/
+theorem instPseudocompactSpaceOfCountablyCompactSpace
+    {X : Type*} [TopologicalSpace X] [hX : CountablyCompactSpace X] :
     PseudocompactSpace X where
   pseudocompact f hf := by
-    /- have countableOpenCover := isCountablyCompact_iff_countable_open_cover.mp  -/
-    let S (n : ℕ) : Set ℝ := Set.Ioo (-n : ℝ) (n : ℝ)
-    let preimS (n : ℕ) : Set X := Set.preimage f (S n)
-    let Sn_open (n : ℕ) : IsOpen (S n) := by
-      unfold S
-      exact isOpen_Ioo
-    let preim_open (n : ℕ) : IsOpen (preimS n) :=
-      (continuous_def.mp hf) (S n) (Sn_open n)
-
-    have S_union_eq_R : (Set.univ : Set ℝ) = (⋃ (i : ℕ), S i) := by
+    let S (n : ℕ) := Set.Ioo (-n : ℝ) n
+    have preims_open n : IsOpen (f⁻¹' S n) := by
+      simp [S, hf, isOpen_Ioo, continuous_def.mp]
+    have S_union_eq_R : univ = ⋃ i, S i := by
       ext x
-      constructor
-      · simp only [mem_univ, mem_iUnion, forall_const]
-        use ⌈|x|⌉₊ + 1
-        unfold S
-        simp only [Set.mem_Ioo]
-
-        -- AI stuff
-        have h1 : |x| < ↑(⌈|x|⌉₊ + 1) := by
-          calc |x| ≤ ↑⌈|x|⌉₊ := Nat.le_ceil |x|
-          _ < ↑(⌈|x|⌉₊ + 1) := by norm_num
-        constructor
-        · -- goal: -↑(⌈|x|⌉₊ + 1) < x
-          linarith [neg_abs_le x]
-        · -- goal: x < ↑(⌈|x|⌉₊ + 1)
-          linarith [le_abs_self x]
-        -- AI stuff ends
-
-      · simp
-    
-    let h_cover : (Set.univ : Set X) ⊆ ⋃ (i : ℕ), preimS i := by
-      intro x hx
-      clear hx
-      unfold preimS
-      rw [← Set.preimage_iUnion, Set.mem_preimage]
-      simp [← S_union_eq_R]
-
-    have X_IsCountablyCompact : IsCountablyCompact (Set.univ : Set X) := CountablyCompactSpace.isCountablyCompact_univ
-    have finite_subcover_ofX := isCountablyCompact_iff_countable_open_cover.mp
-      X_IsCountablyCompact preimS preim_open h_cover
-    obtain ⟨t, ht⟩ := finite_subcover_ofX
-
-    let St_union := ⋃ i ∈ t, S i
-    have St_union_subset_range: range f ⊆ St_union := by 
-      rw [Set.range_subset_iff]
-      intro x
-      unfold St_union
-      have hx := ht (Set.mem_univ x)
-
-      /- rw [Finset.mem_biUnion] at hx -/
-
-      simp only [mem_iUnion, exists_prop] at hx ⊢
-      unfold preimS at hx
-      obtain ⟨i, hi1, hi2⟩ := hx
-      use i
-      simpa [hi1]
-
-    constructor
-    · apply BddBelow.mono St_union_subset_range
-      unfold St_union
-      conv =>
-        right
-        right
-        intro i
-        rw [← Finset.mem_coe]
-      rw [Set.Finite.bddBelow_biUnion t.finite_toSet]
-      simp [S]
-
-    · apply BddAbove.mono St_union_subset_range
-      unfold St_union
-      conv =>
-        right
-        right
-        intro i
-        rw [← Finset.mem_coe]
-
-      rw [Set.Finite.bddAbove_biUnion t.finite_toSet]
-      simp [S]
+      simp only [mem_univ, mem_iUnion, mem_Ioo, true_iff, S]
+      have ⟨y, hy⟩ := exists_nat_gt |x|
+      exact ⟨y, abs_lt.mp hy⟩
+    have preims_cover_X : univ ⊆ ⋃ i, f⁻¹' S i := by
+      simp [← Set.preimage_iUnion, ← S_union_eq_R]
+    have ⟨t, ht⟩ := isCountablyCompact_iff_countable_open_cover.mp
+      hX.isCountablyCompact_univ _ preims_open preims_cover_X
+    have hRange: range f ⊆ ⋃ i ∈ t, S i := by 
+      simpa [← preimage_iUnion] using ht
+    simp [BddBelow.mono hRange, BddAbove.mono hRange,
+      ← Finset.set_biUnion_coe, S,
+      t.finite_toSet.bddBelow_biUnion , t.finite_toSet.bddAbove_biUnion]
 
 end PiBase
 
