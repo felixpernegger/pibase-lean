@@ -16,7 +16,9 @@ namespace PiBase
 instance instPSpaceOfAlexandrovDiscrete (X : Type u)
     [TopologicalSpace X] [AlexandrovDiscrete X] :
     PSpace X where
-  inter_open _ _ _ _ h := isOpen_iInter h
+  isGδ_open _ h :=
+    let ⟨_, hr, _, sc⟩ := h
+    sc ▸ isOpen_sInter hr
 
 end PiBase
 

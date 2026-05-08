@@ -1,6 +1,6 @@
 module
 
-public import Mathlib.Data.Countable.Defs
+public import Mathlib.Data.Set.Countable
 public import Mathlib.Order.BourbakiWitt
 public import Mathlib.Topology.Defs.Basic
 public import PiBaseLean.Properties.Bundled.Defs
@@ -13,8 +13,8 @@ namespace PiBase
 
 /- 29. Countable chain condition -/
 class CountableChainCondition (X : Type*) [TopologicalSpace X] : Prop where
-  countable_chain_condition : ∀ (S : Set (Set X)),
-    S.PairwiseDisjoint id → (∀ s ∈ S, IsOpen s) → Countable S
+  countable_chain_condition : ∀ ⦃S : Set (Set X)⦄,
+    S.PairwiseDisjoint id → (∀ s ∈ S, IsOpen s) → S.Countable
 
 end PiBase
 
