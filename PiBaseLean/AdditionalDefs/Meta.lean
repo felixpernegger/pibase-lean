@@ -42,7 +42,7 @@ theorem IsHomeo.Set.univ (X : Type u) [TopologicalSpace X] : IsHomeo (@univ X) X
     .intro <| Homeomorph.Set.univ X
 
 theorem IsHomeo.funUnique (ι X : Type*) [Unique ι] [TopologicalSpace X] :
-  IsHomeo (ι → X) X := .intro <| _root_.Homeomorph.funUnique ι X
+  IsHomeo (ι → X) X := .intro <| .funUnique ι X
 
 theorem IsHomeo.subset_preimage {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y]
     (f : X ≃ₜ Y) (s : Set Y) : IsHomeo (f ⁻¹' s) s := by
@@ -66,8 +66,10 @@ homeomorphisms over arbitrary universes (which we can not properly quantify),
 i.e. a theorem `Homeomorph.Ex`. Then proving that `Ex` is well-defined can always
 be done in the following way:
 
+```lean
 theorem WellDefined.ex : WellDefined Ex :=
   fun {_ _} _ _ h _ ↦ Homeomorph.ex h.some
+```
 -/
 abbrev WellDefined (P : (X : Type u) → [TopologicalSpace X] → Prop) : Prop :=
   ∀ {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y],
