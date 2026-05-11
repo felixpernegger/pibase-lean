@@ -15,10 +15,9 @@ namespace PiBase
 
 /-- Theorem T817: P52 (DiscreteTopology) => P219 (TorontoSpace) -/
 theorem instTorontoSpaceOfDiscreteTopology (X : Type u)
-    [TopologicalSpace X] [DiscreteTopology X] :
-    TorontoSpace X := by
-  refine ⟨fun _ h ↦ ⟨Cardinal.eq.mp h |>.some, ?_, ?_⟩⟩
-  <;> exact continuous_of_discreteTopology
+    [TopologicalSpace X] [DiscreteTopology X] : TorontoSpace X :=
+  ⟨fun _ h ↦ ⟨Cardinal.eq.mp h |>.some, continuous_of_discreteTopology,
+  continuous_of_discreteTopology⟩⟩
 
 end PiBase
 
