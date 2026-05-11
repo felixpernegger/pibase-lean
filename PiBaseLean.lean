@@ -660,6 +660,7 @@ import PiBaseLean.Theorems.T818.Theorem
 import PiBaseLean.Theorems.T825.Theorem
 import PiBaseLean.Theorems.T834.Theorem
 import PiBaseLean.Theorems.T84.Theorem
+import PiBaseLean.Theorems.T840.Theorem
 import PiBaseLean.Theorems.T85.Theorem
 import PiBaseLean.Theorems.T853.Theorem
 import PiBaseLean.Theorems.T858.Theorem
