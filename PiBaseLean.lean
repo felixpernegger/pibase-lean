@@ -128,6 +128,8 @@ import PiBaseLean.Properties.P16.Lemmas
 import PiBaseLean.Properties.P162.Defs
 import PiBaseLean.Properties.P162.Lemmas
 import PiBaseLean.Properties.P163.Defs
+import PiBaseLean.Properties.P164.Defs
+import PiBaseLean.Properties.P164.Lemmas
 import PiBaseLean.Properties.P165.Defs
 import PiBaseLean.Properties.P165.Lemmas
 import PiBaseLean.Properties.P166.Defs
@@ -428,6 +430,8 @@ import PiBaseLean.Properties.P9.Defs
 import PiBaseLean.Properties.P9.Lemmas
 import PiBaseLean.Properties.P90.Defs
 import PiBaseLean.Properties.P90.Lemmas
+import PiBaseLean.Properties.P91.Defs
+import PiBaseLean.Properties.P91.Lemmas
 import PiBaseLean.Properties.P92.Defs
 import PiBaseLean.Properties.P92.Lemmas
 import PiBaseLean.Properties.P93.Defs

@@ -2,6 +2,7 @@ module
 
 public import Mathlib.SetTheory.Ordinal.Basic
 public import Mathlib.Topology.Constructions
+public import Mathlib.Data.ENNReal.Basic
 
 @[expose] public section
 
@@ -77,5 +78,21 @@ theorem countable_equiv_type (α : Type u) [h : Countable α] :
     ∃ (ι : Type) (_ : α ≃ ι), Countable ι := by
   rcases Small.equiv_small.{0} (α := α) with ⟨ι, ⟨φ⟩⟩
   refine ⟨ι, φ, .of_equiv α φ⟩
+
+section
+
+open Classical in
+noncomputable local instance : SupSet (Fin 2) where
+  sSup s := if 1 ∈ s then 1 else 0
+
+def KAdditive {k : Cardinal.{u}} (f : Set (Iio k) → Fin 2) : Prop :=
+  ∀ (A : Set (Set (Iio k))), (#A < Cardinal.lift.{u + 1, u} k) →
+    (∀ᵉ (i ∈ A) (j ∈ A), i ≠ j → Disjoint i j) →
+      f (sUnion A) = 1 ↔ ∃! s ∈ A, f s = 1
+
+def IsMeasurable (k : Cardinal.{u}) := ℵ₀ < k ∧ ∃ f : Set (Iio k) → Fin 2, KAdditive f ∧
+  (∃ a : Set (Iio k), f a ≠ 0) ∧ ∀ a : Set (Iio k), f a ≤ 1
+
+end
 
 end PiBase
