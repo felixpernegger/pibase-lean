@@ -105,7 +105,10 @@ abbrev AllowedMoves (X : Type u) := List X → Prop
 
 /-- Usually, a game has some "allowed" moves, which the players can do.
 If they make a disallowed move, they lose immediately.
-This auxiliary definition is meant to formalise this behaviour. -/
+This auxiliary definition is meant to formalise this behaviour.
+
+In particle we use this definition to describe the "winning argument" in `G`
+and the allowed moves in `S`. -/
 def Game.ofAllowed (G : Game X) (S : AllowedMoves X) : Game X where
   IsPayoff a :=
     (∀ n : ℕ, ¬ S (List.ofFun a (2 * n + 1)) → ∃ m < n, ¬ S (List.ofFun a (2 * m + 2))) ∧
