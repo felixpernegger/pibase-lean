@@ -23,9 +23,18 @@ open Set Filter Topology
 
 /-- Given some function `f : ℕ → X` and some natural number `n`,
 the list of the form `(f(0), f(1), ..., f(n - 1))`. -/
-def List.ofFun {X : Type u} (f : ℕ → X) : ℕ → List X
+def List.ofFun {α : Type u} (f : ℕ → α) : ℕ → List α
   | 0 => []
   | .succ n => .ofFun f n ++ [f n]
+
+@[simp]
+theorem List.ofFun_length {α : Type u} (f : ℕ → α) (n : ℕ) :
+    (List.ofFun f n).length = n := by
+  induction n with
+   | zero => rfl
+   | succ n ih =>
+    rw [List.ofFun]
+    simpa
 
 def List.ltakeHalf {α : Type u} : List α → ℕ → List α
     | _, 0 => []
@@ -82,7 +91,7 @@ def WinningStrategyB (f : List X → X) : Prop :=
   ∀ b : ℕ → X, (∀ n, b (2 * n + 1) = f (List.ofFun b (2 * n + 1))) → ¬ IsPayoff G b
 
 def MarkovKWinningStrategyB (f : ℕ → List X → X) (k : ℕ) : Prop :=
-  ∀ b : ℕ → X, (∀ n, b (2 * n + 1) = f n (List.rtakeHalf (List.ofFun b (2 * n + 1)) k)) →
+  ∀ b : ℕ → X, (∀ n, b (2 * n + 1) = f n ((List.ofFun b (2 * n + 1)).rtakeHalf k)) →
     ¬ IsPayoff G b
 
 def HasWinningStrategyA : Prop :=
@@ -100,6 +109,17 @@ def HasWinningStrategyB : Prop :=
 on the round number and the k most recent moves by the opponent. -/
 def HasMarkovWinningStrategyB (k : ℕ) : Prop :=
   ∃ f : ℕ → List X → X, MarkovKWinningStrategyB G f k
+
+-- TODO: don't hide the transformation behind existential quantifier
+theorem HasMarkovKWinningStrategyA.HasWinningStrategyA {k : ℕ} (h : HasMarkovWinningStrategyA G k) :
+    HasWinningStrategyA G := by
+  obtain ⟨f, hf⟩ := h
+  refine ⟨fun l ↦ f (l.length / 2) (l.rtakeHalf k), ?_⟩
+  intro b h
+  apply hf
+  intro n
+  rw [h n]
+  simp
 
 abbrev AllowedMoves (X : Type u) := List X → Prop
 
