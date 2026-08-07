@@ -11,7 +11,7 @@ namespace PiBase
 
 /- 160. Strategically k-Menger -/
 class StrategicallyKMengerSpace (X : Type u) [TopologicalSpace X] : Prop where
-  strategically_k_menger : HasMarkovKWinningStrategyB (kMengerGame X) 1
+  strategically_k_menger : HasWinningStrategyB (kMengerGame X)
 
 end PiBase
 
