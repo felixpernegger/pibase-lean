@@ -96,7 +96,7 @@ def HasWinningStrategyA : Prop :=
 
 /-- We say Player A has a k-Markov winning strategy, if they have a winning strategy only depending
 on the round number and the k most recent moves by the opponent. -/
-def HasMarkovWinningStrategyA (k : ℕ) : Prop :=
+def HasMarkovKWinningStrategyA (k : ℕ) : Prop :=
   ∃ f : ℕ → List X → X, MarkovKWinningStrategyA G f k
 
 def HasWinningStrategyB : Prop :=
@@ -104,11 +104,12 @@ def HasWinningStrategyB : Prop :=
 
 /-- We say Player B has a k-Markov winning strategy, if they have a winning strategy only depending
 on the round number and the k most recent moves by the opponent. -/
-def HasMarkovWinningStrategyB (k : ℕ) : Prop :=
+def HasMarkovKWinningStrategyB (k : ℕ) : Prop :=
   ∃ f : ℕ → List X → X, MarkovKWinningStrategyB G f k
 
 -- TODO: don't hide the transformation behind existential quantifier
-theorem HasMarkovKWinningStrategyA.hasWinningStrategyA {k : ℕ} (h : HasMarkovWinningStrategyA G k) :
+theorem HasMarkovKWinningStrategyA.hasWinningStrategyA {k : ℕ}
+    (h : HasMarkovKWinningStrategyA G k) :
     HasWinningStrategyA G := by
   obtain ⟨f, hf⟩ := h
   refine ⟨fun l ↦ f (l.length / 2) (l.rtakeHalf k), ?_⟩
@@ -160,6 +161,14 @@ def mengerGame (X : Type u) [TopologicalSpace X] : Game (Set (Set X)) :=
   gFinGame {A : Set (Set X) | sUnion A = univ ∧ ∀ s ∈ A, IsOpen s}
     {A : Set (Set X) | sUnion A = univ ∧ ∀ s ∈ A, IsOpen s}
 
+/-- See https://www.sciencedirect.com/science/article/pii/S0166864121001863 -/
+def kMengerGame (X : Type u) [TopologicalSpace X] : Game (Set (Set X)) :=
+  gFinGame {A : Set (Set X) | IsKCover' A} {A : Set (Set X) | IsKCover' A}
+
+/-- See https://www.sciencedirect.com/science/article/pii/S0166864121001863 -/
+def kRothbergerGame (X : Type u) [TopologicalSpace X] : Game (Set (Set X)) :=
+  g1Game {A : Set (Set X) | IsKCover' A} {A : Set (Set X) | IsKCover' A}
+
 /-- See https://topology.pi-base.org/properties/P187 -/
 def wGame {X : Type u} [TopologicalSpace X] (x : X) : Game (X × Set X) :=
   Game.ofAllowed (Game.mk (fun a ↦ Tendsto (fun n ↦ (a (2 * n + 1)).1) atTop (𝓝 x)))
@@ -167,11 +176,11 @@ def wGame {X : Type u} [TopologicalSpace X] (x : X) : Game (X × Set X) :=
       (Even l.length → (l.getLastD (x, ∅)).1 ∈ (l.dropLast.getLastD (x, ∅)).2))
 
 /-- See https://topology.pi-base.org/properties/P206 -/
-def strongChoquetGame (X : Type u) [TopologicalSpace X] (x : X) : Game (X × Set X) :=
-  Game.ofAllowed (Game.mk fun a ↦ ⋂ n, (a n).2 = ∅) fun l ↦ IsOpen (l.getLastD (x, univ)).2 ∧
-    (l.getLastD (x, univ)).2 ⊆ (l.dropLast.getLastD (x, univ)).2 ∧
-      (Odd l.length → (l.getLastD (x, univ)).1 ∈ (l.getLastD (x, univ)).2) ∧
-      (Even l.length → (l.dropLast.getLastD (x, univ)).1 ∈ (l.getLastD (x, univ)).2)
+def strongChoquetGame (X : Type u) [TopologicalSpace X] [Inhabited X] : Game (X × Set X) :=
+  Game.ofAllowed (Game.mk fun a ↦ ⋂ n, (a n).2 = ∅) fun l ↦ IsOpen (l.getLastD (default, univ)).2 ∧
+    (l.getLastD (default, univ)).2 ⊆ (l.dropLast.getLastD (default, univ)).2 ∧
+      (Odd l.length → (l.getLastD (default, univ)).1 ∈ (l.getLastD (default, univ)).2) ∧
+      (Even l.length → (l.dropLast.getLastD (default, univ)).1 ∈ (l.getLastD (default, univ)).2)
 
 /-- The proximal game. The condition `Inhabited X` is an implementation detail; in theory it could
 also be played on the empty space, but that makes the lean definition much uglier. -/

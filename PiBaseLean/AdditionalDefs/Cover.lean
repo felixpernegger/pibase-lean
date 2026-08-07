@@ -129,4 +129,16 @@ theorem IsKNetwork.isNetwork {f : ι → Set X} (h : IsKNetwork f) : IsNetwork f
 def IsKCover (f : ι → Opens X) : Prop :=
   IsOpenCover f ∧ ⊤ ∉ range f ∧ ∀ ⦃K : Set X⦄, IsCompact K → ∃ i : ι, K ⊆ f i
 
+/-- Alternative def of K covers -/
+def IsKCover' (s : Set (Set X)) : Prop :=
+  (∀ i ∈ s, IsOpen i) ∧ (sUnion s = univ) ∧ univ ∉ s ∧ ∀ ⦃K : Set X⦄,
+    IsCompact K → ∃ i ∈ s, K ⊆ i
+
+/-- K-cover of a topological space -/
+def IsKCover'' (f : ι → Set X) : Prop :=
+  (∀ i : ι, IsOpen (f i)) ∧ (⋃ i : ι, f i = univ) ∧ ⊤ ∉ range f ∧
+    ∀ ⦃K : Set X⦄, IsCompact K → ∃ i : ι, K ⊆ f i
+
+--TODO: we now have 3 defs for K covers, when we only need one...
+
 end PiBase
