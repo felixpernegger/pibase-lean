@@ -11,7 +11,7 @@ namespace PiBase
 
 /- 151. Strategically Rothberger -/
 class StrategicallyRothbergerSpace (X : Type u) [TopologicalSpace X] : Prop where
-  strategically_rothberger : HasWinningStrategyB (rothbergerGame X)
+  strategically_rothberger : Nonempty X → HasWinningStrategyB (rothbergerGame X)
 
 end PiBase
 
