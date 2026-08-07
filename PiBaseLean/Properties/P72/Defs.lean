@@ -11,7 +11,7 @@ namespace PiBase
 
 /- 72. 2-Markov Menger -/
 class TwoMarkovMengerSpace (X : Type u) [TopologicalSpace X] : Prop where
-  two_markov_menger : HasMarkovKWinningStrategyB (rothbergerGame X) 2
+  two_markov_menger : HasMarkovKWinningStrategyB (mengerGame X) 2
 
 end PiBase
 
