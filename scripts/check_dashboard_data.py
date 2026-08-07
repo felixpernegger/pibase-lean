@@ -290,6 +290,32 @@ def main() -> None:
         "implications payload is not listed as a download",
     )
 
+    questions = load(DATA / "questions.json")
+    require(
+        questions["open_count"] == len(questions["questions"]),
+        "questions worklist count disagrees with its entries",
+    )
+    require(
+        questions["open_count"] == manifest["summary"]["unclassifiedPairs"],
+        "questions worklist disagrees with the manifest's unclassified pairs",
+    )
+    property_ids = {entry["id"] for entry in manifest["properties"]}
+    require(
+        all(
+            item["hypothesis"] in property_ids and item["conclusion"] in property_ids
+            for item in questions["questions"]
+        ),
+        "questions worklist references an unknown property",
+    )
+    traits = load(DATA / "traits.json")
+    require(
+        all(
+            space.startswith("S") and all(row["property"] in property_ids for row in payload["traits"])
+            for space, payload in traits.items()
+        ),
+        "trait tables reference an unknown property",
+    )
+
     for artifact in manifest["downloads"]:
         require((PUBLIC / artifact["path"]).exists(), f"download is missing: {artifact['path']}")
     dependency_artifact = load(DATA / "axiom-dependencies.json")

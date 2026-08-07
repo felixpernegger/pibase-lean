@@ -20,6 +20,7 @@ sys.path.insert(0, str(SCRIPTS))
 
 from graph import full_trait_matrix, known_true_edges, transitive_closure  # noqa: E402
 from build_project_page import build_blueprint_page  # noqa: E402
+from gen_traits import build_traits_data  # noqa: E402
 
 DATA_DIR = ROOT / "data"
 PUBLIC_DIR = ROOT / "dashboard" / "public"
@@ -653,13 +654,13 @@ def build_review_payloads(
     statuses: dict[str, dict],
     commit: str,
     generated_at: str,
+    traits: dict,
 ) -> None:
     authors = load_authors()
     properties = {item["uid"]: item for item in data["properties"]}
     spaces = {item["uid"]: item for item in data["spaces"]}
     theorems = {item["uid"]: item for item in data["theorems"]}
     names = {uid: item["name"] for uid, item in properties.items()}
-    traits = load_json(DATA_DIR / "traits.json") if (DATA_DIR / "traits.json").exists() else {}
 
     payloads: dict[str, list[dict]] = {"spaces": [], "properties": [], "theorems": []}
 
@@ -826,7 +827,6 @@ def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     data = load_json(DATA_DIR / "pibase.json")
     coverage = load_json(DATA_DIR / "coverage.json")
-    questions = load_json(DATA_DIR / "questions.json")
     registry = load_json(DATA_DIR / "registry.json")
     foundations = load_json(DATA_DIR / "independence.json")
     implications = load_json(DATA_DIR / "implications.json")
@@ -870,6 +870,27 @@ def main() -> None:
     formalized_graph = build_formalized_graph(data, statuses, graph)
     names = {item["uid"]: item["name"] for item in data["properties"]}
     recent, delta = recent_activity()
+
+    # Derived worklists are generated here rather than committed: the open
+    # questions come straight from the graph classification, and the trait
+    # tables replay pi-base deduction against the current Lean tree.
+    if len(graph["frontier"]) != graph["counts"].get("unclassified", 0):
+        raise SystemExit("frontier does not cover every unclassified pair")
+    questions = {
+        "node_count": len(graph["nodes"]),
+        "open_count": len(graph["frontier"]),
+        "questions": [
+            {
+                "hypothesis": item["source"],
+                "hypothesis_name": names[item["source"]],
+                "conclusion": item["target"],
+                "conclusion_name": names[item["target"]],
+                "lean": f"Implies {item['source']} {item['target']}",
+            }
+            for item in graph["frontier"]
+        ],
+    }
+    traits = build_traits_data(data, LEAN_ROOT)
 
     properties = []
     for item in data["properties"]:
@@ -998,11 +1019,15 @@ def main() -> None:
             {"label": "Review: properties", "path": "data/review-properties.json", "format": "JSON"},
             {"label": "Review: theorems", "path": "data/review-theorems.json", "format": "JSON"},
             {"label": "Implications engine payload", "path": "data/implications.json", "format": "JSON"},
+            {"label": "Open questions worklist", "path": "data/questions.json", "format": "JSON"},
+            {"label": "Space trait tables", "path": "data/traits.json", "format": "JSON"},
         ],
     }
 
     dump_json(OUT_DIR / "dashboard.json", dashboard)
     dump_json(OUT_DIR / "implications.json", implications)
+    dump_json(OUT_DIR / "questions.json", questions)
+    dump_json(OUT_DIR / "traits.json", traits)
     dump_json(OUT_DIR / "frontier.json", {
         "schemaVersion": 1,
         "sourceCommit": commit,
@@ -1027,7 +1052,7 @@ def main() -> None:
     (OUT_DIR / "witnesses.bin").write_bytes(
         b"".join(struct.pack("<H", value) for value in graph["witnesses"])
     )
-    build_review_payloads(data, statuses, commit, generated_at)
+    build_review_payloads(data, statuses, commit, generated_at, traits)
 
     legacy_summary = {
         "total": total_pairs,

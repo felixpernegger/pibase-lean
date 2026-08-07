@@ -26,8 +26,11 @@ import re
 import sys
 from collections import defaultdict
 
-REPO = "/Users/jack/Desktop/LEAN/pibase-lean"
-PIBASE_JSON = "/Users/jack/Desktop/LEAN/pi-base-lean/data/pibase.json"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LEAN_ROOT = os.path.abspath(
+    os.environ.get("PIBASE_LEAN_SOURCE", os.environ.get("FELIX_REPO_PATH", ROOT))
+)
+PIBASE_JSON = os.path.join(ROOT, "data", "pibase.json")
 
 
 def atoms(f):
@@ -86,6 +89,45 @@ def close(seed, theorems, availP):
     return known, deriv, order
 
 
+def available(kind, lean_root):
+    """Formalized entities in the Lean tree (short-id dirs → pi-base uids)."""
+    d = os.path.join(lean_root, "PiBaseLean",
+                     {"P": "Properties", "T": "Theorems", "S": "Spaces"}[kind])
+    out = set()
+    if os.path.isdir(d):
+        for name in os.listdir(d):
+            m = re.fullmatch(rf"{kind}(\d+)", name)
+            if m:
+                out.add(f"{kind}{int(m.group(1)):06d}")
+    return out
+
+
+def build_traits_data(data, lean_root):
+    """Per-space trait tables for the review UI: property, value, and how each
+    cell is known (asserted / proven via a formalized theorem / derivable)."""
+    pname = {p["uid"]: p["name"] for p in data["properties"]}
+    sname = {s["uid"]: s["name"] for s in data["spaces"]}
+    seeds = defaultdict(dict)
+    for t in data["traits"]:
+        seeds[t["space"]][t["property"]] = t["value"]
+    availP = available("P", lean_root)
+    availT = available("T", lean_root)
+    avail_theorems = [t for t in data["theorems"] if t["uid"] in availT]
+
+    out = {}
+    for suid in sorted(seeds):
+        known, deriv, order = close(seeds[suid], avail_theorems, availP)
+        rows = []
+        for p in order:
+            kind, thm, _ = deriv[p]
+            status = ("asserted" if kind == "asserted"
+                      else ("proven" if (kind == "mp" and known[p]) else "derivable"))
+            rows.append({"property": p, "name": pname.get(p, p), "value": known[p],
+                         "status": status, "via": (f"T{int(thm[1:])}" if thm else None)})
+        out[suid] = {"name": sname.get(suid, ""), "traits": rows}
+    return out
+
+
 def main():
     data = json.load(open(PIBASE_JSON))
     theorems = data["theorems"]
@@ -95,27 +137,9 @@ def main():
     for t in data["traits"]:
         seeds[t["space"]][t["property"]] = t["value"]
 
-    # Felix's formalized properties / theorems (his short ids → pi-base uids)
-    def avail(kind):
-        d = os.path.join(REPO, "PiBaseLean", {"P": "Properties", "T": "Theorems"}[kind])
-        out = set()
-        for name in os.listdir(d):
-            m = re.fullmatch(rf"{kind}(\d+)", name)
-            if m:
-                out.add(f"{kind}{int(m.group(1)):06d}")
-        return out
-
-    availP, availT = avail("P"), avail("T")
+    availP, availT = available("P", LEAN_ROOT), available("T", LEAN_ROOT)
     avail_theorems = [t for t in theorems if t["uid"] in availT]
-
-    # spaces Felix has (so far) — Spaces/S<n> dirs that compiled
-    have_space = set()
-    sp_dir = os.path.join(REPO, "PiBaseLean", "Spaces")
-    if os.path.isdir(sp_dir):
-        for name in os.listdir(sp_dir):
-            m = re.fullmatch(r"S(\d+)", name)
-            if m:
-                have_space.add(f"S{int(m.group(1)):06d}")
+    have_space = available("S", LEAN_ROOT)
 
     if "--emit" in sys.argv:
         want = sys.argv[sys.argv.index("--emit") + 1]
@@ -124,19 +148,10 @@ def main():
         return
 
     if "--data" in sys.argv:
-        # per-space trait table for the review UI: property, value, and how it's known
-        out = {}
-        for suid in sorted(seeds):
-            known, deriv, order = close(seeds[suid], avail_theorems, availP)
-            rows = []
-            for p in order:
-                kind, thm, _ = deriv[p]
-                status = ("asserted" if kind == "asserted"
-                          else ("proven" if (kind == "mp" and known[p]) else "derivable"))
-                rows.append({"property": p, "name": pname.get(p, p), "value": known[p],
-                             "status": status, "via": (f"T{int(thm[1:])}" if thm else None)})
-            out[suid] = {"name": sname.get(suid, ""), "traits": rows}
-        dest = os.path.join(REPO, "data", "traits.json")
+        # scratch output for the standalone review tool; the dashboard build
+        # calls build_traits_data() directly and never reads this file
+        out = build_traits_data(data, LEAN_ROOT)
+        dest = os.path.join(ROOT, "data", "traits.json")
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         json.dump(out, open(dest, "w"), ensure_ascii=False, indent=0)
         tot = sum(len(v["traits"]) for v in out.values())

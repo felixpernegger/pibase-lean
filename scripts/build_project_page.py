@@ -552,7 +552,8 @@ Separates X P Q := P X and not Q X</code></pre>
               The remaining {comma(summary["open"])} implication cells are neither
               proved by the theorem closure, refuted by a known separating space,
               nor certified as dependent on additional axioms. These are exported to
-              <code>data/questions.json</code> as a machine-readable worklist.
+              <a href="data/questions.json"><code>data/questions.json</code></a> as a
+              machine-readable worklist.
             </p>
             <p>
               Dependence on a named axiom is a separate outcome category. The current
@@ -1510,7 +1511,7 @@ pre {{
       <li><b><a href="review.html">Review UI</a></b> Side-by-side pi-Base statements and Lean definitions.</li>
       <li><b><a href="{OPEN_APP}">Open implications</a></b> Browser tool for testing and submitting unresolved implication claims.</li>
       <li><b><a href="{PIBASE}/">pi-Base</a></b> The source database of spaces, properties, theorems, and counterexamples.</li>
-      <li><b><a href="{REPO_BLOB}/data/questions.json">Questions JSON</a></b> Machine-readable open implication frontier.</li>
+      <li><b><a href="data/questions.json">Questions JSON</a></b> Machine-readable open implication frontier.</li>
     </ul>
   </section>
 
