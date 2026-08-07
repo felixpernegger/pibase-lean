@@ -553,11 +553,12 @@ export default function Implications({ bundle, params }: { bundle: DashboardBund
           <p className="eyebrow">Community implications</p>
           <h1>Open implications &amp; assertions</h1>
           <p className="page-lede">
-            The deduction engine from{" "}
-            <a href={`https://github.com/${payload.repo}`}>{payload.repo}</a> running over the same
-            π-Base dataset: check any implication between property literals, browse what is still
-            open, and submit true/false verdicts for community review. Accepted verdicts become
-            permanent assertions alongside the formal Lean effort.
+            Check any implication between property literals — a property or its negation, with an
+            optional second hypothesis — browse the statements that are still open, and record
+            true/false verdicts. Verdicts apply instantly in this browser; submitting opens a
+            review issue on <a href={`https://github.com/${payload.repo}`}>{payload.repo}</a>, the
+            community assertion store whose accepted verdicts feed this page alongside the formal
+            Lean effort.
           </p>
         </div>
       </header>

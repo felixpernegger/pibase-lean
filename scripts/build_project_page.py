@@ -42,7 +42,8 @@ GRAPH_PNG = os.path.join(ASSETS, "implication-map.png")
 REPO = "https://github.com/felixpernegger/pibase-lean"
 SOURCE_REPO = REPO
 PIBASE = "https://topology.pi-base.org"
-OPEN_APP = "https://felixpernegger.github.io/pibase-data/"
+# The merged dashboard hosts the open-implications workflow itself.
+OPEN_APP = "index.html#/implications"
 ETP = "https://teorth.github.io/equational_theories/"
 PIBASE_LEAN_SOURCE = os.environ.get(
     "PIBASE_LEAN_SOURCE",

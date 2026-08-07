@@ -16,8 +16,8 @@ pi-Base data snapshot. Its overview includes an implication explorer that defaul
 graph and can switch to the informal pi-Base classifications. The dashboard also provides a ranked open frontier,
 dependency-aware formalization status, a lazy human-review workspace, and versioned data downloads.
 
-The Implications page merges in the [open-implications site](https://felixpernegger.github.io/pibase-data/) built
-from [felixpernegger/pibase-data](https://github.com/felixpernegger/pibase-data): it replays that repository's
+The Implications page hosts the open-implications workflow of
+[felixpernegger/pibase-data](https://github.com/felixpernegger/pibase-data): it replays that repository's
 deduction engine in the browser to check any implication between property literals (negations and two-hypothesis
 statements included), browse and rank the open list, and record true/false verdicts that apply locally and can be
 submitted for community review as pre-filled GitHub issues on pibase-data. Proof references there cross-link each
