@@ -1,9 +1,8 @@
 module
 
-public import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
-public import Mathlib.Topology.GDelta.MetrizableSpace
-public import Mathlib.Topology.Metrizable.Uniformity
-public import Mathlib.Algebra.Group.Nat.Even
+public import Mathlib.Algebra.Ring.Parity
+public import Mathlib.Topology.UniformSpace.Defs
+public import PiBaseLean.AdditionalDefs.Cover
 
 /-! This file builds up defs and basic theory about Gale-Stewart games. This has been done
 previously in Lean, for example here https://afm.episciences.org/17712/pdf
@@ -41,8 +40,6 @@ def List.ltakeHalf {α : Type u} : List α → ℕ → List α
     | [], _ + 1 => []
     | [a], _ + 1 => [a]
     | a :: _ :: l, n + 1 => a :: ltakeHalf l n
-
-def List.init {α : Type u} (l : List α) : List α := l.reverse.tail.reverse
 
 /-- The `n` most recent moves by the opponent in a chronological game history,
 listed from newest to oldest. -/
@@ -111,15 +108,13 @@ def HasMarkovWinningStrategyB (k : ℕ) : Prop :=
   ∃ f : ℕ → List X → X, MarkovKWinningStrategyB G f k
 
 -- TODO: don't hide the transformation behind existential quantifier
-theorem HasMarkovKWinningStrategyA.HasWinningStrategyA {k : ℕ} (h : HasMarkovWinningStrategyA G k) :
+theorem HasMarkovKWinningStrategyA.hasWinningStrategyA {k : ℕ} (h : HasMarkovWinningStrategyA G k) :
     HasWinningStrategyA G := by
   obtain ⟨f, hf⟩ := h
   refine ⟨fun l ↦ f (l.length / 2) (l.rtakeHalf k), ?_⟩
-  intro b h
+  intro _ h
   apply hf
-  intro n
-  rw [h n]
-  simp
+  simp [h]
 
 abbrev AllowedMoves (X : Type u) := List X → Prop
 
@@ -147,13 +142,13 @@ def banachMazur (X : Type u) (S : Set X) (W : Set (Set X)) :
 def g1Game {X : Type u} (A B : Set (Set X)) : Game (Set X) :=
   Game.ofAllowed (Game.mk (fun a ↦ ⋃ n, a (2 * n + 1) ∉ B))
     (fun l ↦ l ≠ [] → ((Odd l.length → l.getLastD ∅ ∈ A) ∧
-      (Even l.length → ∃ a, l.getLastD ∅ = {a} ∧ a ∈ l.init.getLastD ∅)))
+      (Even l.length → ∃ a, l.getLastD ∅ = {a} ∧ a ∈ l.dropLast.getLastD ∅)))
 
 /- general Gfin selection game See https://www.sciencedirect.com/science/article/pii/S016686411830470X -/
 def gFinGame {X : Type u} (A B : Set (Set X)) : Game (Set X) :=
   Game.ofAllowed (Game.mk (fun a ↦ ⋃ n, a (2 * n + 1) ∉ B))
     (fun l ↦ l ≠ [] → ((Odd l.length → l.getLastD ∅ ∈ A) ∧
-      (Even l.length → (l.getLastD ∅).Finite ∧ l.getLastD ∅ ⊆ l.init.getLastD ∅)))
+      (Even l.length → (l.getLastD ∅).Finite ∧ l.getLastD ∅ ⊆ l.dropLast.getLastD ∅)))
 
 /-- See https://www.sciencedirect.com/science/article/pii/S016686411830470X -/
 def rothbergerGame (X : Type u) [TopologicalSpace X] : Game (Set (Set X)) :=
@@ -169,14 +164,14 @@ def mengerGame (X : Type u) [TopologicalSpace X] : Game (Set (Set X)) :=
 def wGame {X : Type u} [TopologicalSpace X] (x : X) : Game (X × Set X) :=
   Game.ofAllowed (Game.mk (fun a ↦ Tendsto (fun n ↦ (a (2 * n + 1)).1) atTop (𝓝 x)))
     (fun l ↦ l ≠ [] → (Odd l.length → (l.getLastD (x, ∅)).2 ∈ 𝓝 x) ∧
-      (Even l.length → (l.getLastD (x, ∅)).1 ∈ (l.init.getLastD (x, ∅)).2))
+      (Even l.length → (l.getLastD (x, ∅)).1 ∈ (l.dropLast.getLastD (x, ∅)).2))
 
 /-- See https://topology.pi-base.org/properties/P206 -/
 def strongChoquetGame (X : Type u) [TopologicalSpace X] (x : X) : Game (X × Set X) :=
   Game.ofAllowed (Game.mk fun a ↦ ⋂ n, (a n).2 = ∅) fun l ↦ IsOpen (l.getLastD (x, univ)).2 ∧
-    (l.getLastD (x, univ)).2 ⊆ (l.init.getLastD (x, univ)).2 ∧
+    (l.getLastD (x, univ)).2 ⊆ (l.dropLast.getLastD (x, univ)).2 ∧
       (Odd l.length → (l.getLastD (x, univ)).1 ∈ (l.getLastD (x, univ)).2) ∧
-      (Even l.length → (l.init.getLastD (x, univ)).1 ∈ (l.getLastD (x, univ)).2)
+      (Even l.length → (l.dropLast.getLastD (x, univ)).1 ∈ (l.getLastD (x, univ)).2)
 
 /-- The proximal game. The condition `Inhabited X` is an implementation detail; in theory it could
 also be played on the empty space, but that makes the lean definition much uglier. -/
@@ -185,12 +180,12 @@ def proximalGame (X : Type u) [UniformSpace X] [Inhabited X] : Game (X × Set (X
         ⋂ n, Prod.mk (a (2 * n + 1)).1 ⁻¹' (a (2 * n + 1)).2 = ∅)
       fun l ↦ l ≠ [] →
         (Odd l.length → (l.getLastD (default, univ)).2 ∈ uniformity X ∧
-          (l.getLastD (default, univ)).2 ⊆ (l.init.getLastD (default, univ)).2 ∧
-            (l.getLastD (default, univ)).1 = (l.init.getLastD (default, univ)).1) ∧
+          (l.getLastD (default, univ)).2 ⊆ (l.dropLast.getLastD (default, univ)).2 ∧
+            (l.getLastD (default, univ)).1 = (l.dropLast.getLastD (default, univ)).1) ∧
             (Even l.length → (l.length > 2 → (l.getLastD (default, univ)).1 ∈ Prod.mk
-              (l.init.getLastD (default, univ)).1 ⁻¹'
-                ((l.init.init.getLastD (default, univ)).2)) ∧
-                (l.getLastD (default, univ)).2 = (l.init.getLastD (default, univ)).2)
+              (l.dropLast.getLastD (default, univ)).1 ⁻¹'
+                ((l.dropLast.dropLast.getLastD (default, univ)).2)) ∧
+                (l.getLastD (default, univ)).2 = (l.dropLast.getLastD (default, univ)).2)
 
 end
 
