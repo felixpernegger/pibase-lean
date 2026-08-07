@@ -1,0 +1,645 @@
+{
+ "P000001": {
+  "pibase_name": "$T_0$",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "T0Space",
+   "fqn": "T0Space",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Basic",
+   "source": "Mathlib/Topology/Separation/Basic.lean:77",
+   "docstring": "/-- A T₀ space, also known as a Kolmogorov space, is a topological space such that for every pair\n`x ≠ y`, there is an open set containing one but not the other. We formulate the definition in terms\nof the `Inseparable` relation. -/",
+   "signature": "class T0Space (X : Type u) [TopologicalSpace X] : Prop where\n  /-- Two inseparable points in a T₀ space are equal. -/\n  t0 : ∀ ⦃x y : X⦄, Inseparable x y → x = y",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Basic.html#T0Space"
+  }
+ },
+ "P000002": {
+  "pibase_name": "$T_1$",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "T1Space",
+   "fqn": "T1Space",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Basic",
+   "source": "Mathlib/Topology/Separation/Basic.lean:336",
+   "docstring": "/-- A T₁ space, also known as a Fréchet space, is a topological space\n  where every singleton set is closed. Equivalently, for every pair\n  `x ≠ y`, there is an open set containing `x` and not `y`. -/",
+   "signature": "class T1Space (X : Type u) [TopologicalSpace X] : Prop where\n  /-- A singleton in a T₁ space is a closed set. -/\n  t1 : ∀ x, IsClosed ({x} : Set X)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Basic.html#T1Space"
+  }
+ },
+ "P000003": {
+  "pibase_name": "$T_2$",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "T2Space",
+   "fqn": "T2Space",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Hausdorff",
+   "source": "Mathlib/Topology/Separation/Hausdorff.lean:84",
+   "docstring": "/-- A T₂ space, also known as a Hausdorff space, is one in which for every\n  `x ≠ y` there exists disjoint open sets around `x` and `y`. This is\n  the most widely used of the separation axioms. -/",
+   "signature": "class T2Space (X : Type u) [TopologicalSpace X] : Prop where\n  /-- Every two points in a Hausdorff space admit disjoint open neighbourhoods. -/\n  t2 : Pairwise fun x y => ∃ u v : Set X, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Hausdorff.html#T2Space"
+  }
+ },
+ "P000004": {
+  "pibase_name": "$T_{2 \\frac{1}{2}}$",
+  "tier": "A",
+  "note": "pi-base T2.5 = Urysohn = disjoint closed neighborhoods; matches Mathlib T25Space. Distinct from P000009 Functionally Hausdorff (separation by a continuous function).",
+  "kind": "class",
+  "mathlib": {
+   "name": "T25Space",
+   "fqn": "T25Space",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Regular",
+   "source": "Mathlib/Topology/Separation/Regular.lean:360",
+   "docstring": "/-- A T₂.₅ space, also known as a Urysohn space, is a topological space\n  where for every pair `x ≠ y`, there are two open sets, with the intersection of closures\n  empty, one containing `x` and the other `y` . -/",
+   "signature": "class T25Space (X : Type u) [TopologicalSpace X] : Prop where\n  /-- Given two distinct points in a T₂.₅ space, their filters of closed neighborhoods are\n  disjoint. -/\n  t2_5 : ∀ ⦃x y : X⦄, x ≠ y → Disjoint ((𝓝 x).lift' closure) ((𝓝 y).lift' closure)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Regular.html#T25Space"
+  }
+ },
+ "P000005": {
+  "pibase_name": "$T_3$",
+  "tier": "A",
+  "note": "Mathlib T3Space = RegularSpace + T0Space, i.e. regular Hausdorff.",
+  "kind": "class",
+  "mathlib": {
+   "name": "T3Space",
+   "fqn": "T3Space",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Regular",
+   "source": "Mathlib/Topology/Separation/Regular.lean:408",
+   "docstring": "/-- A T₃ space is a T₀ space which is a regular space. Any T₃ space is a T₁ space, a T₂ space, and\na T₂.₅ space. -/",
+   "signature": "class T3Space (X : Type u) [TopologicalSpace X] : Prop extends T0Space X, RegularSpace X\n\ninstance (priority := 90) instT3Space [T0Space X] [RegularSpace X] : T3Space X := ⟨⟩",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Regular.html#T3Space"
+  }
+ },
+ "P000006": {
+  "pibase_name": "$T_{3 \\frac{1}{2}}$",
+  "tier": "A",
+  "note": "Tychonoff = completely regular Hausdorff.",
+  "kind": "class",
+  "mathlib": {
+   "name": "T35Space",
+   "fqn": "T35Space",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.CompletelyRegular",
+   "source": "Mathlib/Topology/Separation/CompletelyRegular.lean:220",
+   "docstring": "/-- A T₃.₅ space is a completely regular space that is also T₀. -/",
+   "signature": "class T35Space (X : Type u) [TopologicalSpace X] : Prop extends T0Space X, CompletelyRegularSpace X\n\ninstance T35Space.instT3space [T35Space X] : T3Space X where",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/CompletelyRegular.html#T35Space"
+  }
+ },
+ "P000007": {
+  "pibase_name": "$T_4$",
+  "tier": "A",
+  "note": "Mathlib T4Space = NormalSpace + T1Space.",
+  "kind": "class",
+  "mathlib": {
+   "name": "T4Space",
+   "fqn": "T4Space",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Regular",
+   "source": "Mathlib/Topology/Separation/Regular.lean:521",
+   "docstring": "/-- A T₄ space is a normal T₁ space. -/",
+   "signature": "class T4Space (X : Type u) [TopologicalSpace X] : Prop extends T1Space X, NormalSpace X\n\ninstance (priority := 100) [T1Space X] [NormalSpace X] : T4Space X := ⟨⟩",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Regular.html#T4Space"
+  }
+ },
+ "P000008": {
+  "pibase_name": "$T_5$",
+  "tier": "A",
+  "note": "Completely normal Hausdorff.",
+  "kind": "class",
+  "mathlib": {
+   "name": "T5Space",
+   "fqn": "T5Space",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Regular",
+   "source": "Mathlib/Topology/Separation/Regular.lean:640",
+   "docstring": "/-- A T₅ space is a completely normal T₁ space. -/",
+   "signature": "class T5Space (X : Type u) [TopologicalSpace X] : Prop extends T1Space X, CompletelyNormalSpace X\n\ntheorem Topology.IsEmbedding.t5Space [TopologicalSpace Y] [T5Space Y] {e : X → Y}\n    (he : IsEmbedding e) : T5Space X where\n  __ := he.t1Space\n  completely_normal := by\n    have := he.completelyNormalSpace\n    exact completely_normal",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Regular.html#T5Space"
+  }
+ },
+ "P000067": {
+  "pibase_name": "$T_6$",
+  "tier": "A",
+  "note": "Perfectly normal Hausdorff.",
+  "kind": "class",
+  "mathlib": {
+   "name": "T6Space",
+   "fqn": "T6Space",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.GDelta",
+   "source": "Mathlib/Topology/Separation/GDelta.lean:127",
+   "docstring": "/-- A T₆ space is a perfectly normal T₀ space. -/",
+   "signature": "class T6Space (X : Type u) [TopologicalSpace X] : Prop extends T0Space X, PerfectlyNormalSpace X\n\n-- see Note [lower instance priority]\n/-- A `T₆` space is a `T₅` space. -/\ninstance (priority := 100) T6Space.toT5Space [T6Space X] : T5Space X where",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/GDelta.html#T6Space"
+  }
+ },
+ "P000011": {
+  "pibase_name": "Regular",
+  "tier": "A",
+  "note": "Mathlib RegularSpace does not assume T0; matches pi-base 'Regular' (P5 = T3 adds T0).",
+  "kind": "class",
+  "mathlib": {
+   "name": "RegularSpace",
+   "fqn": "RegularSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Regular",
+   "source": "Mathlib/Topology/Separation/Regular.lean:79",
+   "docstring": "/-- A topological space is called a *regular space* if for any closed set `s` and `a ∉ s`, there\nexist disjoint open sets `U ⊇ s` and `V ∋ a`. We formulate this condition in terms of `Disjoint`ness\nof filters `𝓝ˢ s` and `𝓝 a`. -/",
+   "signature": "class RegularSpace (X : Type u) [TopologicalSpace X] : Prop where\n  /-- If `a` is a point that does not belong to a closed set `s`, then `a` and `s` admit disjoint\n  neighborhoods. -/\n  regular : ∀ {s : Set X} {a}, IsClosed s → a ∉ s → Disjoint (𝓝ˢ s) (𝓝 a)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Regular.html#RegularSpace"
+  }
+ },
+ "P000012": {
+  "pibase_name": "Completely regular",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "CompletelyRegularSpace",
+   "fqn": "CompletelyRegularSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.CompletelyRegular",
+   "source": "Mathlib/Topology/Separation/CompletelyRegular.lean:68",
+   "docstring": "/-- A space is completely regular if points can be separated from closed sets via\n  continuous functions to the unit interval. -/",
+   "signature": "class CompletelyRegularSpace (X : Type u) [TopologicalSpace X] : Prop where\n  completely_regular : ∀ (x : X), ∀ K : Set X, IsClosed K → x ∉ K →\n    ∃ f : X → I, Continuous f ∧ f x = 0 ∧ EqOn f 1 K",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/CompletelyRegular.html#CompletelyRegularSpace"
+  }
+ },
+ "P000013": {
+  "pibase_name": "Normal",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "NormalSpace",
+   "fqn": "NormalSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Regular",
+   "source": "Mathlib/Topology/Separation/Regular.lean:465",
+   "docstring": "/-- A topological space is said to be a *normal space* if any two disjoint closed sets\nhave disjoint open neighborhoods. -/",
+   "signature": "class NormalSpace (X : Type u) [TopologicalSpace X] : Prop where\n  /-- Two disjoint sets in a normal space admit disjoint neighbourhoods. -/\n  normal : ∀ s t : Set X, IsClosed s → IsClosed t → Disjoint s t → SeparatedNhds s t",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Regular.html#NormalSpace"
+  }
+ },
+ "P000014": {
+  "pibase_name": "Completely normal",
+  "tier": "A",
+  "note": "Hereditarily normal.",
+  "kind": "class",
+  "mathlib": {
+   "name": "CompletelyNormalSpace",
+   "fqn": "CompletelyNormalSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Regular",
+   "source": "Mathlib/Topology/Separation/Regular.lean:559",
+   "docstring": "/-- A topological space `X` is a *completely normal space* provided that for any two sets `s`, `t`\nsuch that if both `closure s` is disjoint with `t`, and `s` is disjoint with `closure t`,\nthen there exist disjoint neighbourhoods of `s` and `t`. -/",
+   "signature": "class CompletelyNormalSpace (X : Type u) [TopologicalSpace X] : Prop where\n  /-- If `closure s` is disjoint with `t`, and `s` is disjoint with `closure t`, then `s` and `t`\n  admit disjoint neighbourhoods. -/\n  completely_normal :\n    ∀ ⦃s t : Set X⦄, Disjoint (closure s) t → Disjoint s (closure t) → Disjoint (𝓝ˢ s) (𝓝ˢ t)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Regular.html#CompletelyNormalSpace"
+  }
+ },
+ "P000015": {
+  "pibase_name": "Perfectly normal",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "PerfectlyNormalSpace",
+   "fqn": "PerfectlyNormalSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.GDelta",
+   "source": "Mathlib/Topology/Separation/GDelta.lean:71",
+   "docstring": "/-- A topological space `X` is a *perfectly normal space* provided it is normal and\nclosed sets are Gδ. -/",
+   "signature": "class PerfectlyNormalSpace (X : Type u) [TopologicalSpace X] : Prop extends NormalSpace X where\n    closed_gdelta : ∀ ⦃h : Set X⦄, IsClosed h → IsGδ h",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/GDelta.html#PerfectlyNormalSpace"
+  }
+ },
+ "P000135": {
+  "pibase_name": "$R_0$",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "R0Space",
+   "fqn": "R0Space",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Basic",
+   "source": "Mathlib/Topology/Separation/Basic.lean:261",
+   "docstring": "/-- A topological space is called an R₀ space, if `Specializes` relation is symmetric.\n\nIn other words, given two points `x y : X`,\nif every neighborhood of `y` contains `x`, then every neighborhood of `x` contains `y`. -/",
+   "signature": "class R0Space (X : Type u) [TopologicalSpace X] : Prop where\n  /-- In an R₀ space, the `Specializes` relation is symmetric. -/\n  specializes_symmetric : Symmetric (Specializes : X → X → Prop)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Basic.html#R0Space"
+  }
+ },
+ "P000134": {
+  "pibase_name": "$R_1$",
+  "tier": "A",
+  "note": "Preregular.",
+  "kind": "class",
+  "mathlib": {
+   "name": "R1Space",
+   "fqn": "R1Space",
+   "found": true,
+   "module": "Mathlib.Topology.Separation.Basic",
+   "source": "Mathlib/Topology/Separation/Basic.lean:877",
+   "docstring": "/-- A topological space is called a *preregular* (a.k.a. R₁) space,\nif any two topologically distinguishable points have disjoint neighbourhoods. -/",
+   "signature": "class R1Space (X : Type*) [TopologicalSpace X] : Prop where\n  specializes_or_disjoint_nhds (x y : X) : Specializes x y ∨ Disjoint (𝓝 x) (𝓝 y)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Separation/Basic.html#R1Space"
+  }
+ },
+ "P000016": {
+  "pibase_name": "Compact",
+  "tier": "A",
+  "note": "pi-base Compact = quasi-compact (no Hausdorff); matches Mathlib CompactSpace.",
+  "kind": "class",
+  "mathlib": {
+   "name": "CompactSpace",
+   "fqn": "CompactSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Defs.Filter",
+   "source": "Mathlib/Topology/Defs/Filter.lean:282",
+   "docstring": "/-- Type class for compact spaces. Separation is sometimes included in the definition, especially\nin the French literature, but we do not include it here. -/",
+   "signature": "class CompactSpace : Prop where\n  /-- In a compact space, `Set.univ` is a compact set. -/\n  isCompact_univ : IsCompact (Set.univ : Set X)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Defs/Filter.html#CompactSpace"
+  }
+ },
+ "P000017": {
+  "pibase_name": "$\\sigma$-compact",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "SigmaCompactSpace",
+   "fqn": "SigmaCompactSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Compactness.SigmaCompact",
+   "source": "Mathlib/Topology/Compactness/SigmaCompact.lean:142",
+   "docstring": "/-- A σ-compact space is a space that is the union of a countable collection of compact subspaces.\n  Note that a locally compact separable T₂ space need not be σ-compact.\n  The sequence can be extracted using `compactCovering`. -/",
+   "signature": "class SigmaCompactSpace (X : Type*) [TopologicalSpace X] : Prop where\n  /-- In a σ-compact space, `Set.univ` is a σ-compact set. -/\n  isSigmaCompact_univ : IsSigmaCompact (univ : Set X)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Compactness/SigmaCompact.html#SigmaCompactSpace"
+  }
+ },
+ "P000018": {
+  "pibase_name": "Lindelöf",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "LindelofSpace",
+   "fqn": "LindelofSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Compactness.Lindelof",
+   "source": "Mathlib/Topology/Compactness/Lindelof.lean:482",
+   "docstring": "/-- X is a Lindelöf space iff every open cover has a countable subcover. -/",
+   "signature": "class LindelofSpace (X : Type*) [TopologicalSpace X] : Prop where\n  /-- In a Lindelöf space, `Set.univ` is a Lindelöf set. -/\n  isLindelof_univ : IsLindelof (univ : Set X)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Compactness/Lindelof.html#LindelofSpace"
+  }
+ },
+ "P000019": {
+  "pibase_name": "Countably compact",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "CountablyCompactSpace",
+   "fqn": "CountablyCompactSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Compactness.CountablyCompact",
+   "source": "Mathlib/Topology/Compactness/CountablyCompact.lean:68",
+   "docstring": "/-- A topological space is countably compact if every countably generated proper filter has a\ncluster point. -/",
+   "signature": "class CountablyCompactSpace (E : Type*) [TopologicalSpace E] : Prop where\n  isCountablyCompact_univ : IsCountablyCompact (Set.univ : Set E)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Compactness/CountablyCompact.html#CountablyCompactSpace"
+  }
+ },
+ "P000023": {
+  "pibase_name": "Weakly locally compact",
+  "tier": "A",
+  "note": "pi-base 'Weakly locally compact' = each point has one compact neighborhood.",
+  "kind": "class",
+  "mathlib": {
+   "name": "WeaklyLocallyCompactSpace",
+   "fqn": "WeaklyLocallyCompactSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Defs.Filter",
+   "source": "Mathlib/Topology/Defs/Filter.lean:294",
+   "docstring": "/-- We say that a topological space is a *weakly locally compact space*,\nif each point of this space admits a compact neighborhood. -/",
+   "signature": "class WeaklyLocallyCompactSpace (X : Type*) [TopologicalSpace X] : Prop where\n  /-- Every point of a weakly locally compact space admits a compact neighborhood. -/\n  exists_compact_mem_nhds (x : X) : ∃ s, IsCompact s ∧ s ∈ 𝓝 x",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Defs/Filter.html#WeaklyLocallyCompactSpace"
+  }
+ },
+ "P000130": {
+  "pibase_name": "Locally compact",
+  "tier": "A",
+  "note": "Mathlib LocallyCompactSpace = basis of compact neighborhoods (the strong form).",
+  "kind": "class",
+  "mathlib": {
+   "name": "LocallyCompactSpace",
+   "fqn": "LocallyCompactSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Defs.Filter",
+   "source": "Mathlib/Topology/Defs/Filter.lean:308",
+   "docstring": "/-- There are various definitions of \"locally compact space\" in the literature,\nwhich agree for Hausdorff spaces but not in general.\nThis one is the precise condition on X needed\nfor the evaluation map `C(X, Y) × X → Y` to be continuous for all `Y`\nwhen `C(X, Y)` is given the compact-open topology.\n\nSee also `WeaklyLocallyCompactSpace`, a typeclass that only assumes\nthat each point has a compact neighborhood. -/",
+   "signature": "class LocallyCompactSpace (X : Type*) [TopologicalSpace X] : Prop where\n  /-- In a locally compact space,\n  every neighbourhood of every point contains a compact neighbourhood of that same point. -/\n  local_compact_nhds : ∀ (x : X), ∀ n ∈ 𝓝 x, ∃ s ∈ 𝓝 x, s ⊆ n ∧ IsCompact s",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Defs/Filter.html#LocallyCompactSpace"
+  }
+ },
+ "P000030": {
+  "pibase_name": "Paracompact",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "ParacompactSpace",
+   "fqn": "ParacompactSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Compactness.Paracompact",
+   "source": "Mathlib/Topology/Compactness/Paracompact.lean:63",
+   "docstring": "/-- A topological space is called paracompact, if every open covering of this space admits a locally\nfinite refinement. We use the same universe for all types in the definition to avoid creating a\nclass like `ParacompactSpace.{u v}`. Due to lemma `precise_refinement` below, every open covering\n`s : α → Set X` indexed on `α : Type v` has a *precise* locally finite refinement, i.e., a locally\nfinite refinement `t : α → Set X` indexed on the same type such that each `∀ i, t i ⊆ s i`. -/",
+   "signature": "class ParacompactSpace (X : Type v) [TopologicalSpace X] : Prop where\n  /-- Every open cover of a paracompact space assumes a locally finite refinement. -/\n  locallyFinite_refinement :\n    ∀ (α : Type v) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →\n      ∃ (β : Type v) (t : β → Set X),\n        (∀ b, IsOpen (t b)) ∧ (⋃ b, t b = univ) ∧ LocallyFinite t ∧ ∀ b, ∃ a, t b ⊆ s a",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Compactness/Paracompact.html#ParacompactSpace"
+  }
+ },
+ "P000036": {
+  "pibase_name": "Connected",
+  "tier": "A",
+  "note": "pi-base 'Connected' = 'no disjoint nonempty open cover' = preconnected; pi-base DEDUCES the empty space (S000163) is connected, so the faithful match is PreconnectedSpace, NOT Mathlib's ConnectedSpace (which bundles Nonempty). Verified 2026-07-02 via faithfulness review + closure.",
+  "kind": "class",
+  "mathlib": {
+   "name": "PreconnectedSpace",
+   "fqn": "PreconnectedSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Connected.Basic",
+   "source": "Mathlib/Topology/Connected/Basic.lean:625",
+   "docstring": "/-- A preconnected space is one where there is no non-trivial open partition. -/",
+   "signature": "class PreconnectedSpace (α : Type u) [TopologicalSpace α] : Prop where\n  /-- The universal set `Set.univ` in a preconnected space is a preconnected set. -/\n  isPreconnected_univ : IsPreconnected (univ : Set α)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Connected/Basic.html#PreconnectedSpace"
+  }
+ },
+ "P000037": {
+  "pibase_name": "Path connected",
+  "tier": "A",
+  "note": "pi-base 'Path connected' = 'every two points joined by a path'; the empty space satisfies this vacuously and pi-base deduces it path-connected. Mathlib PathConnectedSpace bundles Nonempty, so we use the bare joined-condition for faithfulness.",
+  "kind": "expr",
+  "expr": "∀ x y : X, @Joined X i x y",
+  "mathlib_refs": [
+   {
+    "name": "Joined",
+    "fqn": "Joined",
+    "found": true,
+    "module": "Mathlib.Topology.Connected.PathConnected",
+    "source": "Mathlib/Topology/Connected/PathConnected.lean:62",
+    "docstring": "/-- The relation \"being joined by a path\". This is an equivalence relation. -/",
+    "signature": "def Joined (x y : X) : Prop :=",
+    "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Connected/PathConnected.html#Joined"
+   }
+  ]
+ },
+ "P000041": {
+  "pibase_name": "Locally connected",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "LocallyConnectedSpace",
+   "fqn": "LocallyConnectedSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Connected.LocallyConnected",
+   "source": "Mathlib/Topology/Connected/LocallyConnected.lean:35",
+   "docstring": "/-- A topological space is **locally connected** if each neighborhood filter admits a basis\nof connected *open* sets. Note that it is equivalent to each point having a basis of connected\n(not necessarily open) sets but in a non-trivial way, so we choose this definition and prove the\nequivalence later in `locallyConnectedSpace_iff_connected_basis`. -/",
+   "signature": "class LocallyConnectedSpace (α : Type*) [TopologicalSpace α] : Prop where\n  /-- Open connected neighborhoods form a basis of the neighborhoods filter. -/\n  open_connected_basis : ∀ x, (𝓝 x).HasBasis (fun s : Set α => IsOpen s ∧ x ∈ s ∧ IsConnected s) id",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Connected/LocallyConnected.html#LocallyConnectedSpace"
+  }
+ },
+ "P000042": {
+  "pibase_name": "Locally path connected",
+  "tier": "A",
+  "note": "Locally path connected. (Mathlib master renamed this to LocallyPathConnectedSpace; the pinned v4.32.0-rc1 uses LocPathConnectedSpace.)",
+  "kind": "class",
+  "mathlib": {
+   "name": "LocPathConnectedSpace",
+   "fqn": "LocPathConnectedSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Connected.LocPathConnected",
+   "source": "Mathlib/Topology/Connected/LocPathConnected.lean:55",
+   "docstring": "/-- A topological space is locally path connected, at every point, path connected\nneighborhoods form a neighborhood basis. -/",
+   "signature": "class LocPathConnectedSpace (X : Type*) [TopologicalSpace X] : Prop where\n  /-- Each neighborhood filter has a basis of path-connected neighborhoods. -/\n  path_connected_basis : ∀ x : X, (𝓝 x).HasBasis (fun s : Set X => s ∈ 𝓝 x ∧ IsPathConnected s) id",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/find/?pattern=LocPathConnectedSpace#doc"
+  }
+ },
+ "P000047": {
+  "pibase_name": "Totally disconnected",
+  "tier": "A",
+  "note": "pi-base alias 'hereditarily disconnected'.",
+  "kind": "class",
+  "mathlib": {
+   "name": "TotallyDisconnectedSpace",
+   "fqn": "TotallyDisconnectedSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Connected.TotallyDisconnected",
+   "source": "Mathlib/Topology/Connected/TotallyDisconnected.lean:47",
+   "docstring": "/-- A space is totally disconnected if all of its connected components are singletons. -/",
+   "signature": "class TotallyDisconnectedSpace (α : Type u) [TopologicalSpace α] : Prop where\n  /-- The universal set `Set.univ` in a totally disconnected space is totally disconnected. -/\n  isTotallyDisconnected_univ : IsTotallyDisconnected (univ : Set α)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Connected/TotallyDisconnected.html#TotallyDisconnectedSpace"
+  }
+ },
+ "P000048": {
+  "pibase_name": "Totally separated",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "TotallySeparatedSpace",
+   "fqn": "TotallySeparatedSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Connected.TotallyDisconnected",
+   "source": "Mathlib/Topology/Connected/TotallyDisconnected.lean:213",
+   "docstring": "/-- A space is totally separated if any two points can be separated by two disjoint open sets\ncovering the whole space. -/",
+   "signature": "@[mk_iff] class TotallySeparatedSpace (α : Type u) [TopologicalSpace α] : Prop where\n  /-- The universal set `Set.univ` in a totally separated space is totally separated. -/\n  isTotallySeparated_univ : IsTotallySeparated (univ : Set α)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Connected/TotallyDisconnected.html#TotallySeparatedSpace"
+  }
+ },
+ "P000039": {
+  "pibase_name": "Hyperconnected",
+  "tier": "A",
+  "note": "pi-base 'Hyperconnected' = 'no disjoint nonempty opens' = preirreducible; pi-base deduces the empty space hyperconnected, so the faithful match is PreirreducibleSpace, NOT Mathlib's IrreducibleSpace (which adds Nonempty).",
+  "kind": "class",
+  "mathlib": {
+   "name": "PreirreducibleSpace",
+   "fqn": "PreirreducibleSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Irreducible",
+   "source": "Mathlib/Topology/Irreducible.lean:163",
+   "docstring": "/-- A preirreducible space is one where there is no non-trivial pair of disjoint opens. -/",
+   "signature": "class PreirreducibleSpace (X : Type*) [TopologicalSpace X] : Prop where\n  /-- In a preirreducible space, `Set.univ` is a preirreducible set. -/\n  isPreirreducible_univ : IsPreirreducible (univ : Set X)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Irreducible.html#PreirreducibleSpace"
+  }
+ },
+ "P000049": {
+  "pibase_name": "Extremally disconnected",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "ExtremallyDisconnected",
+   "fqn": "ExtremallyDisconnected",
+   "found": true,
+   "module": "Mathlib.Topology.ExtremallyDisconnected",
+   "source": "Mathlib/Topology/ExtremallyDisconnected.lean:45",
+   "docstring": "/-- An extremally disconnected topological space is a space\nin which the closure of every open set is open. -/",
+   "signature": "class ExtremallyDisconnected : Prop where\n  /-- The closure of every open set is open. -/\n  open_closure : ∀ U : Set X, IsOpen U → IsOpen (closure U)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/ExtremallyDisconnected.html#ExtremallyDisconnected"
+  }
+ },
+ "P000052": {
+  "pibase_name": "Discrete",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "DiscreteTopology",
+   "fqn": "DiscreteTopology",
+   "found": true,
+   "module": "Mathlib.Topology.Order",
+   "source": "Mathlib/Topology/Order.lean:301",
+   "docstring": "/-- A topological space is discrete if every set is open, that is,\n  its topology equals the discrete topology `⊥`. -/",
+   "signature": "class DiscreteTopology (α : Type*) [t : TopologicalSpace α] : Prop where\n  /-- The `TopologicalSpace` structure on a type with discrete topology is equal to `⊥`. -/\n  eq_bot : t = ⊥",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Order.html#DiscreteTopology"
+  }
+ },
+ "P000053": {
+  "pibase_name": "Metrizable",
+  "tier": "A",
+  "note": "TopologicalSpace.MetrizableSpace (short name via `open TopologicalSpace`).",
+  "kind": "class",
+  "mathlib": {
+   "name": "MetrizableSpace",
+   "fqn": "TopologicalSpace.MetrizableSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Metrizable.Basic",
+   "source": "Mathlib/Topology/Metrizable/Basic.lean:118",
+   "docstring": "/-- A topological space is metrizable if there exists a metric space structure compatible with the\ntopology. To minimize imports, we implement this class in terms of the existence of a\ncountably generated uniformity inducing the topology, which is mathematically\nequivalent.\nTo endow such a space with a compatible uniformity, use\n`letI : UniformSpace X := TopologicalSpace.pseudoMetrizableSpaceUniformity X`.\nTo endow such a space with a compatible distance, use\n`letI : MetricSpace X := TopologicalSpace.metrizableSpaceMetric X`. -/",
+   "signature": "class MetrizableSpace (X : Type*) [t : TopologicalSpace X] : Prop extends\n    PseudoMetrizableSpace X, T0Space X\n\n-- See note [lower instance priority]\nattribute [instance 100] MetrizableSpace.toT0Space\nattribute [instance 100] MetrizableSpace.toPseudoMetrizableSpace\n\ninstance (priority := 100) PseudoMetrizableSpace.toMetrizableSpace",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Metrizable/Basic.html#TopologicalSpace.MetrizableSpace"
+  }
+ },
+ "P000116": {
+  "pibase_name": "Polish",
+  "tier": "A",
+  "note": "second-countable + completely metrizable.",
+  "kind": "class",
+  "mathlib": {
+   "name": "PolishSpace",
+   "fqn": "PolishSpace",
+   "found": true,
+   "module": "Mathlib.Topology.MetricSpace.Polish",
+   "source": "Mathlib/Topology/MetricSpace/Polish.lean:62",
+   "docstring": "/-- A Polish space is a topological space with second countable topology, that can be endowed\nwith a metric for which it is complete.\n\nTo endow a Polish space with a complete metric space structure, do\n`letI := upgradeIsCompletelyMetrizable α`.\n-/",
+   "signature": "class PolishSpace (α : Type*) [h : TopologicalSpace α] : Prop\n    extends SecondCountableTopology α, IsCompletelyMetrizableSpace α\n\ninstance [TopologicalSpace α] [SeparableSpace α] [IsCompletelyMetrizableSpace α] :\n    PolishSpace α := by",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/MetricSpace/Polish.html#PolishSpace"
+  }
+ },
+ "P000027": {
+  "pibase_name": "Second countable",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "SecondCountableTopology",
+   "fqn": "SecondCountableTopology",
+   "found": true,
+   "module": "Mathlib.Topology.Bases",
+   "source": "Mathlib/Topology/Bases.lean:735",
+   "docstring": "/-- A second-countable space is one with a countable basis. -/",
+   "signature": "class _root_.SecondCountableTopology : Prop where\n  /-- There exists a countable set of sets that generates the topology. -/\n  is_open_generated_countable : ∃ b : Set (Set α), b.Countable ∧ t = TopologicalSpace.generateFrom b",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Bases.html#SecondCountableTopology"
+  }
+ },
+ "P000028": {
+  "pibase_name": "First countable",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "FirstCountableTopology",
+   "fqn": "FirstCountableTopology",
+   "found": true,
+   "module": "Mathlib.Topology.Bases",
+   "source": "Mathlib/Topology/Bases.lean:677",
+   "docstring": "/-- A first-countable space is one in which every point has a\n  countable neighborhood basis. -/",
+   "signature": "class _root_.FirstCountableTopology : Prop where\n  /-- The filter `𝓝 a` is countably generated for all points `a`. -/\n  nhds_generated_countable : ∀ a : α, (𝓝 a).IsCountablyGenerated",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Bases.html#FirstCountableTopology"
+  }
+ },
+ "P000026": {
+  "pibase_name": "Separable",
+  "tier": "A",
+  "note": "TopologicalSpace.SeparableSpace.",
+  "kind": "class",
+  "mathlib": {
+   "name": "SeparableSpace",
+   "fqn": "TopologicalSpace.SeparableSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Bases",
+   "source": "Mathlib/Topology/Bases.lean:315",
+   "docstring": "/-- A separable space is one with a countable dense subset, available through\n`TopologicalSpace.exists_countable_dense`. If `α` is also known to be nonempty, then\n`TopologicalSpace.denseSeq` provides a sequence `ℕ → α` with dense range, see\n`TopologicalSpace.denseRange_denseSeq`.\n\nIf `α` is a uniform space with countably generated uniformity filter (e.g., an `EMetricSpace`), then\nthis condition is equivalent to `SecondCountableTopology α`. In this case the\nlatter should be used as a typeclass argument in theorems because Lean can automatically deduce\n`TopologicalSpace.SeparableSpace` from `SecondCountableTopology` using\n`TopologicalSpace.SecondCountableTopology.to_separableSpace`, but deducing\n`SecondCountableTopology` from `TopologicalSpace.SeparableSpace` requires more assumptions.\n-/",
+   "signature": "@[mk_iff] class SeparableSpace : Prop where\n  /-- There exists a countable dense set. -/\n  exists_countable_dense : ∃ s : Set α, s.Countable ∧ Dense s",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Bases.html#TopologicalSpace.SeparableSpace"
+  }
+ },
+ "P000064": {
+  "pibase_name": "Baire",
+  "tier": "A",
+  "note": "",
+  "kind": "class",
+  "mathlib": {
+   "name": "BaireSpace",
+   "fqn": "BaireSpace",
+   "found": true,
+   "module": "Mathlib.Topology.Defs.Basic",
+   "source": "Mathlib/Topology/Defs/Basic.lean:205",
+   "docstring": "/-- The property `BaireSpace α` means that the topological space `α` has the Baire property:\nany countable intersection of open dense subsets is dense.\nFormulated here when the source space is ℕ.\nUse `dense_iInter_of_isOpen` which works for any countable index type instead. -/",
+   "signature": "class BaireSpace (X : Type*) [TopologicalSpace X] : Prop where\n  baire_property : ∀ f : ℕ → Set X, (∀ n, IsOpen (f n)) → (∀ n, Dense (f n)) → Dense (⋂ n, f n)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Defs/Basic.html#BaireSpace"
+  }
+ },
+ "P000208": {
+  "pibase_name": "Noetherian",
+  "tier": "A",
+  "note": "pi-base Noetherian = hereditarily compact.",
+  "kind": "class",
+  "mathlib": {
+   "name": "NoetherianSpace",
+   "fqn": "TopologicalSpace.NoetherianSpace",
+   "found": true,
+   "module": "Mathlib.Topology.NoetherianSpace",
+   "source": "Mathlib/Topology/NoetherianSpace.lean:52",
+   "docstring": "/-- Type class for Noetherian spaces. It is defined to be spaces whose open sets satisfies ACC. -/",
+   "signature": "abbrev NoetherianSpace : Prop := WellFoundedGT (Opens α)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/NoetherianSpace.html#TopologicalSpace.NoetherianSpace"
+  }
+ },
+ "P000090": {
+  "pibase_name": "Alexandrov",
+  "tier": "A",
+  "note": "Arbitrary intersections of opens are open.",
+  "kind": "class",
+  "mathlib": {
+   "name": "AlexandrovDiscrete",
+   "fqn": "AlexandrovDiscrete",
+   "found": true,
+   "module": "Mathlib.Topology.AlexandrovDiscrete",
+   "source": "Mathlib/Topology/AlexandrovDiscrete.lean:38",
+   "docstring": "/-- A topological space is **Alexandrov-discrete** or **finitely generated** if the intersection of\na family of open sets is open. -/",
+   "signature": "class AlexandrovDiscrete (α : Type*) [TopologicalSpace α] : Prop where\n  /-- The intersection of a family of open sets is an open set. Use `isOpen_sInter` in the root\n  namespace instead. -/\n  protected isOpen_sInter : ∀ S : Set (Set α), (∀ s ∈ S, IsOpen s) → IsOpen (⋂₀ S)",
+   "docs_url": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/AlexandrovDiscrete.html#AlexandrovDiscrete"
+  }
+ }
+}

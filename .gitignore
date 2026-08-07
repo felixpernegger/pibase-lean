@@ -1,1 +1,5 @@
 /.lake
+/site
+/node_modules
+/dashboard/public/data
+/dashboard/public/blueprint.html

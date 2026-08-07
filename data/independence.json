@@ -1,0 +1,40 @@
+{
+  "note": "Certified ZFC-independent implications and conditional π-Base constructions. A pair is classified as independent only when both truth values under the named assumptions are documented; a conditional space supplies conditional evidence but never an unconditional refutation.",
+  "baseTheory": "ZFC",
+  "pairs": [
+    {
+      "hypothesis": "P000058",
+      "conclusion": "P000057",
+      "axioms": [
+        "CH"
+      ],
+      "trueWhen": "CH",
+      "falseWhen": "not CH",
+      "summary": "The implication holds exactly when CH holds.",
+      "theorems": [
+        "T000067"
+      ],
+      "referenceUrl": "https://topology.pi-base.org/theorems/T000067"
+    }
+  ],
+  "conditionalSpaces": [
+    {
+      "space": "S000147",
+      "assumptions": [
+        "CH"
+      ],
+      "condition": "CH",
+      "summary": "pi-Base uses a CH construction of the special Luzin set.",
+      "referenceUrl": "https://topology.pi-base.org/spaces/S000147"
+    },
+    {
+      "space": "S000148",
+      "assumptions": [
+        "CH"
+      ],
+      "condition": "CH",
+      "summary": "pi-Base uses a CH construction of the generic Luzin set.",
+      "referenceUrl": "https://topology.pi-base.org/spaces/S000148"
+    }
+  ]
+}

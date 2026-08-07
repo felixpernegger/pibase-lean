@@ -1,0 +1,38 @@
+Dashboard and data tooling originally developed in Deicyde/pi-base-lean
+Copyright (c) 2026 Jack McCarthy — MIT License (see LICENSE-PI-BASE-LEAN).
+
+This product includes data from π-Base (the pi-Base community database of
+topological spaces), vendored at data/pibase.json.
+
+    π-Base data © 2014–2025 Steven Clontz, James Dabbs, and the π-Base community.
+    Source:  https://github.com/pi-base/data
+    Site:    https://topology.pi-base.org
+    License: Creative Commons Attribution 4.0 International (CC-BY-4.0)
+             https://creativecommons.org/licenses/by/4.0/
+    DOI:     10.5281/zenodo.15850332
+
+The pinned snapshot's exact revision is recorded in data/pibase.json under the
+`version` key (git SHA a4a474d387dcc9b1b5cc293a067eebeb5de6a587) and in
+data/coverage.json (`pin_sha`).
+
+Changes: the data is transformed into dashboard and deduction artifacts by
+scripts/closure.py, scripts/graph.py, scripts/build_project_page.py, and
+scripts/build_review.py. The underlying mathematical facts are unmodified; only
+their representation changes.
+
+The π-Base software (the deduction engine this project's closure.py re-implements)
+is separately available at https://github.com/pi-base/web under the MIT License.
+
+This product includes the implications engine payload from Felix Pernegger's
+pi-base data fork, vendored at data/implications.json and refreshed at deploy
+time by scripts/fetch_implications.py.
+
+    Source:  https://github.com/felixpernegger/pibase-data
+    Site:    https://felixpernegger.github.io/pibase-data/
+    License: Creative Commons Attribution 4.0 International (CC-BY-4.0)
+             (the repository's data license; see its LICENSE.md)
+
+Changes: dashboard/src/engine.ts is a TypeScript port of that repository's
+site_engine.js in-browser deduction engine, and the payload is served verbatim
+to the dashboard's Implications page. The underlying mathematical facts are
+unmodified; only their representation changes.
