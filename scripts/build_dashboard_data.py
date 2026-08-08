@@ -864,6 +864,22 @@ def main() -> None:
     branch = git("branch", "--show-current") or "master"
     source_date = git("log", "-1", "--format=%cI")[:10]
     statuses, analyses = analyze_lean_tree()
+    # The Lean checkout tracks current pi-Base and can be ahead of the pinned
+    # snapshot; entries outside the snapshot join the dashboard when the
+    # snapshot is refreshed, so they must not count against its totals.
+    snapshot_uids = {
+        item["uid"]
+        for kind in ("properties", "spaces", "theorems")
+        for item in data[kind]
+    }
+    beyond_snapshot = sorted(set(statuses) - snapshot_uids)
+    if beyond_snapshot:
+        preview = ", ".join(beyond_snapshot[:5])
+        print(
+            f"note: {len(beyond_snapshot)} Lean entries are ahead of the pinned "
+            f"pi-Base snapshot and were excluded ({preview}…)"
+        )
+        statuses = {uid: value for uid, value in statuses.items() if uid in snapshot_uids}
     graph = build_graph(data, axiom_dependencies, conditional_spaces)
     formalized_graph = build_formalized_graph(data, statuses, graph)
     names = {item["uid"]: item["name"] for item in data["properties"]}
