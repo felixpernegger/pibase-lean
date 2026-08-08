@@ -13,7 +13,7 @@ public import PiBaseLean.Theorems.T21.Theorem
 # Set theory axioms beyond ZFC
 
 Some implications between topological properties are consistent under ZFC, but not provable
-etc (i.e. Continuum < 𝔠 → Continuum < ℵ₁).
+etc (i.e. Cardinality < 𝔠 → Cardinality < ℵ₁).
 
 We still want to be able to argue about such pathological examples. Thus, this file introduces three
 typeclasses for common set theoretic axioms (CH, GCH and MA) and proves implications about them.
