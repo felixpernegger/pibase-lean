@@ -9,9 +9,6 @@ To contribute please open an issue and then a PR. Note we are strictly using the
 
 As of writing, this project is still in its infancy, so the structure of the repo etc. might and probably will change later.
 
----
+## Dashboard
 
-<p align="center">
-  <img src="scripts/theorems_growth.png" alt="Theorems growth graph"><br>
-  <em>Number of theorems (out of 872) formalised as of April 12 2026</em>
-</p>
+The [project dashboard](https://felixpernegger.github.io/pibase-lean/) tracks the formalisation against π-Base and hosts the open-implications workflow of [felixpernegger/pibase-data](https://github.com/felixpernegger/pibase-data).

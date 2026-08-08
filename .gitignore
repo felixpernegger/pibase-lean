@@ -1,1 +1,8 @@
 /.lake
+/site
+/node_modules
+/dashboard/public/data
+/dashboard/public/blueprint.html
+/data/questions.json
+/data/traits.json
+__pycache__/
