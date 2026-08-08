@@ -332,12 +332,6 @@ def main() -> None:
         load(DATA / "frontier.json")["frontier"] == frontier,
         "pi-Base frontier artifact disagrees with the manifest",
     )
-    for page in ("blueprint.html", "review.html", "data.html"):
-        require((PUBLIC / page).exists(), f"public page is missing: {page}")
-    blueprint = (PUBLIC / "blueprint.html").read_text(encoding="utf-8")
-    require(canonical_repo in blueprint, "blueprint does not link Felix's repository")
-    require("github.com/Deicyde/pibase-lean" not in blueprint, "blueprint contains a fork source link")
-
     print(
         "dashboard integrity: "
         f"{size} nodes, {sum(histogram.values()):,} cells, "

@@ -19,7 +19,6 @@ SCRIPTS = ROOT / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 
 from graph import full_trait_matrix, known_true_edges, transitive_closure  # noqa: E402
-from build_project_page import build_blueprint_page  # noqa: E402
 from gen_traits import build_traits_data  # noqa: E402
 
 DATA_DIR = ROOT / "data"
@@ -826,7 +825,6 @@ def main() -> None:
         shutil.rmtree(OUT_DIR)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     data = load_json(DATA_DIR / "pibase.json")
-    coverage = load_json(DATA_DIR / "coverage.json")
     registry = load_json(DATA_DIR / "registry.json")
     foundations = load_json(DATA_DIR / "independence.json")
     implications = load_json(DATA_DIR / "implications.json")
@@ -959,7 +957,7 @@ def main() -> None:
             "branch": branch,
             "sourceDate": source_date,
             "generatedAt": generated_at,
-            "dataSha": data.get("version", {}).get("sha", coverage.get("pin_sha", "")),
+            "dataSha": data.get("version", {}).get("sha", ""),
         },
         "summary": {
             "propertyEntries": len(property_statuses),
@@ -1053,22 +1051,6 @@ def main() -> None:
         b"".join(struct.pack("<H", value) for value in graph["witnesses"])
     )
     build_review_payloads(data, statuses, commit, generated_at, traits)
-
-    legacy_summary = {
-        "total": total_pairs,
-        "true": counts.get("explicitTrue", 0) + counts.get("derivedTrue", 0),
-        "explicitly_true": counts.get("explicitTrue", 0),
-        "implicitly_true": counts.get("derivedTrue", 0),
-        "false": counts.get("false", 0),
-        "independent": counts.get("axiomDependent", 0),
-        "axiom_dependent": counts.get("axiomDependent", 0),
-        "open": counts.get("unclassified", 0),
-        "witness_count": graph["witnessCounts"],
-    }
-    (PUBLIC_DIR / "blueprint.html").write_text(
-        build_blueprint_page(data, coverage, questions, legacy_summary),
-        encoding="utf-8",
-    )
 
     print(
         "dashboard data: "

@@ -52,9 +52,3 @@ dashboard. `PIBASE_LEAN_SOURCE` can point local builds at any Felix checkout for
 For an interactive local server, run
 `PIBASE_LEAN_SOURCE=../felix-pibase-lean npm run dashboard:dev`.
 
----
-
-<p align="center">
-  <img src="scripts/theorems_growth.png" alt="Theorems growth graph"><br>
-  <em>Number of theorems (out of 872) formalised as of April 12 2026</em>
-</p>
