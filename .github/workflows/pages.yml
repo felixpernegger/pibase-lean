@@ -1,0 +1,61 @@
+name: Deploy project site to Pages
+
+on:
+  push:
+    branches: [master, add-counterexample-spaces]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check out Felix's Lean source
+        # Full history is used for per-file authorship in the review audit.
+        run: git clone --filter=blob:none --no-tags --branch master https://github.com/felixpernegger/pibase-lean.git "$RUNNER_TEMP/felix-pibase-lean"
+      - name: Check out Felix's pi-base data
+        run: git clone --depth 1 --branch main https://github.com/felixpernegger/pibase-data.git "$RUNNER_TEMP/felix-pibase-data"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refresh the implications payload
+        # Felix's deduction engine (build_site.py) produces the payload replayed
+        # by the Implications page, so assertions accepted upstream are current
+        # at every deploy.
+        run: |
+          pip install pyyaml
+          PYTHONDONTWRITEBYTECODE=1 python3 scripts/fetch_implications.py "$RUNNER_TEMP/felix-pibase-data"
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Install dashboard dependencies
+        run: npm ci
+      - name: Check dashboard types
+        run: npm run dashboard:check
+      - name: Build the project dashboard
+        run: npm run dashboard:build
+        env:
+          PIBASE_LEAN_SOURCE: ${{ runner.temp }}/felix-pibase-lean
+      - name: Verify dashboard artifacts
+        run: npm run dashboard:verify
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,206 @@
+{
+  "_comment": "pi-base property uid -> Mathlib predicate. Hand-curated, human-reviewed. 'class' entries generate `fun X i => @<class> X i`; 'expr' entries generate `fun X i => <expr>` using bound names X (the type) and i (its TopologicalSpace instance). 'note' records any semantic gap between the pi-base definition and the Mathlib one that a prover/reviewer must respect. Unlisted properties get an `opaque` placeholder until defined.",
+  "_tiers": "A = direct Mathlib class; B = definable from Mathlib primitives (todo); C = not in Mathlib, needs a fresh definition (todo).",
+  "properties": {
+    "P000001": {
+      "class": "T0Space",
+      "tier": "A",
+      "note": ""
+    },
+    "P000002": {
+      "class": "T1Space",
+      "tier": "A",
+      "note": ""
+    },
+    "P000003": {
+      "class": "T2Space",
+      "tier": "A",
+      "note": ""
+    },
+    "P000004": {
+      "class": "T25Space",
+      "tier": "A",
+      "note": "pi-base T2.5 = Urysohn = disjoint closed neighborhoods; matches Mathlib T25Space. Distinct from P000009 Functionally Hausdorff (separation by a continuous function)."
+    },
+    "P000005": {
+      "class": "T3Space",
+      "tier": "A",
+      "note": "Mathlib T3Space = RegularSpace + T0Space, i.e. regular Hausdorff."
+    },
+    "P000006": {
+      "class": "T35Space",
+      "tier": "A",
+      "note": "Tychonoff = completely regular Hausdorff."
+    },
+    "P000007": {
+      "class": "T4Space",
+      "tier": "A",
+      "note": "Mathlib T4Space = NormalSpace + T1Space."
+    },
+    "P000008": {
+      "class": "T5Space",
+      "tier": "A",
+      "note": "Completely normal Hausdorff."
+    },
+    "P000067": {
+      "class": "T6Space",
+      "tier": "A",
+      "note": "Perfectly normal Hausdorff."
+    },
+    "P000011": {
+      "class": "RegularSpace",
+      "tier": "A",
+      "note": "Mathlib RegularSpace does not assume T0; matches pi-base 'Regular' (P5 = T3 adds T0)."
+    },
+    "P000012": {
+      "class": "CompletelyRegularSpace",
+      "tier": "A",
+      "note": ""
+    },
+    "P000013": {
+      "class": "NormalSpace",
+      "tier": "A",
+      "note": ""
+    },
+    "P000014": {
+      "class": "CompletelyNormalSpace",
+      "tier": "A",
+      "note": "Hereditarily normal."
+    },
+    "P000015": {
+      "class": "PerfectlyNormalSpace",
+      "tier": "A",
+      "note": ""
+    },
+    "P000135": {
+      "class": "R0Space",
+      "tier": "A",
+      "note": ""
+    },
+    "P000134": {
+      "class": "R1Space",
+      "tier": "A",
+      "note": "Preregular."
+    },
+    "P000016": {
+      "class": "CompactSpace",
+      "tier": "A",
+      "note": "pi-base Compact = quasi-compact (no Hausdorff); matches Mathlib CompactSpace."
+    },
+    "P000017": {
+      "class": "SigmaCompactSpace",
+      "tier": "A",
+      "note": ""
+    },
+    "P000018": {
+      "class": "LindelofSpace",
+      "tier": "A",
+      "note": ""
+    },
+    "P000019": {
+      "class": "CountablyCompactSpace",
+      "tier": "A",
+      "note": ""
+    },
+    "P000023": {
+      "class": "WeaklyLocallyCompactSpace",
+      "tier": "A",
+      "note": "pi-base 'Weakly locally compact' = each point has one compact neighborhood."
+    },
+    "P000130": {
+      "class": "LocallyCompactSpace",
+      "tier": "A",
+      "note": "Mathlib LocallyCompactSpace = basis of compact neighborhoods (the strong form)."
+    },
+    "P000030": {
+      "class": "ParacompactSpace",
+      "tier": "A",
+      "note": ""
+    },
+    "P000036": {
+      "class": "PreconnectedSpace",
+      "tier": "A",
+      "note": "pi-base 'Connected' = 'no disjoint nonempty open cover' = preconnected; pi-base DEDUCES the empty space (S000163) is connected, so the faithful match is PreconnectedSpace, NOT Mathlib's ConnectedSpace (which bundles Nonempty). Verified 2026-07-02 via faithfulness review + closure."
+    },
+    "P000037": {
+      "expr": "∀ x y : X, @Joined X i x y",
+      "tier": "A",
+      "note": "pi-base 'Path connected' = 'every two points joined by a path'; the empty space satisfies this vacuously and pi-base deduces it path-connected. Mathlib PathConnectedSpace bundles Nonempty, so we use the bare joined-condition for faithfulness."
+    },
+    "P000041": {
+      "class": "LocallyConnectedSpace",
+      "tier": "A",
+      "note": ""
+    },
+    "P000042": {
+      "class": "LocPathConnectedSpace",
+      "tier": "A",
+      "note": "Locally path connected. (Mathlib master renamed this to LocallyPathConnectedSpace; the pinned v4.32.0-rc1 uses LocPathConnectedSpace.)"
+    },
+    "P000047": {
+      "class": "TotallyDisconnectedSpace",
+      "tier": "A",
+      "note": "pi-base alias 'hereditarily disconnected'."
+    },
+    "P000048": {
+      "class": "TotallySeparatedSpace",
+      "tier": "A",
+      "note": ""
+    },
+    "P000039": {
+      "class": "PreirreducibleSpace",
+      "tier": "A",
+      "note": "pi-base 'Hyperconnected' = 'no disjoint nonempty opens' = preirreducible; pi-base deduces the empty space hyperconnected, so the faithful match is PreirreducibleSpace, NOT Mathlib's IrreducibleSpace (which adds Nonempty)."
+    },
+    "P000049": {
+      "class": "ExtremallyDisconnected",
+      "tier": "A",
+      "note": ""
+    },
+    "P000052": {
+      "class": "DiscreteTopology",
+      "tier": "A",
+      "note": ""
+    },
+    "P000053": {
+      "class": "MetrizableSpace",
+      "tier": "A",
+      "note": "TopologicalSpace.MetrizableSpace (short name via `open TopologicalSpace`)."
+    },
+    "P000116": {
+      "class": "PolishSpace",
+      "tier": "A",
+      "note": "second-countable + completely metrizable."
+    },
+    "P000027": {
+      "class": "SecondCountableTopology",
+      "tier": "A",
+      "note": ""
+    },
+    "P000028": {
+      "class": "FirstCountableTopology",
+      "tier": "A",
+      "note": ""
+    },
+    "P000026": {
+      "class": "SeparableSpace",
+      "tier": "A",
+      "note": "TopologicalSpace.SeparableSpace."
+    },
+    "P000064": {
+      "class": "BaireSpace",
+      "tier": "A",
+      "note": ""
+    },
+    "P000208": {
+      "class": "NoetherianSpace",
+      "tier": "A",
+      "note": "pi-base Noetherian = hereditarily compact."
+    },
+    "P000090": {
+      "class": "AlexandrovDiscrete",
+      "tier": "A",
+      "note": "Arbitrary intersections of opens are open."
+    }
+  }
+}

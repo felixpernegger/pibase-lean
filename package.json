@@ -1,0 +1,29 @@
+{
+  "name": "pibase-lean-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dashboard:data": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_dashboard_data.py",
+    "dashboard:build": "npm run dashboard:data && vite build",
+    "dashboard:dev": "npm run dashboard:data && vite --host 127.0.0.1",
+    "dashboard:preview": "vite preview --host 127.0.0.1 --port 4290",
+    "dashboard:check": "tsc --noEmit -p dashboard/tsconfig.json",
+    "dashboard:verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/check_dashboard_data.py"
+  },
+  "dependencies": {
+    "katex": "0.16.22",
+    "lucide-react": "0.468.0",
+    "marked": "15.0.12",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "@types/katex": "0.16.7",
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7",
+    "@vitejs/plugin-react": "4.7.0",
+    "typescript": "5.9.2",
+    "vite": "7.3.6"
+  }
+}
