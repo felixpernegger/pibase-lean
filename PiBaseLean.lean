@@ -3,6 +3,7 @@ import PiBaseLean.AdditionalDefs.Constructions
 import PiBaseLean.AdditionalDefs.Cover
 import PiBaseLean.AdditionalDefs.Games
 import PiBaseLean.AdditionalDefs.Meta
+import PiBaseLean.AdditionalDefs.SetTheoryAxioms
 import PiBaseLean.Properties.Bundled.Basic
 import PiBaseLean.Properties.Bundled.Defs
 import PiBaseLean.Properties.P1.Defs
