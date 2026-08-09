@@ -11,7 +11,7 @@ namespace PiBase
 
 /- 51. Scattered -/
 class ScatteredSpace (X : Type*) [TopologicalSpace X] : Prop where
-  scattered : ∀ Y : Set X, Y.Nonempty → ∃ x : Y, IsOpen {x}
+  scattered : ∀ s : Set X, s.Nonempty → ∃ x : s, IsOpen {x}
 
 end PiBase
 

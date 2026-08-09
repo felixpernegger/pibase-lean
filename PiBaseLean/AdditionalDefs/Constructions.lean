@@ -35,7 +35,7 @@ theorem IsCozero.isOpen {s : Set X} (hs : IsCozero s) : IsOpen s := by
   simp
 
 def IsRelativelyCompact {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
-  ∀ {ι : Type u} (U : ι → Set X),
+  ∀ {ι : Type u} (U : ι → Set X), (∀ i : ι, IsOpen (U i)) → (⋃ i : ι, U i = univ) →
     ∃ t : Finset ι, s ⊆ ⋃ i ∈ t, U i
 
 --TODO: Notation Σ' for this?

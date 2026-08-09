@@ -76,7 +76,7 @@ theorem LocallyFinite.locallyCountable {U : ι → Set X} (h : LocallyFinite U) 
 
 /-- A discrete family of sets. -/
 def IsDiscreteFamily (F : ι → Set X) : Prop :=
-  ∀ x : X, ∃ U ∈ 𝓝 x, {i : ι | (F i ∩ U).Nonempty}.encard ≤ 1
+  ∀ x : X, ∃ U ∈ 𝓝 x, {i : ι | (F i ∩ U).Nonempty}.Subsingleton
 
 /-- An omega cover of a space. -/
 def IsOmegaCover (f : ι → Opens X) : Prop :=
