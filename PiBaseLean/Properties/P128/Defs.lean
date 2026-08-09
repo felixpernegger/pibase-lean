@@ -15,7 +15,7 @@ namespace PiBase
 class KLindelofSpace (X : Type u) [TopologicalSpace X] : Prop where
   ex_kSubcover {ι : Type u} {f : ι → Opens X} (h : IsKCover f) :
     ∃ (ω : Type u) (g : ω → Opens X), Countable ω ∧
-      (⋃ i, (↑(g i) : Set X) = univ) ∧ range g ⊆ range f
+      IsKCover g ∧ range g ⊆ range f
 
 end PiBase
 

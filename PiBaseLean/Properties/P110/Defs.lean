@@ -17,7 +17,7 @@ structure Development (X : Type u) [TopologicalSpace X] where
   idx : ℕ → Type u
   toCover : {n : ℕ} → (idx n) → Set X
   isOpen : ∀ᵉ (n : ℕ) (t : idx n), IsOpen (toCover t)
-  isCover : ∀ᵉ (n : ℕ), ⋃ t : idx n, toCover t = univ
+  isCover : ∀ (n : ℕ), ⋃ t : idx n, toCover t = univ
   isLocalBase (x : X) : HasBasis (𝓝 x) (fun _ ↦ True)  (fun n ↦ CoverStar (toCover (n := n)) x)
 
 /- 110. Developable -/

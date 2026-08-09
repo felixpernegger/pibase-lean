@@ -29,8 +29,7 @@ def PointCountable (U : ι → Set X) :=
   ∀ x : X, { i | x ∈ U i }.Countable
 
 /-- Star of an open cover. -/
-def CoverStar (U : ι → Set X) (x : X) :
-    Set X := ⋃ i : ι, ⋃ (_ : x ∈ U i), U i
+def CoverStar (U : ι → Set X) (x : X) : Set X := ⋃ i : ι, ⋃ (_ : x ∈ U i), U i
 
 /-- A collection of sets is called *star finite*
 if each member of the collection only meets finitely many other member. -/
@@ -110,7 +109,8 @@ def IsNetwork (f : ι → Set X) : Prop :=
 
 /-- A k-network of a topological space. -/
 def IsKNetwork (f : ι → Set X) : Prop :=
-  ∀ U K : Set X, IsOpen U → IsCompact K → K ⊆ U → ∃ s : Set ι, K ⊆ ⋃ i ∈ s, f i ∧ ⋃ i ∈ s, f i ⊆ U
+  ∀ U K : Set X, IsOpen U → IsCompact K → K ⊆ U → ∃ s : Finset ι,
+    K ⊆ ⋃ i ∈ s, f i ∧ ⋃ i ∈ s, f i ⊆ U
 
 /-- Every k-network is a network -/
 theorem IsKNetwork.isNetwork {f : ι → Set X} (h : IsKNetwork f) : IsNetwork f := by
