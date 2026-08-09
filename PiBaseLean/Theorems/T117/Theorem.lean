@@ -22,6 +22,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T117 : P183 ⊓ P5 ≤ P179 := fun X _ ↦ and_imp.2 (@instAlephZeroSpaceOfHasCountableKNetworkOfT3Space X _)
+theorem T117 : P183 ⊓ P5 ≤ P179 :=
+  fun X _ ↦ and_imp.2 (@instAlephZeroSpaceOfHasCountableKNetworkOfT3Space X _)
 
 end PiBase.Formal

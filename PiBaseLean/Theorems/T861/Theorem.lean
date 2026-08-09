@@ -13,9 +13,9 @@ open Topology Set Function Filter
 
 namespace PiBase
 
-/-- Theorem T861: P42 (LocPathConnectedSpace) => P233 (HasOpenPathComponents) -/
-instance instHasOpenPathComponentsOfLocPathConnectedSpace (X : Type u)
-    [TopologicalSpace X] [h : LocPathConnectedSpace X] : HasOpenPathComponents X := by
+/-- Theorem T861: P42 (LocallyPathConnectedSpace) => P233 (HasOpenPathComponents) -/
+instance instHasOpenPathComponentsOfLocallyPathConnectedSpace (X : Type u)
+    [TopologicalSpace X] [h : LocallyPathConnectedSpace X] : HasOpenPathComponents X := by
   apply (hasOpenPathComponents_iff_ex_connected_nbhd X).mpr fun x ↦ ?_
   obtain ⟨s, ⟨so, sc⟩, _⟩ := (hasBasis_iff.mp (h.path_connected_basis x) univ).mp univ_mem
   exact ⟨s, Filter.mem_sets.mp so, sc⟩
@@ -24,6 +24,6 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T861 : P42 ≤ P233 := fun X _ ↦ @instHasOpenPathComponentsOfLocPathConnectedSpace X _
+theorem T861 : P42 ≤ P233 := fun X _ ↦ @instHasOpenPathComponentsOfLocallyPathConnectedSpace X _
 
 end PiBase.Formal

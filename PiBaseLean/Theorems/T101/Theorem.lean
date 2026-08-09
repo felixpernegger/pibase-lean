@@ -22,6 +22,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T101 : P2 ⊓ P14 ≤ P8 := fun X _ ↦ and_imp.2 (@instT5SpaceOfT1SpaceOfCompletelyNormalSpace X _)
+theorem T101 : P2 ⊓ P14 ≤ P8 :=
+  fun X _ ↦ and_imp.2 (@instT5SpaceOfT1SpaceOfCompletelyNormalSpace X _)
 
 end PiBase.Formal

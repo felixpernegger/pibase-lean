@@ -13,7 +13,8 @@ section Meta
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
-theorem WellDefined.weaklyLocallySimplyConnectedSpace : WellDefined WeaklyLocallySimplyConnectedSpace :=
+theorem WellDefined.weaklyLocallySimplyConnectedSpace :
+    WellDefined WeaklyLocallySimplyConnectedSpace :=
   sorry
 
 end Meta

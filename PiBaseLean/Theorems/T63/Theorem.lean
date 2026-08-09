@@ -14,7 +14,7 @@ namespace PiBase
 is locally path connected -/
 instance instLocallyPathConnectedSpaceOfLocallyInjPathConnectedSpace
     {X : Type*} [TopologicalSpace X] [h : LocallyInjPathConnectedSpace X] :
-    LocPathConnectedSpace X where
+    LocallyPathConnectedSpace X where
   path_connected_basis x := by
     apply Filter.hasBasis_self.mpr (fun t ht ↦ ?_)
     obtain ⟨r, xr, hr, rt⟩ := (Filter.hasBasis_self).1 (h.inj_path_connected_basis x) t ht

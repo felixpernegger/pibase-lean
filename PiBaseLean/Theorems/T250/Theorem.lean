@@ -9,7 +9,6 @@ public import PiBaseLean.Properties.P125.Defs
 
 namespace PiBase
 
---TODO: When negations of properties are properly implemented, maybe redo this
 /- Theorem 250: an infinite space has multiple points  -/
 #check Infinite.instNontrivial
 

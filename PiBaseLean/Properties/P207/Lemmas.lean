@@ -13,7 +13,8 @@ section Meta
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
-theorem WellDefined.stronglyCollectionwiseNormalSpace : WellDefined StronglyCollectionwiseNormalSpace :=
+theorem WellDefined.stronglyCollectionwiseNormalSpace :
+    WellDefined StronglyCollectionwiseNormalSpace :=
   sorry
 
 end Meta

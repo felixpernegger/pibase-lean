@@ -23,6 +23,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T665 : P108 ≤ P88 := fun X _ ↦ @instCollectionwiseNormalSpaceOfHereditarilyCollectionwiseNormalSpace X _
+theorem T665 : P108 ≤ P88 :=
+  fun X _ ↦ @instCollectionwiseNormalSpaceOfHereditarilyCollectionwiseNormalSpace X _
 
 end PiBase.Formal

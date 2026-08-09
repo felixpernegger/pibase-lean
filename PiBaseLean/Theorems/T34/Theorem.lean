@@ -24,6 +24,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T34 : P118 ≤ P117 := fun X _ ↦ @instHasSigmaLocallyFiniteNetworkOfHasSigmaLocallyFiniteKNetwork X _
+theorem T34 : P118 ≤ P117 :=
+  fun X _ ↦ @instHasSigmaLocallyFiniteNetworkOfHasSigmaLocallyFiniteKNetwork X _
 
 end PiBase.Formal

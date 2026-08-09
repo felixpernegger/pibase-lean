@@ -22,6 +22,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T153 : P2 ⊓ P15 ≤ P67 := fun X _ ↦ and_imp.2 (@instT6SpaceOfT1SpaceOfPerfectlyNormalSpace X _)
+theorem T153 : P2 ⊓ P15 ≤ P67 :=
+  fun X _ ↦ and_imp.2 (@instT6SpaceOfT1SpaceOfPerfectlyNormalSpace X _)
 
 end PiBase.Formal

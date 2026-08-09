@@ -24,7 +24,7 @@ theorem hasCountableExtent_iff_discrete_countable :
           refine (lt_csSup_iff ?_ ?_).mpr ?_
           · exact bddAbove_extent X
           · exact ⟨0, ∅, by simp [DiscreteTopology.isDiscrete]⟩
-          · simp only [mem_setOf_eq, ↓existsAndEq, true_and]
+          · simp only [mem_ofPred_eq, ↓existsAndEq, true_and]
             refine ⟨s, ⟨sc, hs⟩, ?_⟩
             contrapose! h0
             exact le_aleph0_iff_set_countable.mp h0
@@ -34,7 +34,7 @@ theorem hasCountableExtent_iff_discrete_countable :
     unfold Extent
     simp only [add_le_aleph0, Std.le_refl, and_true]
     refine csSup_le' ?_
-    simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
+    simp only [upperBounds, mem_ofPred_eq, forall_exists_index, and_imp]
     exact fun a s sa sc sd ↦ sa ▸ le_aleph0_iff_set_countable.mpr (h sd sc)
 
 section Meta

@@ -22,7 +22,7 @@ def P87 : Property where
   toPred := HasGroupTopology
   well_defined {_ Y} _ _ φ h := by
     rcases h with ⟨G, h⟩
-    letI H := φ.symm.toEquiv.group
+    let H := φ.symm.toEquiv.group
     refine ⟨H, @IsTopologicalGroup.mk Y _ H
       ⟨(?_ : Continuous fun (p : Y × Y) ↦ φ (φ.symm p.1 * φ.symm p.2))⟩
       ⟨(?_ : Continuous fun p ↦ φ (φ.symm p)⁻¹)⟩⟩ <;> fun_prop

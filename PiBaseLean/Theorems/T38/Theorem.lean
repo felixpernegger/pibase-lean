@@ -40,7 +40,7 @@ instance instPrepathConnectedSpaceOfUltraconnectedSpace (X : Type u)
         exact isClosed_univ
       have : f ⁻¹' s = Icc 0 ⟨0.5, by norm_num⟩ := by
         ext i
-        simp only [mem_preimage, mem_Icc, zero_le', true_and, f]
+        simp only [mem_preimage, mem_Icc, zero_le, true_and, f]
         by_cases hi : i.val < 0.5
         · simp only [hi, ↓reduceIte, sx, true_iff]
           exact le_of_lt hi

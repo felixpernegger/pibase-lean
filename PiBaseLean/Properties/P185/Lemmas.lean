@@ -68,7 +68,7 @@ theorem PartitionTopology.inseparable_open (X : Type u) [TopologicalSpace X]
     [h : PartitionTopology X] (x : X) : IsOpen {y | Inseparable x y} := by
   rw [(partitionTopology_iff_isOpen_iff_saturated X).1 h]
   ext y
-  simp only [mem_preimage, mem_image, mem_setOf_eq, SeparationQuotient.mk_eq_mk]
+  simp only [mem_preimage, mem_image, mem_ofPred_eq, SeparationQuotient.mk_eq_mk]
   exact ⟨fun ⟨_, xz, zy⟩ ↦ xz.trans zy, fun h ↦ ⟨x, .refl x, h⟩⟩
 
 theorem PartitionTopology.inseparable_closed (X : Type u) [TopologicalSpace X]

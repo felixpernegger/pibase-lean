@@ -22,6 +22,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T105 : P2 ⊓ P34 ≤ P35 := fun X _ ↦ and_imp.2 (@instFullyT4SpaceOfT1SpaceOfFullyNormalSpace X _)
+theorem T105 : P2 ⊓ P34 ≤ P35 :=
+    fun X _ ↦ and_imp.2 (@instFullyT4SpaceOfT1SpaceOfFullyNormalSpace X _)
 
 end PiBase.Formal

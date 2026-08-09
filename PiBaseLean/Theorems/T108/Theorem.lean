@@ -28,6 +28,7 @@ end PiBase
 namespace PiBase.Formal
 
 theorem T108 : P234 ⊓ P47 ≤ P52 :=
-  fun X _ ⟨h1, h2⟩ ↦ @instDiscreteTopologyOfHasOpenConnectedComponentsOfTotallyDisconnectedSpace X _ h1 h2
+  fun X _ ⟨h1, h2⟩ ↦
+    @instDiscreteTopologyOfHasOpenConnectedComponentsOfTotallyDisconnectedSpace X _ h1 h2
 
 end PiBase.Formal

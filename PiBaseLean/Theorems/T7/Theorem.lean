@@ -23,6 +23,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T7 : P24 ≤ P23 := fun X _ ↦ @instWeaklyLocallyCompactSpaceOfLocallyRelativelyCompactSpace X _
+theorem T7 : P24 ≤ P23 :=
+  fun X _ ↦ @instWeaklyLocallyCompactSpaceOfLocallyRelativelyCompactSpace X _
 
 end PiBase.Formal

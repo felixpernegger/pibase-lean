@@ -22,6 +22,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T106 : P18 ⊓ P19 ≤ P16 := fun X _ ⟨h1, h2⟩ ↦ @instCompactSpaceOfLindelofSpaceOfCountablyCompactSpace X _ h1 h2
+theorem T106 : P18 ⊓ P19 ≤ P16 :=
+  fun X _ ⟨h1, h2⟩ ↦ @instCompactSpaceOfLindelofSpaceOfCountablyCompactSpace X _ h1 h2
 
 end PiBase.Formal

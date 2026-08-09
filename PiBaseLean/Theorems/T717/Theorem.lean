@@ -22,6 +22,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T717 : P110 ⊓ P5 ≤ P113 := fun X _ ↦ and_imp.2 (@instMooreSpaceOfDevelopableSpaceOfT3Space X _)
+theorem T717 :
+  P110 ⊓ P5 ≤ P113 := fun X _ ↦ and_imp.2 (@instMooreSpaceOfDevelopableSpaceOfT3Space X _)
 
 end PiBase.Formal

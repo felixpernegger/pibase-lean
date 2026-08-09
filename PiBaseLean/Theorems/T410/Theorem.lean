@@ -24,6 +24,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T410 : P166 ≤ P112 := fun X _ ↦ @instSubmetrizableSpaceOfHasCoarserSeparableMetrizableTopology X _
+theorem T410 : P166 ≤ P112 :=
+  fun X _ ↦ @instSubmetrizableSpaceOfHasCoarserSeparableMetrizableTopology X _
 
 end PiBase.Formal

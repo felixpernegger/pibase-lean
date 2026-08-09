@@ -27,6 +27,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T834 : P227 ≤ P58ᶜ := fun X _ h ↦ @not_CardLtContinuumOfHasClosedDiscreteSubsetCardContinuum X _ h
+theorem T834 : P227 ≤ P58ᶜ :=
+  fun X _ h ↦ @not_CardLtContinuumOfHasClosedDiscreteSubsetCardContinuum X _ h
 
 end PiBase.Formal

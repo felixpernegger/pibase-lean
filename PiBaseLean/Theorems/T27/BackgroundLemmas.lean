@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Topology.Compactification.OnePoint.Basic
+public import Mathlib.Topology.Inseparable
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P23.Defs
 public import PiBaseLean.Properties.P134.Defs
@@ -89,14 +90,14 @@ def OnePoint.SeparationQuotientHomeomorph (X : Type u) [TopologicalSpace X] :
     obtain ⟨y, rfl⟩ := SeparationQuotient.surjective_mk x
     match y with
     | ∞ => simp [ofSeparationQuotient]
-    | some x => simp [ofSeparationQuotient, toSeparationQuotient]; rfl
+    | some x => simp; rfl
   right_inv x := by
     match x with
     | ∞ => simp [ofSeparationQuotient]
     | some x =>
       obtain ⟨y, rfl⟩ := SeparationQuotient.surjective_mk x
       simp [toSeparationQuotient, ofSeparationQuotient]; rfl
-  continuous_toFun := SeparationQuotient.continuous_lift.mpr <| continuous_ofSeparationQuotient X
+  continuous_toFun := SeparationQuotient.continuous_lift <| continuous_ofSeparationQuotient X
   continuous_invFun := by
     apply continuous_iff_continuousAt.mpr
     intro x

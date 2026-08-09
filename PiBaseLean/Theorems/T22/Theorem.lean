@@ -23,7 +23,7 @@ instance instHasCountableKNetworkOfAnticompactSpaceOfCountable (X : Type u)
     unfold IsKNetwork
     intro s k _ _ ks
     use (fun i ↦ ({f.symm i} : Set X)) ⁻¹' {{x } | x ∈ s}
-    simp only [preimage_setOf_eq, singleton_eq_singleton_iff, exists_eq_right, mem_setOf_eq,
+    simp only [preimage_ofPred_eq, singleton_eq_singleton_iff, exists_eq_right, mem_ofPred_eq,
       iUnion_subset_iff, singleton_subset_iff, imp_self, implies_true, and_true]
     apply subset_trans ks
     intro i is
@@ -34,6 +34,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T22 : P136 ⊓ P57 ≤ P183 := fun X _ ⟨h1, h2⟩ ↦ @instHasCountableKNetworkOfAnticompactSpaceOfCountable X _ h1 h2
+theorem T22 : P136 ⊓ P57 ≤ P183 :=
+  fun X _ ⟨h1, h2⟩ ↦ @instHasCountableKNetworkOfAnticompactSpaceOfCountable X _ h1 h2
 
 end PiBase.Formal

@@ -30,6 +30,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T468 : P185 ⊓ P36 ≤ P129 := fun X _ ⟨h1, h2⟩ ↦ @instIndiscreteTopologyOfPartitionTopologyOfPreconnectedSpace X _ h1 h2
+theorem T468 : P185 ⊓ P36 ≤ P129 :=
+  fun X _ ⟨h1, h2⟩ ↦ @instIndiscreteTopologyOfPartitionTopologyOfPreconnectedSpace X _ h1 h2
 
 end PiBase.Formal

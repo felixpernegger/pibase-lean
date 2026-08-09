@@ -22,6 +22,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T212 : P57 ⊓ P28 ≤ P27 := fun X _ ↦ and_imp.2 (@instSecondCountableTopologyOfCountableOfFirstCountableTopology X _)
+theorem T212 : P57 ⊓ P28 ≤ P27 :=
+  fun X _ ↦ and_imp.2 (@instSecondCountableTopologyOfCountableOfFirstCountableTopology X _)
 
 end PiBase.Formal

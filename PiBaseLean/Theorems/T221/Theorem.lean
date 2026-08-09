@@ -20,7 +20,7 @@ instance instT1SpaceOfCountableSetsDiscrete (X : Type u)
     T1Space X := by
   refine t1Space_iff_exists_open.mpr (fun x y xy ↦ ?_)
   have := h.countable_discrete <| to_countable {x, y}
-  obtain ⟨U, hU, hx⟩ := (isDiscrete_iff_forall_exists_isOpen.mp <| h.countable_discrete
+  obtain ⟨U, hU, hx⟩ := (isDiscrete_iff_forall_mem_exists_isOpen.mp <| h.countable_discrete
     <| to_countable {x, y}) x (mem_insert x {y})
   refine ⟨U, hU, ?_, ?_⟩
   · exact mem_of_subset_of_mem inter_subset_left <| hx.symm ▸ mem_singleton_of_eq <| .refl x

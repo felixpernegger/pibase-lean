@@ -23,6 +23,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T406 : P165 ⊓ P57 ≤ P13 := fun X _ ↦ and_imp.2 (@instNormalSpaceOfPseudonormalSpaceOfCountable X _)
+theorem T406 : P165 ⊓ P57 ≤ P13 :=
+  fun X _ ↦ and_imp.2 (@instNormalSpaceOfPseudonormalSpaceOfCountable X _)
 
 end PiBase.Formal

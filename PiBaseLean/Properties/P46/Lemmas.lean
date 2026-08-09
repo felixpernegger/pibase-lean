@@ -27,7 +27,11 @@ theorem totallyPathDisconnectedSpace_iff_joined :
     let g : C(unitInterval, X) :={
       toFun l := f (l * r)
       continuous_toFun :=
-        hf.comp <| Continuous.subtype_mk (by fun_prop) fun x ↦ Icc.instMul._proof_1 x r
+        hf.comp <| Continuous.subtype_mk (by fun_prop) fun x ↦ by
+          obtain ⟨x, xl, lx⟩ := x
+          obtain ⟨r, rl, lr⟩ := r
+          simp only [mem_Icc]
+          exact ⟨mul_nonneg xl rl, mul_le_one₀ lx rl lr⟩
     }
     exact ⟨g, by simp [g], by simp [g]⟩
   exact Nonempty.elim this fun a ↦ h (id (Joined.symm this))

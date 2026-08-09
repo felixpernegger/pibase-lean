@@ -19,7 +19,7 @@ def P191 : Property where
   toPred := HasGδSingletons
   well_defined φ h := by
     refine ⟨fun x ↦ ?_⟩
-    convert isGδ_induced φ.symm.continuous (@h.isGδ_singleton (φ.symm x))
+    convert IsGδ.preimage φ.symm.continuous (@h.isGδ_singleton (φ.symm x))
     ext
     simp
 

@@ -42,7 +42,7 @@ instance instHasGδSingletonsOfLocallyCountableSpaceOfT1Space (X : Type u)
       have : Countable (s \ {x} : Set X) := countable_coe_iff.mpr <| Countable.diff sc
       suffices T ⊆ range f from (countable_range f).mono this
       intro t ⟨z, zs, xz, ht⟩
-      simp only [mem_range, Subtype.exists, mem_diff, mem_singleton_iff, f]
+      simp only [mem_range, Subtype.exists, mem_sdiff, mem_singleton_iff, f]
       refine ⟨z, ⟨zs, xz.symm⟩, ?_⟩
       rw [ht]
     apply subset_antisymm
@@ -56,14 +56,14 @@ instance instHasGδSingletonsOfLocallyCountableSpaceOfT1Space (X : Type u)
       by_cases! zs : z ∉ s
       · obtain ⟨p, ps, px⟩ := hs.exists_ne x
         refine ⟨(t1Space_iff_exists_open.mp h' px.symm).choose ∩ interior s, ?_, ?_⟩
-        · simp only [ne_eq, exists_prop, mem_setOf_eq, T]
+        · simp only [ne_eq, exists_prop, mem_ofPred_eq, T]
           exact ⟨p, ps, px.symm, rfl⟩
         · simp only [mem_inter_iff, not_and]
           intro _
           contrapose! zs
           exact interior_subset zs
       refine ⟨(t1Space_iff_exists_open.mp h' hz.symm).choose ∩ (interior s), ?_, ?_⟩
-      · simp only [ne_eq, exists_prop, mem_setOf_eq, T]
+      · simp only [ne_eq, exists_prop, mem_ofPred_eq, T]
         exact ⟨z, zs, hz.symm, rfl⟩
       · simp only [mem_inter_iff, not_and]
         intro h

@@ -13,7 +13,8 @@ section Meta
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
-theorem WellDefined.hereditarilyCollectionwiseNormalSpace : WellDefined HereditarilyCollectionwiseNormalSpace :=
+theorem WellDefined.hereditarilyCollectionwiseNormalSpace :
+    WellDefined HereditarilyCollectionwiseNormalSpace :=
   sorry
 
 end Meta

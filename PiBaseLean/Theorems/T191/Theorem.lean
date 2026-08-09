@@ -12,12 +12,12 @@ open Cardinal
 
 namespace PiBase
 
---TODO: Maybe redo this if we have negations properly implemented
 /-- Theorem 191: ℵ₁ is uncountable -/
-instance instNotCountableOfCardEqAlephOne {X : Type u} [h : CardEqAlephOne X] :
+theorem instNotCountableOfCardEqAlephOne {X : Type u} [h : CardEqAlephOne X] :
     ¬ Countable X := by
-  refine (uncountable_iff_not_countable X).mp <| aleph1_le_mk_iff.mp ?_
+  refine (uncountable_iff_not_countable X).mp <| aleph0_lt_mk_iff.mp ?_
   rw [h.card_eq]
+  simp
 
 end PiBase
 

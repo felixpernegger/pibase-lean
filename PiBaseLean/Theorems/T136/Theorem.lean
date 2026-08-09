@@ -23,6 +23,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T136 : P23 ⊓ P11 ≤ P64 := fun X _ ⟨h1, h2⟩ ↦ @instBaireSpaceOfWeaklyLocallyCompactSpaceOfRegularSpace X _ h1 h2
+theorem T136 : P23 ⊓ P11 ≤ P64 :=
+  fun X _ ⟨h1, h2⟩ ↦ @instBaireSpaceOfWeaklyLocallyCompactSpaceOfRegularSpace X _ h1 h2
 
 end PiBase.Formal

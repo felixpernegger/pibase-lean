@@ -9,13 +9,12 @@ public import PiBaseLean.Properties.P163.Defs
 
 universe u
 
-open Cardinal PiBase.Formal
-
 namespace PiBase
 
---TODO: Maybe redo this once negations are properly implemented
+open Cardinal PiBase.Formal
+
 /-- Theorem 391: |X| ≤ 𝔠 and ¬ |X| < 𝔠  implies |X| = 𝔠 -/
-instance instCardEqContinuumOfCardLeContinuumOfNotCardltContinuum (X : Type u)
+theorem instCardEqContinuumOfCardLeContinuumOfNotCardltContinuum (X : Type u)
     [h : CardLeContinuum X] (h' : ¬CardLtContinuum X) : CardEqContinuum X where
   card_eq := by
     refine le_antisymm h.card_le ?_

@@ -3,7 +3,7 @@ module
 public import PiBaseLean.AdditionalDefs.Constructions
 public import PiBaseLean.Properties.Bundled.Defs
 public import Mathlib.Analysis.Normed.Operator.BanachSteinhaus
-public import Mathlib.Topology.Algebra.Module.WeakDual
+public import Mathlib.Topology.Algebra.Module.Spaces.WeakDual
 
 @[expose] public section
 

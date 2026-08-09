@@ -13,7 +13,7 @@ section Meta
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
-theorem WellDefined.locPathConnectedSpace : WellDefined LocPathConnectedSpace :=
+theorem WellDefined.LocallyPathConnectedSpace : WellDefined LocallyPathConnectedSpace :=
   sorry
 
 end Meta

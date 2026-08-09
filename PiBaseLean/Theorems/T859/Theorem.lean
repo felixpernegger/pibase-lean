@@ -25,6 +25,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T859 : P231 ≤ P233 := fun X _ ↦ @instHasOpenPathComponentsOfWeaklyLocallySimplyConnectedSpace X _
+theorem T859 : P231 ≤ P233 :=
+  fun X _ ↦ @instHasOpenPathComponentsOfWeaklyLocallySimplyConnectedSpace X _
 
 end PiBase.Formal

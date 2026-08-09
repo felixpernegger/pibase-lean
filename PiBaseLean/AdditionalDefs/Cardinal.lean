@@ -23,7 +23,7 @@ noncomputable def Spread : Cardinal.{u} :=
 
 lemma upperBounds_spread :
     #X ∈ upperBounds {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsDiscrete D} := by
-  simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
+  simp only [upperBounds, mem_ofPred_eq, forall_exists_index, and_imp]
   exact fun a x xa _ ↦ xa ▸ mk_set_le x
 
 lemma bddAbove_spread : BddAbove {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsDiscrete D} :=
@@ -41,7 +41,7 @@ noncomputable def Extent : Cardinal.{u} :=
 
 lemma upperBounds_extent :
     #X ∈ upperBounds {t : Cardinal.{u} | ∃ D : Set X, #D = t ∧ IsClosed D ∧ IsDiscrete D} := by
-  simp only [upperBounds, mem_setOf_eq, forall_exists_index, and_imp]
+  simp only [upperBounds, mem_ofPred_eq, forall_exists_index, and_imp]
   exact fun a x xa _ _ ↦ xa ▸ mk_set_le x
 
 lemma bddAbove_extent :

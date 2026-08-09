@@ -96,7 +96,7 @@ theorem StarFinite.locallyFinite {U : ι → Set X} (h : StarFinite U)
 
 --to mathlib
 theorem _root_.Set.Countable.diff {α : Type u} {s t : Set α} (hs : s.Countable) :
-    (s \ t).Countable := hs.mono diff_subset
+    (s \ t).Countable := hs.mono sdiff_subset
 
 /-- A locally countable collection of sets is point countable. -/
 theorem LocallyCountable.pointCountable {U : ι → Set X} (h : LocallyCountable U) :

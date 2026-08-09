@@ -1,6 +1,6 @@
 module
 
-public import Mathlib.Topology.Connected.LocPathConnected
+public import Mathlib.Topology.Connected.LocallyPathConnected
 public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
@@ -8,14 +8,14 @@ public import PiBaseLean.Properties.Bundled.Defs
 namespace PiBase
 
 /- 42. Locally path-connected -/
-#check LocPathConnectedSpace
+#check LocallyPathConnectedSpace
 
 end PiBase
 
 namespace PiBase.Formal
 
 def P42 : Property where
-  toPred := LocPathConnectedSpace
-  well_defined φ _ := φ.symm.isOpenEmbedding.locPathConnectedSpace
+  toPred := LocallyPathConnectedSpace
+  well_defined φ _ := φ.symm.isOpenEmbedding.locallyPathConnectedSpace
 
 end PiBase.Formal

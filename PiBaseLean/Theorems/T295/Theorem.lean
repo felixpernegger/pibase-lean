@@ -9,7 +9,6 @@ public import PiBaseLean.Properties.P137.Defs
 
 namespace PiBase
 
---TODO: When negations of properties are properly implemented, maybe redo this
 /- Theorem 295: a space with multiple points is nonempty -/
 #check Nontrivial.to_nonempty
 

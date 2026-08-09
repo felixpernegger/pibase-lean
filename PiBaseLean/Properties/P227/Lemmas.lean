@@ -13,7 +13,8 @@ section Meta
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
-theorem WellDefined.hasClosedDiscreteSubsetCardContinuum : WellDefined HasClosedDiscreteSubsetCardContinuum :=
+theorem WellDefined.hasClosedDiscreteSubsetCardContinuum :
+    WellDefined HasClosedDiscreteSubsetCardContinuum :=
   sorry
 
 end Meta

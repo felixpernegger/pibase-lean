@@ -22,6 +22,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T150 : P117 ⊓ P5 ≤ P177 := fun X _ ↦ and_imp.2 (@instSigmaSpaceOfHasSigmaLocallyFiniteNetworkOfT3Space X _)
+theorem T150 : P117 ⊓ P5 ≤ P177 :=
+  fun X _ ↦ and_imp.2 (@instSigmaSpaceOfHasSigmaLocallyFiniteNetworkOfT3Space X _)
 
 end PiBase.Formal

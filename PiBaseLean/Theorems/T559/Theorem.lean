@@ -26,6 +26,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T559 : P198 ⊓ P52 ≤ P57 := fun X _ ⟨h1, h2⟩ ↦ @instCountableOfHasCountableExtentOfDiscreteTopology X _ h1 h2
+theorem T559 : P198 ⊓ P52 ≤ P57 :=
+  fun X _ ⟨h1, h2⟩ ↦ @instCountableOfHasCountableExtentOfDiscreteTopology X _ h1 h2
 
 end PiBase.Formal

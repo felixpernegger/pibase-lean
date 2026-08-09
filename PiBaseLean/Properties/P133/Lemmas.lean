@@ -53,7 +53,7 @@ theorem Homeomorph.lots [h : Lots X] (f : X ≃ₜ Y) : Lots Y where
     have : {s : Set Y | ∃ a, s = Ioi a ∨ s = Iio a}
         = {s : Set Y | ∃ a : X, s = Ioi (f a) ∨ s = Iio (f a)} := by
       ext u
-      simp only [mem_setOf_eq]
+      simp only [mem_ofPred_eq]
       refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
       · obtain ⟨a, ha⟩ := h
         rcases ha with h|h
@@ -83,7 +83,7 @@ theorem Homeomorph.lots [h : Lots X] (f : X ≃ₜ Y) : Lots Y where
         f ⁻¹' l ∈ @nhds X (generateFrom {s | ∃ a, s = Ioi a ∨ s = Iio a}) (f.symm y) := by
       rw [← fac]
     rw [nhds_generateFrom] at hl ⊢
-    simp only [mem_setOf_eq] at hl ⊢
+    simp only [mem_ofPred_eq] at hl ⊢
     refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
     · have : ⇑f ⁻¹' l ∈ 𝓝 (f.symm y) := by
         refine ContinuousAt.preimage_mem_nhds ?_ ?_

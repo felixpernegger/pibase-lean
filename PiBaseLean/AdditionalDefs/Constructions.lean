@@ -82,7 +82,7 @@ theorem t0Space_iff_inseparableComponent_eq_singleton : T0Space X ↔
     ∀ x : X, InseparableComponent x = {x} := by
   simp_rw [t0Space_iff_inseparable, InseparableComponent, Set.ext_iff, mem_singleton_iff]
   refine forall_congr' fun _ ↦ forall_congr' fun _ ↦ ⟨fun h ↦ ?_, by tauto⟩
-  exact ⟨fun h' ↦ (h h').symm, fun h ↦ h ▸ mem_setOf.mpr rfl⟩
+  exact ⟨fun h' ↦ (h h').symm, fun h ↦ h ▸ mem_ofPred.mpr rfl⟩
 
 theorem T0Space.inseparableComponent_singleton [h : T0Space X] (x : X) :
     InseparableComponent x = {x} := t0Space_iff_inseparableComponent_eq_singleton.mp h x
@@ -90,7 +90,7 @@ theorem T0Space.inseparableComponent_singleton [h : T0Space X] (x : X) :
 theorem SeparationQuotient.inseparableComponent_preimage (x : X) :
     InseparableComponent x = SeparationQuotient.mk ⁻¹' {SeparationQuotient.mk x} := by
   ext
-  simp only [InseparableComponent, mem_setOf_eq, mem_preimage, mem_singleton_iff,
+  simp only [InseparableComponent, mem_ofPred_eq, mem_preimage, mem_singleton_iff,
     SeparationQuotient.mk_eq_mk]
   exact ⟨fun h ↦ h.symm, fun h ↦ h.symm⟩
 

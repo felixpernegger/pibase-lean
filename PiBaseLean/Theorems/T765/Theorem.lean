@@ -19,7 +19,7 @@ instance instNormalSpaceOfUltranormalSpace (X : Type u)
   normal s t hs ht st := by
     obtain ⟨r, hr, sr, tr⟩ := h.disjoint_clopen st hs ht
     exact ⟨r, rᶜ, hr.isOpen, isOpen_compl_iff.mpr hr.isClosed, sr, tr,
-      HasSubset.Subset.disjoint_compl_right fun ⦃_⦄ a ↦ a⟩
+      LE.le.disjoint_compl_right fun ⦃_⦄ a ↦ a⟩
 
 end PiBase
 

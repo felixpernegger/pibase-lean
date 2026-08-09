@@ -22,7 +22,7 @@ theorem isPreirreducible_iff_subset_closure_inter_open (S : Set X) :
     by_contra! h0
     obtain ⟨p, pS, pa⟩ := aS
     suffices p ∉ closure (S ∩ b) from this <| hb' pS
-    simp only [closure, mem_sInter, mem_setOf_eq, and_imp, not_forall, exists_prop]
+    simp only [closure, mem_sInter, mem_ofPred_eq, and_imp, not_forall, exists_prop]
     refine ⟨aᶜ, by simpa, ?_, ?_⟩
     · apply subset_compl_iff_disjoint_left.mpr
       apply disjoint_iff_inter_eq_empty.mpr

@@ -20,6 +20,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T584 : P199 ≤ P137ᶜ := fun X _ h ↦ not_isEmpty_iff.2 (@instNonemptyOfContractibleSpace X _ h)
+theorem T584 : P199 ≤ P137ᶜ :=
+  fun X _ h ↦ not_isEmpty_iff.2 (@instNonemptyOfContractibleSpace X _ h)
 
 end PiBase.Formal

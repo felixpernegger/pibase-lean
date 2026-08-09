@@ -28,6 +28,7 @@ end PiBase
 namespace PiBase.Formal
 
 theorem T89 : P233 ⊓ P46 ≤ P52 :=
-  fun X _ ⟨h1, h2⟩ ↦ @instDiscreteTopologyOfHasOpenPathComponentsOfTotallyPathDisconnectedSpace X _ h1 h2
+  fun X _ ⟨h1, h2⟩ ↦
+    @instDiscreteTopologyOfHasOpenPathComponentsOfTotallyPathDisconnectedSpace X _ h1 h2
 
 end PiBase.Formal

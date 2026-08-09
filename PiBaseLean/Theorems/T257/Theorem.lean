@@ -23,6 +23,7 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T257 : P13 ⊓ P132 ≤ P15 := fun X _ ↦ and_imp.2 (@instPerfectlyNormalSpaceOfNormalSpaceOfGδSpace X _)
+theorem T257 : P13 ⊓ P132 ≤ P15 :=
+  fun X _ ↦ and_imp.2 (@instPerfectlyNormalSpaceOfNormalSpaceOfGδSpace X _)
 
 end PiBase.Formal
