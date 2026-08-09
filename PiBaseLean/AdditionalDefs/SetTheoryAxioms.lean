@@ -61,7 +61,7 @@ Again, extra axiom assumptions should only be added when it is truly necessary.
 
 namespace PiBase
 
-open Cardinal Ordinal Set
+open Cardinal Ordinal _root_.Set
 
 section ContinuumHypothesis
 
@@ -132,7 +132,8 @@ alias ⟨_, of_aleph_one_lt_continuum⟩ := iff_aleph_one_lt_continuum
 theorem iff_not_continuumHypothesis : NotContinuumHypothesis ↔ ¬ ContinuumHypothesis := by
   rw [iff_aleph_one_lt_continuum', ContinuumHypothesis.iff_continuum_eq_aleph_one']
   refine ⟨fun h ↦ h.ne.symm, fun h ↦ ?_⟩
-  simp [lt_iff_le_and_ne, Ne.symm h, aleph_one_le_continuum]
+  simp only [lt_iff_le_and_ne, aleph_one_le_iff, ne_eq, Ne.symm h, not_false_eq_true, and_true]
+  exact ⟨aleph0_le_continuum, ne_of_lt aleph0_lt_continuum⟩
 
 end NotContinuumHypothesis
 
@@ -151,7 +152,7 @@ instance [h : GeneralizedContinuumHypothesis.{u}] : GeneralizedContinuumHypothes
   succ_cardinal_eq_pow {o} oh := by
     apply Cardinal.lift_injective.{u}
     simp [-Cardinal.lift_id, -Ordinal.lift_id,
-      h.succ_cardinal_eq_pow (o := Ordinal.lift.{u} o) (by simpa)]
+      h.succ_cardinal_eq_pow (o := Ordinal.lift.{u} o) (by simp)]
 
 instance [h : GeneralizedContinuumHypothesis.{0}] : ContinuumHypothesis where
   continuum_eq_aleph_one' := by
@@ -181,7 +182,7 @@ theorem not_martinsAxiomFor_continuum_bot : ¬ MartinsAxiomFor.{0} 𝔠 := by
   · intro a ⟨i, hi⟩
     simp [← hi, IsNowhereDense]
   · ext x
-    simp only [Subtype.exists, Set.mem_Icc, Set.mem_sUnion, Set.mem_setOf_eq, ↓existsAndEq,
+    simp only [Subtype.exists, Set.mem_Icc, Set.mem_sUnion, Set.mem_ofPred_eq, ↓existsAndEq,
       Set.mem_singleton_iff, true_and, Set.mem_univ, iff_true]
     grind
   · apply le_of_le_of_eq (b := #unitInterval)
@@ -215,7 +216,7 @@ instance instMartinsAxiomOfContinuumHypothesis [h : ContinuumHypothesis] : Marti
   rw [h.continuum_eq_aleph_one] at hc
   apply martinsAxiomFor_le_aleph0
   contrapose! hc
-  exact aleph0_lt_iff_aleph_one_le.mp hc
+  exact aleph_one_le_iff.mpr hc
 
 end MartinAxiom
 
