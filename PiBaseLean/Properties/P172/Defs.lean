@@ -13,7 +13,8 @@ namespace PiBase
 
 /- 172. Radial -/
 class RadialSpace (X : Type u) [TopologicalSpace X] : Prop where
-  ex_seq (A : Set X) : ∀ x ∈ closure A, ∃ (s : Ordinal.{u}) (f : Iio s → X), Tendsto f atTop (𝓝 x)
+  ex_seq (A : Set X) : ∀ x ∈ closure A, ∃ (s : Ordinal.{u}) (f : Iio s → X),
+    range f ⊆ A ∧ 0 < s ∧ Tendsto f atTop (𝓝 x)
 
 end PiBase
 

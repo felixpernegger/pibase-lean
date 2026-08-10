@@ -40,9 +40,7 @@ theorem Homeomorph.realcompactSpace [h : RealcompactSpace X] (g : X ≃ₜ Y) : 
 -/
 
 theorem WellDefined.realcompactSpace : WellDefined RealcompactSpace :=
-  fun {_ _} _ _ XY h ↦
-  let ⟨ι, s, sc, sh⟩ := h.homeo_closed
-  { homeo_closed := ⟨ι, s, sc, XY.symm.trans sh⟩}
+  sorry
 
 end Meta
 

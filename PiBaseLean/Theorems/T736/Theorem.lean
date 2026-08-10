@@ -14,14 +14,16 @@ open Topology Set Function Filter
 namespace PiBase
 
 /-- Theorem T736: P213 (α3Space) => P214 (α4Space) -/
-instance instα4SpaceOfα3Space (X : Type u)
-    [TopologicalSpace X] [h : α3Space X] :
+instance instα4SpaceOfα3Space (X : Type u) [TopologicalSpace X] [h : α3Space X] :
     α4Space X where
   subset_converge := by
     intro x S S_inj hS
-    obtain ⟨T, Tx, rT, hT⟩ := h.subset_converge S_inj hS
-    obtain ⟨a, ha⟩ := eventually_atTop.mp hT
-    exact ⟨T, Tx, rT, eventually_atTop.mpr ⟨a, fun b hb ↦ Set.Infinite.nonempty (ha b hb)⟩⟩
+    obtain ⟨T, Ti, Tx, rT, hT⟩ := h.subset_converge S_inj hS
+    refine ⟨T, Ti, Tx, rT, ?_⟩
+    refine Set.Infinite.mono ?_ hT
+    intro n hn
+    simp only [mem_ofPred_eq] at hn ⊢
+    exact Set.Infinite.nonempty hn
 
 end PiBase
 

@@ -17,7 +17,7 @@ namespace PiBase
 instance instGoSpaceOfLots (X : Type u)
     [τ : TopologicalSpace X] [h : Lots X] :
     GoSpace X where
-  subset_lots := ⟨X, univ, τ, h, Nonempty.intro (Homeomorph.Set.univ X).symm⟩
+  subset_lots := ⟨X, id, τ, h, IsEmbedding.id⟩
 
 end PiBase
 

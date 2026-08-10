@@ -15,7 +15,7 @@ open Filter Topology
 
 /- 235. Locally a Euclidean half-space -/
 class LocallyEuclideanHalfSpace (X : Type u) [TopologicalSpace X] : Prop where
-  locally_homeomorph (x : X) : ∃ U ∈ 𝓝 x, ∃ (n : ℕ) (f : U → Fin n → NNReal), IsEmbedding f
+  locally_homeomorph (x : X) : ∃ U ∈ 𝓝 x, ∃ (n : ℕ) (f : U → Fin n → NNReal), IsOpenEmbedding f
 
 end PiBase
 

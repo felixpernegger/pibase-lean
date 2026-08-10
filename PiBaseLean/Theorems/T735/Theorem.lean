@@ -18,8 +18,12 @@ instance instα3SpaceOfα2Space (X : Type u)
     α3Space X where
   subset_converge := by
     intro x S S_inj hS
-    obtain ⟨T, Tx, rT, hT⟩ := h.subset_converge S_inj hS
-    exact ⟨T, Tx, rT, .of_forall hT⟩
+    obtain ⟨T, Ti, Tx, rT, hT⟩ := h.subset_converge S_inj hS
+    refine ⟨T, Ti, Tx, rT, ?_⟩
+    convert Set.infinite_univ
+    · ext a
+      simp [hT a]
+    · infer_instance
 
 end PiBase
 

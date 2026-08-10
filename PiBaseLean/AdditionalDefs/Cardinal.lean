@@ -13,7 +13,7 @@ universe u
 
 namespace PiBase
 
-open Cardinal Set Filter Topology
+open Cardinal Set Filter Topology Ordinal
 
 variable (X : Type u) [TopologicalSpace X]
 
@@ -64,7 +64,8 @@ theorem aleph_zero_le_spread : ℵ₀ ≤ Spread X := self_le_add_left _ _
 /-- A *radially closed* set is a set such that all limits of transfinite of sequences in the set lie
 in the set themselves -/
 def IsRadiallyClosed {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
-  ∀ x : X, (∃ (s : Ordinal.{u}) (f : Iio s → X), Tendsto f atTop (𝓝 x)) → x ∈ s
+  ∀ x : X, (∃ (o : Ordinal.{u}) (f : Iio o → X), 0 < o ∧ range f ⊆ s ∧ Tendsto f atTop (𝓝 x)) →
+    x ∈ s
 
 --TODO: limit of transfinite sequence must lie in closure
 
@@ -91,7 +92,7 @@ def KAdditive {k : Cardinal.{u}} (f : Set (Iio k) → Fin 2) : Prop :=
       f (sUnion A) = 1 ↔ ∃! s ∈ A, f s = 1
 
 def IsMeasurable (k : Cardinal.{u}) := ℵ₀ < k ∧ ∃ f : Set (Iio k) → Fin 2, KAdditive f ∧
-  (∃ a : Set (Iio k), f a ≠ 0) ∧ ∀ a : Set (Iio k), f a ≤ 1
+  (∀ a : Iio k, f {a} = 0) ∧ (∃ a : Set (Iio k), f a ≠ 0) ∧ ∀ a : Set (Iio k), f a ≤ 1
 
 end
 

@@ -130,6 +130,7 @@ section Symmetric --TODO: If we get significantly more, make this its own file
 
 /-- A symmetric for of a set. -/
 class Symmetric (α : Type u) extends Dist α where
+  dist_nonneg (x y : α) : 0 ≤ dist x y
   dist_self (x : α) : dist x x = 0
   dist_comm (x y : α) : dist x y = dist y x
   eq_of_dist_eq_zero : ∀ {x y : α}, dist x y = 0 → x = y

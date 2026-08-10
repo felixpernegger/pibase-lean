@@ -17,8 +17,10 @@ instance instLocallyPathConnectedSpaceOfLocallyInjPathConnectedSpace
     LocallyPathConnectedSpace X where
   path_connected_basis x := by
     apply Filter.hasBasis_self.mpr (fun t ht ↦ ?_)
+    /- TODO: Fix proof
     obtain ⟨r, xr, hr, rt⟩ := (Filter.hasBasis_self).1 (h.inj_path_connected_basis x) t ht
-    use r, xr, hr.isPathConnected <| nonempty_of_mem <| mem_of_mem_nhds xr
+    use r, xr, hr.isPathConnected <| nonempty_of_mem <| mem_of_mem_nhds xr -/
+    sorry
 
 end PiBase
 

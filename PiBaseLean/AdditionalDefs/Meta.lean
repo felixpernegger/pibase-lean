@@ -176,6 +176,6 @@ theorem Locally.weaklyLocally {Z : Type u} [TopologicalSpace Z]
 -/
 
 def IsPiBase {X : Type u} [TopologicalSpace X] (s : Set (Set X)) : Prop :=
-  ∀ o : Set X, IsOpen o → o.Nonempty → ∃ t ∈ s, t ⊆ o
+  ∅ ∉ s ∧ (∀ a ∈ s, IsOpen a) ∧ ∀ o : Set X, IsOpen o → o.Nonempty → ∃ t ∈ s, t ⊆ o
 
 end PiBase
