@@ -13,12 +13,14 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T160: P68 (RothbergerSpace) => P66 (MengerSpace) -/
-instance instMengerSpaceOfRothbergerSpace (X : Type u)
-    [TopologicalSpace X] [h : RothbergerSpace X] :
+instance instMengerSpaceOfRothbergerSpace (X : Type u) [TopologicalSpace X]
+  [h : RothbergerSpace X] :
     MengerSpace X where
   menger := by
     intro ι U hU U_cover
-    obtain ⟨j, hj⟩ := h.rothberger U hU U_cover
+    by_cases! hι : IsEmpty ι
+    · simp_all
+    obtain ⟨j, hj⟩ := h.rothberger U hι hU U_cover
     refine ⟨fun n ↦ {j n}, ?_⟩
     simpa
 
