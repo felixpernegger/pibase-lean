@@ -12,8 +12,8 @@ namespace PiBase
 
 /- 154. GO-space -/
 class GoSpace (X : Type u) [TopologicalSpace X] : Prop where
-  subset_lots : ∃ (Z : Type u) (s : Set Z) (_ : TopologicalSpace Z),
-    Lots Z ∧ Nonempty (X ≃ₜ (↑s : Type u))
+  subset_lots : ∃ (Z : Type u) (f : X → Z) (_ : TopologicalSpace Z),
+    Lots Z ∧ IsEmbedding f
 
 end PiBase
 

@@ -17,7 +17,7 @@ class UltraparacompactSpace (X : Type u) [TopologicalSpace X] : Prop where
   partition_refinement :
     ∀ (α : Type u) (s : α → Set X), (∀ a, IsOpen (s a)) → (⋃ a, s a = univ) →
       ∃ (β : Type u) (t : β → Set X),
-        (∀ b, IsOpen (t b)) ∧ (Setoid.IsPartition (range t))
+        (∀ b, IsOpen (t b)) ∧ (Setoid.IsPartition (range t)) ∧ ∀ b : β, ∃ a : α, t b ⊆ s a
 
 end PiBase
 

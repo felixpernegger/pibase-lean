@@ -11,7 +11,7 @@ namespace PiBase
 
 /- 242. Weakly contractible -/
 class WeaklyContractibleSpace (X : Type u) [TopologicalSpace X] : Prop where
-  homotopically_trivial (x : X) (N : Type) : Subsingleton (HomotopyGroup N X x)
+  homotopically_trivial (x : X) (N : Type) : Finite N → Subsingleton (HomotopyGroup N X x)
 
 end PiBase
 

@@ -136,7 +136,7 @@ def IsKCover' (s : Set (Set X)) : Prop :=
 
 /-- K-cover of a topological space -/
 def IsKCover'' (f : ι → Set X) : Prop :=
-  (∀ i : ι, IsOpen (f i)) ∧ (⋃ i : ι, f i = univ) ∧ ⊤ ∉ range f ∧
+  (∀ i : ι, IsOpen (f i)) ∧ (⋃ i : ι, f i = univ) ∧ univ ∉ range f ∧
     ∀ ⦃K : Set X⦄, IsCompact K → ∃ i : ι, K ⊆ f i
 
 --TODO: we now have 3 defs for K covers, when we only need one...
