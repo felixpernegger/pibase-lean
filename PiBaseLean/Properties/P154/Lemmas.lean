@@ -15,7 +15,11 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.goSpace : WellDefined GoSpace :=
-  fun {_ _} _ _ h hX => Formal.P154.well_defined h.some hX
+  fun {_ _} _ _ hXY h => by
+    let φ := hXY.some
+    obtain ⟨Z, f, tZ, hLots, hEmb⟩ := h.subset_lots
+    refine ⟨⟨Z, f ∘ φ.symm, tZ, hLots, ?_⟩⟩
+    exact hEmb.comp φ.symm.isEmbedding
 
 end Meta
 

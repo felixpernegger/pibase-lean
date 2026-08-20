@@ -15,7 +15,9 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.stoneSpace : WellDefined StoneSpace :=
-  fun {_ _} _ _ h hX => Formal.P195.well_defined h.some hX
+  fun {_ _} _ _ hXY _ =>
+    let φ := hXY.some
+    @StoneSpace.mk _ _ φ.compactSpace φ.t2Space φ.totallyDisconnectedSpace
 
 end Meta
 

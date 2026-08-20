@@ -3,8 +3,8 @@ module
 public import Mathlib.Data.Set.Card
 public import Mathlib.Topology.Homeomorph.Lemmas
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P78.Defs
-public import PiBaseLean.Properties.P219.Defs
+public import PiBaseLean.Properties.P78.Bundled
+public import PiBaseLean.Properties.P219.Bundled
 
 @[expose] public section
 

@@ -2,8 +2,8 @@ module
 
 public import Mathlib.SetTheory.Cardinal.Arithmetic
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P175.Defs
-public import PiBaseLean.Properties.P204.Defs
+public import PiBaseLean.Properties.P175.Bundled
+public import PiBaseLean.Properties.P204.Bundled
 
 @[expose] public section
 

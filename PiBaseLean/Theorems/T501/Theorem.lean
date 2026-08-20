@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P2.Lemmas
-public import PiBaseLean.Properties.P28.Lemmas
-public import PiBaseLean.Properties.P191.Lemmas
+public import PiBaseLean.Properties.P2.Bundled
+public import PiBaseLean.Properties.P28.Bundled
+public import PiBaseLean.Properties.P191.Bundled
 public import Mathlib.Topology.Separation.GDelta
 
 @[expose] public section

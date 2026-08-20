@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Topology.Homeomorph.Defs
+public import PiBaseLean.AdditionalDefs.Meta
 
 @[expose] public section
 
@@ -23,6 +24,13 @@ instance : DFunLike Property (Type u)
   coe := toPred
   coe_injective := fun u v h =>
     (Property.mk.injEq u.toPred u.well_defined v.toPred v.well_defined) ▸ h
+
+abbrev _root_.PiBase.Formal.WellDefined.toProperty.{u}
+    {P : (X : Type u) → TopologicalSpace X → Prop}
+    (h : WellDefined P) :
+    Property where
+  toPred X t := P X t
+  well_defined {_ _ _ _ } := h.homeo
 
 theorem toPred_injective : toPred.Injective := DFunLike.coe_injective
 

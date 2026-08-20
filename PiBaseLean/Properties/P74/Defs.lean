@@ -15,13 +15,3 @@ class CosmicSpace (X : Type*) [TopologicalSpace X] : Prop extends
   T3Space X, HasCountableNetwork X
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P74 : Property where
-  toPred := CosmicSpace
-  well_defined φ h :=
-    @CosmicSpace.mk _ _ (Formal.P5.well_defined φ h.toT3Space)
-      (Formal.P182.well_defined φ h.toHasCountableNetwork)
-
-end PiBase.Formal

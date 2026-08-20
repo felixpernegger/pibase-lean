@@ -3,8 +3,8 @@ module
 public import Mathlib.Topology.Bases
 public import Mathlib.Topology.MetricSpace.Polish
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P26.Defs
-public import PiBaseLean.Properties.P116.Defs
+public import PiBaseLean.Properties.P26.Bundled
+public import PiBaseLean.Properties.P116.Bundled
 
 @[expose] public section
 

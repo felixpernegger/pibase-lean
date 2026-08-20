@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P9.Lemmas
-public import PiBaseLean.Properties.P48.Lemmas
+public import PiBaseLean.Properties.P9.Bundled
+public import PiBaseLean.Properties.P48.Bundled
 public import Mathlib.Topology.Algebra.Indicator
 
 @[expose] public section

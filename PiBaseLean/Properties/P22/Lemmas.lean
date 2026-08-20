@@ -15,7 +15,15 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.pseudocompactSpace : WellDefined PseudocompactSpace :=
-  fun {_ _} _ _ h hX => Formal.P22.well_defined h.some hX
+  fun {_ _} _ _ hXY h => by
+    let φ := hXY.some
+    constructor
+    intro f hf
+    have hfφ : Continuous (f ∘ φ) := hf.comp φ.continuous
+    obtain ⟨hBddBelow, hBddAbove⟩ := h.pseudocompact (f ∘ φ) hfφ
+    have hRange : range (f ∘ φ) = range f := by
+      rw [Set.range_comp, EquivLike.range_eq_univ, Set.image_univ]
+    exact ⟨hRange ▸ hBddBelow, hRange ▸ hBddAbove⟩
 
 end Meta
 

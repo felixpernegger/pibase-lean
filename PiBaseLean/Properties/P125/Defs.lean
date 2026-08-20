@@ -1,6 +1,6 @@
 module
 
-public import PiBaseLean.Properties.Bundled.Defs
+public import PiBaseLean.AdditionalDefs.Meta
 
 @[expose] public section
 
@@ -10,11 +10,3 @@ namespace PiBase
 #check Nontrivial
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P125 : Property where
-  toPred X := Nontrivial X
-  well_defined φ _ := φ.symm.toEquiv.nontrivial
-
-end PiBase.Formal

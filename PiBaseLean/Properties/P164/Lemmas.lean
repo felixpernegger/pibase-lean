@@ -18,7 +18,13 @@ variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.cardLtEveryMeasurableCardinal :
     WellDefined (fun (X : Type u) => CardLtEveryMeasurableCardinal X) :=
-  fun {_ _} _ _ h hX => Formal.P164.well_defined h.some hX
+  fun {X Y} _ _ hXY h => by
+    let φ := hXY.some
+    constructor
+    intro k hk
+    -- transport #X / #Y by Cardinal.mk_congr φ.toEquiv, following P163/P114
+    rw [← Cardinal.mk_congr φ.toEquiv]
+    exact h.card_lt_every_measurable k hk
 
 end Meta
 

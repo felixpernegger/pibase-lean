@@ -1,7 +1,7 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P26.Defs
+public import PiBaseLean.Properties.P26.Bundled
 public import PiBaseLean.Theorems.T308.BackgroundLemmas
 
 @[expose] public section

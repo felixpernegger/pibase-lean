@@ -15,7 +15,9 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.markovMengerSpace : WellDefined MarkovMengerSpace :=
-  fun {_ _} _ _ h hX => Formal.P70.well_defined h.some hX
+  fun {_ _} _ _ hXY h =>
+    let φ := hXY.some
+    ⟨h.markov_menger.mengerGame_of_homeomorph φ⟩
 
 end Meta
 

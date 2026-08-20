@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P11.Defs
-public import PiBaseLean.Properties.P23.Defs
-public import PiBaseLean.Properties.P64.Defs
+public import PiBaseLean.Properties.P11.Bundled
+public import PiBaseLean.Properties.P23.Bundled
+public import PiBaseLean.Properties.P64.Bundled
 public import Mathlib.Topology.Baire.LocallyCompactRegular
 
 @[expose] public section

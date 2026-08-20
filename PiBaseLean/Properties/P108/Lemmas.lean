@@ -2,6 +2,7 @@ module
 
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P108.Defs
+public import PiBaseLean.Properties.P88.Bundled
 
 @[expose] public section
 
@@ -15,7 +16,12 @@ variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hereditarilyCollectionwiseNormalSpace :
     WellDefined HereditarilyCollectionwiseNormalSpace :=
-  fun {_ _} _ _ h hX => Formal.P108.well_defined h.some hX
+  fun {_ _} _ _ hXY h => by
+    let φ := hXY.some
+    constructor
+    intro s
+    have hX := h.hereditarily_collectionwise_normal (φ ⁻¹' s)
+    exact WellDefined.collectionwiseNormalSpace.homeo (IsHomeo.subset_preimage φ s).some hX
 
 end Meta
 

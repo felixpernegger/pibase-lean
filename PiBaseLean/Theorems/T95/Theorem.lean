@@ -1,10 +1,10 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P36.Defs
-public import PiBaseLean.Properties.P37.Defs
-public import PiBaseLean.Properties.P233.Defs
-public import PiBaseLean.Properties.P233.Lemmas
+public import PiBaseLean.Properties.P36.Bundled
+public import PiBaseLean.Properties.P37.Bundled
+public import PiBaseLean.Properties.P233.Bundled
+public import PiBaseLean.Properties.P233.Bundled
 
 @[expose] public section
 

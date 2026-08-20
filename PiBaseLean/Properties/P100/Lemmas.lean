@@ -14,7 +14,10 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.kcSpace : WellDefined KcSpace :=
-  fun {_ _} _ _ h hX => Formal.P100.well_defined h.some hX
+  fun {_ _} _ _ hXY h => by
+    let φ := hXY.some
+    refine ⟨fun s Ks ↦ ?_⟩
+    simpa only [Homeomorph.isClosed_image] using h.kc (φ.symm '' s) (Ks.image φ.symm.continuous)
 
 end Meta
 

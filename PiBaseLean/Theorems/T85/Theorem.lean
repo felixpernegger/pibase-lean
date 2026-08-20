@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P52.Defs
-public import PiBaseLean.Properties.P55.Defs
+public import PiBaseLean.Properties.P52.Bundled
+public import PiBaseLean.Properties.P55.Bundled
 public import Mathlib.Topology.Metrizable.CompletelyMetrizable
 
 @[expose] public section

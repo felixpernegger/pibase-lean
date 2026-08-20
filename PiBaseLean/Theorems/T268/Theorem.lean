@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P15.Defs
-public import PiBaseLean.Properties.P121.Defs
+public import PiBaseLean.Properties.P15.Bundled
+public import PiBaseLean.Properties.P121.Bundled
 public import Mathlib.Topology.GDelta.MetrizableSpace
 
 @[expose] public section

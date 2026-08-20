@@ -15,7 +15,10 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.ordinalSpace : WellDefined OrdinalSpace :=
-  fun {_ _} _ _ h hX => Formal.P190.well_defined h.some hX
+  fun {_ _} _ _ hXY h => by
+    let φ := hXY.some
+    rcases h.homeo_ordinal with ⟨a, ha⟩
+    exact ⟨a, IsHomeo.trans ⟨φ.symm⟩ ha⟩
 
 end Meta
 

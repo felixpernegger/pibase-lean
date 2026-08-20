@@ -2,7 +2,7 @@ module
 
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P162.Defs
-public import PiBaseLean.Properties.P162.Lemmas
+public import PiBaseLean.Properties.P162.Bundled
 
 @[expose] public section
 
@@ -17,12 +17,3 @@ class HereditarilyRealcompactSpace (X : Type u) [TopologicalSpace X] : Prop wher
   subset_realcompact : Hereditarily RealcompactSpace X
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P215 : Property where
-  toPred := HereditarilyRealcompactSpace
-  well_defined φ h :=
-    ⟨Hereditarily.wellDefined WellDefined.realcompactSpace ⟨φ⟩ h.subset_realcompact⟩
-
-end PiBase.Formal

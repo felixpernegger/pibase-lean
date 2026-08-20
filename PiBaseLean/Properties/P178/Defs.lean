@@ -16,15 +16,3 @@ class AlephSpace (X : Type u) [TopologicalSpace X] : Prop extends
     T3Space X, HasSigmaLocallyFiniteKNetwork X
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P178 : Property where
-  toPred := AlephSpace
-  well_defined φ h := by
-    have : T3Space _ := φ.t3Space
-    have : HasSigmaLocallyFiniteKNetwork _ :=
-      P118.well_defined φ h.toHasSigmaLocallyFiniteKNetwork
-    exact ⟨⟩
-
-end PiBase.Formal

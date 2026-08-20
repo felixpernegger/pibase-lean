@@ -2,8 +2,8 @@ module
 
 public import Mathlib.Topology.Metrizable.Uniformity
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P53.Defs
-public import PiBaseLean.Properties.P220.Defs
+public import PiBaseLean.Properties.P53.Bundled
+public import PiBaseLean.Properties.P220.Bundled
 
 @[expose] public section
 

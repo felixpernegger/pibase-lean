@@ -2,9 +2,9 @@ module
 
 public import PiBaseLean.AdditionalDefs.Cardinal
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P57.Defs
-public import PiBaseLean.Properties.P136.Defs
-public import PiBaseLean.Properties.P183.Defs
+public import PiBaseLean.Properties.P57.Bundled
+public import PiBaseLean.Properties.P136.Bundled
+public import PiBaseLean.Properties.P183.Bundled
 
 @[expose] public section
 

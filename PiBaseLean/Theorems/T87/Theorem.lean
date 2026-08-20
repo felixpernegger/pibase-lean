@@ -2,8 +2,8 @@ module
 
 public import PiBaseLean.Properties.Bundled.Basic
 public import Mathlib.Topology.Clopen
-public import PiBaseLean.Properties.P40.Defs
-public import PiBaseLean.Properties.P218.Defs
+public import PiBaseLean.Properties.P40.Bundled
+public import PiBaseLean.Properties.P218.Bundled
 
 @[expose] public section
 

@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Topology.GDelta.Basic
-public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
@@ -12,15 +11,3 @@ class HasGδSingletons (X : Type*) [TopologicalSpace X] : Prop where
   isGδ_singleton : ∀ x : X, IsGδ {x}
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P191 : Property where
-  toPred := HasGδSingletons
-  well_defined φ h := by
-    refine ⟨fun x ↦ ?_⟩
-    convert IsGδ.preimage φ.symm.continuous (@h.isGδ_singleton (φ.symm x))
-    ext
-    simp
-
-end PiBase.Formal

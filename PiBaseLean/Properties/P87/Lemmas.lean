@@ -15,7 +15,13 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasGroupTopology : WellDefined HasGroupTopology :=
-  fun {_ _} _ _ h hX => Formal.P87.well_defined h.some hX
+  fun {_ Y} _ _ hXY h => by
+    let φ := hXY.some
+    rcases h with ⟨G, h⟩
+    let H := φ.symm.toEquiv.group
+    refine ⟨H, @IsTopologicalGroup.mk Y _ H
+      ⟨(?_ : Continuous fun (p : Y × Y) ↦ φ (φ.symm p.1 * φ.symm p.2))⟩
+      ⟨(?_ : Continuous fun p ↦ φ (φ.symm p)⁻¹)⟩⟩ <;> fun_prop
 
 end Meta
 

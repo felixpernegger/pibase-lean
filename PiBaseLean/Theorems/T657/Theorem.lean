@@ -2,8 +2,8 @@ module
 
 public import Mathlib.Topology.NoetherianSpace
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P131.Defs
-public import PiBaseLean.Properties.P208.Defs
+public import PiBaseLean.Properties.P131.Bundled
+public import PiBaseLean.Properties.P208.Bundled
 
 @[expose] public section
 

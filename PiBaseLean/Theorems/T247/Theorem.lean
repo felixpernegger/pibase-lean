@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P52.Defs
-public import PiBaseLean.Properties.P125.Defs
-public import PiBaseLean.Properties.P129.Defs
+public import PiBaseLean.Properties.P52.Bundled
+public import PiBaseLean.Properties.P125.Bundled
+public import PiBaseLean.Properties.P129.Bundled
 public import Mathlib.Logic.Nontrivial.Defs
 
 @[expose] public section

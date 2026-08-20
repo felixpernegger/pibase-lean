@@ -1,0 +1,12 @@
+module
+
+public import PiBaseLean.Properties.Bundled.Defs
+public import PiBaseLean.Properties.P19.Lemmas
+
+@[expose] public section
+
+namespace PiBase.Formal
+
+def P19 : Property := WellDefined.toProperty WellDefined.countablyCompactSpace
+
+end PiBase.Formal

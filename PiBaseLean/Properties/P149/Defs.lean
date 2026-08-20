@@ -1,8 +1,7 @@
 module
 
 public import PiBaseLean.AdditionalDefs.Meta
-public import PiBaseLean.Properties.Bundled.Defs
-public import PiBaseLean.Properties.P18.Lemmas
+public import PiBaseLean.Properties.P18.Bundled
 
 @[expose] public section
 
@@ -17,12 +16,3 @@ class OmegaLindelof (X : Type u) [TopologicalSpace X] : Prop where
   omega_lindelof : Omega LindelofSpace X
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P149 : Property where
-  toPred := OmegaLindelof
-  well_defined φ h :=
-    ⟨Omega.wellDefined WellDefined.lindelofSpace ⟨φ⟩ h.omega_lindelof⟩
-
-end PiBase.Formal

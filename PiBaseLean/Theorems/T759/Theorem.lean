@@ -2,8 +2,8 @@ module
 
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P123.Defs
-public import PiBaseLean.Properties.P155.Defs
+public import PiBaseLean.Properties.P123.Bundled
+public import PiBaseLean.Properties.P155.Bundled
 
 @[expose] public section
 

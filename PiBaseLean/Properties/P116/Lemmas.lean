@@ -14,7 +14,9 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.polishSpace : WellDefined PolishSpace :=
-  fun {_ _} _ _ h hX => Formal.P116.well_defined h.some hX
+  fun {_ _} _ _ hXY _ =>
+    let φ := hXY.some
+    φ.symm.isClosedEmbedding.polishSpace
 
 end Meta
 

@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Topology.ExtremallyDisconnected
-public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
@@ -14,12 +13,3 @@ class StoneanSpace (X : Type*) [TopologicalSpace X] : Prop
   extends CompactSpace X, ExtremallyDisconnected X, T2Space X
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P119 : Property where
-  toPred X := StoneanSpace X
-  well_defined φ _ := @StoneanSpace.mk _ _ φ.compactSpace
-    (extremallyDisconnected_of_homeo φ) φ.t2Space
-
-end PiBase.Formal

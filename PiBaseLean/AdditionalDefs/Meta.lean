@@ -75,6 +75,11 @@ abbrev WellDefined (P : (X : Type u) → [TopologicalSpace X] → Prop) : Prop :
   ∀ {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y],
     IsHomeo X Y → P X → P Y
 
+theorem WellDefined.homeo {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y]
+    {P : (X : Type u) → [TopologicalSpace X] → Prop} (h : WellDefined P) (f : X ≃ₜ Y) (hX : P X) :
+    P Y :=
+  h (Homeomorph.isHomeo f) hX
+
 /-- A well defined property `P` holds for `X` iff it holds for `univ : Set X`. -/
 theorem WellDefined.Set.univ {P : (X : Type u) → [TopologicalSpace X] → Prop} (hP : WellDefined P)
     {X : Type u} [TopologicalSpace X] :

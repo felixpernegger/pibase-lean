@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Topology.Separation.GDelta
-public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
@@ -11,11 +10,3 @@ namespace PiBase
 #check T6Space
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P67 : Property where
-  toPred := T6Space
-  well_defined φ _ := φ.symm.isEmbedding.t6Space
-
-end PiBase.Formal

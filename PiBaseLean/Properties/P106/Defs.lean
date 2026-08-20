@@ -1,6 +1,5 @@
 module
 
-public import PiBaseLean.Properties.Bundled.Defs
 public import Mathlib.Topology.GDelta.Basic
 public import Mathlib.Topology.Constructions.SumProd
 
@@ -15,15 +14,3 @@ class HasGδDiagonal (X : Type*) [TopologicalSpace X] : Prop where
   has_g_delta_diagonal : IsGδ (diagonal X)
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P106 : Property where
-  toPred := HasGδDiagonal
-  well_defined {X Y} _ _ φ h := by
-    constructor
-    let Φ : Y × Y ≃ₜ X × X := φ.symm.prodCongr φ.symm
-    convert IsGδ.preimage Φ.continuous h.has_g_delta_diagonal
-    simp [Φ, diagonal]
-
-end PiBase.Formal

@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Topology.ContinuousMap.Basic
-public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
@@ -14,14 +13,3 @@ class FixedPointSpace (X : Type*) [TopologicalSpace X] : Prop where
   fixed_point : ∀ f : C(X, X), ∃ x : X, Function.IsFixedPt f x
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P89 : Property where
-  toPred := FixedPointSpace
-  well_defined {X Y} _ _ φ h := by
-    refine ⟨fun f ↦ ?_⟩
-    rcases h.fixed_point (((φ.symm : C(Y, X)).comp f).comp (φ : C(X, Y))) with ⟨x, xfx⟩
-    exact ⟨φ x, φ.symm_apply_eq.1 xfx⟩
-
-end PiBase.Formal

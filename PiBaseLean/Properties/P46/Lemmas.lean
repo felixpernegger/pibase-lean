@@ -51,7 +51,25 @@ theorem totallyPathDisconnectedSpace_iff_pathComponent_singleton :
 section Meta
 
 theorem WellDefined.totallyPathDisconnectedSpace : WellDefined TotallyPathDisconnectedSpace :=
-  fun {_ _} _ _ h hX ↦ PiBase.Formal.P46.well_defined h.some hX
+  fun {X Y} _ _ hXY h => by
+    let φ := hXY.some
+    constructor
+    intro f hf
+    -- compose arbitrary path into Y with φ.symm to get path into X
+    have hcomp : Continuous (fun t : Icc (0 : ℝ) 1 => φ.symm (f t)) :=
+      φ.symm.continuous.comp hf
+    -- apply totally path disconnected in X to get constant
+    obtain ⟨x, hx⟩ := h.totally_path_disconnected (fun t => φ.symm (f t)) hcomp
+    refine ⟨φ x, ?_⟩
+    ext t
+    simp only [Function.const_apply]
+    -- extract pointwise equality from hx : (φ.symm ∘ f) = const x
+    have hxt : φ.symm (f t) = x := by
+      have := congrFun hx t
+      simpa [Function.const_apply] using this
+    -- push constant through φ : f t = φ (φ.symm (f t)) = φ x
+    calc f t = φ (φ.symm (f t)) := (φ.apply_symm_apply (f t)).symm
+      _ = φ x := by rw [hxt]
 
 end Meta
 

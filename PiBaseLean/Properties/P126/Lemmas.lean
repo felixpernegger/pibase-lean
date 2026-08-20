@@ -15,7 +15,13 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.doorSpace : WellDefined DoorSpace :=
-  fun {_ _} _ _ h hX => Formal.P126.well_defined h.some hX
+  fun {_ _} _ _ hXY h =>
+    let φ := hXY.some
+    ⟨fun s => by
+        have hs := h.isOpen_or_isClosed (φ ⁻¹' s)
+        rcases hs with ho | hc
+        · left; exact φ.isOpen_preimage.mp ho
+        · right; exact φ.isClosed_preimage.mp hc⟩
 
 end Meta
 

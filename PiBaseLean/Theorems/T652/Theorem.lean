@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P130.Defs
-public import PiBaseLean.Properties.P208.Defs
+public import PiBaseLean.Properties.P130.Bundled
+public import PiBaseLean.Properties.P208.Bundled
 public import Mathlib.Topology.Spectral.Prespectral
 
 @[expose] public section

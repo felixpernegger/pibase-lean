@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P26.Defs
-public import PiBaseLean.Properties.P55.Defs
-public import PiBaseLean.Properties.P116.Defs
+public import PiBaseLean.Properties.P26.Bundled
+public import PiBaseLean.Properties.P55.Bundled
+public import PiBaseLean.Properties.P116.Bundled
 
 @[expose] public section
 

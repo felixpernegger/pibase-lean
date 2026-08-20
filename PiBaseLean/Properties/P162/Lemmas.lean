@@ -27,7 +27,10 @@ theorem Homeomorph.realcompactSpace [h : RealcompactSpace X] (g : X ≃ₜ Y) : 
 -/
 
 theorem WellDefined.realcompactSpace : WellDefined RealcompactSpace :=
-  fun {_ _} _ _ h hX => Formal.P162.well_defined h.some hX
+  fun {_ _} _ _ hXY h => by
+    let φ := hXY.some
+    obtain ⟨ι, f, hf⟩ := h.homeo_closed
+    exact ⟨⟨ι, f ∘ φ.symm, hf.comp φ.symm.isClosedEmbedding⟩⟩
 
 end Meta
 

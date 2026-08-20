@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Topology.Bases
-public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
@@ -13,11 +12,3 @@ namespace PiBase
 #check SeparableSpace
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P26 : Property where
-  toPred := SeparableSpace
-  well_defined φ _ := φ.symm.isOpenEmbedding.separableSpace
-
-end PiBase.Formal

@@ -2,8 +2,8 @@ module
 
 public import Mathlib.Data.SetLike.Fintype
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P78.Defs
-public import PiBaseLean.Properties.P226.Defs
+public import PiBaseLean.Properties.P78.Bundled
+public import PiBaseLean.Properties.P226.Bundled
 
 @[expose] public section
 

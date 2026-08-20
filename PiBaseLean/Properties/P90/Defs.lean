@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Topology.AlexandrovDiscrete
-public import PiBaseLean.Properties.Bundled.Defs
 
 @[expose] public section
 
@@ -11,11 +10,3 @@ namespace PiBase
 #check AlexandrovDiscrete
 
 end PiBase
-
-namespace PiBase.Formal
-
-def P90 : Property where
-  toPred := AlexandrovDiscrete
-  well_defined φ _ := φ.symm.isInducing.alexandrovDiscrete
-
-end PiBase.Formal

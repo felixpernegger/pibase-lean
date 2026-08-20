@@ -75,12 +75,32 @@ theorem PartitionTopology.inseparable_closed (X : Type u) [TopologicalSpace X]
     [h : PartitionTopology X] (x : X) : IsClosed {y | Inseparable x y} :=
   (partitionTopology_iff_isOpen_iff_isClosed {y | Inseparable x y}).mp <| inseparable_open X x
 
+namespace Formal
+
+/-- A homeomorphism `φ : X ≃ₜ Y` descends to a homeomorphism of the Kolmogorov quotients. -/
+def separationQuotientCongr {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
+    (φ : X ≃ₜ Y) : SeparationQuotient X ≃ₜ SeparationQuotient Y where
+  toFun := SeparationQuotient.lift (fun x => SeparationQuotient.mk (φ x))
+    fun _ _ hxy => SeparationQuotient.mk_eq_mk.2 (hxy.map φ.continuous)
+  invFun := SeparationQuotient.lift (fun y => SeparationQuotient.mk (φ.symm y))
+    fun _ _ hxy => SeparationQuotient.mk_eq_mk.2 (hxy.map φ.symm.continuous)
+  left_inv := SeparationQuotient.surjective_mk.forall.2 fun x => by simp
+  right_inv := SeparationQuotient.surjective_mk.forall.2 fun y => by simp
+  continuous_toFun :=
+    SeparationQuotient.continuous_lift (SeparationQuotient.continuous_mk.comp φ.continuous)
+  continuous_invFun :=
+    SeparationQuotient.continuous_lift (SeparationQuotient.continuous_mk.comp φ.symm.continuous)
+
+end Formal
+
 section Meta
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.partitionTopology : WellDefined PartitionTopology :=
-  fun {_ _} _ _ h hX => Formal.P185.well_defined h.some hX
+  fun {_ _} _ _ hXY h =>
+    let φ := hXY.some
+    ⟨(Formal.separationQuotientCongr φ).discreteTopology_iff.mp h.quotient_discrete⟩
 
 end Meta
 

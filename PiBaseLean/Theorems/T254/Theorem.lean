@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P18.Defs
-public import PiBaseLean.Properties.P131.Defs
+public import PiBaseLean.Properties.P18.Bundled
+public import PiBaseLean.Properties.P131.Bundled
 
 @[expose] public section
 

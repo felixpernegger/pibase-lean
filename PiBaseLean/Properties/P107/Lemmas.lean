@@ -14,7 +14,12 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasClosedPoint : WellDefined HasClosedPoint :=
-  fun {_ _} _ _ h hX => Formal.P107.well_defined h.some hX
+  fun {_ _} _ _ hXY h => by
+    let φ := hXY.some
+    rcases h.has_closed_point with ⟨x, hx⟩
+    refine ⟨φ x, ?_⟩
+    convert φ.isClosed_image.2 hx
+    simp only [image_singleton]
 
 end Meta
 

@@ -2,7 +2,7 @@ module
 
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P121.Defs
-public import PiBaseLean.Properties.P185.Lemmas
+public import PiBaseLean.Properties.P185.Bundled
 public import Mathlib.Topology.Metrizable.Uniformity
 
 @[expose] public section
@@ -36,7 +36,9 @@ lemma metrizableSpace_iff_exists_metric (X : Type u) [τ : TopologicalSpace X] :
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.pseudoMetrizableSpace : WellDefined PseudoMetrizableSpace :=
-  fun {_ _} _ _ h hX => Formal.P121.well_defined h.some hX
+  fun {_ _} _ _ hXY _ =>
+    let φ := hXY.some
+    φ.symm.isInducing.pseudoMetrizableSpace
 
 end Meta
 
