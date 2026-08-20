@@ -45,7 +45,7 @@ def P230 : Property where
         have h_open : IsOpen (φ '' s) := (φ.isOpen_image).mpr hs.2.1
         have h_sc : SimplyConnectedSpace (φ '' s) := by
           let e : s ≃ₜ φ '' s := φ.image s
-          haveI : SimplyConnectedSpace s := hs.2.2
+          have : SimplyConnectedSpace s := hs.2.2
           exact e.symm.toHomotopyEquiv.simplyConnectedSpace
         exact ⟨φ '' s, ⟨hy_mem, h_open, h_sc⟩, Subset.rfl⟩
       · intro t ht

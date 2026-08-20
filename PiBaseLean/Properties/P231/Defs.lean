@@ -32,7 +32,7 @@ def P231 : Property where
       exact hs_nhds
     have h_sc : SimplyConnectedSpace (φ '' s) := by
       let e : s ≃ₜ φ '' s := φ.image s
-      haveI : SimplyConnectedSpace s := hs_sc
+      have : SimplyConnectedSpace s := hs_sc
       exact e.symm.toHomotopyEquiv.simplyConnectedSpace
     exact ⟨φ '' s, h_img_mem, h_sc⟩
 

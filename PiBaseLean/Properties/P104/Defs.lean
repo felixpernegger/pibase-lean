@@ -23,7 +23,7 @@ def P104 : Property where
   toPred := SymmetrizableSpace
   well_defined {X Y} _ _ φ h := by
     obtain ⟨symX⟩ := h.nonempty_symmetric
-    letI : Symmetric X := symX.toSymmetric
+    let : Symmetric X := symX.toSymmetric
     let symYCore : Symmetric Y :=
       { dist := fun y₁ y₂ => dist (φ.symm y₁) (φ.symm y₂)
         dist_nonneg := fun y₁ y₂ => symX.dist_nonneg _ _
@@ -32,7 +32,7 @@ def P104 : Property where
         eq_of_dist_eq_zero := fun {y₁ y₂} h0 => by
           have : φ.symm y₁ = φ.symm y₂ := symX.eq_of_dist_eq_zero h0
           exact φ.symm.injective this }
-    letI : Symmetric Y := symYCore
+    let : Symmetric Y := symYCore
     let symY : SymmetricSpace Y :=
       { symYCore with
         isOpen_iff := fun s => by

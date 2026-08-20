@@ -32,7 +32,7 @@ def P144 : Property where
       exact hs_nhds
     have h_pseudo : PseudoMetrizableSpace (φ '' s) := by
       let e : s ≃ₜ φ '' s := φ.image s
-      haveI : PseudoMetrizableSpace s := hs_pseudo
+      have : PseudoMetrizableSpace s := hs_pseudo
       exact e.symm.isInducing.pseudoMetrizableSpace
     exact ⟨φ '' s, h_img_mem, h_pseudo⟩
 

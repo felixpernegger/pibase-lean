@@ -23,8 +23,8 @@ namespace PiBase.Formal
 def P204 : Property where
   toPred := HasACutPoint
   well_defined {X Y} _ _ φ h := by
-    haveI hcX : ConnectedSpace X := h.toConnectedSpace
-    haveI hcY : ConnectedSpace Y := (Homeomorph.connectedSpace_iff φ).mp hcX
+    have hcX : ConnectedSpace X := h.toConnectedSpace
+    have hcY : ConnectedSpace Y := (Homeomorph.connectedSpace_iff φ).mp hcX
     obtain ⟨p, hp⟩ := h.ex_cut
     refine ⟨φ p, ?_⟩
     intro hpc

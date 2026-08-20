@@ -25,8 +25,8 @@ def P206 : Property where
   well_defined {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y] (φ : X ≃ₜ Y) h := by
     constructor
     intro hY_inh
-    letI : Inhabited Y := hY_inh
-    letI iX : Inhabited X := ⟨φ.symm default⟩
+    let : Inhabited Y := hY_inh
+    let iX : Inhabited X := ⟨φ.symm default⟩
     obtain ⟨fX, hfX⟩ := h.strongly_choquet iX
     let toX : Y × Set Y → X × Set X := fun p => (φ.symm p.1, φ ⁻¹' p.2)
     let toY : X × Set X → Y × Set Y := fun p => (φ p.1, φ '' p.2)

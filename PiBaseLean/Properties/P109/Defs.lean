@@ -26,8 +26,8 @@ def P109 : Property where
   toPred := MonotonicallyNormalSpace
   well_defined {X Y} _ _ φ h := by
     obtain ⟨μX, hμ⟩ := h.monotonically_normal
-    haveI hT1X : T1Space X := h.toT1Space
-    haveI hT1Y : T1Space Y := φ.t1Space
+    have hT1X : T1Space X := h.toT1Space
+    have hT1Y : T1Space Y := φ.t1Space
     -- Helper: condition extracted from hμ
     have hCond : ∀ (x y : X) (u v : Opens X) (hu : x ∈ u) (hv : y ∈ v),
         (↑(μX x u hu) : Set X) ∩ ↑(μX y v hv) ≠ ∅ → x ∈ v ∨ y ∈ u := by

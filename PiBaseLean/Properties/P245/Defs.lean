@@ -24,7 +24,7 @@ namespace PiBase.Formal
 def P245 : Property where
   toPred := HasFinitelyManyOpenSets
   well_defined {X Y} _ _ φ h := by
-    haveI : Finite (Opens X) := h.finite_open_sets
+    have : Finite (Opens X) := h.finite_open_sets
     have e : Opens X ≃ Opens Y :=
       { toFun := fun U => ⟨φ '' (U : Set X), by rw [φ.isOpen_image]; exact U.isOpen⟩
         invFun := fun V => ⟨φ.symm '' (V : Set Y), by rw [φ.symm.isOpen_image]; exact V.isOpen⟩

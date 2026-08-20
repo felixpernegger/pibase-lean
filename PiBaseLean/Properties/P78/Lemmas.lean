@@ -15,7 +15,7 @@ universe u
 
 theorem WellDefined.finite : WellDefined (fun (X : Type u) => Finite X) :=
   fun {X Y} [TopologicalSpace X] [TopologicalSpace Y] h hX => by
-    haveI : Finite X := hX
+    have : Finite X := hX
     exact Finite.of_equiv X h.some.toEquiv
 
 end Meta

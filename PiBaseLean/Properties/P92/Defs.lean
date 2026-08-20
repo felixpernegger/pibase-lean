@@ -33,7 +33,7 @@ def P92 : Property where
         _ = φ '' (⋃ n, K n) := by rw [← hUniv]
         _ = ⋃ n, φ '' K n := by rw [image_iUnion]
     · intro n
-      haveI : T2Space (K n) := hT2 n
+      have : T2Space (K n) := hT2 n
       exact (φ.image (K n)).t2Space
     · intro s
       constructor

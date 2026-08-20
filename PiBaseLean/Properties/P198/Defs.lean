@@ -29,7 +29,7 @@ def P198 : Property where
       intro s hs
       have hDT : DiscreteTopology s := isDiscrete_iff_discreteTopology.mp hs
       have hDT' : DiscreteTopology (φ '' s) := by
-        haveI := hDT
+        have := hDT
         exact (φ.image s).discreteTopology
       exact isDiscrete_iff_discreteTopology.mpr hDT'
     have hDiscPre : ∀ {t : Set _} (_ : IsDiscrete t), IsDiscrete (φ ⁻¹' t) := by
@@ -44,7 +44,7 @@ def P198 : Property where
       rw [h_pre_eq]
       have hDT : DiscreteTopology t := isDiscrete_iff_discreteTopology.mp ht
       have hDT' : DiscreteTopology (φ.symm '' t) := by
-        haveI := hDT
+        have := hDT
         exact (φ.symm.image t).discreteTopology
       exact isDiscrete_iff_discreteTopology.mpr hDT'
     have hExtent_eq : Extent X = Extent Y := by

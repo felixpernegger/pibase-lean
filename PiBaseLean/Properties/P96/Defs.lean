@@ -45,7 +45,7 @@ def P96 : Property where
         have h_open : IsOpen (φ '' s) := (φ.isOpen_image).mpr hs.2.1
         have h_arc : ArcConnectedSpace (φ '' s) := by
           let e : s ≃ₜ φ '' s := φ.image s
-          haveI : ArcConnectedSpace s := hs.2.2
+          have : ArcConnectedSpace s := hs.2.2
           exact Homeomorph.arcConnectedSpace e
         exact ⟨φ '' s, ⟨hy_mem, h_open, h_arc⟩, Subset.rfl⟩
       · intro t ht

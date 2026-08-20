@@ -22,7 +22,7 @@ def P113 : Property where
     have hDev := h.toDevelopableSpace
     have hDevY := Formal.P110.well_defined φ hDev
     have hT3 := h.toT3Space
-    haveI := hT3
+    have := hT3
     have hT3Y := φ.t3Space
     exact { toDevelopableSpace := hDevY, toT3Space := hT3Y }
 

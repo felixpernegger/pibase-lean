@@ -22,8 +22,8 @@ namespace PiBase.Formal
 def P45 : Property where
   toPred := HasDispersionPoint
   well_defined {X Y} _ _ φ h := by
-    haveI hcX : ConnectedSpace X := h.toConnectedSpace
-    haveI hcY : ConnectedSpace Y := (Homeomorph.connectedSpace_iff φ).mp hcX
+    have hcX : ConnectedSpace X := h.toConnectedSpace
+    have hcY : ConnectedSpace Y := (Homeomorph.connectedSpace_iff φ).mp hcX
     obtain ⟨p, hp⟩ := h.ex_dispersion_point
     refine ⟨φ p, ?_⟩
     have h_eq : φ '' {p}ᶜ = {φ p}ᶜ := by

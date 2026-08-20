@@ -40,7 +40,7 @@ def P246 : Property where
       rw [h_pre_eq]
       have hDT : DiscreteTopology v := isDiscrete_iff_discreteTopology.mp hv_discrete
       have hDT' : DiscreteTopology (φ.symm '' v) := by
-        haveI := hDT
+        have := hDT
         exact (φ.symm.image v).discreteTopology
       exact isDiscrete_iff_discreteTopology.mpr hDT'
     obtain ⟨sX, hOpenX, hDisjX, hCoverX, hUniqueX⟩ :=

@@ -34,7 +34,7 @@ def P84 : Property where
       have h3 : φ '' C ∈ 𝓝 (φ (φ.symm y)) := h_map ▸ h2
       have h_eq : φ (φ.symm y) = y := φ.apply_symm_apply y
       rwa [h_eq] at h3
-    · haveI : T2Space C := hC_t2
+    · have : T2Space C := hC_t2
       exact (φ.image C).t2Space
 
 end PiBase.Formal

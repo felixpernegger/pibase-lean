@@ -32,7 +32,7 @@ def P224 : Property where
       exact hs_nhds
     have h_contr : ContractibleSpace (φ '' s) := by
       let e : s ≃ₜ φ '' s := φ.image s
-      haveI : ContractibleSpace s := hs_contr
+      have : ContractibleSpace s := hs_contr
       exact e.symm.contractibleSpace
     exact ⟨φ '' s, h_img_mem, h_contr⟩
 

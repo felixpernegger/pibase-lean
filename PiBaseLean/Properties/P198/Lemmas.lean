@@ -50,7 +50,7 @@ private lemma isDiscrete_image_homeomorph {X Y : Type*} [TopologicalSpace X] [To
     (φ : X ≃ₜ Y) {s : Set X} (hs : IsDiscrete s) : IsDiscrete (φ '' s) := by
   have hDT : DiscreteTopology s := isDiscrete_iff_discreteTopology.mp hs
   have hDT' : DiscreteTopology (φ '' s) := by
-    haveI := hDT
+    have := hDT
     exact (φ.image s).discreteTopology
   exact isDiscrete_iff_discreteTopology.mpr hDT'
 

@@ -16,8 +16,8 @@ variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 theorem WellDefined.hasACutPoint : WellDefined HasACutPoint :=
   fun {X Y} _ _ hφ hX => by
     let φ := hφ.some
-    haveI hcX : ConnectedSpace X := hX.toConnectedSpace
-    haveI hcY : ConnectedSpace Y := (Homeomorph.connectedSpace_iff φ).mp hcX
+    have hcX : ConnectedSpace X := hX.toConnectedSpace
+    have hcY : ConnectedSpace Y := (Homeomorph.connectedSpace_iff φ).mp hcX
     obtain ⟨p, hp⟩ := hX.ex_cut
     refine ⟨φ p, ?_⟩
     intro hpc

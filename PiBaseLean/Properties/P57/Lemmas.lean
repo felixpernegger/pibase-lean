@@ -15,7 +15,7 @@ universe u
 
 theorem WellDefined.countable : WellDefined (fun (X : Type u) => Countable X) :=
   fun {X Y} [TopologicalSpace X] [TopologicalSpace Y] h hX => by
-    haveI : Countable X := hX
+    have : Countable X := hX
     exact Countable.of_equiv X h.some.toEquiv
 
 end Meta

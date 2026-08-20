@@ -23,10 +23,10 @@ def P102 : Property where
   toPred := SemimetrizableSpace
   well_defined {X Y} [TopologicalSpace X] [TopologicalSpace Y] φ h := by
     obtain ⟨symX⟩ := h.nonempty_semimetric
-    letI : Symmetric X := symX.toSymmetric
+    let : Symmetric X := symX.toSymmetric
     let f : Y → X := φ.symm
     let distY : Y → Y → ℝ := fun y₁ y₂ => dist (f y₁) (f y₂)
-    letI symYCore : Symmetric Y :=
+    let symYCore : Symmetric Y :=
       { dist := distY
         dist_nonneg := fun y₁ y₂ => Symmetric.dist_nonneg (f y₁) (f y₂)
         dist_self := fun y => Symmetric.dist_self (f y)

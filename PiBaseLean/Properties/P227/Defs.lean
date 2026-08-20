@@ -29,7 +29,7 @@ def P227 : Property where
     · -- transport DiscreteTopology on subtype via subtype homeomorphism φ.image s : s ≃ₜ φ '' s
       have hDT : DiscreteTopology s := isDiscrete_iff_discreteTopology.mp h_disc
       have : DiscreteTopology (φ '' s) := by
-        haveI := hDT
+        have := hDT
         exact (φ.image s).discreteTopology
       exact isDiscrete_iff_discreteTopology.mpr this
     · -- closedness via Homeomorph closed image

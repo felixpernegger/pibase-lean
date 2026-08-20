@@ -31,7 +31,7 @@ def P82 : Property where
       exact hC_mem
     have h_met : MetrizableSpace (φ '' C) := by
       let e : C ≃ₜ φ '' C := φ.image C
-      haveI : MetrizableSpace C := hC_met
+      have : MetrizableSpace C := hC_met
       exact e.symm.isEmbedding.metrizableSpace
     exact ⟨φ '' C, h_img_mem, h_met⟩
 

@@ -23,7 +23,7 @@ end PiBase
 namespace PiBase.Formal
 
 theorem T248 : P125ᶜ ≤ P52 :=
-  fun X _ h ↦ haveI : Subsingleton X := not_nontrivial_iff_subsingleton.mp h
+  fun X _ h ↦ have : Subsingleton X := not_nontrivial_iff_subsingleton.mp h
     @instDiscreteTopologyOfSubsingleton X _ ‹_›
 
 end PiBase.Formal

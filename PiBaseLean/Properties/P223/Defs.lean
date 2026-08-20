@@ -48,7 +48,7 @@ def P223 : Property where
         have h_open : IsOpen (φ '' s) := (φ.isOpen_image).mpr hs.1
         have h_contr : ContractibleSpace (φ '' s) := by
           let e : s ≃ₜ φ '' s := φ.image s
-          haveI : ContractibleSpace s := hs.2.2
+          have : ContractibleSpace s := hs.2.2
           exact e.symm.contractibleSpace
         exact ⟨φ '' s, ⟨h_open, hy_mem, h_contr⟩, Subset.rfl⟩
       · intro t ht

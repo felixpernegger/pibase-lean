@@ -15,7 +15,7 @@ variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.hasFinitelyManyOpenSets [HasFinitelyManyOpenSets X] (f : X ≃ₜ Y) :
     HasFinitelyManyOpenSets Y := by
-  haveI : Finite (Opens X) := (inferInstance : HasFinitelyManyOpenSets X).finite_open_sets
+  have : Finite (Opens X) := (inferInstance : HasFinitelyManyOpenSets X).finite_open_sets
   have e : Opens X ≃ Opens Y :=
     { toFun := fun U => ⟨f '' (U : Set X), by rw [f.isOpen_image]; exact U.isOpen⟩
       invFun := fun V => ⟨f.symm '' (V : Set Y), by rw [f.symm.isOpen_image]; exact V.isOpen⟩
