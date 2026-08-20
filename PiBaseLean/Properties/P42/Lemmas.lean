@@ -19,7 +19,7 @@ theorem Homeomorph.locallyPathConnectedSpace [h : LocallyPathConnectedSpace X]
 
 theorem WellDefined.locallyPathConnectedSpace :
     WellDefined LocallyPathConnectedSpace :=
-  fun {_ _} _ _ h hX ↦ Homeomorph.locallyPathConnectedSpace h.some
+  fun {_ _} _ _ h _ ↦ Homeomorph.locallyPathConnectedSpace h.some
 
 end Meta
 

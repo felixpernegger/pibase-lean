@@ -19,7 +19,7 @@ theorem Homeomorph.totallyDisconnectedSpace [h : TotallyDisconnectedSpace X]
   f.totallyDisconnectedSpace
 
 theorem WellDefined.totallyDisconnectedSpace : WellDefined TotallyDisconnectedSpace :=
-  fun {_ _} _ _ h hX ↦ Homeomorph.totallyDisconnectedSpace h.some
+  fun {_ _} _ _ h _ ↦ Homeomorph.totallyDisconnectedSpace h.some
 
 end Meta
 

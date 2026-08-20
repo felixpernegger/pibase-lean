@@ -31,7 +31,7 @@ def P61 : Property where
       refine ⟨f.comp φc, ?_⟩
       have h_eq : (f.comp φc : C(X, ℝ)).toFun ⁻¹' ({0}ᶜ : Set ℝ) =
           φ ⁻¹' (f.toFun ⁻¹' {0}ᶜ) := by
-        ext x; simp [ContinuousMap.comp_apply, φc]
+        ext x; simp [φc]
       rw [h_eq, hf]
     obtain ⟨tX, htX_cozero, htX_disj, htX_dense⟩ :=
       h.cozero_complemented (φ ⁻¹' s) h_s_pre_cozero
@@ -43,11 +43,13 @@ def P61 : Property where
       refine ⟨g.comp ψc, ?_⟩
       have h_eq1 : (g.comp ψc : C(Y, ℝ)).toFun ⁻¹' ({0}ᶜ : Set ℝ) =
           ψc.toFun ⁻¹' (g.toFun ⁻¹' {0}ᶜ) := by
-        ext y; simp [ContinuousMap.comp_apply, ψc]
+        ext y; simp [ψc]
       rw [h_eq1, hg]
       ext y
       constructor
-      · intro hy; simp [ψc] at hy; exact ⟨φ.symm y, hy, by simp⟩
+      · intro hy
+        change φ.symm y ∈ tX at hy
+        exact ⟨φ.symm y, hy, by simp⟩
       · rintro ⟨x, hx, rfl⟩; simp [ψc, hx]
     refine ⟨tY, htY_cozero, ?_, ?_⟩
     · -- Disjoint via pullback equivalence

@@ -14,7 +14,7 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.zeroDimensionalSpace : WellDefined ZeroDimensionalSpace :=
-  fun {X Y} _ _ φ h => Formal.P50.well_defined φ.some h
+  fun {_ _} _ _ φ h => Formal.P50.well_defined φ.some h
 
 end Meta
 

@@ -54,7 +54,8 @@ def P198 : Property where
       ext c
       constructor
       · rintro ⟨D, hDc, hCl, hDisc⟩
-        exact ⟨φ '' D, by rw [mk_image_eq φ.injective, hDc], φ.isClosed_image.mpr hCl, hDiscImage hDisc⟩
+        exact ⟨φ '' D, by rw [mk_image_eq φ.injective, hDc], φ.isClosed_image.mpr hCl,
+          hDiscImage hDisc⟩
       · rintro ⟨D, hDc, hCl, hDisc⟩
         have hDisc' : IsDiscrete (φ ⁻¹' D) := hDiscPre hDisc
         have hCl' : IsClosed (φ ⁻¹' D) := φ.isClosed_preimage.mpr hCl

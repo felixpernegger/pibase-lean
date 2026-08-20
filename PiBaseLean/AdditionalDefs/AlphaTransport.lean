@@ -10,6 +10,8 @@ open Topology Set Filter Function
 
 namespace PiBase.AlphaTransport
 
+section AIGenerated
+
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem mem_range_symm_comp (φ : X ≃ₜ Y) (f : ℕ → Y) (w : X) :
@@ -137,5 +139,7 @@ theorem infinite_setOf_nonempty_inter (φ : X ≃ₜ Y) (S : ℕ → ℕ → Y) 
     ext n
     exact (nonempty_inter_iff φ (S n) T).symm
   rwa [hEq] at h
+
+end AIGenerated
 
 end PiBase.AlphaTransport

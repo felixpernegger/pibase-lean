@@ -33,7 +33,8 @@ def P145 : Property where
     have hs'_cover : (⋃ a, s' a) = univ := by
       rw [← preimage_iUnion]
       rw [hs_cover, preimage_univ]
-    obtain ⟨β, t, ht_open, ht_cover, ht_sf, ht_ref⟩ := h.starFinite_refinement α s' hs'_open hs'_cover
+    obtain ⟨β, t, ht_open, ht_cover, ht_sf, ht_ref⟩ :=
+      h.starFinite_refinement α s' hs'_open hs'_cover
     -- Transfer t back to Y via image
     let t' : β → Set _ := fun b => φ '' (t b)
     refine ⟨β, t', fun b => φ.isOpen_image.mpr (ht_open b), ?_, ?_, ?_⟩
@@ -44,7 +45,7 @@ def P145 : Property where
       intro i
       have h_eq : {j | (t' j ∩ t' i).Nonempty} = {j | (t j ∩ t i).Nonempty} := by
         ext j
-        simp only [mem_setOf_eq, t']
+        simp only [mem_ofPred_eq, t']
         constructor
         · rintro ⟨y, ⟨⟨x1, hx1, rfl⟩, ⟨x2, hx2, heq⟩⟩⟩
           have h_inj : x1 = x2 := φ.injective heq.symm

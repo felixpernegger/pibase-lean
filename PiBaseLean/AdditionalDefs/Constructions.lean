@@ -60,12 +60,16 @@ theorem IsRegularOpen.isOpen {s : Set X} (hs : IsRegularOpen s) : IsOpen s := hs
 /-- A point *cut point* `p` in a space, is a space such that `X \ {p}` is disconnected. -/
 def IsCutPoint (p : X) := ¬ IsPreconnected {p}ᶜ
 
+section AIGenerated
+
 /-- The image of a cut point under a homeomorphism is a cut point. -/
 theorem Homeomorph.isCutPoint {p : X} (e : X ≃ₜ Y) (hp : IsCutPoint p) : IsCutPoint (e p) := by
   intro h
   apply hp
   rw [← e.isPreconnected_image]
   simpa only [e.image_compl, image_singleton] using h
+
+end AIGenerated
 
 /-- The inseperable component of `x : X` are the points inseparable to that point. -/
 def InseparableComponent (x : X) : Set X :=

@@ -56,7 +56,7 @@ def P194 : Property where
       -- y ∈ φ '' t n i ↔ φ.symm y ∈ t n i
       have h_equiv : {i | y ∈ φ '' (t n i)} = {i | φ.symm y ∈ t n i} := by
         ext i
-        simp only [mem_setOf_eq, mem_image]
+        simp only [mem_ofPred_eq, mem_image]
         constructor
         · rintro ⟨x, hx, rfl⟩
           simpa using hx

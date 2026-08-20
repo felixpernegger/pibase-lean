@@ -18,7 +18,7 @@ theorem Homeomorph.locallyConnectedSpace [h : LocallyConnectedSpace X] (f : X �
   f.symm.isOpenEmbedding.locallyConnectedSpace
 
 theorem WellDefined.locallyConnectedSpace : WellDefined LocallyConnectedSpace :=
-  fun {_ _} _ _ h hX ↦ Homeomorph.locallyConnectedSpace h.some
+  fun {_ _} _ _ h _ ↦ Homeomorph.locallyConnectedSpace h.some
 
 end Meta
 

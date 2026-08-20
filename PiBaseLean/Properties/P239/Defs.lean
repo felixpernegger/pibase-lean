@@ -58,13 +58,14 @@ def P239 : Property where
           rfl
         rw [h_eq]
         exact hfX_cont.comp h_map
-      have h_eq2 : Function.uncurry fY = fun p : unitInterval × (φ '' sX) => φ (fX p.1 (to_sX p.2)) := by
+      have h_eq2 : Function.uncurry fY =
+          fun p : unitInterval × (φ '' sX) => φ (fX p.1 (to_sX p.2)) := by
         rfl
       rw [h_eq2]
       exact φ.continuous.comp h_mid
     have h_fY_zero : fY 0 = Subtype.val := by
       funext j
-      show φ (fX 0 (to_sX j)) = j.val
+      change φ (fX 0 (to_sX j)) = j.val
       have h0 : fX 0 (to_sX j) = (to_sX j).val := by
         have := congrFun hfX_zero (to_sX j)
         simpa using this
@@ -72,7 +73,7 @@ def P239 : Property where
       exact φ.apply_symm_apply j.val
     have h_fY_one : ∀ a b : (φ '' sX), fY 1 a = fY 1 b := by
       intro a b
-      show φ (fX 1 (to_sX a)) = φ (fX 1 (to_sX b))
+      change φ (fX 1 (to_sX a)) = φ (fX 1 (to_sX b))
       rw [hfX_one (to_sX a) (to_sX b)]
     exact ⟨φ '' sX, hsY, fY, h_fY_cont, h_fY_zero, h_fY_one⟩
 

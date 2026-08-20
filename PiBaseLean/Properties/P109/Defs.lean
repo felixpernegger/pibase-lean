@@ -42,7 +42,7 @@ def P109 : Property where
     let μY : (y : Y) → (t : Opens Y) → y ∈ t → Opens Y := fun y t ht =>
       let sX : Opens X := ⟨φ ⁻¹' (t : Set Y), t.isOpen.preimage φ.continuous⟩
       have hsX : φ.symm y ∈ sX := by
-        show φ.symm y ∈ φ ⁻¹' (t : Set Y)
+        change φ.symm y ∈ φ ⁻¹' (t : Set Y)
         simp [ht]
       let uX := μX (φ.symm y) sX hsX
       ⟨φ '' (uX : Set X), φ.isOpenMap _ uX.isOpen⟩
@@ -53,19 +53,19 @@ def P109 : Property where
     · -- y ∈ μY y t ht
       let sX : Opens X := ⟨φ ⁻¹' (t : Set Y), t.isOpen.preimage φ.continuous⟩
       have hsX : φ.symm y ∈ sX := by
-        show φ.symm y ∈ φ ⁻¹' (t : Set Y)
+        change φ.symm y ∈ φ ⁻¹' (t : Set Y)
         simp [ht]
       have hmemX : φ.symm y ∈ (μX (φ.symm y) sX hsX : Set X) := hMem _ _ hsX
-      show y ∈ (μY y t ht : Set Y)
-      show y ∈ φ '' (μX (φ.symm y) sX hsX : Set X)
+      change y ∈ (μY y t ht : Set Y)
+      change y ∈ φ '' (μX (φ.symm y) sX hsX : Set X)
       exact ⟨φ.symm y, hmemX, φ.apply_symm_apply y⟩
     · -- monotonicity condition
       intro y1 y2 u v hu hv hInter
       -- Unfold μY
       let sU : Opens X := ⟨φ ⁻¹' (u : Set Y), u.isOpen.preimage φ.continuous⟩
-      have hsU : φ.symm y1 ∈ sU := by show φ.symm y1 ∈ φ ⁻¹' (u : Set Y); simp [hu]
+      have hsU : φ.symm y1 ∈ sU := by change φ.symm y1 ∈ φ ⁻¹' (u : Set Y); simp [hu]
       let sV : Opens X := ⟨φ ⁻¹' (v : Set Y), v.isOpen.preimage φ.continuous⟩
-      have hsV : φ.symm y2 ∈ sV := by show φ.symm y2 ∈ φ ⁻¹' (v : Set Y); simp [hv]
+      have hsV : φ.symm y2 ∈ sV := by change φ.symm y2 ∈ φ ⁻¹' (v : Set Y); simp [hv]
       let uX := μX (φ.symm y1) sU hsU
       let vX := μX (φ.symm y2) sV hsV
       have hInterX : (uX : Set X) ∩ (vX : Set X) ≠ ∅ := by
@@ -82,14 +82,12 @@ def P109 : Property where
       have hOr := hCond (φ.symm y1) (φ.symm y2) sU sV hsU hsV hInterX
       rcases hOr with h1 | h2
       · left
-        show y1 ∈ (v : Set Y)
-        have : φ.symm y1 ∈ φ ⁻¹' (v : Set Y) := h1
-        simp at this
-        exact this
+        change y1 ∈ (v : Set Y)
+        change φ.symm y1 ∈ φ ⁻¹' (v : Set Y) at h1
+        simpa only [mem_preimage, φ.apply_symm_apply] using h1
       · right
-        show y2 ∈ (u : Set Y)
-        have : φ.symm y2 ∈ φ ⁻¹' (u : Set Y) := h2
-        simp at this
-        exact this
+        change y2 ∈ (u : Set Y)
+        change φ.symm y2 ∈ φ ⁻¹' (u : Set Y) at h2
+        simpa only [mem_preimage, φ.apply_symm_apply] using h2
 
 end PiBase.Formal

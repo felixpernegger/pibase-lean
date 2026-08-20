@@ -23,7 +23,7 @@ namespace PiBase.Formal
 
 def P195 : Property where
   toPred := StoneSpace
-  well_defined φ h :=
+  well_defined φ _ :=
     @StoneSpace.mk _ _ φ.compactSpace φ.t2Space φ.totallyDisconnectedSpace
 
 end PiBase.Formal

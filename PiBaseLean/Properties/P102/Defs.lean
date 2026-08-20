@@ -46,10 +46,10 @@ def P102 : Property where
     have hBallEq : ∀ ε, φ '' Symmetric.ball (f y) ε = Symmetric.ball y ε := by
       intro ε
       ext y'
-      simp only [Symmetric.ball, Set.mem_image, Set.mem_setOf_eq]
+      simp only [Symmetric.ball, Set.mem_image, Set.mem_ofPred_eq]
       constructor
       · rintro ⟨x, hx, rfl⟩
-        show dist (f (φ x)) (f y) ≤ ε
+        change dist (f (φ x)) (f y) ≤ ε
         simpa [f, Homeomorph.symm_apply_apply] using hx
       · intro hy
         exact ⟨f y', hy, φ.apply_symm_apply y'⟩

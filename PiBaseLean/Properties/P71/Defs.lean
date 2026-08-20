@@ -11,7 +11,8 @@ namespace PiBase
 
 /- 71. σ-relatively compact -/
 class SigmaRelativelyCompactSpace (X : Type*) [TopologicalSpace X] : Prop where
-  sigma_relatively_compact : ∃ R : ℕ → Set X, (⋃ n : ℕ, R n = univ) ∧ ∀ n : ℕ, IsRelativelyCompact (R n)
+  sigma_relatively_compact : ∃ R : ℕ → Set X, (⋃ n : ℕ, R n = univ) ∧
+    ∀ n : ℕ, IsRelativelyCompact (R n)
 
 end PiBase
 

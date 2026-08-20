@@ -40,10 +40,10 @@ def P165 : Property where
       h.pseudonormal _ _ hsc hClosed_s hClosed_t hDisj
     refine ⟨φ '' U, φ '' V, φ.isOpen_image.mpr hUo, φ.isOpen_image.mpr hVo, ?_, ?_, ?_⟩
     · intro y hy
-      have : φ.symm y ∈ φ ⁻¹' s := by show φ (φ.symm y) ∈ s; simpa using hy
+      have : φ.symm y ∈ φ ⁻¹' s := by change φ (φ.symm y) ∈ s; simpa using hy
       exact ⟨φ.symm y, hsU this, by simp⟩
     · intro y hy
-      have : φ.symm y ∈ φ ⁻¹' t := by show φ (φ.symm y) ∈ t; simpa using hy
+      have : φ.symm y ∈ φ ⁻¹' t := by change φ (φ.symm y) ∈ t; simpa using hy
       exact ⟨φ.symm y, htV this, by simp⟩
     · rw [Set.disjoint_left]
       rintro y ⟨x₁, hx₁, hxy₁⟩ ⟨x₂, hx₂, hxy₂⟩

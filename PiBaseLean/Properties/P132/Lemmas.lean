@@ -23,7 +23,7 @@ theorem Homeomorph.gδSpace [h : GδSpace X] (f : X ≃ₜ Y) : GδSpace Y := by
   exact (f.image_preimage s).symm
 
 theorem WellDefined.gδSpace : WellDefined GδSpace :=
-  fun {_ _} _ _ h hX => Homeomorph.gδSpace h.some
+  fun {_ _} _ _ h _ => Homeomorph.gδSpace h.some
 
 end Meta
 

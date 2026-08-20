@@ -38,7 +38,7 @@ def P66 : Property where
     calc univ = φ '' univ := (image_univ_of_surjective φ.surjective).symm
       _ = φ '' (⋃ n, ⋃ i ∈ s n, U' n i) := by rw [← hs]
       _ = ⋃ n, ⋃ i ∈ s n, φ '' (U' n i) := by
-          simp only [image_iUnion, image_iUnion₂]
+          simp only [image_iUnion]
       _ = ⋃ n, ⋃ i ∈ s n, U n i := by
           have h_eq : ∀ n i, φ '' (U' n i) = U n i := fun n i => φ.image_preimage (U n i)
           simp_rw [h_eq]

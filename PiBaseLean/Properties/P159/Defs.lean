@@ -55,7 +55,7 @@ def P159 : Property where
       have h_eq_pre : φ ⁻¹' (⋃₀ {U n i | (n : ℕ) (i : ι) (_ : i ∈ s n)} : Set _)
           = ⋃₀ {U' n i | (n : ℕ) (i : ι) (_ : i ∈ s n)} := by
         ext x
-        simp only [Set.mem_preimage, Set.mem_sUnion, Set.mem_setOf_eq]
+        simp only [Set.mem_preimage, Set.mem_sUnion, Set.mem_ofPred_eq]
         constructor
         · rintro ⟨_, ⟨n, i, hi, rfl⟩, hx⟩
           exact ⟨U' n i, ⟨n, i, hi, rfl⟩, hx⟩

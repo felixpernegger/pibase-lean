@@ -28,7 +28,7 @@ def P85 : Property where
       refine ⟨f.comp φc, ?_⟩
       have : (f.comp φc : C(X, ℝ)).toFun ⁻¹' ({0}ᶜ : Set ℝ) =
           φ ⁻¹' (f.toFun ⁻¹' {0}ᶜ) := by
-        ext x; simp [ContinuousMap.comp_apply, φc]
+        ext x; simp [φc]
       rw [this, hf]
     have h_open_closure_pre : IsOpen (closure (φ ⁻¹' U)) :=
       h.basically_disconnected _ h_pre_cozero

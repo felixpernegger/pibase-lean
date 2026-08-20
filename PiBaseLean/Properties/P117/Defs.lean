@@ -33,9 +33,10 @@ def P117 : Property where
         rw [heq, ← φ.map_nhds_eq (φ.symm y), mem_map, φ.preimage_image]
         exact hu_mem
       refine ⟨φ '' u, hu_nhds_y, ?_⟩
-      have heq : {b : r w | (φ '' f b.val ∩ φ '' u).Nonempty} = {b : r w | (f b.val ∩ u).Nonempty} := by
+      have heq : {b : r w | (φ '' f b.val ∩ φ '' u).Nonempty} =
+          {b : r w | (f b.val ∩ u).Nonempty} := by
         ext b
-        simp only [Set.Nonempty, mem_inter_iff, mem_image, mem_setOf_eq]
+        simp only [Set.Nonempty, mem_inter_iff, mem_image, mem_ofPred_eq]
         constructor
         · rintro ⟨z, ⟨x1, hx1, rfl⟩, x2, hx2, hφ⟩
           have hx : x2 = x1 := φ.injective hφ

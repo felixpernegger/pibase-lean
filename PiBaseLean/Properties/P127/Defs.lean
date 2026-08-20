@@ -36,7 +36,8 @@ def P127 : Property where
       rw [← image_iUnion]
       rw [hs_cover]
       exact image_univ_of_surjective φ.surjective
-    obtain ⟨β, t, ht_open, ht_cover, ht_lf, ht_ref⟩ := hY.countably_paracompact α (fun a => φ '' s a) hs_open' hs_cover' hCount
+    obtain ⟨β, t, ht_open, ht_cover, ht_lf, ht_ref⟩ :=
+      hY.countably_paracompact α (fun a => φ '' s a) hs_open' hs_cover' hCount
     -- Pull back refinement to X
     refine ⟨β, fun b => φ ⁻¹' (t b), fun b => φ.isOpen_preimage.mpr (ht_open b), ?_, ?_, ?_⟩
     · -- cover
@@ -48,9 +49,10 @@ def P127 : Property where
       obtain ⟨U, hU_nhds, hU_fin⟩ := ht_lf (φ x)
       refine ⟨φ ⁻¹' U, φ.continuous.continuousAt.preimage_mem_nhds hU_nhds, ?_⟩
       -- Show finiteness of {b | (φ⁻¹' t b ∩ φ⁻¹' U).Nonempty} equals that of t
-      have h_eq : {b | ((φ ⁻¹' (t b) ∩ φ ⁻¹' U : Set _).Nonempty)} = {b | ((t b ∩ U).Nonempty)} := by
+      have h_eq : {b | ((φ ⁻¹' (t b) ∩ φ ⁻¹' U : Set _).Nonempty)} =
+          {b | ((t b ∩ U).Nonempty)} := by
         ext b
-        simp only [mem_setOf_eq, Set.Nonempty, mem_inter_iff, mem_preimage]
+        simp only [mem_ofPred_eq, Set.Nonempty, mem_inter_iff, mem_preimage]
         constructor
         · rintro ⟨z, ⟨htb, hU⟩⟩
           refine ⟨φ z, ⟨?_, ?_⟩⟩

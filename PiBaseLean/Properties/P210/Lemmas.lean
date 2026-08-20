@@ -14,7 +14,7 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.α1Space : WellDefined α1Space :=
-  fun {X Y} _ _ hXY hX => Formal.P210.well_defined hXY.some hX
+  fun {_ _} _ _ hXY hX => Formal.P210.well_defined hXY.some hX
 
 end Meta
 

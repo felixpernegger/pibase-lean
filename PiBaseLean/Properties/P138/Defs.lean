@@ -34,12 +34,12 @@ def P138 : Property where
       left_inv := by
         intro f
         ext x
-        simp only [φc, ψc, ContinuousMap.coe_mk, ContinuousMap.comp_apply, Function.comp_apply,
+        simp only [φc, ψc, ContinuousMap.coe_mk, ContinuousMap.comp_apply,
           Homeomorph.symm_apply_apply]
       right_inv := by
         intro g
         ext y
-        simp only [φc, ψc, ContinuousMap.coe_mk, ContinuousMap.comp_apply, Function.comp_apply,
+        simp only [φc, ψc, ContinuousMap.coe_mk, ContinuousMap.comp_apply,
           Homeomorph.apply_symm_apply]
     }
     -- transport Countable via the equivalence

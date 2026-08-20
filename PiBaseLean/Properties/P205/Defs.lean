@@ -25,7 +25,7 @@ def P205 : Property where
   well_defined φ h := {
     toConnectedSpace := (Homeomorph.connectedSpace_iff φ).mp h.toConnectedSpace
     all_cut := fun q ↦ by
-          simpa using PiBase.Homeomorph.isCutPoint φ (h.all_cut (φ.symm q))
+      simpa using PiBase.Homeomorph.isCutPoint φ (h.all_cut (φ.symm q))
   }
 
 end PiBase.Formal

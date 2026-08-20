@@ -15,7 +15,7 @@ section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.weaklyFirstCountableSpace : WellDefined WeaklyFirstCountableSpace :=
-  fun {X Y} _ _ hXY hX => Formal.P228.well_defined hXY.some hX
+  fun {_ _} _ _ hXY hX => Formal.P228.well_defined hXY.some hX
 
 end Meta
 

@@ -48,7 +48,8 @@ def P115 : Property where
         rw [heq, ← φ.map_nhds_eq (φ.symm y), mem_map, φ.preimage_image]
         exact hu_mem
       refine ⟨φ '' u, hu_nhds_y, ?_⟩
-      have heq : {b : r w | (φ '' t b.val ∩ φ '' u).Nonempty} = {b : r w | (t b.val ∩ u).Nonempty} := by
+      have heq : {b : r w | (φ '' t b.val ∩ φ '' u).Nonempty} =
+          {b : r w | (t b.val ∩ u).Nonempty} := by
         ext b
         simp only [mem_ofPred_eq, Set.Nonempty, mem_inter_iff, mem_image]
         constructor

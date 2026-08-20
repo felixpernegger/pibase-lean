@@ -13,7 +13,8 @@ section Meta
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
-theorem Homeomorph.firstCountableTopology [FirstCountableTopology X] (f : X ≃ₜ Y) : FirstCountableTopology Y :=
+theorem Homeomorph.firstCountableTopology [FirstCountableTopology X] (f : X ≃ₜ Y) :
+    FirstCountableTopology Y :=
   f.symm.isInducing.firstCountableTopology
 
 theorem WellDefined.firstCountableTopology : WellDefined FirstCountableTopology :=
