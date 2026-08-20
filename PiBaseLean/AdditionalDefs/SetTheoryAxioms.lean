@@ -6,7 +6,6 @@ public import Mathlib.Analysis.Real.Cardinality
 public import Mathlib.Order.SetNotation
 public import Mathlib.Topology.Baire.LocallyCompactRegular
 public import Mathlib.Topology.UnitInterval
-public import PiBaseLean.Properties.P29.Defs
 public import PiBaseLean.Theorems.T21.Theorem
 
 /-!
@@ -194,7 +193,7 @@ theorem not_martinsAxiomFor_continuum_bot : ¬ MartinsAxiomFor.{0} 𝔠 := by
       · intro _
         simp
       · exact fun ⟨_, i, _⟩ ↦ ⟨i, by simp_all⟩
-    · --mathlib PR: https://github.com/leanprover-community/mathlib4/pull/42585, replace when it lands
+    · --TODO: mathlib PR: https://github.com/leanprover-community/mathlib4/pull/42585, replace when it lands
       rw [unitInterval, mk_Icc_real zero_lt_one]
 
 theorem martinsAxiomFor_le_aleph0 {c : Cardinal.{u}} (hc : c ≤ ℵ₀) : MartinsAxiomFor c := by

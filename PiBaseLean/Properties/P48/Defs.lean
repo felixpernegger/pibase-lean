@@ -7,6 +7,7 @@ public import Mathlib.Topology.Connected.TotallyDisconnected
 namespace PiBase
 
 /- 48. Totally separated -/
+#guard_msgs (drop info) in
 #check TotallySeparatedSpace
 
 end PiBase

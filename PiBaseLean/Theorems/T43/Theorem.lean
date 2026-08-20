@@ -13,14 +13,12 @@ open Topology Set Function
 
 namespace PiBase
 
---TODO: golf
 /-- Theorem T43: P2 (T1Space) + P51 (ScatteredSpace) => P47 (TotallyDisconnectedSpace) -/
 instance instTotallyDisconnectedSpaceOfT1SpaceOfScatteredSpace (X : Type u)
     [TopologicalSpace X] [T1Space X] [h : ScatteredSpace X] : TotallyDisconnectedSpace X := by
   refine totallyDisconnectedSpace_iff_connectedComponent_singleton.mpr (fun x ↦ ?_)
   obtain ⟨p, hp⟩ := h.scattered (connectedComponent x) connectedComponent_nonempty
   have e : IsClopen {p} := ⟨T1Space.t1 p, hp⟩
-  --make this separate lemma
   have : ConnectedSpace (connectedComponent x) :=
     Subtype.connectedSpace isConnected_connectedComponent
   refine eq_singleton_iff_unique_mem.mpr ⟨mem_connectedComponent, ?_⟩

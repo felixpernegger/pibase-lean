@@ -7,6 +7,7 @@ public import Mathlib.Topology.Separation.Regular
 namespace PiBase
 
 /- 14. Completely normal -/
+#guard_msgs (drop info) in
 #check CompletelyNormalSpace
 
 end PiBase

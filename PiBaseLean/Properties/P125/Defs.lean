@@ -7,6 +7,7 @@ public import PiBaseLean.AdditionalDefs.Meta
 namespace PiBase
 
 /- 125. Has multiple points -/
+#guard_msgs (drop info) in
 #check Nontrivial
 
 end PiBase

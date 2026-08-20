@@ -13,6 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /- Theorem T154: P67 (T6Space) => P8 (T5Space) -/
+#guard_msgs (drop info) in
 #check T6Space.toT5Space
 
 end PiBase

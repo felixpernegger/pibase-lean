@@ -14,6 +14,7 @@ open Topology Set Function TopologicalSpace
 namespace PiBase
 
 /- Theorem T270: P27 (SecondCountableTopology) => P28 (FirstCountableTopology) -/
+#guard_msgs (drop info) in
 #check SecondCountableTopology.to_firstCountableTopology
 
 end PiBase

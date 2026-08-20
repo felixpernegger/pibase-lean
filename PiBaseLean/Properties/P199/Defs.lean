@@ -7,6 +7,7 @@ public import Mathlib.Topology.Homotopy.Contractible
 namespace PiBase
 
 /- 199. Contractible -/
+#guard_msgs (drop info) in
 #check ContractibleSpace
 
 end PiBase

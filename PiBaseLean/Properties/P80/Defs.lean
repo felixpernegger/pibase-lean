@@ -7,6 +7,7 @@ public import Mathlib.Topology.Sequences
 namespace PiBase
 
 /- 80. Frechet Urysohn -/
+#guard_msgs (drop info) in
 #check FrechetUrysohnSpace
 
 end PiBase

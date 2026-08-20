@@ -7,6 +7,7 @@ public import Mathlib.Topology.Spectral.Basic
 namespace PiBase
 
 /- 75. Spectral Space -/
+#guard_msgs (drop info) in
 #check SpectralSpace
 
 end PiBase

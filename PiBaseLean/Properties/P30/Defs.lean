@@ -7,6 +7,7 @@ public import Mathlib.Topology.Compactness.Paracompact
 namespace PiBase
 
 /- 30. Paracompact -/
+#guard_msgs (drop info) in
 #check ParacompactSpace
 
 end PiBase

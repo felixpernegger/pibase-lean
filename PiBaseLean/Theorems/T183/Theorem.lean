@@ -13,6 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /- Theorem T183: P28 (FirstCountableTopology) => P80 (FrechetUrysohnSpace) -/
+#guard_msgs (drop info) in
 #check FirstCountableTopology.frechetUrysohnSpace
 
 end PiBase

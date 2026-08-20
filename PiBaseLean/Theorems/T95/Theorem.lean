@@ -16,7 +16,6 @@ namespace PiBase
 
 /-- Theorem T95: P36 (PreconnectedSpace) + P233 (HasOpenPathComponents) =>
 P37 (PrepathConnectedSpace) -/
---TODO: golf
 instance instPrepathconnectedSpaceOfPreconnectedSpaceOfHasOpenPathComponents (X : Type u)
     [TopologicalSpace X] [h : PreconnectedSpace X] [h' : HasOpenPathComponents X] :
       PrepathConnectedSpace X where

@@ -7,6 +7,7 @@ public import Mathlib.Topology.Sequences
 namespace PiBase
 
 /- 79. Sequential -/
+#guard_msgs (drop info) in
 #check SequentialSpace
 
 end PiBase

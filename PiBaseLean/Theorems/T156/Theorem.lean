@@ -13,6 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /- Theorem T156: P15 (PerfectlyNormalSpace) => P14 (CompletelyNormalSpace) -/
+#guard_msgs (drop info) in
 #check PerfectlyNormalSpace.toCompletelyNormalSpace
 
 end PiBase

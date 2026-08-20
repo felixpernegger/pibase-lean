@@ -15,6 +15,7 @@ open Topology Set Function TopologicalSpace
 namespace PiBase
 
 /- Theorem T265: P121 (PseudoMetrizableSpace) + P1 (T0Space) => P53 (MetrizableSpace) -/
+#guard_msgs (drop info) in
 #check PseudoMetrizableSpace.toMetrizableSpace
 
 end PiBase

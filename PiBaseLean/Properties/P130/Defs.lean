@@ -7,6 +7,7 @@ public import Mathlib.Topology.Compactness.LocallyCompact
 namespace PiBase
 
 /- 130. Locally compact space -/
+#guard_msgs (drop info) in
 #check LocallyCompactSpace
 
 end PiBase

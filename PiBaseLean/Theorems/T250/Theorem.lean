@@ -10,6 +10,7 @@ public import PiBaseLean.Properties.P125.Bundled
 namespace PiBase
 
 /- Theorem 250: an infinite space has multiple points  -/
+#guard_msgs (drop info) in
 #check Infinite.instNontrivial
 
 end PiBase

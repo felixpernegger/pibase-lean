@@ -7,6 +7,7 @@ public import Mathlib.Topology.Order
 namespace PiBase
 
 /- 129. Indiscrete space -/
+#guard_msgs (drop info) in
 #check IndiscreteTopology
 
 end PiBase

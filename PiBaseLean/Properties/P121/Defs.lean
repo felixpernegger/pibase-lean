@@ -9,6 +9,7 @@ open TopologicalSpace
 namespace PiBase
 
 /- 121. Pseudometrizable space -/
+#guard_msgs (drop info) in
 #check PseudoMetrizableSpace
 
 end PiBase

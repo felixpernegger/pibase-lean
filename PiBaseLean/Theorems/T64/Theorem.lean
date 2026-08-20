@@ -13,6 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /- Theorem T64: P42 (LocallyPathConnectedSpace) => P41 (LocallyConnectedSpace) -/
+#guard_msgs (drop info) in
 #check instLocallyConnectedSpace
 
 end PiBase

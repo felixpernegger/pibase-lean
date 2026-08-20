@@ -14,6 +14,7 @@ open Topology Set Function TopologicalSpace
 namespace PiBase
 
 /- Theorem T77: P55 (IsCompletelyMetrizableSpace) => P53 (MetrizableSpace) -/
+#guard_msgs (drop info) in
 #check PseudoMetrizableSpace.toMetrizableSpace
 
 end PiBase

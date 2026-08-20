@@ -7,6 +7,7 @@ public import Mathlib.Topology.Connected.Basic
 namespace PiBase
 
 /- 36. Connected -/
+#guard_msgs (drop info) in
 #check PreconnectedSpace
 
 end PiBase

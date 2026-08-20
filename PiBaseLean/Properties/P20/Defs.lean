@@ -7,6 +7,7 @@ public import Mathlib.Topology.Sequences
 namespace PiBase
 
 /- 20. Sequentially compact -/
+#guard_msgs (drop info) in
 #check SeqCompactSpace
 
 end PiBase

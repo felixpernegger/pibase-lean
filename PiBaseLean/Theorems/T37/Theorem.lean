@@ -14,6 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /- Theorem T37: P13 (NormalSpace) + P135 (R0Space) => P12 (CompletelyRegularSpace) -/
+#guard_msgs (drop info) in
 #check NormalSpace.instCompletelyRegularSpace
 
 end PiBase

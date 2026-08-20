@@ -10,6 +10,7 @@ public import PiBaseLean.Properties.P78.Bundled
 namespace PiBase
 
 /- Theorem 187: a finite space is countable -/
+#guard_msgs (drop info) in
 #check Finite.to_countable
 
 end PiBase

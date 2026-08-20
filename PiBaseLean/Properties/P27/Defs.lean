@@ -7,6 +7,7 @@ public import Mathlib.Topology.Homeomorph.Lemmas
 namespace PiBase
 
 /- 27. Second countable -/
+#guard_msgs (drop info) in
 #check SecondCountableTopology
 
 end PiBase

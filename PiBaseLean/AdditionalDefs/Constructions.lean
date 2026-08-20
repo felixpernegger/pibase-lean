@@ -56,7 +56,6 @@ def IsRegularOpen (s : Set X) : Prop :=
 /-- A regular open set is open -/
 theorem IsRegularOpen.isOpen {s : Set X} (hs : IsRegularOpen s) : IsOpen s := hs ▸ isOpen_interior
 
---TODO: Better to require `X` connected in this def?
 /-- A point *cut point* `p` in a space, is a space such that `X \ {p}` is disconnected. -/
 def IsCutPoint (p : X) := ¬ IsPreconnected {p}ᶜ
 
@@ -167,7 +166,7 @@ abbrev SemimetricSpace.symmetricSpace (X : Type u) [TopologicalSpace X] [h : Sem
 
 end Symmetric
 
-section Path --TODO: If we get significantly more, make this its own file
+section Path -- Down the line, if we get significantly more, make this its own file
 
 /-- A set `s : Set X` is called injectively path connected,
 if for any two point in `s` there is an injective path in `x` joining them. -/

@@ -7,6 +7,7 @@ public import Mathlib.Logic.IsEmpty.Defs
 namespace PiBase
 
 /- 137. Empty space -/
+#guard_msgs (drop info) in
 #check IsEmpty
 
 end PiBase

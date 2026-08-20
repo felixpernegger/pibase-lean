@@ -7,6 +7,7 @@ public import Mathlib.Topology.ExtremallyDisconnected
 namespace PiBase
 
 /- 49. Extremally disconnected -/
+#guard_msgs (drop info) in
 #check ExtremallyDisconnected
 
 end PiBase

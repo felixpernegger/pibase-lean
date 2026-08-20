@@ -14,6 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /- Theorem T268: P121 (PseudoMetrizableSpace) => P15 (PerfectlyNormalSpace) -/
+#guard_msgs (drop info) in
 #check _root_.instPerfectlyNormalSpaceOfPseudoMetrizableSpace
 
 end PiBase

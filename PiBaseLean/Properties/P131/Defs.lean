@@ -7,6 +7,7 @@ public import Mathlib.Topology.Compactness.Lindelof
 namespace PiBase
 
 /- 131. Hereditarily Lindelöf space -/
+#guard_msgs (drop info) in
 #check HereditarilyLindelofSpace
 
 end PiBase

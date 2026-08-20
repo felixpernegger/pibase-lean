@@ -7,6 +7,7 @@ public import Mathlib.Topology.Order
 namespace PiBase
 
 /- 52. Discrete -/
+#guard_msgs (drop info) in
 #check DiscreteTopology
 
 end PiBase

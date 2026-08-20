@@ -13,6 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /- Theorem T58: P23 (WeaklyLocallyCompactSpace) => P140 (CompactlyCoherentSpace) -/
+#guard_msgs (drop info) in
 #check CompactlyCoherentSpace.of_weaklyLocallyCompactSpace
 
 end PiBase

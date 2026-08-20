@@ -7,6 +7,7 @@ public import Mathlib.Topology.Separation.Basic
 namespace PiBase
 
 /- 1. T₀-Space -/
+#guard_msgs (drop info) in
 #check T0Space
 
 end PiBase

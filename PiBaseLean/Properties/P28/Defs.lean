@@ -7,6 +7,7 @@ public import Mathlib.Topology.Bases
 namespace PiBase
 
 /- 28. Second countable -/
+#guard_msgs (drop info) in
 #check FirstCountableTopology
 
 end PiBase

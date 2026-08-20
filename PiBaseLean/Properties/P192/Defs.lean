@@ -7,6 +7,7 @@ public import Mathlib.Topology.Sober
 namespace PiBase
 
 /- 192. Quasi sober -/
+#guard_msgs (drop info) in
 #check QuasiSober
 
 end PiBase

@@ -1,8 +1,10 @@
 module
 
-public import Mathlib.SetTheory.Ordinal.Basic
-public import Mathlib.Topology.Constructions
 public import Mathlib.Data.ENNReal.Basic
+public import Mathlib.SetTheory.Cardinal.Finite
+public import Mathlib.SetTheory.Ordinal.Principal
+public import Mathlib.Topology.Constructions
+public import Mathlib.Topology.Sequences
 
 @[expose] public section
 
@@ -67,7 +69,82 @@ def IsRadiallyClosed {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∀ x : X, (∃ (o : Ordinal.{u}) (f : Iio o → X), 0 < o ∧ range f ⊆ s ∧ Tendsto f atTop (𝓝 x)) →
     x ∈ s
 
---TODO: limit of transfinite sequence must lie in closure
+variable {X}
+
+/-- The radial closure of a set. -/
+def radialClosure (s : Set X) : Set X :=
+  { x | ∃ (o : Ordinal.{u}) (f : Iio o → X), 0 < o ∧ range f ⊆ s ∧ Tendsto f atTop (𝓝 x) }
+
+theorem seqClosure_subset_radialClosure {s : Set X} :
+    seqClosure s ⊆ radialClosure s := by
+  intro a ⟨l, l_mem, hl⟩
+  let e : Iio (ω : Ordinal.{u}) → ℕ :=
+    fun a ↦ ((Ordinal.lt_omega0).mp a.2).choose
+  have e_id (n : ℕ) : e ⟨n, by simp⟩ = n := by
+    set u := (⟨n, by simp⟩ : Iio (ω : Ordinal.{u}))
+    have eo : e u = u.val := by
+      unfold e
+      exact (((Ordinal.lt_omega0).mp u.2).choose_spec).symm
+    have et : n = u.val := by
+      simp [u]
+    rwa [← et, Nat.cast_inj] at eo
+  refine ⟨ω, l ∘ e, ?_, ?_, ?_⟩
+  · simp
+  · apply subset_trans (range_comp_subset_range e l)
+    intro e ⟨n, hn⟩
+    rw [← hn]
+    exact l_mem n
+  · have : Nonempty (Iio ω) := ⟨0, by simp⟩
+    rw [tendsto_atTop_nhds] at hl ⊢
+    intro U aU hU
+    obtain ⟨N, hN⟩ := hl U aU hU
+    refine ⟨⟨N, by simp⟩, ?_⟩
+    intro a Na
+    rw [Function.comp_apply]
+    apply hN
+    simp only [e]
+    contrapose! Na
+    apply Subtype.coe_lt_coe.mp
+    simp only
+    obtain ⟨r, hr⟩ := lt_omega0.mp a.property
+    rw [hr]
+    simp only [Nat.cast_lt]
+    have : (lt_omega0.mp a.property).choose = r := by
+      have := (lt_omega0.mp a.property).choose_spec
+      set u := (lt_omega0.mp a.property).choose
+      rw [this] at hr
+      simp_all
+    rwa [this] at Na
+
+theorem subset_radialClosure (s : Set X) : s ⊆ radialClosure s :=
+  subset_trans subset_seqClosure seqClosure_subset_radialClosure
+
+theorem isRadiallyClosed_iff_radialClosure_eq (s : Set X) :
+    IsRadiallyClosed s ↔ radialClosure s = s := by
+  unfold IsRadiallyClosed
+  refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
+  · apply le_antisymm
+    · exact h
+    · exact subset_radialClosure s
+  have : radialClosure s ⊆ s := by
+    rw [h]
+  exact this
+
+theorem ordinal_tendsto_closure {X : Type u} [TopologicalSpace X] {s : Set X} :
+    radialClosure s ⊆ closure s := by
+  intro a ha
+  by_contra h0
+  unfold radialClosure at ha
+  obtain ⟨o, f, op, fs, hf⟩ := ha
+  have : Nonempty (Iio o) := by
+    use 0
+    simpa
+  rw [tendsto_atTop_nhds] at hf
+  obtain ⟨N, hN⟩ := hf (closure s)ᶜ (by simpa) (by simp)
+  apply hN N (le_refl N)
+  apply mem_of_subset_of_mem subset_closure
+  apply fs
+  simp
 
 /-- A type `α` is denumerable iff `univ : Set α` is denumerable. -/
 lemma Denumerable.Set.univ (α : Type u) :

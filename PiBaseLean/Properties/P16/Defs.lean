@@ -7,6 +7,7 @@ public import Mathlib.Topology.Homeomorph.Lemmas
 namespace PiBase
 
 /- 16. Compact -/
+#guard_msgs (drop info) in
 #check CompactSpace
 
 end PiBase

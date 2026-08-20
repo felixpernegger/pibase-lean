@@ -11,6 +11,7 @@ universe u
 namespace PiBase
 
 /- 141. k₂-space -/
+#guard_msgs (drop info) in
 #check CompactlyGeneratedSpace
 
 end PiBase
