@@ -12,7 +12,7 @@ open Topology Set Function TopologicalSpace
 
 namespace PiBase
 
---proof can probably be golfed a lot
+--TODO: proof can probably be golfed a lot
 /-- Theorem T21: P26 (SeparableSpace) => P29 (CountableChainCondition) -/
 instance instCountableChainConditionOfSeparableSpace (X : Type u)
     [TopologicalSpace X] [h : SeparableSpace X] : CountableChainCondition X := by
