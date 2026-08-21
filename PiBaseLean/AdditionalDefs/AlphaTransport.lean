@@ -2,6 +2,9 @@ module
 
 public import Mathlib.Topology.Homeomorph.Defs
 
+/-! This file contains (AI generated) lemmas to help show
+the αᵢ properties are preserved by homeomorphisms. -/
+
 @[expose] public section
 
 universe u v

@@ -1,6 +1,6 @@
 module
 
-public import PiBaseLean.Properties.Bundled.Defs
+public import PiBaseLean.Bundled.Defs
 public import PiBaseLean.Properties.P239.Lemmas
 
 @[expose] public section

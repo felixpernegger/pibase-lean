@@ -2,12 +2,12 @@ module
 
 public import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
 
+/-! This file contains additional general constructions around topological spaces
+which are useful for properties and theorems. -/
+
 @[expose] public section
 
 universe u
-
-/-! This file contains additional general constructions around topological spaces
-which are useful for properties and theorems. -/
 
 namespace PiBase
 

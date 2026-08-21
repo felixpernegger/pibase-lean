@@ -2,10 +2,10 @@ module
 
 public import Mathlib.Topology.Sets.OpenCover
 
-@[expose] public section
-
 /-! This file contains additional definitions and statements around covers of topological spaces
 which are useful for properties and theorems. -/
+
+@[expose] public section
 
 namespace PiBase
 

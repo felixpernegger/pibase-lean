@@ -1,6 +1,9 @@
 module
 
-public import PiBaseLean.Properties.Bundled.Defs
+public import PiBaseLean.Bundled.Defs
+
+/-! This file contains basic properties about well-defined (bundled) properties.
+In particular, we show they form a complete atomic boolean algebra. -/
 
 @[expose] public section
 

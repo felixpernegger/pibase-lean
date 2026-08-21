@@ -224,7 +224,7 @@ end
 
 section AIGenerated
 
-/-! ### Transporting games along a relabelling of the moves -/
+/- Transporting games along a relabelling of the moves -/
 
 section Transport
 
@@ -307,7 +307,7 @@ theorem HasMarkovKWinningStrategyB.of_equiv {G : Game A} {H : Game B} {k : ℕ} 
 
 end Transport
 
-/-! ### Transporting families of moves -/
+/- Transporting families of moves -/
 
 section FamilyTransport
 
@@ -518,7 +518,7 @@ theorem preimageFamilyEquiv_isKCover' (φ : X ≃ₜ Y) (S : Set (Set Y)) :
 
 end CoverTransport
 
-/-! ### Transporting the Menger game -/
+/- Transporting the Menger game -/
 
 section MengerTransport
 
@@ -564,7 +564,7 @@ theorem HasMarkovKWinningStrategyB.mengerGame_of_homeomorph {k : ℕ} (φ : X �
 
 end MengerTransport
 
-/-! ### Generic proximal-game transport helpers -/
+/- Generic proximal-game transport helpers -/
 
 section ProximalTransport
 

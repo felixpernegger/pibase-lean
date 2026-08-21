@@ -3,10 +3,10 @@ module
 public import Mathlib.SetTheory.Ordinal.Arithmetic
 public import Mathlib.Topology.Sequences
 
-@[expose] public section
-
 /-! This file contains additional set theoretic constructions around topological spaces
 which are useful for properties and theorems. -/
+
+@[expose] public section
 
 universe u
 

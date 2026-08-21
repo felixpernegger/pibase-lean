@@ -1,6 +1,6 @@
 module
 
-public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Bundled.Basic
 public import PiBaseLean.Properties.P136.Bundled
 public import PiBaseLean.Properties.P183.Bundled
 public import PiBaseLean.Properties.P57.Bundled

@@ -2,12 +2,12 @@ module
 
 public import Mathlib.Topology.Homeomorph.Lemmas
 
+/-! This file contains additional "meta" definitions and statemtns about topological properties
+which are useful for properties and theorems. -/
+
 @[expose] public section
 
 universe u v
-
-/-! This file contains additional "meta" definitions and statemtns about topological properties
-which are useful for properties and theorems. -/
 
 namespace PiBase
 

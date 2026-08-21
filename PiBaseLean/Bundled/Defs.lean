@@ -2,6 +2,8 @@ module
 
 public import PiBaseLean.AdditionalDefs.Meta
 
+/-! This file defined a bundled type for well-defined properties of topological spaces. -/
+
 @[expose] public section
 
 namespace PiBase.Formal
