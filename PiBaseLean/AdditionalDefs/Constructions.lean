@@ -36,7 +36,7 @@ def IsRelativelyCompact {X : Type u} [TopologicalSpace X] (s : Set X) : Prop :=
   ∀ {ι : Type u} (U : ι → Set X), (∀ i : ι, IsOpen (U i)) → (⋃ i : ι, U i = univ) →
     ∃ t : Finset ι, s ⊆ ⋃ i ∈ t, U i
 
---TODO: Notation Σ' for this?
+--TODO: Notation for this?
 /-- Σ-product (of topological spaces).
 Not to be confused with the disjoint union (topological sum). -/
 def SigmaProduct {Y : ι → Type u} (x : (i : ι) → Y i) : Set ((i : ι) → Y i) :=
