@@ -9,4 +9,6 @@ namespace PiBase.Formal
 
 def P1 : Property := WellDefined.toProperty WellDefined.t0Space
 
+theorem test : 0 = 0 := sorry
+
 end PiBase.Formal
