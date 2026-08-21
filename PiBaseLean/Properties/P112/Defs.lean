@@ -4,8 +4,6 @@ public import Mathlib.Topology.MetricSpace.Basic
 
 @[expose] public section
 
-open Topology Set TopologicalSpace
-
 universe u
 
 namespace PiBase

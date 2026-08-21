@@ -4,8 +4,6 @@ public import PiBaseLean.AdditionalDefs.Games
 
 @[expose] public section
 
-open Set Filter Topology
-
 universe u v
 
 namespace PiBase

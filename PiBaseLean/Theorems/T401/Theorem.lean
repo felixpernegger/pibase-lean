@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P165.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T401: P13 (NormalSpace) => P165 (PseudonormalSpace) -/

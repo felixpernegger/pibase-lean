@@ -7,9 +7,7 @@ public import PiBaseLean.Properties.P235.Defs
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
-
-open Topology Filter Set
+open Topology
 
 section Meta
 

@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P58.Bundled
 
 universe u
 
-open Topology Set Function Cardinal
-
 namespace PiBase
 
 /-- Theorem T834: P227 (HasClosedDiscreteSubsetCardContinuum) => P58 (¬CardLtContinuum) -/

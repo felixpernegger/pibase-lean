@@ -8,8 +8,6 @@ import PiBaseLean.Properties.P18.Lemmas
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
-
 section Meta
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]

@@ -5,7 +5,7 @@ public import Mathlib.Topology.Defs.Filter
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
+open Topology Filter
 
 namespace PiBase
 

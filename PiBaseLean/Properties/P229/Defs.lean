@@ -4,7 +4,7 @@ public import PiBaseLean.AdditionalDefs.Constructions
 
 @[expose] public section
 
-open Topology Set Filter
+open Topology
 
 namespace PiBase
 

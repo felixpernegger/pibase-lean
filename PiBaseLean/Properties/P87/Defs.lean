@@ -4,8 +4,6 @@ public import Mathlib.Topology.Algebra.Group.Defs
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
-
 namespace PiBase
 
 /- 87. Has Group Topology -/

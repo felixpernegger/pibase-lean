@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Cover
 
 universe u
 
-open Topology Set Function Filter TopologicalSpace
-
 namespace PiBase
 
 /- 182. Has a countable network -/ --NOTE: We use `Type` instead of `Type u` to be able to use `ℕ`

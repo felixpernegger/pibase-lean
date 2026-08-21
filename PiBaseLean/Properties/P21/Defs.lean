@@ -5,7 +5,7 @@ public import Mathlib.Topology.Defs.Filter
 
 @[expose] public section
 
-open Topology Set Filter
+open Filter
 
 universe u
 

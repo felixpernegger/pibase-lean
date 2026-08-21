@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P88.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T665: P108 (HereditarilyCollectionwiseNormalSpace) => P88 (CollectionwiseNormalSpace) -/

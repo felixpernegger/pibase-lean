@@ -6,7 +6,7 @@ public import PiBaseLean.Properties.P9.Bundled
 
 @[expose] public section
 
-open Topology Set Function TopologicalSpace unitInterval
+open Set unitInterval
 
 namespace PiBase
 

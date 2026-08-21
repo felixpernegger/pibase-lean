@@ -7,9 +7,7 @@ public import PiBaseLean.Properties.P139.Defs
 
 universe u
 
-open Topology Set Function
-
-open scoped Inseparable
+open Set
 
 namespace PiBase
 

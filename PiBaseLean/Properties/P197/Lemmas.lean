@@ -9,7 +9,7 @@ import Mathlib.Tactic.Order
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace Cardinal
+open Set Cardinal
 
 variable (X Y : Type*) [TopologicalSpace X] [TopologicalSpace Y]
 

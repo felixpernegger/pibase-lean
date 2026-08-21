@@ -6,7 +6,7 @@ public import PiBaseLean.AdditionalDefs.Cover
 
 universe u
 
-open Topology Set Function Filter TopologicalSpace
+open Set
 
 namespace PiBase
 

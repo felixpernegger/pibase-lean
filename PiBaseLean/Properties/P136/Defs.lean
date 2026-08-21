@@ -4,8 +4,6 @@ public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section
 
-open Set
-
 namespace PiBase
 
 /- 136. Anticompact -/

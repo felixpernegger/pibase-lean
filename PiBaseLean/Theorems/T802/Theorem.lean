@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P195.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T802: P119 (StoneanSpace) => P195 (StoneSpace) -/

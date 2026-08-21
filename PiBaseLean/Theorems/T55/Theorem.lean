@@ -6,8 +6,6 @@ public import PiBaseLean.Properties.P74.Bundled
 
 @[expose] public section
 
-open Topology Set Function
-
 namespace PiBase
 
 /- Theorem 55: a Cosmic space has a countable network -/

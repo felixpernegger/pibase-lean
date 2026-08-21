@@ -11,7 +11,7 @@ import PiBaseLean.AdditionalDefs.Cardinal
 
 universe u
 
-open Topology Set Function
+open Set Function
 
 namespace PiBase
 

@@ -4,8 +4,6 @@ public import Mathlib.Topology.Compactness.Compact
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
-
 namespace PiBase
 
 /- 100. KC Space -/

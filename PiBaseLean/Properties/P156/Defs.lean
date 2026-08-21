@@ -8,8 +8,6 @@ universe u
 
 namespace PiBase
 
-open Set
-
 /- 156. k-Rothberger -/
 class KRothbergerSpace (X : Type u) [TopologicalSpace X] : Prop where
   k_rothberger : ∀ {ι : Type u} (U : ℕ → ι → Set X), (∀ n, IsKCover'' (U n)) →

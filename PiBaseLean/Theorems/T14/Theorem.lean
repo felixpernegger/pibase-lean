@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P31.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T14: P30 (ParacompactSpace) => P31 (MetacompactSpace) -/

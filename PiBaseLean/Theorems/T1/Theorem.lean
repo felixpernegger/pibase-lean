@@ -6,8 +6,6 @@ public import PiBaseLean.Properties.P19.Bundled
 
 @[expose] public section
 
-open Topology Set Function TopologicalSpace
-
 namespace PiBase
 
 -- Note: Is merged in mathlib

@@ -4,7 +4,7 @@ public import Mathlib.Topology.Compactness.Compact
 
 @[expose] public section
 
-open Topology Set
+open Set
 
 universe u
 

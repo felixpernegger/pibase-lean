@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P52.Bundled
 
 universe u
 
-open Topology Set Function Filter
-
 namespace PiBase
 
 /-- Theorem T89: P233 (HasOpenPathComponents) + P46 (TotallyPathDisconnectedSpace) =>

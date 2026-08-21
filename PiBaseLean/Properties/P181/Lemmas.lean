@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P181.Defs
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
-
 universe u v
 
 section Meta

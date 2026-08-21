@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P222.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T779: P222 (HasCofiniteTopology) => P2 (T1Space) -/

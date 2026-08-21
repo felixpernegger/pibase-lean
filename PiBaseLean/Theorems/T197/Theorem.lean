@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P5.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T197: P118 (HasSigmaLocallyFiniteKNetwork) + P5 (T3Space) => P178 (AlephSpace) -/

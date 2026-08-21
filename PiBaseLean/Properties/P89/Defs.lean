@@ -4,8 +4,6 @@ public import Mathlib.Topology.ContinuousMap.Basic
 
 @[expose] public section
 
-open Topology Set Function TopologicalSpace
-
 namespace PiBase
 
 /- 89. Fixed point property -/

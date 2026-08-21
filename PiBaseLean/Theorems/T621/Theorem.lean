@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P137.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T621: P107 (HasClosedPoint) => P137 (¬IsEmpty) -/

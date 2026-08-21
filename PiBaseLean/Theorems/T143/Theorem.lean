@@ -10,7 +10,7 @@ import PiBaseLean.AdditionalDefs.Constructions
 
 universe u
 
-open Topology Set Function
+open Set
 
 namespace PiBase
 

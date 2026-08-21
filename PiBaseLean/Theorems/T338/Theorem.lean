@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P67.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T338: P67 (T6Space) => P15 (PerfectlyNormalSpace) -/

@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P46.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T88: P37 (PrepathConnectedSpace) + P125 (Nontrivial) =>

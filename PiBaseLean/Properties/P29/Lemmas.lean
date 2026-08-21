@@ -7,7 +7,7 @@ public import PiBaseLean.Properties.P29.Defs
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
+open Set Function
 
 lemma Set.countable_of_setminus_singleton {α : Type*} {s : Set α} {a : α}
     (h : (s \ {a}).Countable) : s.Countable :=

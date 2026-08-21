@@ -10,7 +10,7 @@ import PiBaseLean.Theorems.T703.Theorem
 
 universe u
 
-open Topology Set Function Filter
+open Topology Filter
 
 namespace PiBase
 

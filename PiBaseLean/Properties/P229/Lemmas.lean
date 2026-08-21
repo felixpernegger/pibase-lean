@@ -7,7 +7,7 @@ public import PiBaseLean.Properties.P229.Defs
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
+open Topology
 
 section FundGroupImage
 
@@ -56,8 +56,6 @@ theorem semilocallySimplyConnectedSpace_of_homeomorph {X Y : Type*} [Topological
       ContinuousMap.ext fun v => e.apply_symm_apply v.val
     rw [← hcomp]
     exact hasTrivialFundGroupImageAt_comp r iU eC _ hUtriv
-
-open PiBase
 
 section Meta
 

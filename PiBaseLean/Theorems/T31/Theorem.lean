@@ -10,8 +10,6 @@ public import PiBaseLean.Properties.P3.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T31: P123 (LocallyNEuclideanSpace) + P3 (T2Space) +

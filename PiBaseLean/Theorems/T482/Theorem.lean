@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P188.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T482: P188 (ContinuumSpace) => P16 (CompactSpace) -/

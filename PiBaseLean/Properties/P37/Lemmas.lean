@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P37.Defs
 
 namespace PiBase
 
-open Topology Filter
-
 variable (X : Type*) [TopologicalSpace X]
 
 /-- A nonempty, prepathconnected space is connected. -/

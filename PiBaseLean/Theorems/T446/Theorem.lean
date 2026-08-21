@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P89.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T446: P89 (FixedPointSpace) => P137ᶜ (Nonempty) -/

@@ -6,7 +6,7 @@ public import PiBaseLean.Theorems.T500.Lemmas
 
 universe u
 
-open Topology Set Function
+open Set
 
 namespace PiBase
 

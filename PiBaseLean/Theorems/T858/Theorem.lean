@@ -6,9 +6,8 @@ public import PiBaseLean.Properties.P231.Bundled
 
 @[expose] public section
 
-open Topology Set Function Filter
+open Set Filter
 
-open CategoryTheory
 open scoped ContinuousMap
 
 namespace PiBase

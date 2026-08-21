@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P90.Bundled
 
 universe u
 
-open Topology Set Function Filter
-
 namespace PiBase
 
 /-- Theorem T350: P90 (AlexandrovDiscrete) => P147 (PSpace) -/

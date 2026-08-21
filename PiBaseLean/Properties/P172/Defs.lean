@@ -4,7 +4,7 @@ public import Mathlib.SetTheory.Ordinal.Topology
 
 @[expose] public section
 
-open Topology Set Filter TopologicalSpace Filter
+open Topology Set Filter
 
 universe u
 

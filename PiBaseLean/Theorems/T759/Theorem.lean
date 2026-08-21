@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P155.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T759: P155 (LocallyOneEuclideanSpace) => P123 (LocallyNEuclideanSpace) -/

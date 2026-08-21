@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P58.Bundled
 
 universe u
 
-open Cardinal
-
 namespace PiBase
 
 /-- Theorem 68: < 𝔠 implies ≤ 𝔠 -/

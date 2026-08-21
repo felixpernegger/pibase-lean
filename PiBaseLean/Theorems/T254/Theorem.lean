@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P18.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T254: P131 (HereditarilyLindelofSpace) => P18 (LindelofSpace) -/

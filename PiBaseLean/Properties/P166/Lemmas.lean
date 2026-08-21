@@ -9,7 +9,7 @@ universe u v
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
+open TopologicalSpace
 
 namespace Formal
 

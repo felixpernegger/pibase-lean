@@ -9,8 +9,6 @@ import Mathlib.Topology.UniformSpace.Basic
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
-
 open Set Filter Topology
 
 section Meta

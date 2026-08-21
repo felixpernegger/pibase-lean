@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P183.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T11: P183 (HasCountableKNetwork) => P182 (HasCountableNetwork) -/

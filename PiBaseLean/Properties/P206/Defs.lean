@@ -8,7 +8,6 @@ universe u
 
 namespace PiBase
 
-open Classical in
 /- 206. Strongly Choquet -/
 class StronglyChoquetSpace (X : Type u) [TopologicalSpace X] : Prop where
   strongly_choquet (_ : Inhabited X) : HasWinningStrategyB (strongChoquetGame X)

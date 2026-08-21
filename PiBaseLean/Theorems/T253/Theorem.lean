@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P129.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T253: P125 (Nontrivial) + P1 (T0Space) => ¬P129 (IndiscreteTopology) -/

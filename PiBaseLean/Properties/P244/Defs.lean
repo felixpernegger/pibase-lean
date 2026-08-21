@@ -8,7 +8,6 @@ universe u
 
 namespace PiBase
 
-open Topology Filter
 open scoped Topology
 
 /- 244. Has countable π-character -/

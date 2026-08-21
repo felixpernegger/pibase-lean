@@ -5,8 +5,6 @@ public import PiBaseLean.Properties.P30.Defs
 
 @[expose] public section
 
-open Topology Set Filter Function
-
 namespace PiBase
 
 /- 216. Hereditarily paracompact space -/

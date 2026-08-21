@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P65.Bundled
 
 universe u
 
-open Cardinal
-
 namespace PiBase
 
 /-- Theorem 139: |X| = 𝔠 implies |X| ≤ 𝔠 -/

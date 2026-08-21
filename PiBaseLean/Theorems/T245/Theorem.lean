@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P23.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T245: P130 (LocallyCompactSpace) => P23 (WeaklyLocallyCompactSpace) -/

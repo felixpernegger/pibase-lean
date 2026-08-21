@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P77.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T457: P77 (CorsonCompactSpace) => P16 (CompactSpace) -/

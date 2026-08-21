@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P90.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase.Formal
 
 /-- Theorem T284: P90 (AlexandrovDiscrete) => P23 (WeaklyLocallyCompactSpace) -/

@@ -7,7 +7,7 @@ public import Mathlib.Topology.Homeomorph.Lemmas
 
 universe u
 
-open Cardinal Set
+open Cardinal
 
 namespace PiBase
 

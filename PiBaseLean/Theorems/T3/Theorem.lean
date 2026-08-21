@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P20.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T3: P20 (Sequentially compact) => P19 (Countably compact)

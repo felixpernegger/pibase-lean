@@ -8,7 +8,7 @@ import Mathlib.Analysis.Normed.Order.Lattice
 
 @[expose] public section
 
-open Topology Set Function TopologicalSpace
+open Set
 
 namespace PiBase
 

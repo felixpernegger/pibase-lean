@@ -10,8 +10,6 @@ public import PiBaseLean.Properties.P36.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T480: P16 (CompactSpace) + P36 (PreconnectedSpace) +

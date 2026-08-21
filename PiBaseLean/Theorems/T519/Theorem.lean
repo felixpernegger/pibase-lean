@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P192.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T519: P134 (R1Space) => P192 (QuasiSober) -/

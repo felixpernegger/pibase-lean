@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P19.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T106: P18 (LindelofSpace) + P19 (CountablyCompactSpace) => P16 (CompactSpace) -/

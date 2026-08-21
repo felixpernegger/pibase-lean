@@ -10,7 +10,7 @@ import Mathlib.Topology.Spectral.Prespectral
 
 universe u
 
-open Topology Set Function TopologicalSpace
+open TopologicalSpace
 
 namespace PiBase
 

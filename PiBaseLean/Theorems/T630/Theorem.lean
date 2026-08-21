@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P2.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T630: P2 (T1Space) + P137ᶜ (Nonempty) => P107 (HasClosedPoint) -/

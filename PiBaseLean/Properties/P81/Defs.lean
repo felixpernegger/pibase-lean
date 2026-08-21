@@ -5,8 +5,6 @@ public import Mathlib.Topology.Homeomorph.Defs
 
 @[expose] public section
 
-open Topology Set Function TopologicalSpace
-
 namespace PiBase
 
 /- 81. Countably tight -/

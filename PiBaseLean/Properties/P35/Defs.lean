@@ -4,8 +4,6 @@ public import PiBaseLean.Properties.P34.Defs
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
-
 namespace PiBase
 
 /- 35. Fully T₄ -/

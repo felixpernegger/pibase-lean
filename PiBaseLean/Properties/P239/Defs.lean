@@ -8,7 +8,7 @@ universe u
 
 namespace PiBase
 
-open Topology Filter
+open Topology
 
 /- 239. Semilocally contractible -/
 class SemilocallyContractibleSpace (X : Type u) [TopologicalSpace X] : Prop where

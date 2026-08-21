@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P36.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T452: P204 (HasACutPoint) => P36 (PreconnectedSpace) -/

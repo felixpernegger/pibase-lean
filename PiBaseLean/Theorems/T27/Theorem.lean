@@ -6,9 +6,7 @@ public import PiBaseLean.Theorems.T27.BackgroundLemmas
 
 universe u
 
-open Set Function Topology Filter
-
-open scoped OnePoint
+open Topology
 
 namespace PiBase
 

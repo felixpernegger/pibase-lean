@@ -4,8 +4,6 @@ public import Mathlib.Topology.Defs.Basic
 
 @[expose] public section
 
-open Set
-
 namespace PiBase
 
 /-- 139. Has an isolated point -/

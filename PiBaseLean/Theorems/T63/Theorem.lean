@@ -6,7 +6,7 @@ public import PiBaseLean.Properties.P43.Bundled
 
 @[expose] public section
 
-open Topology Set Function
+open Topology Set
 
 namespace PiBase
 

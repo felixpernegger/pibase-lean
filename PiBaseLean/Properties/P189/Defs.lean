@@ -5,7 +5,7 @@ public import Mathlib.Topology.Connected.Basic
 
 @[expose] public section
 
-open Topology Set Filter TopologicalSpace Function
+open Set Function
 
 universe u
 

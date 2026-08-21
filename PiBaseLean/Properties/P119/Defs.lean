@@ -4,8 +4,6 @@ public import Mathlib.Topology.ExtremallyDisconnected
 
 @[expose] public section
 
-open TopologicalSpace
-
 namespace PiBase
 
 /- 119. Stonean space -/ -- NOTE: The category of these spaces exists in mathlib

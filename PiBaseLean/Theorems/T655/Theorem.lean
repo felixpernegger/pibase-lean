@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P83.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T655: P105 (ParaLindelofSpace) => P83 (MetaLindelofSpace) -/

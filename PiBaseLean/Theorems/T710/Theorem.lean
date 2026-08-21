@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P28.Bundled
 
 universe u
 
-open Topology Set Function Filter
-
 namespace PiBase
 
 /-- Theorem T710: P110 (DevelopableSpace) => P28 (FirstCountableTopology) -/

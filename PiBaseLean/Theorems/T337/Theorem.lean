@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P35.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T337: P35 (FullyT4Space) => P34 (FullyNormalSpace) -/

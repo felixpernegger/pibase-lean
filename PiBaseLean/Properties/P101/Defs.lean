@@ -4,8 +4,6 @@ public import PiBaseLean.AdditionalDefs.Constructions
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
-
 namespace PiBase
 
 /- 101. Has closed retracts -/

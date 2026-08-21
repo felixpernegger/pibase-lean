@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P78.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T189: P78 (Finite) => P27 (SecondCountableTopology) -/

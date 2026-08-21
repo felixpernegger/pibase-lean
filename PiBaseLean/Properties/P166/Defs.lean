@@ -4,7 +4,7 @@ public import Mathlib.Topology.MetricSpace.Basic
 
 @[expose] public section
 
-open Topology Set Filter TopologicalSpace
+open TopologicalSpace
 
 universe u v
 

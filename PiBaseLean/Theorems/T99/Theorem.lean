@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P7.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T99: P2 (T1Space) + P13 (NormalSpace) => P7 (T4Space) -/

@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P79.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T59: P79 (SequentialSpace) => P141 (CompactlyGeneratedSpace) -/

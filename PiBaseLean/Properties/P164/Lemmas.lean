@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P164.Defs
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
-open Cardinal
 
 section Meta
 

@@ -4,7 +4,7 @@ public import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
 
 @[expose] public section
 
-open Topology Set Function Filter
+open Topology
 
 namespace PiBase
 

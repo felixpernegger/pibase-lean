@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P124.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T25: P124 (TopologicalNManifold) => P123 (LocallyNEuclideanSpace) -/

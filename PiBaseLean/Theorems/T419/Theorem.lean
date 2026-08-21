@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P2.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T419: P169 (SemiT2Space) => P2 (T1Space) -/

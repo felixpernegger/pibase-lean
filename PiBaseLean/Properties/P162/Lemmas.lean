@@ -9,8 +9,6 @@ universe u v
 
 namespace PiBase
 
-open Topology Filter Set TopologicalSpace
-
 variable {X : Type u} {Y : Type v} [t : TopologicalSpace X] [s : TopologicalSpace Y]
 
 /- Most likely true but difficult - proof omitted -/

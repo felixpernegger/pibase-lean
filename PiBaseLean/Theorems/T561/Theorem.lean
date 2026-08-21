@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P198.Bundled
 
 universe u
 
-open Topology Set Function Filter Cardinal
-
 namespace PiBase
 
 /-- Theorem T561: P197 (HasCountableSpread) => P198 (HasCountableExtent) -/

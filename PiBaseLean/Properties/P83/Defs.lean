@@ -4,7 +4,7 @@ public import PiBaseLean.AdditionalDefs.Cover
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
+open Set
 
 universe u
 

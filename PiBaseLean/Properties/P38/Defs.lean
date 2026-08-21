@@ -4,8 +4,6 @@ public import PiBaseLean.AdditionalDefs.Constructions
 
 @[expose] public section
 
-open Function Topology Set
-
 namespace PiBase
 
 /- 38. Injectively path connected -/

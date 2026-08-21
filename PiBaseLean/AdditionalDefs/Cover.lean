@@ -9,7 +9,7 @@ which are useful for properties and theorems. -/
 
 namespace PiBase
 
-open Function Set Topology TopologicalSpace
+open Set Topology TopologicalSpace
 
 variable {X ι : Type*}
 

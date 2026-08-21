@@ -4,7 +4,7 @@ public import Mathlib.Topology.Compactness.CompactlyCoherentSpace
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
+open Topology
 
 universe u
 

@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P79.Bundled
 
 universe u
 
-open Topology TopologicalSpace
-
 namespace PiBase
 
 /-- Theorem T840: P228 (WeaklyFirstCountableSpace) => P79 (SequentialSpace) -/

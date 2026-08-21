@@ -10,7 +10,7 @@ import Mathlib.Topology.Metrizable.Uniformity
 
 universe u
 
-open Topology Set Function TopologicalSpace
+open TopologicalSpace
 
 namespace PiBase
 

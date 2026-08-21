@@ -11,7 +11,7 @@ which are useful for properties and theorems. -/
 
 namespace PiBase
 
-open Filter Function Set Topology
+open Filter Set Topology
 
 variable {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Z]
 

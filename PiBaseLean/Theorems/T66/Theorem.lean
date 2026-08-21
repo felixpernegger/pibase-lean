@@ -8,7 +8,7 @@ public import PiBaseLean.Properties.P154.Bundled
 
 universe u
 
-open Topology Set Function
+open Topology
 
 namespace PiBase
 

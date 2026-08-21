@@ -9,8 +9,6 @@ import PiBaseLean.Properties.P141.Lemmas
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
-
 
 section Meta
 

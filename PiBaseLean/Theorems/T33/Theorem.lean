@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P5.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /- Theorem T33: P5 (T3Space) => P4 (T25Space) -/

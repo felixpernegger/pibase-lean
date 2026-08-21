@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P52.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T248: ¬P125 (Nontrivial) => P52 (DiscreteTopology) -/

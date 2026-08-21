@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P16.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T251: P129 (IndiscreteTopology) => P16 (CompactSpace) -/

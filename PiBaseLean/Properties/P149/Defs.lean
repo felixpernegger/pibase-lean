@@ -4,8 +4,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 @[expose] public section
 
-open Topology Set Filter TopologicalSpace
-
 universe u
 
 namespace PiBase

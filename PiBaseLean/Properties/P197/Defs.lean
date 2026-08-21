@@ -4,7 +4,7 @@ public import PiBaseLean.AdditionalDefs.Cardinal
 
 @[expose] public section
 
-open Topology Set Filter TopologicalSpace Cardinal
+open Cardinal
 
 universe u
 

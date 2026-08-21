@@ -5,7 +5,7 @@ public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section
 
-open TopologicalSpace Cardinal
+open Cardinal
 
 namespace PiBase
 

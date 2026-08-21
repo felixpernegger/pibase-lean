@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P141.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T325: P141 (CompactlyGeneratedSpace) => P140 (CompactlyCoherentSpace) -/

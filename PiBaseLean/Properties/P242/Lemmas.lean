@@ -9,10 +9,6 @@ universe u
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
-
-open scoped unitInterval Topology Topology.Homotopy
-
 namespace Formal
 
 open scoped unitInterval Topology Topology.Homotopy

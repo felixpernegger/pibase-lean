@@ -10,8 +10,6 @@ import Mathlib.Data.SetLike.Fintype
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T825: P78 (Finite) => P226 (ArtinianSpace) -/

@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P30.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T744: P216 (HereditarilyParacompact) => P30 (ParacompactSpace) -/

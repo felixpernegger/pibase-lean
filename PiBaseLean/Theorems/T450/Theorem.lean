@@ -8,7 +8,7 @@ public import PiBaseLean.Properties.P27.Bundled
 
 universe u
 
-open Topology Set Function TopologicalSpace Filter
+open Set TopologicalSpace Filter
 
 namespace PiBase
 

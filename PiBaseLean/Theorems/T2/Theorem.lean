@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P21.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T2: P19 (Countably compact) => P21 (Weakly countably compact) -/

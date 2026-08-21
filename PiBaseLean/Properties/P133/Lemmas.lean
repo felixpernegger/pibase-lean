@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P133.Defs
 
 namespace PiBase
 
-open Topology Filter Set TopologicalSpace
-
 variable {X Y : Type*} [t : TopologicalSpace X] [s : TopologicalSpace Y]
 
 instance instLotsOfOrderTopology {X : Type*} [TopologicalSpace X] [h : LinearOrder X]

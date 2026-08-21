@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P68.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T361: P150 (OmegaRothberger) => P68 (RothbergerSpace) -/

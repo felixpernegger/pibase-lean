@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P5.Bundled
 
 universe u
 
-open Topology TopologicalSpace
-
 namespace PiBase
 
 /-- Theorem T84: P177 (SigmaSpace) => P5 (T3Space) -/

@@ -5,7 +5,7 @@ public import Mathlib.Topology.Defs.Basic
 
 @[expose] public section
 
-open TopologicalSpace Set Cardinal
+open Cardinal
 
 namespace PiBase
 

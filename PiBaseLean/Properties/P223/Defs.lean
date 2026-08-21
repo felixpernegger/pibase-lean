@@ -4,7 +4,7 @@ public import PiBaseLean.Properties.P199.Defs
 
 @[expose] public section
 
-open Topology Set Function Filter
+open Topology
 
 universe u
 

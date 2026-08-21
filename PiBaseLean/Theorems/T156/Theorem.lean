@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P15.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /- Theorem T156: P15 (PerfectlyNormalSpace) => P14 (CompletelyNormalSpace) -/

@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P85.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T693: P49 (ExtremallyDisconnected) => P85 (BasicallyDisconnectedSpace) -/

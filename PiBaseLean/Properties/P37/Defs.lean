@@ -4,8 +4,6 @@ public import Mathlib.Topology.Connected.PathConnected
 
 @[expose] public section
 
-open Topology Set Function
-
 namespace PiBase
 
 /- 37. Path connected

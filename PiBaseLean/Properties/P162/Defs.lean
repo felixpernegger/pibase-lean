@@ -4,7 +4,7 @@ public import Mathlib.Topology.UniformSpace.Real
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
+open Topology
 
 universe u
 

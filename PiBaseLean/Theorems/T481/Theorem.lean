@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P3.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T481: P188 (ContinuumSpace) => P3 (T2Space) -/

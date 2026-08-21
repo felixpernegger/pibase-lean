@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P35.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T105: P2 (T1Space) + P34 (FullyNormalSpace) => P35 (FullyT4Space) -/

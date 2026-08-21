@@ -4,8 +4,6 @@ public import Mathlib.Topology.Compactness.SigmaCompact
 
 @[expose] public section
 
-open Function Set Filter Topology TopologicalSpace
-
 namespace PiBase
 
 /- 25. Exhaustlible by compacts -/

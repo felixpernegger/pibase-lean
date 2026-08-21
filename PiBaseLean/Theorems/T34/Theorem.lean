@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P118.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T34: P118 (HasSigmaLocallyFiniteKNetwork) => P117 (HasSigmaLocallyFiniteNetwork) -/

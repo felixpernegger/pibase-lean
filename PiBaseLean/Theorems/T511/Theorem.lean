@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P73.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T511: P73 (SoberSpace) => P192 (QuasiSober) -/

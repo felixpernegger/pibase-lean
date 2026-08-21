@@ -4,8 +4,6 @@ public import PiBaseLean.AdditionalDefs.Constructions
 
 @[expose] public section
 
-open Topology Set Function
-
 namespace PiBase
 
 /- 205. Cut point space -/

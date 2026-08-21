@@ -7,7 +7,7 @@ public import PiBaseLean.Properties.P226.Defs
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
+open TopologicalSpace
 
 universe u
 

@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P37.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T590: P200 (PreSimplyConnectedSpace) => P37 (PrePathConnectedSpace) -/

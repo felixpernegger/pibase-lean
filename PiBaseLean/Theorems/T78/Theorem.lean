@@ -6,8 +6,6 @@ public import PiBaseLean.Properties.P44.Bundled
 
 @[expose] public section
 
-open Topology Set Function
-
 namespace PiBase
 
 /- Theorem 78: a biconnected space is connected -/

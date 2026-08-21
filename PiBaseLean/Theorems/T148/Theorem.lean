@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P5.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T148: P11 (RegularSpace) + P1 (T0Space) => P5 (T3Space) -/

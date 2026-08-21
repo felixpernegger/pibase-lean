@@ -58,7 +58,7 @@ Again, extra axiom assumptions should only be added when it is truly necessary.
 
 namespace PiBase
 
-open Cardinal Ordinal _root_.Set
+open Cardinal
 
 section ContinuumHypothesis
 

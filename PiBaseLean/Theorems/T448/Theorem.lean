@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P185.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T448: P129 (IndiscreteTopology) => P185 (PartitionTopology) -/

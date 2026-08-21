@@ -7,7 +7,7 @@ public import PiBaseLean.Properties.P24.Bundled
 
 @[expose] public section
 
-open Topology Set Function TopologicalSpace Filter
+open Set Filter
 
 namespace PiBase
 

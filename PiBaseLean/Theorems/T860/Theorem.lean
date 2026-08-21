@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P37.Bundled
 
 universe u
 
-open Topology Set Function Filter
-
 namespace PiBase
 
 /-- Theorem T860: P37 (PrepathConnectedSpace) => P233 (HasOpenPathComponents) -/

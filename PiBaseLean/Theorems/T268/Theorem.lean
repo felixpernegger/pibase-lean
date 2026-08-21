@@ -10,8 +10,6 @@ import Mathlib.Topology.GDelta.MetrizableSpace
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /- Theorem T268: P121 (PseudoMetrizableSpace) => P15 (PerfectlyNormalSpace) -/

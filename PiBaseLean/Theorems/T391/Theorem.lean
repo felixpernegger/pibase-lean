@@ -11,8 +11,6 @@ universe u
 
 namespace PiBase
 
-open Cardinal PiBase.Formal
-
 /-- Theorem 391: |X| ≤ 𝔠 and ¬ |X| < 𝔠  implies |X| = 𝔠 -/
 theorem instCardEqContinuumOfCardLeContinuumOfNotCardltContinuum {X : Type u}
     [h : CardLeContinuum X] (h' : ¬CardLtContinuum X) : CardEqContinuum X where

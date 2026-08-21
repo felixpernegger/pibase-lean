@@ -11,8 +11,6 @@ import Mathlib.Topology.Separation.GDelta
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T501: P28 (FirstCountableTopology) + P2 (T1Space) => P191 (HasGδSingletons) -/

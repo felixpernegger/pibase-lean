@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P6.Bundled
 
 universe u
 
-open Topology Set Function TopologicalSpace
-
 namespace PiBase
 
 /-- Theorem T151: P12 (CompletelyRegularSpace) + P1 (T0Space) => P6 (T35Space) -/

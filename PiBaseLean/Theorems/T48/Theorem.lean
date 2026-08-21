@@ -10,7 +10,7 @@ import Mathlib.Topology.Algebra.Indicator
 
 universe u
 
-open Topology Set Function
+open Set
 
 namespace PiBase
 

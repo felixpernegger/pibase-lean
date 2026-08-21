@@ -4,7 +4,7 @@ public import Mathlib.Topology.Metrizable.Basic
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
+open Topology TopologicalSpace
 
 namespace PiBase
 

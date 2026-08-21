@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Constructions
 
 universe u
 
-open Topology Set Filter Function
-
 namespace PiBase
 
 /- 217. Strongly zero dimensional space -/

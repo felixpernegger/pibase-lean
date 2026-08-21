@@ -4,8 +4,6 @@ public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
-
 namespace PiBase
 
 /- 45. Has a dispersion point -/

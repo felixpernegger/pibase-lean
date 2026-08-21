@@ -9,7 +9,7 @@ namespace PiBase
 
 universe u
 
-open Topology Filter Set Function TopologicalSpace
+open Set
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 

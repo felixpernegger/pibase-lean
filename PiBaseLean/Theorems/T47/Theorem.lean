@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P47.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T47: P47 (TotallyDisconnectedSpace) => P46 (TotallyPathDisconnectedSpace) -/

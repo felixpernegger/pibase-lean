@@ -11,8 +11,6 @@ import Mathlib.Topology.Baire.LocallyCompactRegular
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T136: P23 (WeaklyLocallyCompactSpace) + P11 (RegularSpace) => P64 (BaireSpace) -/

@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P215.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T740: P215 (HereditarilyRealcompactSpace) => P162 (RealcompactSpace) -/

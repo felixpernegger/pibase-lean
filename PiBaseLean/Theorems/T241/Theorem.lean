@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P74.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T241: P179 (AlephZeroSpace) => P74 (CosmicSpace) -/

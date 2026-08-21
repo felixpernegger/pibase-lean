@@ -6,8 +6,6 @@ public import Mathlib.Topology.UniformSpace.Cauchy
 
 universe u
 
-open scoped Topology
-
 namespace PiBase
 
 /- 221. Dieudonné complete -/

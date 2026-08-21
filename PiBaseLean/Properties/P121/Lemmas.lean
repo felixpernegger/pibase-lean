@@ -7,7 +7,7 @@ public import PiBaseLean.Properties.P185.Lemmas
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
+open TopologicalSpace
 
 universe u
 

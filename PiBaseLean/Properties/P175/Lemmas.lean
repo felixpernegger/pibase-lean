@@ -7,7 +7,6 @@ public import PiBaseLean.Properties.P175.Defs
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
 open Cardinal
 
 universe u v

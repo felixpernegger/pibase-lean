@@ -10,8 +10,6 @@ public import PiBaseLean.Properties.P47.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T529: P16 (CompactSpace) + P3 (T2Space) +

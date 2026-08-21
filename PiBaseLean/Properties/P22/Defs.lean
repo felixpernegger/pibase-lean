@@ -4,7 +4,7 @@ public import Mathlib.Topology.MetricSpace.Pseudo.Defs
 
 @[expose] public section
 
-open Topology Set Function
+open Set
 
 namespace PiBase
 

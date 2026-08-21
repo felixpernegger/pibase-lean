@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P45.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T41: P45 (HasDispersionPoint) => P137 (¬IsEmpty) -/

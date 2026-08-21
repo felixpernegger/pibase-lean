@@ -7,7 +7,7 @@ public import PiBaseLean.Properties.P38.Defs
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
+open Set Function
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 

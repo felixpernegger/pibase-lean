@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P211.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T733: P210 (α1Space) => P211 (α15Space) -/

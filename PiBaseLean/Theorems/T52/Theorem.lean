@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P47.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T52: P47 (TotallyDisconnectedSpace) + P125 (Nontrivial) => ¬P36 (PreconnectedSpace) -/

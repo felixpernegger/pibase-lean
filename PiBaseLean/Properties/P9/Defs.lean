@@ -4,7 +4,7 @@ public import Mathlib.Topology.UnitInterval
 
 @[expose] public section
 
-open Topology Set Function unitInterval
+open unitInterval
 namespace PiBase
 
 /- 9. Functionally Hausdorff -/

@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P205.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T635: P205 (CutPointSpace) => P204 (HasACutPoint) -/

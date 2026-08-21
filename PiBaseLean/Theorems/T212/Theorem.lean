@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P57.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T212: P57 (Countable) + P28 (FirstCountableTopology) => P27 (SecondCountableTopology) -/

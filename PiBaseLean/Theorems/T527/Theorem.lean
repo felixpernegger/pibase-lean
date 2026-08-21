@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P75.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T527: P75 (SpectralSpace) => P130 (LocallyCompactSpace) -/

@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P170.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T60: P140 (CompactlyCoherentSpace) + P170 (K1T2Space) => P142 (K3Space) -/

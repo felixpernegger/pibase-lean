@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P103.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T234: P103 (StronglyKcSpace) => P100 (KcSpace) -/

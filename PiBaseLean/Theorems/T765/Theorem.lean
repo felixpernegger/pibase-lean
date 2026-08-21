@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P218.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T765: P218 (UltranormalSpace) => P13 (NormalSpace) -/

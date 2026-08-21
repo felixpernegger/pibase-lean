@@ -6,7 +6,7 @@ public import Mathlib.Topology.Sets.Opens
 
 universe u
 
-open TopologicalSpace Set
+open TopologicalSpace
 
 namespace PiBase
 

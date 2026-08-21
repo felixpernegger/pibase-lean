@@ -8,7 +8,7 @@ universe u
 
 namespace PiBase
 
-open Topology Filter Set Function
+open Topology Set
 
 /- 225. LC -/
 class LCSpace (X : Type u) [TopologicalSpace X] : Prop where

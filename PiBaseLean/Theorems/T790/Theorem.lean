@@ -11,7 +11,7 @@ import PiBaseLean.AdditionalDefs.Cover
 
 universe u
 
-open Topology Set Function
+open Set
 
 namespace PiBase
 

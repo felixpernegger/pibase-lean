@@ -8,8 +8,6 @@ universe u
 
 namespace PiBase
 
-open Topology
-
 /- 237. Topological n-manifold with boundary -/
 class TopologicalNManifoldWithBoundary (X : Type u) [TopologicalSpace X] extends
   SecondCountableTopology X, T2Space X, LocallyNEuclideanHalfSpace X

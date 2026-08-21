@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P7.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 -- Most likely redundant

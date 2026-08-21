@@ -4,8 +4,6 @@ public import Mathlib.Topology.Defs.Basic
 
 @[expose] public section
 
-open Topology Set Function TopologicalSpace
-
 universe u
 
 namespace PiBase

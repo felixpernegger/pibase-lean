@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P199.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T584: P199 (ContractibleSpace) => P137ᶜ (Nonempty) -/

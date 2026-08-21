@@ -7,7 +7,7 @@ public import PiBaseLean.Properties.P2.Defs
 
 universe u
 
-open Topology Set Function
+open Topology Set
 
 namespace PiBase
 

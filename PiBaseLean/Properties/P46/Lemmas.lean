@@ -8,7 +8,7 @@ public import PiBaseLean.Properties.P46.Defs
 
 namespace PiBase
 
-open Topology Filter Set
+open Set
 
 variable (X : Type*) [TopologicalSpace X]
 

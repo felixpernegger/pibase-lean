@@ -6,7 +6,7 @@ public import Mathlib.Topology.LocallyFinite
 
 universe u
 
-open Topology Set Function Filter TopologicalSpace
+open Set
 
 namespace PiBase
 

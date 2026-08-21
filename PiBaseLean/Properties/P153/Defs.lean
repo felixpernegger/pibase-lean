@@ -5,8 +5,6 @@ public import PiBaseLean.Properties.P66.Defs
 
 @[expose] public section
 
-open Topology Set Filter TopologicalSpace
-
 universe u
 
 namespace PiBase

@@ -9,10 +9,6 @@ universe u v
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
-
-open Set
-
 /-! ### Transporting the k-Rothberger game along a homeomorphism
 
 The k-Rothberger game is the `g1Game` played with k-covers, so the transport machinery of
@@ -44,8 +40,6 @@ theorem HasMarkovKWinningStrategyB.kRothbergerGame_of_homeomorph {k : ℕ} (φ :
   h.of_equiv (preimageFamilyEquiv φ) fun b hb ↦ (kRothbergerGame_isPayoff_iff φ b).mp hb
 
 end KRothberger
-
-open PiBase
 
 section Meta
 

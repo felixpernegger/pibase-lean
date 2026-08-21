@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P42.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /- Theorem T64: P42 (LocallyPathConnectedSpace) => P41 (LocallyConnectedSpace) -/

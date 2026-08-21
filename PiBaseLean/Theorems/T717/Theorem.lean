@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P5.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T717: P110 (DevelopableSpace) + P5 (T3Space) => P113 (MooreSpace) -/

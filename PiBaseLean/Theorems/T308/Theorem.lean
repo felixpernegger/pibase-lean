@@ -6,8 +6,6 @@ public import PiBaseLean.Theorems.T308.BackgroundLemmas
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T308:

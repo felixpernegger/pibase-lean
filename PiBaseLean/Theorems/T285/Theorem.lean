@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P90.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase.Formal
 
 /-- Theorem T285: P90 (AlexandrovDiscrete) => P28 (FirstCountableTopology) -/

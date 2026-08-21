@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P36.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T864: P36 (PreconnectedSpace) => P234 (HasOpenConnectedComponents) -/

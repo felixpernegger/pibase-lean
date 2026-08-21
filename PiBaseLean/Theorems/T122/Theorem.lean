@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P18.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /- Theorem T122: P17 (SigmaCompactSpace) => P18 (LindelofSpace) -/

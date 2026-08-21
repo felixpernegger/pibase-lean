@@ -8,7 +8,7 @@ universe u
 
 namespace PiBase
 
-open Topology Filter Set Function
+open Topology
 
 /- 235. Locally a Euclidean half-space -/
 class LocallyEuclideanHalfSpace (X : Type u) [TopologicalSpace X] : Prop where

@@ -9,13 +9,9 @@ universe u
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
-
-open Topology Set
+open Set
 
 namespace Formal
-
-open Topology Set
 
 /-- Images under a partial equivalence postcomposed with an equivalence. -/
 theorem image_transEquiv {α β γ : Type*} (e : PartialEquiv α β) (g : β ≃ γ) (s : Set α) :

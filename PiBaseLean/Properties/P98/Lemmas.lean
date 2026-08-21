@@ -5,11 +5,9 @@ public import PiBaseLean.Properties.P98.Defs
 
 @[expose] public section
 
-open scoped Set
-
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
+open Set
 
 section Meta
 

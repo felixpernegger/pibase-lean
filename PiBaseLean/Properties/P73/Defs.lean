@@ -4,8 +4,6 @@ public import Mathlib.Topology.Sober
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
-
 namespace PiBase
 
 /- 73. Sober -/

@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P52.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T510: P147 (P space) + P191 (Has points Gδ) => P52 (Discrete) -/

@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P98.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T504: P92 (kω3Space) => P98 (kω1Space) -/

@@ -5,8 +5,6 @@ public import Mathlib.Topology.Separation.SeparatedNhds
 
 @[expose] public section
 
-open Topology Set Filter TopologicalSpace
-
 universe u
 
 namespace PiBase

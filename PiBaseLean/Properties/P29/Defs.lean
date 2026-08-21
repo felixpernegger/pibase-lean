@@ -5,8 +5,6 @@ public import Mathlib.Topology.Defs.Basic
 
 @[expose] public section
 
-open Topology Set Function TopologicalSpace
-
 namespace PiBase
 
 /- 29. Countable chain condition -/

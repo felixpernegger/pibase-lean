@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P66.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T362: P153 (OmegaMengerSpace) => P66 (MengerSpace) -/

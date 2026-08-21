@@ -10,7 +10,7 @@ import Mathlib.SetTheory.Cardinal.Arithmetic
 
 universe u
 
-open Topology Set Function Cardinal
+open Set
 
 namespace PiBase
 

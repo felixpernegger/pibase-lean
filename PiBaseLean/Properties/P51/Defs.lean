@@ -4,8 +4,6 @@ public import Mathlib.Topology.Defs.Induced
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
-
 namespace PiBase
 
 /- 51. Scattered -/

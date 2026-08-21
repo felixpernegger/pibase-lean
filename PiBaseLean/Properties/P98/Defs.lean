@@ -4,7 +4,7 @@ public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace Set.Notation
+open Set Set.Notation
 
 namespace PiBase
 

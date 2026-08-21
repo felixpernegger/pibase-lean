@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P204.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T620: P196 (HereditarilyConnected) => P204 (¬HasACutPoint) -/

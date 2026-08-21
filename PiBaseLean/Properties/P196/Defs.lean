@@ -4,8 +4,6 @@ public import Mathlib.Topology.Connected.Basic
 
 @[expose] public section
 
-open Topology Set Function
-
 namespace PiBase
 
 /- 196. Hereditarily connected -/

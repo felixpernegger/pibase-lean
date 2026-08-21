@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P68.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T160: P68 (RothbergerSpace) => P66 (MengerSpace) -/

@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P36.Lemmas
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
-
 section Meta
 
 

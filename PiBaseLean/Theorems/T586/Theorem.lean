@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P83.Bundled
 
 universe u
 
-open Topology Set Function Filter
-
 namespace PiBase
 
 /-- Theorem T586: P31 (MetacompactSpace) => P83 (MetaLindelofSpace) -/

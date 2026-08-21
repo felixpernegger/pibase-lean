@@ -4,8 +4,6 @@ public import Mathlib.Topology.MetricSpace.Pseudo.Defs
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace
-
 namespace PiBase
 
 /- 60. Strongly connected -/

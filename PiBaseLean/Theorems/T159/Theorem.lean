@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P7.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T159: P7 (T4Space) + P32 (¬CountablyParacompactSpace) => P127 (DowkerSpace) -/

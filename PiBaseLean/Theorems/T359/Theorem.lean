@@ -10,8 +10,6 @@ import PiBaseLean.Theorems.T160.Theorem
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T359: P150 (OmegaRothberger) => P153 (OmegaMengerSpace) -/

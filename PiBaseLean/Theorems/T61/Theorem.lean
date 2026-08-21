@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P74.Bundled
 
 @[expose] public section
 
-open Topology Set Function
-
 namespace PiBase
 
 /- Theorem 61: a T3 space with a countable network is a cosmic space -/

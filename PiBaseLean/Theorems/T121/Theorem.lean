@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P17.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T121: P16 (CompactSpace) => P17 (SigmaCompactSpace) -/

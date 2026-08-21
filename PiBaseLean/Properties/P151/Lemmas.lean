@@ -9,10 +9,6 @@ universe u v
 
 namespace PiBase
 
-open Topology Filter Set Function TopologicalSpace
-
-open Set
-
 section Rothberger
 
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y]
@@ -33,8 +29,6 @@ theorem HasMarkovKWinningStrategyB.rothbergerGame_of_homeomorph {k : ℕ} (φ : 
   h.of_equiv (preimageFamilyEquiv φ) fun b hb ↦ (rothbergerGame_isPayoff_iff φ b).mp hb
 
 end Rothberger
-
-open PiBase
 
 section Meta
 

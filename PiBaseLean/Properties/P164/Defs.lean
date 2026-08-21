@@ -8,7 +8,7 @@ universe u
 
 namespace PiBase
 
-open Cardinal Set Filter Topology
+open Cardinal
 
 /- 164. Cardinality less than every measurable cardinal -/
 class CardLtEveryMeasurableCardinal (X : Type u) : Prop where

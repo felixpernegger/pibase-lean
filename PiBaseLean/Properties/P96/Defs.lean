@@ -4,7 +4,7 @@ public import PiBaseLean.Properties.P95.Defs
 
 @[expose] public section
 
-open Topology Set Function Filter
+open Topology
 
 namespace PiBase
 

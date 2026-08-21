@@ -11,8 +11,6 @@ import Mathlib.Topology.Separation.AlexandrovDiscrete
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase.Formal
 
 /-- Theorem T267: P90 (AlexandrovDiscrete) + P2 (T1Space) => P52 (DiscreteTopology) -/

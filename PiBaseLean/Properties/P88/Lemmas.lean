@@ -7,7 +7,7 @@ public import PiBaseLean.Properties.P88.Defs
 
 namespace PiBase
 
-open Topology Filter Set Function
+open Set
 
 section Meta
 

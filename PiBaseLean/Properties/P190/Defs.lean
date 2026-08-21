@@ -5,7 +5,7 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 @[expose] public section
 
-open Topology Set Function Filter TopologicalSpace Ordinal
+open Set
 
 universe u
 

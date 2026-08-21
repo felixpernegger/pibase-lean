@@ -6,7 +6,7 @@ public import Mathlib.Topology.Homeomorph.Defs
 
 universe u v
 
-open Topology Set Filter Function
+open Topology Set Filter
 
 namespace PiBase.AlphaTransport
 

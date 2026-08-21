@@ -4,8 +4,6 @@ public import Mathlib.Topology.Sober
 
 @[expose] public section
 
-open Set Topology Filter
-
 namespace PiBase
 
 /-- 201. Has a generic point -/

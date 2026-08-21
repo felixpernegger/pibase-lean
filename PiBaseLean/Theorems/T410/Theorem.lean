@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P166.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T410: P166 (HasCoarserSeparableMetrizableTopology ) => P112 (SubmetrizableSpace) -/

@@ -8,7 +8,7 @@ import Mathlib.Data.Set.Card
 
 @[expose] public section
 
-open Topology Set Function TopologicalSpace Filter Cardinal
+open Cardinal
 
 namespace PiBase
 

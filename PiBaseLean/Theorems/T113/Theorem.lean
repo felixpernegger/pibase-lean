@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P7.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T113: P7 (T4Space) => P6 (T35Space) -/

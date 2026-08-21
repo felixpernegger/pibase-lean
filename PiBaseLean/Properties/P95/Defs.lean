@@ -4,7 +4,7 @@ public import Mathlib.Topology.Path
 
 @[expose] public section
 
-open Topology Set Function
+open Topology
 
 namespace PiBase
 

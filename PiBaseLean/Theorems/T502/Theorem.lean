@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P2.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T502: P132 (GδSpace) + P2 (T1Space) => P191 (HasGδSingletons) -/

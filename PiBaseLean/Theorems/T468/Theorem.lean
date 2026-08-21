@@ -9,8 +9,6 @@ public import PiBaseLean.Properties.P36.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T468: P185 (PartitionTopology) + P36 (PreconnectedSpace) => P129 (IndiscreteTopology) -/

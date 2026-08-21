@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P63.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T610: P63 (CechCompleteSpace) => P6 (T35Space) -/

@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P87.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T346: P87 (HasGroupTopology) => P137ᶜ (Nonempty) -/

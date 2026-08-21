@@ -8,8 +8,6 @@ public import PiBaseLean.Properties.P25.Bundled
 
 universe u
 
-open Topology Set Function
-
 namespace PiBase
 
 /-- Theorem T9: P16 (CompactSpace) => P25 (ExhaustibleByCompacts) -/
