@@ -12,8 +12,6 @@ open scoped ContinuousMap
 
 namespace PiBase
 
--- TODO: Add IsSimplyConnetced univ ↔ SimplyConnectedSpace X to mathlib
-
 /- Theorem 858: a simply connected space is weakly locally simply connected -/
 instance instWeaklyLocallySimplyConnectedSpaceOfSimplyConnectedSpace
     {X : Type*} [TopologicalSpace X] [h : PresimplyConnectedSpace X] :

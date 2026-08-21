@@ -134,7 +134,7 @@ theorem IsIrreducible.inseparableComponent (x : X) : IsIrreducible (InseparableC
 theorem subsingleton_iff_singleton_univ {α : Type u} (a : α) :
     Subsingleton α ↔ univ = {a} := by
   rw [← subsingleton_univ_iff, subsingleton_iff_singleton (mem_univ a)]
-section Symmetric --TODO: If we get significantly more, make this its own file
+section Symmetric -- if we get significantly more, make this its own file
 
 /-- A symmetric for of a set. -/
 class Symmetric (α : Type u) extends Dist α where

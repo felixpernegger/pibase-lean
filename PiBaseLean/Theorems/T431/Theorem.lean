@@ -12,7 +12,7 @@ universe u
 
 namespace PiBase
 
---TODO: Maybe change this once negations are properly implemented
+-- TODO: Should this be changed? In theory it should use "not Finite" instead of Infinite
 /-- Theorem 431: X infinite implies 4 ≤ |X| -/
 instance instCardGeFourOfNotFinite {X : Type u} [h : Infinite X] :
     CardGeFour X where
