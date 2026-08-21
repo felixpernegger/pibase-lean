@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.sigmaCompactSpace [SigmaCompactSpace X] (f : X ≃ₜ Y) : SigmaCompactSpace Y :=
@@ -15,7 +13,5 @@ theorem Homeomorph.sigmaCompactSpace [SigmaCompactSpace X] (f : X ≃ₜ Y) : Si
 
 theorem WellDefined.sigmaCompactSpace : WellDefined SigmaCompactSpace :=
   fun {_ _} _ _ h _ => Homeomorph.sigmaCompactSpace h.some
-
-end Meta
 
 end PiBase

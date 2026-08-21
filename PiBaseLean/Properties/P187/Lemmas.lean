@@ -88,9 +88,6 @@ end WGame
 
 end Formal
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.wSpace : WellDefined WSpace :=
@@ -107,7 +104,5 @@ theorem WellDefined.wSpace : WellDefined WSpace :=
         Tendsto (fun n => (Formal.wMoveComap φ (c (2 * n + 1))).1) atTop (𝓝 (φ.symm y))
       rw [φ.symm.isInducing.tendsto_nhds_iff (f := fun n => (c (2 * n + 1)).1)]
       simp [Function.comp_def, Formal.wMoveComap]
-
-end Meta
 
 end PiBase

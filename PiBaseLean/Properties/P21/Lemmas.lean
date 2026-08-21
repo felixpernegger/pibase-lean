@@ -9,8 +9,6 @@ namespace PiBase
 
 open Filter Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.weaklyCountablyCompact [WeaklyCountablyCompact X] (f : X ≃ₜ Y) :
@@ -31,7 +29,5 @@ theorem Homeomorph.weaklyCountablyCompact [WeaklyCountablyCompact X] (f : X ≃�
 
 theorem WellDefined.weaklyCountablyCompact : WellDefined WeaklyCountablyCompact :=
   fun {_ _} _ _ h _ ↦ Homeomorph.weaklyCountablyCompact h.some
-
-end Meta
 
 end PiBase

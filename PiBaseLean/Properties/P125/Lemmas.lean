@@ -6,8 +6,6 @@ public import PiBaseLean.Properties.P125.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.nontrivial [Nontrivial X] (f : X ≃ₜ Y) : Nontrivial Y :=
@@ -15,7 +13,5 @@ theorem Homeomorph.nontrivial [Nontrivial X] (f : X ≃ₜ Y) : Nontrivial Y :=
 
 theorem WellDefined.nontrivial : WellDefined (fun X => Nontrivial X) :=
   fun {_ _} _ _ h _ ↦ Homeomorph.nontrivial h.some
-
-end Meta
 
 end PiBase

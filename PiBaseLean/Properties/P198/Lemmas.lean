@@ -41,8 +41,6 @@ theorem hasCountableExtent_iff_discrete_countable :
 
 universe u
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 private lemma isDiscrete_image_homeomorph {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
@@ -117,7 +115,5 @@ theorem WellDefined.hasCountableExtent : WellDefined HasCountableExtent :=
     calc
       Extent Y = Extent X := hExtent_eq.symm
       _ = ℵ₀ := h_eq_X
-
-end Meta
 
 end PiBase

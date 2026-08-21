@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P15.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.perfectlyNormalSpace [PerfectlyNormalSpace X] (f : X ≃ₜ Y) :
@@ -17,7 +15,5 @@ theorem Homeomorph.perfectlyNormalSpace [PerfectlyNormalSpace X] (f : X ≃ₜ Y
 
 theorem WellDefined.perfectlyNormalSpace : WellDefined PerfectlyNormalSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.perfectlyNormalSpace h.some
-
-end Meta
 
 end PiBase

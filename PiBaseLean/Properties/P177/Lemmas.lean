@@ -8,8 +8,6 @@ import PiBaseLean.Properties.P117.Lemmas
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.sigmaSpace : WellDefined SigmaSpace :=
@@ -19,7 +17,5 @@ theorem WellDefined.sigmaSpace : WellDefined SigmaSpace :=
     have : HasSigmaLocallyFiniteNetwork _ :=
       WellDefined.hasSigmaLocallyFiniteNetwork.homeo φ h.toHasSigmaLocallyFiniteNetwork
     exact ⟨⟩
-
-end Meta
 
 end PiBase

@@ -8,14 +8,9 @@ import PiBaseLean.Properties.P162.Lemmas
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hereditarilyRealcompactSpace : WellDefined HereditarilyRealcompactSpace :=
   fun hXY hX => ⟨(Hereditarily.wellDefined WellDefined.realcompactSpace) hXY hX.subset_realcompact⟩
-
-end Meta
 
 end PiBase

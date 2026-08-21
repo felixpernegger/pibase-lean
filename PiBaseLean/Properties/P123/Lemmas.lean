@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.locallyNEuclideanSpace : WellDefined LocallyNEuclideanSpace :=
@@ -28,7 +25,5 @@ theorem WellDefined.locallyNEuclideanSpace : WellDefined LocallyNEuclideanSpace 
     have e1 : s ≃ₜ φ '' s := φ.image s
     obtain ⟨e2⟩ := hs_homeo
     exact ⟨φ '' s, h_img_mem, ⟨e1.symm.trans e2⟩⟩
-
-end Meta
 
 end PiBase

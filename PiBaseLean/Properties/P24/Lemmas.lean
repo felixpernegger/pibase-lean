@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.locallyRelativelyCompactSpace : WellDefined LocallyRelativelyCompactSpace :=
@@ -45,7 +42,5 @@ theorem WellDefined.locallyRelativelyCompactSpace : WellDefined LocallyRelativel
       · intro t ht
         exact ht.1
     exact h_target
-
-end Meta
 
 end PiBase

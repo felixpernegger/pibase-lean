@@ -7,6 +7,8 @@ public import PiBaseLean.Properties.P233.Defs
 
 namespace PiBase
 
+universe u
+
 open Topology Filter Set
 
 variable {X : Type*} [TopologicalSpace X]
@@ -64,9 +66,6 @@ theorem hasOpenPathComponents_iff_ex_connected_nbhd :
   apply isOpen_iff_mem_nhds.mpr fun y hy ↦ ?_
   obtain ⟨s, sy, hs⟩ := h y
   exact mem_of_superset sy <| hs.subset_pathComponent_of_mem (mem_of_mem_nhds sy) hy
-section Meta
-
-universe u
 
 theorem WellDefined.hasOpenPathComponents :
     WellDefined (fun (X : Type u) => HasOpenPathComponents X) :=
@@ -93,7 +92,5 @@ theorem WellDefined.hasOpenPathComponents :
     have h_sub_z : φ '' pathComponent w ⊆ pathComponent z :=
       h_pc.subset_pathComponent hz_mem
     rwa [pathComponent_congr hz] at h_sub_z
-
-end Meta
 
 end PiBase

@@ -9,8 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.stronglyZeroDimensionalSpace : WellDefined StronglyZeroDimensionalSpace :=
@@ -35,7 +33,5 @@ theorem WellDefined.stronglyZeroDimensionalSpace : WellDefined StronglyZeroDimen
     · calc t = φ '' (φ ⁻¹' t) := (φ.image_preimage t).symm
         _ ⊆ φ '' tX' := image_mono htXsub
     · rw [← image_inter φ.injective, hXdisj, image_empty]
-
-end Meta
 
 end PiBase

@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set Function
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.cozeroComplementedSpace : WellDefined CozeroComplementedSpace :=
@@ -80,7 +77,5 @@ theorem WellDefined.cozeroComplementedSpace : WellDefined CozeroComplementedSpac
           rw [h_pre_closure_univ, Set.preimage_univ]
         exact h_inj_pre this
       exact dense_iff_closure_eq.mpr h_closure_univ
-
-end Meta
 
 end PiBase

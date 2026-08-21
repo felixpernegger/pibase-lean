@@ -9,8 +9,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
 universe u v
 
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y]
@@ -65,7 +63,5 @@ theorem WellDefined.arcConnectedSpace : WellDefined ArcConnectedSpace :=
       rw [heq]
       exact h_map
     exact ⟨q, h_q⟩
-
-end Meta
 
 end PiBase

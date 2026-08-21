@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P184.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.embeddableInEuclideanSpace : WellDefined EmbeddableInEuclideanSpace :=
@@ -17,7 +14,5 @@ theorem WellDefined.embeddableInEuclideanSpace : WellDefined EmbeddableInEuclide
     let φ := hXY.some
     rcases h.embeddable with ⟨n, f, hf⟩
     exact ⟨n, f ∘ φ.symm, hf.comp φ.symm.isEmbedding⟩
-
-end Meta
 
 end PiBase

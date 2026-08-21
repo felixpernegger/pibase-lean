@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P85.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.basicallyDisconnectedSpace : WellDefined BasicallyDisconnectedSpace :=
@@ -31,7 +28,5 @@ theorem WellDefined.basicallyDisconnectedSpace : WellDefined BasicallyDisconnect
       (φ.preimage_closure U).symm
     have h_open_preimage : IsOpen (φ ⁻¹' closure U) := h_eq ▸ h_open_closure_pre
     exact (φ.isOpen_preimage).mp h_open_preimage
-
-end Meta
 
 end PiBase

@@ -9,8 +9,6 @@ namespace PiBase
 
 open Topology Filter
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.usSpace [h : UsSpace X] (f : X ≃ₜ Y) : UsSpace Y where
@@ -23,7 +21,5 @@ theorem Homeomorph.usSpace [h : UsSpace X] (f : X ≃ₜ Y) : UsSpace Y where
 
 theorem WellDefined.usSpace : WellDefined UsSpace :=
   fun {_ _} _ _ h _ => Homeomorph.usSpace h.some
-
-end Meta
 
 end PiBase

@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.locallyContractibleSpace : WellDefined LocallyContractibleSpace :=
@@ -44,7 +41,5 @@ theorem WellDefined.locallyContractibleSpace : WellDefined LocallyContractibleSp
       · intro t ht
         exact IsOpen.mem_nhds ht.1 ht.2.1
     exact h_target
-
-end Meta
 
 end PiBase

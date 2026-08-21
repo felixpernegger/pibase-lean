@@ -8,8 +8,6 @@ namespace PiBase
 
 open Topology Filter Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasSigmaLocallyFiniteNetwork : WellDefined HasSigmaLocallyFiniteNetwork :=
@@ -48,7 +46,5 @@ theorem WellDefined.hasSigmaLocallyFiniteNetwork : WellDefined HasSigmaLocallyFi
         obtain ⟨z, hz, rfl⟩ := hy
         have : z ∈ φ ⁻¹' s := hsub hz
         exact this
-
-end Meta
 
 end PiBase

@@ -8,13 +8,9 @@ import PiBaseLean.Properties.P30.Lemmas
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hereditarilyParacompact : WellDefined HereditarilyParacompact :=
   fun hXY hX => ⟨(Hereditarily.wellDefined WellDefined.paracompactSpace) hXY hX.subset_paracompact⟩
-
-end Meta
 
 end PiBase

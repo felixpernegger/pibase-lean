@@ -30,16 +30,11 @@ theorem HasMarkovKWinningStrategyB.rothbergerGame_of_homeomorph {k : ℕ} (φ : 
 
 end Rothberger
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.strategicallyRothbergerSpace : WellDefined StrategicallyRothbergerSpace :=
   fun {_ _} _ _ hXY h =>
     let φ := hXY.some
     ⟨fun hY ↦ (h.strategically_rothberger ⟨φ.symm hY.some⟩).rothbergerGame_of_homeomorph φ⟩
-
-end Meta
 
 end PiBase

@@ -1,6 +1,6 @@
 module
 
-public import PiBaseLean.Theorems.T27.BackgroundLemmas
+public import PiBaseLean.Theorems.T27.Lemmas
 
 @[expose] public section
 

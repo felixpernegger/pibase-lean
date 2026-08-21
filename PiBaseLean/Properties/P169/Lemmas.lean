@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P169.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.semiT2Space : WellDefined SemiT2Space :=
@@ -23,7 +20,5 @@ theorem WellDefined.semiT2Space : WellDefined SemiT2Space :=
       rw [← φ.image_closure, ← φ.image_interior, hs_reg]
     · rintro ⟨x, hx, rfl⟩
       exact hs_nmem (by simpa using hx)
-
-end Meta
 
 end PiBase

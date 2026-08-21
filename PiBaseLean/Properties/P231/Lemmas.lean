@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.weaklyLocallySimplyConnectedSpace :
@@ -30,7 +27,5 @@ theorem WellDefined.weaklyLocallySimplyConnectedSpace :
       have : SimplyConnectedSpace s := hs_sc
       exact e.symm.toHomotopyEquiv.simplyConnectedSpace
     exact ⟨φ '' s, h_img_mem, h_sc⟩
-
-end Meta
 
 end PiBase

@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.firstCountableTopology [FirstCountableTopology X] (f : X ≃ₜ Y) :
@@ -16,7 +14,5 @@ theorem Homeomorph.firstCountableTopology [FirstCountableTopology X] (f : X ≃�
 
 theorem WellDefined.firstCountableTopology : WellDefined FirstCountableTopology :=
   fun {_ _} _ _ h _ => Homeomorph.firstCountableTopology h.some
-
-end Meta
 
 end PiBase

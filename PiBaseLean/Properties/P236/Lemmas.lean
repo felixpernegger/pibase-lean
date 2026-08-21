@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.locallyNEuclideanHalfSpace : WellDefined LocallyNEuclideanHalfSpace :=
@@ -27,7 +24,5 @@ theorem WellDefined.locallyNEuclideanHalfSpace : WellDefined LocallyNEuclideanHa
       exact hU
     have e : U ≃ₜ φ '' U := φ.image U
     exact ⟨φ '' U, h_img_mem, f ∘ e.symm, hf.comp e.symm.isOpenEmbedding⟩
-
-end Meta
 
 end PiBase

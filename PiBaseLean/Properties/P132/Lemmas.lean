@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P132.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.gδSpace [h : GδSpace X] (f : X ≃ₜ Y) : GδSpace Y := by
@@ -22,7 +20,5 @@ theorem Homeomorph.gδSpace [h : GδSpace X] (f : X ≃ₜ Y) : GδSpace Y := by
 
 theorem WellDefined.gδSpace : WellDefined GδSpace :=
   fun {_ _} _ _ h _ => Homeomorph.gδSpace h.some
-
-end Meta
 
 end PiBase

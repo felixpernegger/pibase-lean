@@ -11,8 +11,6 @@ open Set Function
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
-section Meta
-
 theorem isInjPathConnectedSpace_of_injective_image {f : X → Y} (fc : Continuous f)
     {s : Set X} (fs : InjOn f s) (hs : IsInjPathConnected s) : IsInjPathConnected (f '' s) := by
   intro x y xy ⟨a, as, ax⟩ ⟨c, cs, cy⟩
@@ -35,8 +33,6 @@ theorem Homeomorph.injPathConnectedSpace [InjPathConnectedSpace X] (f : X ≃ₜ
 
 theorem WellDefined.injPathConnectedSpace : WellDefined InjPathConnectedSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.injPathConnectedSpace h.some
-
-end Meta
 
 theorem isInjPathConnected_iff_injPathConnectedSpace (s : Set X) :
     IsInjPathConnected s ↔ InjPathConnectedSpace s := by

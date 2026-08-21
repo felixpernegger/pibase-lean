@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P222.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasCofiniteTopology : WellDefined HasCofiniteTopology :=
@@ -54,7 +52,5 @@ theorem WellDefined.hasCofiniteTopology : WellDefined HasCofiniteTopology :=
         · rintro ⟨y, hy, rfl⟩; simpa using hy
       rw [heq2]
       exact hfin_s.image _
-
-end Meta
 
 end PiBase

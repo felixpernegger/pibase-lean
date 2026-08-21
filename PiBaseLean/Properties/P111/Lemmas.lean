@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hemicompactSpace : WellDefined HemicompactSpace :=
@@ -26,7 +23,5 @@ theorem WellDefined.hemicompactSpace : WellDefined HemicompactSpace :=
       obtain ⟨i, hi⟩ := hCof _ ht'
       refine ⟨i, fun y hy => ?_⟩
       exact ⟨φ.symm y, hi ⟨y, hy, rfl⟩, φ.apply_symm_apply y⟩
-
-end Meta
 
 end PiBase

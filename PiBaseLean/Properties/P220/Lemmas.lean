@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P220.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.ultraMetrizableSpace : WellDefined UltraMetrizableSpace :=
@@ -25,7 +23,5 @@ theorem WellDefined.ultraMetrizableSpace : WellDefined UltraMetrizableSpace :=
       rw [hcomap, hTopX]
       exact φ.symm.induced_eq
     exact ⟨mY, hUltraY, hTopY⟩
-
-end Meta
 
 end PiBase

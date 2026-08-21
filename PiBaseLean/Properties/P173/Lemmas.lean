@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology Filter Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.pseudoradialSpace : WellDefined PseudoradialSpace :=
@@ -36,7 +33,5 @@ theorem WellDefined.pseudoradialSpace : WellDefined PseudoradialSpace :=
     have h_symm_pre : IsClosed (φ.symm ⁻¹' (φ ⁻¹' s)) :=
       h_pre_closed.preimage φ.symm.continuous
     simpa [Set.preimage_preimage] using h_symm_pre
-
-end Meta
 
 end PiBase

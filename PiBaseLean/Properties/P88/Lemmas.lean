@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.collectionwiseNormalSpace : WellDefined CollectionwiseNormalSpace :=
@@ -50,7 +47,5 @@ theorem WellDefined.collectionwiseNormalSpace : WellDefined CollectionwiseNormal
         simp [hy]
       have h_mem_U : φ.symm y ∈ U i := hSub i h_mem_pre
       exact ⟨φ.symm y, h_mem_U, φ.apply_symm_apply y⟩
-
-end Meta
 
 end PiBase

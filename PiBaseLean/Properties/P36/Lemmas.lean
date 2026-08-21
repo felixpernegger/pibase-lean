@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
 universe u v
 
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y]
@@ -22,7 +20,5 @@ theorem Homeomorph.preconnectedSpace [PreconnectedSpace X] (f : X ≃ₜ Y) : Pr
   constructor
   convert isPreconnected_range f.continuous
   simp only [EquivLike.range_eq_univ]
-
-end Meta
 
 end PiBase

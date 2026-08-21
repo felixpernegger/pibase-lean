@@ -8,9 +8,6 @@ namespace PiBase
 
 open Topology Filter Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasSigmaLocallyFiniteBasis : WellDefined HasSigmaLocallyFiniteBasis :=
@@ -47,7 +44,5 @@ theorem WellDefined.hasSigmaLocallyFiniteBasis : WellDefined HasSigmaLocallyFini
       refine ⟨i, ⟨φ.symm y, hfi_mem, φ.apply_symm_apply y⟩, ?_⟩
       calc φ '' f i ⊆ φ '' (φ ⁻¹' s) := image_mono hfi_sub
         _ = s := φ.image_preimage s
-
-end Meta
 
 end PiBase

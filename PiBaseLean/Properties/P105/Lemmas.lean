@@ -9,8 +9,6 @@ namespace PiBase
 
 open Topology Filter Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.paraLindelofSpace : WellDefined ParaLindelofSpace :=
@@ -52,7 +50,5 @@ theorem WellDefined.paraLindelofSpace : WellDefined ParaLindelofSpace :=
       exact ⟨a, fun y hy => by
         obtain ⟨x, hxt, rfl⟩ := hy
         exact ha hxt⟩
-
-end Meta
 
 end PiBase

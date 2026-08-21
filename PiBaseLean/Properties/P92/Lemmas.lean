@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.kω3Space : WellDefined kω3Space :=
@@ -36,7 +33,5 @@ theorem WellDefined.kω3Space : WellDefined kω3Space :=
       · intro hs
         exact φ.isOpen_preimage.mp <| (hOpen _).mpr fun n =>
           (φ.image (K n)).isOpen_preimage.mpr (hs n)
-
-end Meta
 
 end PiBase

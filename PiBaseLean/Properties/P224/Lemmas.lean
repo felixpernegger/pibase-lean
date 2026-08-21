@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.weaklyLocallyContractibleSpace : WellDefined WeaklyLocallyContractibleSpace :=
@@ -30,7 +27,4 @@ theorem WellDefined.weaklyLocallyContractibleSpace : WellDefined WeaklyLocallyCo
       exact e.symm.contractibleSpace
     exact ⟨φ '' s, h_img_mem, h_contr⟩
 
-end Meta
-
 end PiBase
-

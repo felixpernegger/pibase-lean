@@ -9,8 +9,6 @@ namespace PiBase
 
 open Cardinal
 
-section Meta
-
 universe u v
 
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y]
@@ -28,7 +26,5 @@ theorem WellDefined.cardEqContinuum :
     WellDefined (fun (X : Type u) => CardEqContinuum X) :=
   fun {X Y} [TopologicalSpace X] [TopologicalSpace Y] h _ ↦
     Homeomorph.cardEqContinuum (X := X) h.some
-
-end Meta
 
 end PiBase

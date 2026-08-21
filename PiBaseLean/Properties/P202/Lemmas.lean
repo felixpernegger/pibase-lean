@@ -9,8 +9,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasPointWithUniqueNeighborhood : WellDefined HasPointWithUniqueNeighborhood :=
@@ -23,7 +21,5 @@ theorem WellDefined.hasPointWithUniqueNeighborhood : WellDefined HasPointWithUni
     calc 𝓝 (φ.some p) = Filter.map φ.some (𝓝 p) := h_map.symm
       _ = Filter.map φ.some ⊤ := by rw [hp]
       _ = ⊤ := h_top
-
-end Meta
 
 end PiBase

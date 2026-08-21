@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.metaLindelofSpace : WellDefined MetaLindelofSpace :=
@@ -46,7 +43,5 @@ theorem WellDefined.metaLindelofSpace : WellDefined MetaLindelofSpace :=
       intro y hy
       obtain ⟨x, hxt, rfl⟩ := hy
       exact ha hxt
-
-end Meta
 
 end PiBase

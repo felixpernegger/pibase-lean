@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P42.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.locallyPathConnectedSpace [h : LocallyPathConnectedSpace X]
@@ -18,7 +16,5 @@ theorem Homeomorph.locallyPathConnectedSpace [h : LocallyPathConnectedSpace X]
 theorem WellDefined.locallyPathConnectedSpace :
     WellDefined LocallyPathConnectedSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.locallyPathConnectedSpace h.some
-
-end Meta
 
 end PiBase

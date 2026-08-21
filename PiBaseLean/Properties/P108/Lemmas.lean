@@ -8,8 +8,6 @@ import PiBaseLean.Properties.P88.Lemmas
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hereditarilyCollectionwiseNormalSpace :
@@ -20,7 +18,5 @@ theorem WellDefined.hereditarilyCollectionwiseNormalSpace :
     intro s
     have hX := h.hereditarily_collectionwise_normal (φ ⁻¹' s)
     exact WellDefined.collectionwiseNormalSpace.homeo (IsHomeo.subset_preimage φ s).some hX
-
-end Meta
 
 end PiBase

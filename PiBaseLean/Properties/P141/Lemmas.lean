@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P141.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.compactlyGeneratedSpace : WellDefined CompactlyGeneratedSpace :=
@@ -28,7 +25,5 @@ theorem WellDefined.compactlyGeneratedSpace : WellDefined CompactlyGeneratedSpac
     have h_eq : s = φ '' (φ ⁻¹' s) := (φ.image_preimage s).symm
     rw [h_eq]
     exact φ.isClosed_image.mpr h_pre_closed
-
-end Meta
 
 end PiBase

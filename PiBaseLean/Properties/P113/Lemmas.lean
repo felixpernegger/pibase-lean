@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P113.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.mooreSpace : WellDefined MooreSpace :=
@@ -20,7 +18,5 @@ theorem WellDefined.mooreSpace : WellDefined MooreSpace :=
     have := hT3
     have hT3Y := φ.t3Space
     exact { toDevelopableSpace := hDevY, toT3Space := hT3Y }
-
-end Meta
 
 end PiBase

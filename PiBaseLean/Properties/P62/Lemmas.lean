@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.weaklyLindelofSpace : WellDefined WeaklyLindelofSpace :=
@@ -39,7 +36,5 @@ theorem WellDefined.weaklyLindelofSpace : WellDefined WeaklyLindelofSpace :=
         _ = φ '' univ := by rw [h_closure_X]
         _ = univ := image_univ_of_surjective φ.surjective
     exact dense_iff_closure_eq.mpr h_closure_Y
-
-end Meta
 
 end PiBase

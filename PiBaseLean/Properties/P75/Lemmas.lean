@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P75.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.spectralSpace [h : SpectralSpace X] (f : X ≃ₜ Y) :
@@ -17,7 +15,5 @@ theorem Homeomorph.spectralSpace [h : SpectralSpace X] (f : X ≃ₜ Y) :
 
 theorem WellDefined.spectralSpace : WellDefined SpectralSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.spectralSpace h.some
-
-end Meta
 
 end PiBase

@@ -20,9 +20,6 @@ theorem image_transEquiv {α β γ : Type*} (e : PartialEquiv α β) (g : β ≃
 
 end Formal
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.cWComplexSpace : WellDefined CWComplexSpace :=
@@ -72,7 +69,5 @@ theorem WellDefined.cWComplexSpace : WellDefined CWComplexSpace :=
           _ = φ '' (univ : Set _) := by rw [hX.union']
           _ = univ := by rw [Set.image_univ, φ.surjective.range_eq]
     }
-
-end Meta
 
 end PiBase

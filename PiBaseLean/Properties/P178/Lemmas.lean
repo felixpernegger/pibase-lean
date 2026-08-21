@@ -8,8 +8,6 @@ import PiBaseLean.Properties.P118.Lemmas
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.alephSpace : WellDefined AlephSpace :=
@@ -19,7 +17,5 @@ theorem WellDefined.alephSpace : WellDefined AlephSpace :=
     have : HasSigmaLocallyFiniteKNetwork _ :=
       WellDefined.hasSigmaLocallyFiniteKNetwork.homeo φ h.toHasSigmaLocallyFiniteKNetwork
     exact ⟨⟩
-
-end Meta
 
 end PiBase

@@ -1,5 +1,8 @@
 module
 
+public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P191.Bundled
+public import PiBaseLean.Properties.P2.Bundled
 public import PiBaseLean.Theorems.T500.Lemmas
 
 @[expose] public section
@@ -23,3 +26,9 @@ instance instT1SpaceOfHasGδSingletons {X : Type u}
     exact interior_subset sy
 
 end PiBase
+
+namespace PiBase.Formal
+
+theorem T500 : P191 ≤ P2 := fun X _ h ↦ @instT1SpaceOfHasGδSingletons X _ h
+
+end PiBase.Formal

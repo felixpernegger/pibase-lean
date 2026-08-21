@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P104.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.symmetrizableSpace : WellDefined SymmetrizableSpace :=
@@ -55,7 +52,5 @@ theorem WellDefined.symmetrizableSpace : WellDefined SymmetrizableSpace :=
             change dist x' x ≤ ε at hx'
             simpa using hx' }
     exact ⟨⟨symY⟩⟩
-
-end Meta
 
 end PiBase

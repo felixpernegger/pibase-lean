@@ -11,9 +11,6 @@ open TopologicalSpace
 
 universe u
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.artinianSpace : WellDefined ArtinianSpace :=
@@ -36,7 +33,5 @@ theorem WellDefined.artinianSpace : WellDefined ArtinianSpace :=
         WellFounded (fun (a b : Closeds X) => a > b) :=
       Function.Surjective.wellFounded_iff hf_surj (fun {a b} => hf_gt_iff a b)
     exact ⟨hwf_iff.mpr h.wf⟩
-
-end Meta
 
 end PiBase

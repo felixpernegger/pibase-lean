@@ -26,13 +26,9 @@ theorem Homeomorph.lots {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     rw [f.symm.range_coe]
     exact Set.ordConnected_univ
 
-section Meta
-
 theorem WellDefined.lots : WellDefined Lots :=
   fun {_ _} _ _ hXY h =>
     let φ := hXY.some
     Homeomorph.lots (h := h) φ
-
-end Meta
 
 end PiBase

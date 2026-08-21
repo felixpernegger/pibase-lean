@@ -9,8 +9,6 @@ namespace PiBase
 
 open TopologicalSpace
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.isCompletelyMetrizableSpace [h : IsCompletelyMetrizableSpace X]
@@ -19,7 +17,5 @@ theorem Homeomorph.isCompletelyMetrizableSpace [h : IsCompletelyMetrizableSpace 
 
 theorem WellDefined.isCompletelyMetrizableSpace : WellDefined IsCompletelyMetrizableSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.isCompletelyMetrizableSpace h.some
-
-end Meta
 
 end PiBase

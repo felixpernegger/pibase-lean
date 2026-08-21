@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P73.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem soberSpace_iff_ex_unique_generic :
@@ -36,7 +34,5 @@ theorem Homeomorph.soberSpace [h : SoberSpace X] (f : X ≃ₜ Y) : SoberSpace Y
 
 theorem WellDefined.soberSpace : WellDefined SoberSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.soberSpace h.some
-
-end Meta
 
 end PiBase

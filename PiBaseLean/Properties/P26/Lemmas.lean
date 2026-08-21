@@ -8,8 +8,6 @@ namespace PiBase
 
 open TopologicalSpace
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.separableSpace [SeparableSpace X] (f : X ≃ₜ Y) : SeparableSpace Y :=
@@ -17,7 +15,5 @@ theorem Homeomorph.separableSpace [SeparableSpace X] (f : X ≃ₜ Y) : Separabl
 
 theorem WellDefined.separableSpace : WellDefined SeparableSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.separableSpace h.some
-
-end Meta
 
 end PiBase

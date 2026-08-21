@@ -36,15 +36,11 @@ theorem preirreducibleSpace_iff_open_dense (X : Type*) [TopologicalSpace X] :
   simp only [univ_inter, univ_subset_iff, Dense]
   grind
 
-section Meta
-
 theorem Homeomorph.preirreducibleSpace [PreirreducibleSpace X] (f : X ≃ₜ Y) :
     PreirreducibleSpace Y :=
   f.surjective.preirreducibleSpace f.continuous
 
 theorem WellDefined.preirreducibleSpace : WellDefined PreirreducibleSpace :=
   fun {_ _} _ _ h _ => Homeomorph.preirreducibleSpace h.some
-
-end Meta
 
 end PiBase

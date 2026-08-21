@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P126.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.doorSpace : WellDefined DoorSpace :=
@@ -20,7 +17,5 @@ theorem WellDefined.doorSpace : WellDefined DoorSpace :=
         rcases hs with ho | hc
         · left; exact φ.isOpen_preimage.mp ho
         · right; exact φ.isClosed_preimage.mp hc⟩
-
-end Meta
 
 end PiBase

@@ -9,8 +9,6 @@ import Mathlib.Logic.Equiv.Pairwise
 
 namespace PiBase
 
-section Meta
-
 universe u v
 
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y]
@@ -30,7 +28,5 @@ theorem Homeomorph.functionallyT2Space [h : FunctionallyT2Space X] (f : X ≃ₜ
   intro x y hxy
   rcases h.functionally_t2 hxy with ⟨g, g₀, g₁⟩
   refine ⟨g.comp (f.symm : C(Y, X)), ?_, ?_⟩ <;> simpa
-
-end Meta
 
 end PiBase

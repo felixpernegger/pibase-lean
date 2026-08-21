@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.discreteTopology [h : DiscreteTopology X] (f : X ≃ₜ Y) :
@@ -16,7 +14,5 @@ theorem Homeomorph.discreteTopology [h : DiscreteTopology X] (f : X ≃ₜ Y) :
 
 theorem WellDefined.discreteTopology : WellDefined DiscreteTopology :=
   fun {_ _} _ _ h _ ↦ Homeomorph.discreteTopology h.some
-
-end Meta
 
 end PiBase

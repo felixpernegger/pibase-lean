@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P201.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasGenericPoint : WellDefined HasGenericPoint :=
@@ -19,7 +16,5 @@ theorem WellDefined.hasGenericPoint : WellDefined HasGenericPoint :=
     refine ⟨φ x, ?_⟩
     simp only [IsGenericPoint] at xg ⊢
     simpa [φ.image_closure] using congrArg (Set.image φ) xg
-
-end Meta
 
 end PiBase

@@ -9,9 +9,6 @@ import PiBaseLean.Properties.P182.Lemmas
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.cosmicSpace : WellDefined CosmicSpace :=
@@ -19,7 +16,5 @@ theorem WellDefined.cosmicSpace : WellDefined CosmicSpace :=
     let φ := hXY.some
     @CosmicSpace.mk _ _ (WellDefined.t3Space.homeo φ h.toT3Space)
       (WellDefined.hasCountableNetwork.homeo φ h.toHasCountableNetwork)
-
-end Meta
 
 end PiBase

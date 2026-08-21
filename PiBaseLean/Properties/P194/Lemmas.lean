@@ -9,8 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.submetacompactSpace : WellDefined SubmetacompactSpace :=
@@ -57,7 +55,5 @@ theorem WellDefined.submetacompactSpace : WellDefined SubmetacompactSpace :=
       change {i | y ∈ φ '' (t n i)}.Finite
       rw [h_equiv]
       exact hn
-
-end Meta
 
 end PiBase

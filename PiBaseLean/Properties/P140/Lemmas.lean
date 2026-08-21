@@ -7,8 +7,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.compactlyCoherentSpace : WellDefined CompactlyCoherentSpace :=
@@ -41,7 +39,5 @@ theorem WellDefined.compactlyCoherentSpace : WellDefined CompactlyCoherentSpace 
       rw [h_eq]
       exact e.isOpen_preimage.mpr hY
     exact φ.isOpen_preimage.mp h_pre_open
-
-end Meta
 
 end PiBase

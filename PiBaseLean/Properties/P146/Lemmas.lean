@@ -8,9 +8,6 @@ namespace PiBase
 
 open Set
 
-
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.ultraparacompactSpace : WellDefined UltraparacompactSpace :=
@@ -58,7 +55,5 @@ theorem WellDefined.ultraparacompactSpace : WellDefined UltraparacompactSpace :=
         _ ⊆ φ '' (φ ⁻¹' (s a)) := image_mono ha
         _ ⊆ s a := image_preimage_subset _ _
       exact ⟨a, h_sub⟩
-
-end Meta
 
 end PiBase

@@ -8,8 +8,6 @@ namespace PiBase
 
 open Topology Filter Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasSigmaLocallyFiniteKNetwork : WellDefined HasSigmaLocallyFiniteKNetwork :=
@@ -59,7 +57,5 @@ theorem WellDefined.hasSigmaLocallyFiniteKNetwork : WellDefined HasSigmaLocallyF
       · calc (⋃ i ∈ s, φ '' f i : Set Y) = φ '' (⋃ i ∈ s, f i) := by rw [image_iUnion₂]
           _ ⊆ φ '' (φ ⁻¹' U) := by exact image_mono hsUniv
           _ ⊆ U := by exact image_preimage_subset φ _
-
-end Meta
 
 end PiBase

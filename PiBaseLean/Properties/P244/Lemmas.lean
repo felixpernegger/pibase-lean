@@ -8,9 +8,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasCountablePiCharacter : WellDefined HasCountablePiCharacter :=
@@ -43,7 +40,5 @@ theorem WellDefined.hasCountablePiCharacter : WellDefined HasCountablePiCharacte
     refine ⟨φ '' t, ⟨t, htMem, rfl⟩, ?_⟩
     calc φ '' t ⊆ φ '' (φ ⁻¹' U) := Set.image_mono htSub
       _ ⊆ U := Set.image_preimage_subset _ _
-
-end Meta
 
 end PiBase

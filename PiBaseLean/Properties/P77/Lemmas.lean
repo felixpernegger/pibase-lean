@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P77.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.corsonCompactSpace : WellDefined CorsonCompactSpace :=
@@ -21,7 +18,5 @@ theorem WellDefined.corsonCompactSpace : WellDefined CorsonCompactSpace :=
       toCompactSpace := @Homeomorph.compactSpace _ _ _ _ h.toCompactSpace φ
       isHomoeo_subset := ⟨α, f ∘ φ.symm, hf.comp φ.symm.isEmbedding⟩
     }
-
-end Meta
 
 end PiBase

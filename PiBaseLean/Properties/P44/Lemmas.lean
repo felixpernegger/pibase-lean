@@ -6,9 +6,6 @@ public import PiBaseLean.Properties.P44.Defs
 
 namespace PiBase
 
-
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.biconnectedSpace : WellDefined BiconnectedSpace :=
@@ -28,7 +25,5 @@ theorem WellDefined.biconnectedSpace : WellDefined BiconnectedSpace :=
     obtain ⟨x, hxs, hxv⟩ :=
       h.no_partition _ _ hCsX (hNs.preimage φ.surjective) hCvX (hNv.preimage φ.surjective)
     exact ⟨φ x, hxs, hxv⟩
-
-end Meta
 
 end PiBase

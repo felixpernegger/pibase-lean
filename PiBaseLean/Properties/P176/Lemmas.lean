@@ -11,8 +11,6 @@ open Cardinal
 
 universe u v
 
-section Meta
-
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.cardGeFour [h : CardGeFour X] (f : X ≃ₜ Y) : CardGeFour Y where
@@ -25,7 +23,5 @@ theorem Homeomorph.cardGeFour [h : CardGeFour X] (f : X ≃ₜ Y) : CardGeFour Y
 
 theorem WellDefined.cardGeFour : WellDefined fun X => CardGeFour X :=
   fun {_ _} _ _ h _ ↦ Homeomorph.cardGeFour h.some
-
-end Meta
 
 end PiBase

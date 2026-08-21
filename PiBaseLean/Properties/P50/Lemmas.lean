@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P50.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.zeroDimensionalSpace : WellDefined ZeroDimensionalSpace :=
@@ -20,7 +18,5 @@ theorem WellDefined.zeroDimensionalSpace : WellDefined ZeroDimensionalSpace :=
     have hc : IsClopen s := Bc s sB
     -- IsClopen = IsClosed ∧ IsOpen, so order is ⟨closed, open⟩
     exact ⟨φ.isClosedMap _ hc.1, φ.isOpenMap _ hc.2⟩
-
-end Meta
 
 end PiBase

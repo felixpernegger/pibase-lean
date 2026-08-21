@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P133.Lemmas
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.locallyOrderableSpace : WellDefined LocallyOrderableSpace :=
@@ -22,7 +20,5 @@ theorem WellDefined.locallyOrderableSpace : WellDefined LocallyOrderableSpace :=
       exact Filter.mem_map.mpr (Filter.mem_of_superset hs_mem (Set.subset_preimage_image φ s))
     · have hHomeo : s ≃ₜ φ '' s := φ.image s
       exact WellDefined.lots.homeo hHomeo hs_lots
-
-end Meta
 
 end PiBase

@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.semilocallyContractibleSpace : WellDefined SemilocallyContractibleSpace :=
@@ -67,7 +64,5 @@ theorem WellDefined.semilocallyContractibleSpace : WellDefined SemilocallyContra
       change φ (fX 1 (to_sX a)) = φ (fX 1 (to_sX b))
       rw [hfX_one (to_sX a) (to_sX b)]
     exact ⟨φ '' sX, hsY, fY, h_fY_cont, h_fY_zero, h_fY_one⟩
-
-end Meta
 
 end PiBase

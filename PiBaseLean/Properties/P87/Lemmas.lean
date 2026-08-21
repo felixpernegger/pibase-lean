@@ -9,9 +9,6 @@ import Mathlib.Algebra.Group.TransferInstance
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasGroupTopology : WellDefined HasGroupTopology :=
@@ -22,7 +19,5 @@ theorem WellDefined.hasGroupTopology : WellDefined HasGroupTopology :=
     refine ⟨H, @IsTopologicalGroup.mk Y _ H
       ⟨(?_ : Continuous fun (p : Y × Y) ↦ φ (φ.symm p.1 * φ.symm p.2))⟩
       ⟨(?_ : Continuous fun p ↦ φ (φ.symm p)⁻¹)⟩⟩ <;> fun_prop
-
-end Meta
 
 end PiBase

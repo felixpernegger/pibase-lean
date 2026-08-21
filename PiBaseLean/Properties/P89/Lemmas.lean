@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P89.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.fixedPointSpace : WellDefined FixedPointSpace :=
@@ -18,7 +15,5 @@ theorem WellDefined.fixedPointSpace : WellDefined FixedPointSpace :=
     refine ⟨fun f ↦ ?_⟩
     rcases h.fixed_point (((φ.symm : C(Y, X)).comp f).comp (φ : C(X, Y))) with ⟨x, xfx⟩
     exact ⟨φ x, φ.symm_apply_eq.1 xfx⟩
-
-end Meta
 
 end PiBase

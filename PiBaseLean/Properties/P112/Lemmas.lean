@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P112.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.submetrizableSpace : WellDefined SubmetrizableSpace :=
@@ -26,7 +23,5 @@ theorem WellDefined.submetrizableSpace : WellDefined SubmetrizableSpace :=
       (isOpen_induced_iff (t := mX.toUniformSpace.toTopologicalSpace) (f := φ.symm)).mp hs
     rw [← hus]
     exact (hm u hu).preimage φ.symm.continuous
-
-end Meta
 
 end PiBase

@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P246.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 -- Transport
@@ -85,7 +82,5 @@ theorem WellDefined.collectionwiseHausdorffSpace : WellDefined CollectionwiseHau
         exact hy_v
       have hx_eq_x0 : x = x0 := hx0_uniq _ ⟨hx_pre, hx_t⟩
       rw [← hx_eq, hx_eq_x0]
-
-end Meta
 
 end PiBase

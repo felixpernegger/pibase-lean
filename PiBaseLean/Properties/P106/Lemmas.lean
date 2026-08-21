@@ -9,8 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasGδDiagonal : WellDefined HasGδDiagonal :=
@@ -20,7 +18,5 @@ theorem WellDefined.hasGδDiagonal : WellDefined HasGδDiagonal :=
     let Φ : Y × Y ≃ₜ X × X := φ.symm.prodCongr φ.symm
     convert IsGδ.preimage Φ.continuous h.has_g_delta_diagonal
     simp [Φ, diagonal]
-
-end Meta
 
 end PiBase

@@ -7,6 +7,8 @@ public import PiBaseLean.Properties.P234.Defs
 
 namespace PiBase
 
+universe u
+
 open Topology Filter
 
 variable {X : Type*} [TopologicalSpace X]
@@ -44,10 +46,6 @@ theorem hasOpenConnectedComponents_iff_ex_connected_nbhd :
   obtain ⟨s, sy, hs⟩ := h y
   exact mem_of_superset sy <| hs.subset_connectedComponent_of_mem (mem_of_mem_nhds sy) hy
 
-section Meta
-
-universe u
-
 theorem WellDefined.hasOpenConnectedComponents :
     WellDefined (fun (X : Type u) => HasOpenConnectedComponents X) :=
   fun {_ _} _ _ hXY h => by
@@ -71,7 +69,5 @@ theorem WellDefined.hasOpenConnectedComponents :
     have h_sub_z : φ '' connectedComponent w ⊆ connectedComponent z :=
       h_conn.subset_connectedComponent hz_mem
     rwa [connectedComponent_eq_iff_mem.mpr hz] at h_sub_z
-
-end Meta
 
 end PiBase

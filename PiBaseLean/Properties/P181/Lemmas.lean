@@ -9,8 +9,6 @@ namespace PiBase
 
 universe u v
 
-section Meta
-
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.countablyInfinite [h : CountablyInfinite X] (f : X ≃ₜ Y) :
@@ -20,7 +18,5 @@ theorem Homeomorph.countablyInfinite [h : CountablyInfinite X] (f : X ≃ₜ Y) 
 
 theorem WellDefined.countablyInfinite : WellDefined fun X => CountablyInfinite X :=
   fun {_ _} _ _ h _ ↦ Homeomorph.countablyInfinite h.some
-
-end Meta
 
 end PiBase

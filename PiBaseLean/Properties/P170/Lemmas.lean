@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P170.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.k1T2Space : WellDefined K1T2Space :=
@@ -23,7 +20,5 @@ theorem WellDefined.k1T2Space : WellDefined K1T2Space :=
     -- Restricted homeomorphism (φ.symm '' s) ≃ₜ s transports T₂
     have e : (φ.symm '' s : Set _) ≃ₜ (s : Set _) := (φ.symm.image s).symm
     exact e.t2Space (X := (φ.symm '' s : Set _)) (Y := (s : Set _))
-
-end Meta
 
 end PiBase

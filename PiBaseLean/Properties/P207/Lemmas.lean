@@ -9,8 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.stronglyCollectionwiseNormalSpace :
@@ -35,7 +33,5 @@ theorem WellDefined.stronglyCollectionwiseNormalSpace :
     have hmem : (φ.symm y₁, φ.symm y₂) ∈ Prod.map (φ : X → Y) φ ⁻¹' sY :=
       htX_comp ⟨φ.symm y, hy₁, hy₂⟩
     simpa using hmem
-
-end Meta
 
 end PiBase

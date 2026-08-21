@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.totallyDisconnectedSpace [h : TotallyDisconnectedSpace X]
@@ -16,7 +14,5 @@ theorem Homeomorph.totallyDisconnectedSpace [h : TotallyDisconnectedSpace X]
 
 theorem WellDefined.totallyDisconnectedSpace : WellDefined TotallyDisconnectedSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.totallyDisconnectedSpace h.some
-
-end Meta
 
 end PiBase

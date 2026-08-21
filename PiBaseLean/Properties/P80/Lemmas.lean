@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P80.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.frechetUrysohnSpace [h : FrechetUrysohnSpace X] (f : X ≃ₜ Y) :
@@ -17,7 +15,5 @@ theorem Homeomorph.frechetUrysohnSpace [h : FrechetUrysohnSpace X] (f : X ≃ₜ
 
 theorem WellDefined.frechetUrysohnSpace : WellDefined FrechetUrysohnSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.frechetUrysohnSpace h.some
-
-end Meta
 
 end PiBase

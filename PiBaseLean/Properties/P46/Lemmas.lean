@@ -48,8 +48,6 @@ theorem totallyPathDisconnectedSpace_iff_pathComponent_singleton :
   have : y ∈ ({x} : Set X) := h x ▸ xy
   simp_all
 
-section Meta
-
 theorem WellDefined.totallyPathDisconnectedSpace : WellDefined TotallyPathDisconnectedSpace :=
   fun {X Y} _ _ hXY h => by
     let φ := hXY.some
@@ -70,7 +68,5 @@ theorem WellDefined.totallyPathDisconnectedSpace : WellDefined TotallyPathDiscon
     -- push constant through φ : f t = φ (φ.symm (f t)) = φ x
     calc f t = φ (φ.symm (f t)) := (φ.apply_symm_apply (f t)).symm
       _ = φ x := by rw [hxt]
-
-end Meta
 
 end PiBase

@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P12.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.completelyRegularSpace [CompletelyRegularSpace X] (f : X ≃ₜ Y) :
@@ -17,7 +15,5 @@ theorem Homeomorph.completelyRegularSpace [CompletelyRegularSpace X] (f : X ≃�
 
 theorem WellDefined.completelyRegularSpace : WellDefined CompletelyRegularSpace :=
   fun {_ _} _ _ h _ => Homeomorph.completelyRegularSpace h.some
-
-end Meta
 
 end PiBase

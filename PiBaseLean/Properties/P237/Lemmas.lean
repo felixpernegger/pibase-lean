@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P237.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.topologicalNManifoldWithBoundary :
@@ -21,7 +18,5 @@ theorem WellDefined.topologicalNManifoldWithBoundary :
     let hL : LocallyNEuclideanHalfSpace _ :=
       WellDefined.locallyNEuclideanHalfSpace.homeo φ h.toLocallyNEuclideanHalfSpace
     @TopologicalNManifoldWithBoundary.mk _ _ hSC hT2 hL
-
-end Meta
 
 end PiBase

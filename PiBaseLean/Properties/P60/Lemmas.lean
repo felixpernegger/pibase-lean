@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P60.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.stronglyConnectedSpace [h : StronglyConnectedSpace X] (f : X ≃ₜ Y) :
@@ -21,7 +19,5 @@ theorem Homeomorph.stronglyConnectedSpace [h : StronglyConnectedSpace X] (f : X 
 
 theorem WellDefined.stronglyConnectedSpace : WellDefined StronglyConnectedSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.stronglyConnectedSpace h.some
-
-end Meta
 
 end PiBase

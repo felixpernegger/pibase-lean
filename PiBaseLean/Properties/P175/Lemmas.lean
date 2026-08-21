@@ -11,8 +11,6 @@ open Cardinal
 
 universe u v
 
-section Meta
-
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.cardGeThree [h : CardGeThree X] (f : X ≃ₜ Y) : CardGeThree Y where
@@ -25,7 +23,5 @@ theorem Homeomorph.cardGeThree [h : CardGeThree X] (f : X ≃ₜ Y) : CardGeThre
 
 theorem WellDefined.cardGeThree : WellDefined fun X => CardGeThree X :=
   fun {_ _} _ _ h _ ↦ Homeomorph.cardGeThree h.some
-
-end Meta
 
 end PiBase

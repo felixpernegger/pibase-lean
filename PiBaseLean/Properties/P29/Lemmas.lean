@@ -22,9 +22,6 @@ theorem countableChainCondition_iff_ex_nonempty_chain (X : Type*) [TopologicalSp
   apply h (PairwiseDisjoint.subset Sd sdiff_subset) fun _ h ↦ So _ h.1
   simp
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.countableChainCondition : WellDefined CountableChainCondition :=
@@ -48,7 +45,5 @@ theorem WellDefined.countableChainCondition : WellDefined CountableChainConditio
     have hT_countable : T.Countable :=
       h.countable_chain_condition hT_disj hT_open
     exact Set.countable_of_injective_of_countable_image hPreInj.injOn hT_countable
-
-end Meta
 
 end PiBase

@@ -9,9 +9,6 @@ namespace PiBase
 
 open Cardinal
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 -- Transport
@@ -36,7 +33,5 @@ theorem WellDefined.hasClosedDiscreteSubsetCardContinuum :
       exact φ.isClosed_image.mpr h_closed
     · -- cardinal via mk_image_eq
       rw [mk_image_eq φ.injective, h_card]
-
-end Meta
 
 end PiBase

@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set Function
 
-
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.weakT2Space : WellDefined WeakT2Space :=
@@ -37,7 +34,5 @@ theorem WellDefined.weakT2Space : WellDefined WeakT2Space :=
     rw [← φ.isClosed_preimage]
     rw [h_eq]
     exact h.compact_closed tK (φ.symm.continuous.comp hfCont) hComp hT2
-
-end Meta
 
 end PiBase

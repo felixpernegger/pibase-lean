@@ -8,9 +8,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.wellBasedSpace : WellDefined WellBasedSpace :=
@@ -27,7 +24,5 @@ theorem WellDefined.wellBasedSpace : WellDefined WellBasedSpace :=
       rcases hs_ord i j with hij | hij
       · exact Or.inl (Set.image_mono hij)
       · exact Or.inr (Set.image_mono hij)
-
-end Meta
 
 end PiBase

@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set TopologicalSpace
 
-
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.kLindelofSpace : WellDefined KLindelofSpace :=
@@ -108,7 +105,5 @@ theorem WellDefined.kLindelofSpace : WellDefined KLindelofSpace :=
         _ = φ '' (φ ⁻¹' (↑(f i) : Set Y)) := by rw [h_eq_set]
         _ = (↑(f i) : Set Y) := φ.image_preimage _
     exact ⟨i, Opens.ext h_g'_eq_set.symm⟩
-
-end Meta
 
 end PiBase

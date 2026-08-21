@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P159.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.kMengerSpace : WellDefined KMengerSpace :=
@@ -83,7 +81,5 @@ theorem WellDefined.kMengerSpace : WellDefined KMengerSpace :=
       calc K = φ '' (φ ⁻¹' K) := (φ.image_preimage K).symm
         _ ⊆ φ '' (U' n i) := Set.image_mono ht_sub
         _ = U n i := φ.image_preimage _
-
-end Meta
 
 end PiBase

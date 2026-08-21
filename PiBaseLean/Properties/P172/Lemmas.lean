@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology Filter Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.radialSpace : WellDefined RadialSpace :=
@@ -39,7 +36,5 @@ theorem WellDefined.radialSpace : WellDefined RadialSpace :=
         simp only [φ.apply_symm_apply] at h
         exact h
       exact h_comp
-
-end Meta
 
 end PiBase

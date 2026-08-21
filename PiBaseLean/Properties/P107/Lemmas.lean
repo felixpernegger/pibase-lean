@@ -9,8 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasClosedPoint : WellDefined HasClosedPoint :=
@@ -20,7 +18,5 @@ theorem WellDefined.hasClosedPoint : WellDefined HasClosedPoint :=
     refine ⟨φ x, ?_⟩
     convert φ.isClosed_image.2 hx
     simp only [image_singleton]
-
-end Meta
 
 end PiBase

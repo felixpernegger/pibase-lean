@@ -9,8 +9,6 @@ namespace PiBase
 
 open Topology Filter
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.seqDiscreteSpace [h : SeqDiscreteSpace X] (f : X ≃ₜ Y) :
@@ -23,7 +21,5 @@ theorem Homeomorph.seqDiscreteSpace [h : SeqDiscreteSpace X] (f : X ≃ₜ Y) :
 
 theorem WellDefined.seqDiscreteSpace : WellDefined SeqDiscreteSpace :=
   fun {_ _} _ _ h _ => Homeomorph.seqDiscreteSpace h.some
-
-end Meta
 
 end PiBase

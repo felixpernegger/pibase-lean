@@ -9,9 +9,6 @@ namespace PiBase
 
 open Cardinal
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.densityLeContinuum : WellDefined DensityLeContinuum :=
@@ -29,7 +26,5 @@ theorem WellDefined.densityLeContinuum : WellDefined DensityLeContinuum :=
     · have hEq : #(φ '' s) = #s := Cardinal.mk_image_eq φ.injective
       calc #(φ '' s) = #s := hEq
         _ ≤ 𝔠 := hLe
-
-end Meta
 
 end PiBase

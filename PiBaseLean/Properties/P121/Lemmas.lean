@@ -11,8 +11,6 @@ open TopologicalSpace
 
 universe u
 
-section Meta
-
 --inline this
 lemma pseudoMetrizableSpace_iff_exists_pseudoMetric (X : Type u) [τ : TopologicalSpace X] :
     PseudoMetrizableSpace X ↔
@@ -37,7 +35,5 @@ theorem WellDefined.pseudoMetrizableSpace : WellDefined PseudoMetrizableSpace :=
   fun {_ _} _ _ hXY _ =>
     let φ := hXY.some
     φ.symm.isInducing.pseudoMetrizableSpace
-
-end Meta
 
 end PiBase

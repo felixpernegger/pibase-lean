@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.k2T2Space : WellDefined K2T2Space :=
@@ -34,7 +31,5 @@ theorem WellDefined.k2T2Space : WellDefined K2T2Space :=
         change φ.symm (f k).1 = φ.symm (f k).2
         rw [hk']
     exact h_eq ▸ hclosed
-
-end Meta
 
 end PiBase

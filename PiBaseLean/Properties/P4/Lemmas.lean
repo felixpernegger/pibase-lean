@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.t25Space [T25Space X] (f : X ≃ₜ Y) : T25Space Y :=
@@ -15,7 +13,5 @@ theorem Homeomorph.t25Space [T25Space X] (f : X ≃ₜ Y) : T25Space Y :=
 
 theorem WellDefined.t25Space : WellDefined T25Space :=
   fun {_ _} _ _ h _ => Homeomorph.t25Space h.some
-
-end Meta
 
 end PiBase

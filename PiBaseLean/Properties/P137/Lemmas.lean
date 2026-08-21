@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.isEmpty [IsEmpty X] (f : X ≃ₜ Y) : IsEmpty Y :=
@@ -15,7 +13,5 @@ theorem Homeomorph.isEmpty [IsEmpty X] (f : X ≃ₜ Y) : IsEmpty Y :=
 
 theorem WellDefined.isEmpty : WellDefined (fun X => IsEmpty X) :=
   fun {_ _} _ _ h _ ↦ Homeomorph.isEmpty h.some
-
-end Meta
 
 end PiBase

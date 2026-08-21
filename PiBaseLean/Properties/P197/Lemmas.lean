@@ -41,8 +41,6 @@ theorem hasCountableSpread_iff_discrete_countable :
 
 universe u
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 /-- Discrete subsets are preserved by homeomorphic images via the subtype homeomorph `φ.image`. -/
@@ -118,7 +116,5 @@ theorem WellDefined.hasCountableSpread : WellDefined HasCountableSpread :=
     calc
       Spread Y = Spread X := hSpread_eq.symm
       _ = ℵ₀ := h_eq_X
-
-end Meta
 
 end PiBase

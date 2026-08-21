@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P103.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.stronglyKcSpace : WellDefined StronglyKcSpace :=
@@ -17,7 +15,5 @@ theorem WellDefined.stronglyKcSpace : WellDefined StronglyKcSpace :=
     refine ⟨fun s Ks ↦ ?_⟩
     simpa only [Homeomorph.isClosed_image] using h.countablycompact_closed (φ.symm '' s)
       (Ks.image φ.symm.continuous)
-
-end Meta
 
 end PiBase

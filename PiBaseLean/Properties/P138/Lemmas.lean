@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P138.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.countablyManyContinuousSelfMaps : WellDefined CountablyManyContinuousSelfMaps :=
@@ -37,7 +34,5 @@ theorem WellDefined.countablyManyContinuousSelfMaps : WellDefined CountablyManyC
     }
     -- transport Countable via the equivalence
     exact (Equiv.countable_iff e).mp h.countable_self_maps
-
-end Meta
 
 end PiBase

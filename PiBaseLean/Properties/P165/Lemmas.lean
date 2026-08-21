@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P165.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.pseudonormalSpace : WellDefined PseudonormalSpace :=
@@ -39,7 +37,5 @@ theorem WellDefined.pseudonormalSpace : WellDefined PseudonormalSpace :=
       rintro y ⟨x₁, hx₁, hxy₁⟩ ⟨x₂, hx₂, hxy₂⟩
       have hx : x₁ = x₂ := φ.injective (hxy₁.trans hxy₂.symm)
       exact Set.disjoint_left.mp hUV hx₁ (hx ▸ hx₂)
-
-end Meta
 
 end PiBase

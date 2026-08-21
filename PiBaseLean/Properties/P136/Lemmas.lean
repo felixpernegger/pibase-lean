@@ -7,7 +7,6 @@ public import PiBaseLean.Properties.P136.Defs
 
 namespace PiBase
 
-section Meta
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.anticompactSpace : WellDefined AnticompactSpace :=
@@ -30,7 +29,5 @@ theorem WellDefined.anticompactSpace : WellDefined AnticompactSpace :=
     have h_pre : s = φ '' (φ ⁻¹' s) := (φ.image_preimage s).symm
     rw [h_pre]
     exact hf.image _
-
-end Meta
 
 end PiBase

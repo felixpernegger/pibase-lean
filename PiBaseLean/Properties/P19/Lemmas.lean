@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P19.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.countablyCompactSpace : WellDefined CountablyCompactSpace :=
@@ -22,7 +20,5 @@ theorem Homeomorph.countablyCompactSpace [CountablyCompactSpace X] (f : X ≃ₜ
   constructor
   convert (inferInstance : CountablyCompactSpace X).isCountablyCompact_univ.image f.continuous
   simp only [Set.image_univ, EquivLike.range_eq_univ]
-
-end Meta
 
 end PiBase

@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.cechCompleteSpace : WellDefined CechCompleteSpace :=
@@ -50,7 +47,5 @@ theorem WellDefined.cechCompleteSpace : WellDefined CechCompleteSpace :=
           _ = z := hGH z
     rw [hrange]
     exact h.is_gδ.preimage hcH
-
-end Meta
 
 end PiBase

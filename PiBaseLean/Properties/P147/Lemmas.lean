@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P147.Defs
 
 namespace PiBase
 
-
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.pSpace : WellDefined PSpace :=
@@ -20,7 +17,5 @@ theorem WellDefined.pSpace : WellDefined PSpace :=
     have hg' : IsGδ (φ ⁻¹' s) := IsGδ.preimage φ.continuous hs
     have ho' := h.isGδ_open hg'
     exact φ.isOpen_preimage.mp ho'
-
-end Meta
 
 end PiBase

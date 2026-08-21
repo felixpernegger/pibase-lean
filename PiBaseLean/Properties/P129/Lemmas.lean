@@ -10,8 +10,6 @@ universe u
 
 open Set
 
-section Meta
-
 --to mathlib
 /-- A space is indiscrete iff all open sets are either the empty space or the entire space. -/
 theorem TopologicalSpace.indiscrete_iff_isOpen_iff_empty_or_univ
@@ -44,7 +42,5 @@ theorem Homeomorph.indiscreteTopology [h : IndiscreteTopology X] (f : X ≃ₜ Y
 
 theorem WellDefined.indiscreteTopology : WellDefined IndiscreteTopology :=
   fun {_ _} _ _ h _ ↦ Homeomorph.indiscreteTopology h.some
-
-end Meta
 
 end PiBase

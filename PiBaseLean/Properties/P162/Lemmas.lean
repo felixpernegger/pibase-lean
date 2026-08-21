@@ -13,8 +13,6 @@ variable {X : Type u} {Y : Type v} [t : TopologicalSpace X] [s : TopologicalSpac
 
 /- Most likely true but difficult - proof omitted -/
 
-section Meta
-
 /-
 theorem Homeomorph.realcompactSpace [h : RealcompactSpace X] (g : X ≃ₜ Y) : RealcompactSpace Y := by
   rw [realcompactSpace_iff_fun_self] at h ⊢
@@ -28,7 +26,5 @@ theorem WellDefined.realcompactSpace : WellDefined RealcompactSpace :=
     let φ := hXY.some
     obtain ⟨ι, f, hf⟩ := h.homeo_closed
     exact ⟨⟨ι, f ∘ φ.symm, hf.comp φ.symm.isClosedEmbedding⟩⟩
-
-end Meta
 
 end PiBase

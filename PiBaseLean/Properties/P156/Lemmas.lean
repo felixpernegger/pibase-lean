@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P156.Defs
 
 namespace PiBase
 
-
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.kRothbergerSpace : WellDefined KRothbergerSpace :=
@@ -62,7 +59,5 @@ theorem WellDefined.kRothbergerSpace : WellDefined KRothbergerSpace :=
       exact ⟨n, by calc K = φ '' (φ ⁻¹' K) := (φ.image_preimage K).symm
         _ ⊆ φ '' (U' n (j n)) := Set.image_mono hn
         _ = U n (j n) := φ.image_preimage _⟩
-
-end Meta
 
 end PiBase

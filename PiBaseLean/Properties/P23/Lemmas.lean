@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.weaklyLocallyCompactSpace [WeaklyLocallyCompactSpace X] (f : X ≃ₜ Y) :
@@ -16,7 +14,5 @@ theorem Homeomorph.weaklyLocallyCompactSpace [WeaklyLocallyCompactSpace X] (f : 
 
 theorem WellDefined.weaklyLocallyCompactSpace : WellDefined WeaklyLocallyCompactSpace :=
   fun {_ _} _ _ h _ => Homeomorph.weaklyLocallyCompactSpace h.some
-
-end Meta
 
 end PiBase

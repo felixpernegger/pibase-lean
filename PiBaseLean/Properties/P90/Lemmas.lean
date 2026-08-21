@@ -7,16 +7,11 @@ public import PiBaseLean.Properties.P90.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.alexandrovDiscrete : WellDefined AlexandrovDiscrete :=
   fun {_ _} _ _ hXY _ =>
     let φ := hXY.some
     φ.symm.isInducing.alexandrovDiscrete
-
-end Meta
 
 end PiBase

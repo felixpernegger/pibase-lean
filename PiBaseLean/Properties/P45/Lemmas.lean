@@ -9,8 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasDispersionPoint : WellDefined HasDispersionPoint :=
@@ -38,7 +36,5 @@ theorem WellDefined.hasDispersionPoint : WellDefined HasDispersionPoint :=
           _ = φ p := by rw [heq]
     rw [← h_eq]
     exact φ.isEmbedding.isTotallyDisconnected_image.mpr hp
-
-end Meta
 
 end PiBase

@@ -9,8 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasACutPoint : WellDefined HasACutPoint :=
@@ -41,7 +39,5 @@ theorem WellDefined.hasACutPoint : WellDefined HasACutPoint :=
       rw [← h_eq]
       exact hpc.image _ φ.symm.continuous.continuousOn
     exact hp this
-
-end Meta
 
 end PiBase

@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.shrinkingSpace : WellDefined ShrinkingSpace :=
@@ -40,7 +37,5 @@ theorem WellDefined.shrinkingSpace : WellDefined ShrinkingSpace :=
       calc closure (φ '' (t a)) = φ '' closure (t a) := (φ.image_closure (t a)).symm
         _ ⊆ φ '' (φ ⁻¹' (s a)) := by exact Set.image_mono (ht_closure a)
         _ ⊆ s a := by exact image_preimage_subset _ _
-
-end Meta
 
 end PiBase

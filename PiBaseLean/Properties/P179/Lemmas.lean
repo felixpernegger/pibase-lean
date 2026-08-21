@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P183.Lemmas
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.alephZeroSpace : WellDefined AlephZeroSpace :=
@@ -21,7 +18,5 @@ theorem WellDefined.alephZeroSpace : WellDefined AlephZeroSpace :=
     have hK : HasCountableKNetwork _ :=
       WellDefined.hasCountableKNetwork.homeo φ h.toHasCountableKNetwork
     exact { hK with }
-
-end Meta
 
 end PiBase

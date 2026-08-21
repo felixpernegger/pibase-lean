@@ -57,8 +57,6 @@ theorem semilocallySimplyConnectedSpace_of_homeomorph {X Y : Type*} [Topological
     rw [← hcomp]
     exact hasTrivialFundGroupImageAt_comp r iU eC _ hUtriv
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.semilocallySimplyConnectedSpace (f : X ≃ₜ Y)
@@ -67,7 +65,5 @@ theorem Homeomorph.semilocallySimplyConnectedSpace (f : X ≃ₜ Y)
 
 theorem WellDefined.semilocallySimplyConnectedSpace : WellDefined SemilocallySimplyConnectedSpace :=
   fun {_ _} _ _ h _ => Homeomorph.semilocallySimplyConnectedSpace h.some
-
-end Meta
 
 end PiBase

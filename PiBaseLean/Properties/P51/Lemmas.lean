@@ -11,8 +11,6 @@ open Set
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
-section Meta
-
 theorem Homeomorph.scatteredSpace [h : ScatteredSpace X] (f : X ≃ₜ Y) : ScatteredSpace Y where
   scattered s hs := by
     obtain ⟨⟨p, hp⟩, hp'⟩ := h.scattered (f.toFun ⁻¹' s) <| Nonempty.preimage hs f.surjective
@@ -31,7 +29,5 @@ theorem Homeomorph.scatteredSpace [h : ScatteredSpace X] (f : X ≃ₜ Y) : Scat
 
 theorem scatteredSpace : WellDefined ScatteredSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.scatteredSpace h.some
-
-end Meta
 
 end PiBase

@@ -9,8 +9,6 @@ namespace PiBase
 
 open Topology Filter Set
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.hasCountableNetwork [HasCountableNetwork X] (f : X ≃ₜ Y) :
@@ -33,7 +31,5 @@ theorem Homeomorph.hasCountableNetwork [HasCountableNetwork X] (f : X ≃ₜ Y) 
 
 theorem WellDefined.hasCountableNetwork : WellDefined HasCountableNetwork :=
   fun {_ _} _ _ h _ ↦ Homeomorph.hasCountableNetwork h.some
-
-end Meta
 
 end PiBase

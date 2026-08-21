@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set
 
-
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.stronglyParacompactSpace : WellDefined StronglyParacompactSpace :=
@@ -55,7 +52,5 @@ theorem WellDefined.stronglyParacompactSpace : WellDefined StronglyParacompactSp
       calc t' b = φ '' (t b) := rfl
       _ ⊆ φ '' (φ ⁻¹' (s a)) := image_mono h_sub
       _ ⊆ s a := image_preimage_subset _ _
-
-end Meta
 
 end PiBase

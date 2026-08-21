@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P20.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.seqCompactSpace : WellDefined SeqCompactSpace :=
@@ -21,7 +19,5 @@ theorem Homeomorph.seqCompactSpace [SeqCompactSpace X] (f : X ≃ₜ Y) : SeqCom
   constructor
   convert IsSeqCompact.range f.continuous.seqContinuous
   simp only [EquivLike.range_eq_univ]
-
-end Meta
 
 end PiBase

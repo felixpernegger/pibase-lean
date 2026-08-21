@@ -8,13 +8,9 @@ import PiBaseLean.Properties.P18.Lemmas
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.omegaLindelof : WellDefined OmegaLindelof :=
   fun hXY h => ⟨Omega.wellDefined WellDefined.lindelofSpace hXY h.omega_lindelof⟩
-
-end Meta
 
 end PiBase

@@ -9,8 +9,6 @@ namespace PiBase
 
 open TopologicalSpace
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.hasFinitelyManyOpenSets [HasFinitelyManyOpenSets X] (f : X ≃ₜ Y) :
@@ -32,7 +30,5 @@ theorem Homeomorph.hasFinitelyManyOpenSets [HasFinitelyManyOpenSets X] (f : X �
 
 theorem WellDefined.hasFinitelyManyOpenSets : WellDefined HasFinitelyManyOpenSets :=
   fun {_ _} _ _ h _ => Homeomorph.hasFinitelyManyOpenSets h.some
-
-end Meta
 
 end PiBase

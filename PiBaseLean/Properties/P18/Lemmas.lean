@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.lindelofSpace [h : LindelofSpace X] (f : X ≃ₜ Y) : LindelofSpace Y :=
@@ -15,7 +13,5 @@ theorem Homeomorph.lindelofSpace [h : LindelofSpace X] (f : X ≃ₜ Y) : Lindel
 
 theorem WellDefined.lindelofSpace : WellDefined LindelofSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.lindelofSpace h.some
-
-end Meta
 
 end PiBase

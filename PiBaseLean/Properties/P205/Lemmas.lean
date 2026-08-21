@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P205.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.cutPointSpace [h : CutPointSpace X] (f : X ≃ₜ Y) : CutPointSpace Y where
@@ -17,7 +15,5 @@ theorem Homeomorph.cutPointSpace [h : CutPointSpace X] (f : X ≃ₜ Y) : CutPoi
 
 theorem WellDefined.cutPointSpace : WellDefined CutPointSpace :=
   fun {_ _} _ _ h _ => Homeomorph.cutPointSpace h.some
-
-end Meta
 
 end PiBase

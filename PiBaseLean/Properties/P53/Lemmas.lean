@@ -9,8 +9,6 @@ namespace PiBase
 
 open TopologicalSpace
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.metrizableSpace [h : MetrizableSpace X] (f : X ≃ₜ Y) :
@@ -19,7 +17,5 @@ theorem Homeomorph.metrizableSpace [h : MetrizableSpace X] (f : X ≃ₜ Y) :
 
 theorem WellDefined.metrizableSpace : WellDefined MetrizableSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.metrizableSpace h.some
-
-end Meta
 
 end PiBase

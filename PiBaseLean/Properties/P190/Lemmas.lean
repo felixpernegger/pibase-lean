@@ -6,9 +6,6 @@ public import PiBaseLean.Properties.P190.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.ordinalSpace : WellDefined OrdinalSpace :=
@@ -16,7 +13,5 @@ theorem WellDefined.ordinalSpace : WellDefined OrdinalSpace :=
     let φ := hXY.some
     rcases h.homeo_ordinal with ⟨a, ha⟩
     exact ⟨a, IsHomeo.trans ⟨φ.symm⟩ ha⟩
-
-end Meta
 
 end PiBase

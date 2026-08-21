@@ -6,9 +6,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.totallySeparatedSpace : WellDefined TotallySeparatedSpace :=
@@ -32,7 +29,5 @@ theorem WellDefined.totallySeparatedSpace : WellDefined TotallySeparatedSpace :=
         _ = φ.symm y := by rw [huEq]
     rw [this] at huU
     exact (Set.mem_compl_iff _ _).mp hyU huU
-
-end Meta
 
 end PiBase

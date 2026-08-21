@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.countablyParacompactSpace : WellDefined CountablyParacompactSpace :=
@@ -54,7 +51,5 @@ theorem WellDefined.countablyParacompactSpace : WellDefined CountablyParacompact
       intro y hy
       obtain ⟨x, hxt, rfl⟩ := hy
       exact ha hxt
-
-end Meta
 
 end PiBase

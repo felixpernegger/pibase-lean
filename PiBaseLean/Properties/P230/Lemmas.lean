@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.locallySimplyConnectedSpace : WellDefined LocallySimplyConnectedSpace :=
@@ -44,7 +41,5 @@ theorem WellDefined.locallySimplyConnectedSpace : WellDefined LocallySimplyConne
       · intro t ht
         exact IsOpen.mem_nhds ht.2.1 ht.1
     exact h_target
-
-end Meta
 
 end PiBase

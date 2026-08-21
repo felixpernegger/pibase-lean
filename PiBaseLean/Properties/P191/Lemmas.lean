@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P191.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasGδSingletons : WellDefined HasGδSingletons :=
@@ -19,7 +16,5 @@ theorem WellDefined.hasGδSingletons : WellDefined HasGδSingletons :=
     convert IsGδ.preimage φ.symm.continuous (@h.isGδ_singleton (φ.symm x))
     ext
     simp
-
-end Meta
 
 end PiBase

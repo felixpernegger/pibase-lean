@@ -9,9 +9,6 @@ import Mathlib.Algebra.Module.TransferInstance
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasRealTVSTopology : WellDefined HasRealTVSTopology :=
@@ -57,7 +54,5 @@ theorem WellDefined.hasRealTVSTopology : WellDefined HasRealTVSTopology :=
       have h_comp : Continuous (fun p : Y × Y => φ.symm p.1 + φ.symm p.2) :=
         hAddCont.comp h_pair
       exact φ.continuous.comp h_comp
-
-end Meta
 
 end PiBase

@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology Set
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.lCSpace : WellDefined LCSpace :=
@@ -46,7 +43,5 @@ theorem WellDefined.lCSpace : WellDefined LCSpace :=
       change φ (fX (e i, (1 : unitInterval))) = y
       rw [hfX_one (e i), hφx]
     exact ⟨φ.symm ⁻¹' tX, htY, fY, hfY_cont, hfY_range, hfY_zero, hfY_one⟩
-
-end Meta
 
 end PiBase

@@ -827,7 +827,7 @@ import PiBaseLean.Theorems.T265.Theorem
 import PiBaseLean.Theorems.T266.Theorem
 import PiBaseLean.Theorems.T267.Theorem
 import PiBaseLean.Theorems.T268.Theorem
-import PiBaseLean.Theorems.T27.BackgroundLemmas
+import PiBaseLean.Theorems.T27.Lemmas
 import PiBaseLean.Theorems.T27.Theorem
 import PiBaseLean.Theorems.T270.Theorem
 import PiBaseLean.Theorems.T281.Theorem
@@ -843,7 +843,7 @@ import PiBaseLean.Theorems.T3.Theorem
 import PiBaseLean.Theorems.T303.Theorem
 import PiBaseLean.Theorems.T304.Theorem
 import PiBaseLean.Theorems.T306.Theorem
-import PiBaseLean.Theorems.T308.BackgroundLemmas
+import PiBaseLean.Theorems.T308.Lemmas
 import PiBaseLean.Theorems.T308.Theorem
 import PiBaseLean.Theorems.T31.Theorem
 import PiBaseLean.Theorems.T316.Theorem

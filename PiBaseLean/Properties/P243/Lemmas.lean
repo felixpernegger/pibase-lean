@@ -6,9 +6,6 @@ public import PiBaseLean.Properties.P243.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.hasCountablePiWeight : WellDefined HasCountablePiWeight :=
@@ -42,7 +39,5 @@ theorem WellDefined.hasCountablePiWeight : WellDefined HasCountablePiWeight :=
       calc φ '' a ⊆ φ '' (φ ⁻¹' o) := Set.image_mono haSub
         _ ⊆ o := Set.image_preimage_subset _ _
     exact ⟨s', hsCount', hsEmpty', hsOpen', hsSub'⟩
-
-end Meta
 
 end PiBase

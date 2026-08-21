@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set Function
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.sigmaConnectedSpace : WellDefined SigmaConnectedSpace :=
@@ -53,7 +50,5 @@ theorem WellDefined.sigmaConnectedSpace : WellDefined SigmaConnectedSpace :=
       rw [hfX]
       exact hClosedY.preimage φ.continuous
     exact hn hClosedX
-
-end Meta
 
 end PiBase

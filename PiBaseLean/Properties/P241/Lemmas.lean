@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.locallyEuclideanHalfLine : WellDefined LocallyEuclideanHalfLine :=
@@ -26,7 +23,5 @@ theorem WellDefined.locallyEuclideanHalfLine : WellDefined LocallyEuclideanHalfL
       exact hs
     have e : s ≃ₜ φ '' s := φ.image s
     exact ⟨φ '' s, h_img_mem, f ∘ e.symm, hf.comp e.symm.isOpenEmbedding⟩
-
-end Meta
 
 end PiBase

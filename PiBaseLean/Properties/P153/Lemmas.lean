@@ -6,9 +6,6 @@ public import PiBaseLean.Properties.P153.Defs
 
 namespace PiBase
 
-
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.omegaMengerSpace.{u} : WellDefined OmegaMengerSpace.{u} :=
@@ -37,7 +34,5 @@ theorem WellDefined.omegaMengerSpace.{u} : WellDefined OmegaMengerSpace.{u} :=
     have h_n : MengerSpace (Fin n → _) := h.omega_menger n
     let e : (Fin n → _) ≃ₜ (Fin n → _) := Homeomorph.piCongrRight (fun _ => φ)
     exact menger_pres e h_n
-
-end Meta
 
 end PiBase

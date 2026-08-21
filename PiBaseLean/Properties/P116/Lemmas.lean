@@ -7,15 +7,11 @@ public import PiBaseLean.Properties.P116.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.polishSpace : WellDefined PolishSpace :=
   fun {_ _} _ _ hXY _ =>
     let φ := hXY.some
     φ.symm.isClosedEmbedding.polishSpace
-
-end Meta
 
 end PiBase

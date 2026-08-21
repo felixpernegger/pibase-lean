@@ -9,8 +9,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.dieudonneCompleteSpace : WellDefined DieudonneCompleteSpace :=
@@ -45,7 +43,5 @@ theorem WellDefined.dieudonneCompleteSpace : WellDefined DieudonneCompleteSpace 
       rw [h_nhds_eq] at h_final
       exact ⟨φ x, huY_top ▸ h_final⟩
     exact ⟨uY, huY_top, hCompY⟩
-
-end Meta
 
 end PiBase

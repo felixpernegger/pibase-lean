@@ -9,9 +9,6 @@ import PiBaseLean.Properties.P141.Lemmas
 
 namespace PiBase
 
-
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.cWGH : WellDefined CWGH :=
@@ -23,7 +20,5 @@ theorem WellDefined.cWGH : WellDefined CWGH :=
     have hCG_Y : CompactlyGeneratedSpace Y := WellDefined.compactlyGeneratedSpace.homeo φ hCG_X
     have hW_Y : WeakT2Space Y := WellDefined.weakT2Space.homeo φ hW_X
     exact @CWGH.mk _ _ hCG_Y hW_Y
-
-end Meta
 
 end PiBase

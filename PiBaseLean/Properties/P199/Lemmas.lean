@@ -7,16 +7,11 @@ public import PiBaseLean.Properties.P199.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.contractibleSpace : WellDefined ContractibleSpace :=
   fun {_ _} _ _ hXY _ =>
     let φ := hXY.some
     φ.symm.contractibleSpace
-
-end Meta
 
 end PiBase

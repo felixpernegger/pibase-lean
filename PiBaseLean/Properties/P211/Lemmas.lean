@@ -7,8 +7,6 @@ public import PiBaseLean.Properties.P211.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.α15Space : WellDefined α15Space :=
@@ -24,7 +22,5 @@ theorem WellDefined.α15Space : WellDefined α15Space :=
     exact ⟨φ ∘ T, φ.injective.comp hT_inj, AlphaTransport.tendsto_comp_of_symm φ hT_tend,
       AlphaTransport.range_comp_subset φ S T hT_sub,
       AlphaTransport.infinite_setOf_finite_diff φ S T hT_inf⟩
-
-end Meta
 
 end PiBase

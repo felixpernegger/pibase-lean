@@ -6,8 +6,6 @@ public import PiBaseLean.Properties.P218.Defs
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.ultranormalSpace : WellDefined UltranormalSpace :=
@@ -28,7 +26,5 @@ theorem WellDefined.ultranormalSpace : WellDefined UltranormalSpace :=
     · intro y hy
       rintro ⟨x, hx, rfl⟩
       exact htXsub hy hx
-
-end Meta
 
 end PiBase

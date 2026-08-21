@@ -6,8 +6,6 @@ public import PiBaseLean.AdditionalDefs.Meta
 
 namespace PiBase
 
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem Homeomorph.hereditarilyLindelofSpace [h : HereditarilyLindelofSpace X]
@@ -19,7 +17,5 @@ theorem Homeomorph.hereditarilyLindelofSpace [h : HereditarilyLindelofSpace X]
 
 theorem WellDefined.hereditarilyLindelofSpace : WellDefined HereditarilyLindelofSpace :=
   fun {_ _} _ _ h _ ↦ Homeomorph.hereditarilyLindelofSpace h.some
-
-end Meta
 
 end PiBase

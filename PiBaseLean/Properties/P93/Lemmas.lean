@@ -9,9 +9,6 @@ namespace PiBase
 
 open Topology
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.locallyCountableSpace : WellDefined LocallyCountableSpace :=
@@ -23,7 +20,5 @@ theorem WellDefined.locallyCountableSpace : WellDefined LocallyCountableSpace :=
     rw [← φ.apply_symm_apply y, ← φ.map_nhds_eq (φ.symm y)]
     change φ ⁻¹' (φ '' U) ∈ 𝓝 (φ.symm y)
     simpa
-
-end Meta
 
 end PiBase

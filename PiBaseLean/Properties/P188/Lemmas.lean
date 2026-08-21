@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P36.Lemmas
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.continuumSpace : WellDefined ContinuumSpace :=
@@ -17,7 +14,5 @@ theorem WellDefined.continuumSpace : WellDefined ContinuumSpace :=
     let φ := hXY.some
     @ContinuumSpace.mk _ _ (WellDefined.preconnectedSpace.homeo φ h.toPreconnectedSpace)
         φ.compactSpace φ.t2Space
-
-end Meta
 
 end PiBase

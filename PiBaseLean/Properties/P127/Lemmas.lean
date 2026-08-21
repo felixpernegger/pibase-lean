@@ -9,9 +9,6 @@ namespace PiBase
 
 open Set
 
-
-section Meta
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.dowkerSpace : WellDefined DowkerSpace :=
@@ -66,7 +63,5 @@ theorem WellDefined.dowkerSpace : WellDefined DowkerSpace :=
       refine ⟨a, ?_⟩
       have : φ ⁻¹' (t b) ⊆ φ ⁻¹' (φ '' (s a)) := Set.preimage_mono ha
       rwa [φ.preimage_image] at this
-
-end Meta
 
 end PiBase

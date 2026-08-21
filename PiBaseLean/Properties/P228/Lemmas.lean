@@ -7,9 +7,6 @@ public import PiBaseLean.Properties.P228.Defs
 
 namespace PiBase
 
-section Meta
-
-
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.weaklyFirstCountableSpace : WellDefined WeaklyFirstCountableSpace :=
@@ -58,7 +55,5 @@ theorem WellDefined.weaklyFirstCountableSpace : WellDefined WeaklyFirstCountable
           exact h' hz
         have hOpen_pre : IsOpen (φ ⁻¹' O) := (hVopen _).mpr hRHS_pre
         exact φ.isOpen_preimage.mp hOpen_pre
-
-end Meta
 
 end PiBase
