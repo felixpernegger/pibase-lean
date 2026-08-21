@@ -1,8 +1,8 @@
 module
 
-public import PiBaseLean.Properties.P46.Defs
 public import Mathlib.Topology.Connected.PathConnected
 public import PiBaseLean.AdditionalDefs.Meta
+public import PiBaseLean.Properties.P46.Defs
 
 @[expose] public section
 

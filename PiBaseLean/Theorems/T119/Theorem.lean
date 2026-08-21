@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T119: P2 (T1Space) => P1 (T0Space) -/
-theorem instT0SpaceOfT1Space (X : Type u)
+theorem instT0SpaceOfT1Space {X : Type u}
     [TopologicalSpace X] [T1Space X] :
     T0Space X := by infer_instance
 

@@ -1,8 +1,6 @@
 module
 
 public import Mathlib.Topology.Sets.Opens
-public import Mathlib.Topology.Separation.Basic
-public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section
 

@@ -1,10 +1,10 @@
 module
 
-public import Mathlib.Data.Set.Card
-public import Mathlib.Topology.Homeomorph.Lemmas
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P78.Bundled
 public import PiBaseLean.Properties.P219.Bundled
+public import PiBaseLean.Properties.P78.Bundled
+
+import Mathlib.Data.Set.Card
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function TopologicalSpace Filter Cardinal
 namespace PiBase
 
 /- Theorem 818: a finite space is Toronto. -/
-instance instTorontoSpaceOfFinite (X : Type*) [TopologicalSpace X] [Finite X] : TorontoSpace X where
+instance instTorontoSpaceOfFinite {X : Type*} [TopologicalSpace X] [Finite X] : TorontoSpace X where
   toronto Y hY :=
     have eq : Y = .univ := by
       apply (Set.eq_univ_iff_ncard Y).mpr

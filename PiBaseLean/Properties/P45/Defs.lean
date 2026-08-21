@@ -1,7 +1,5 @@
 module
 
-public import Mathlib.Topology.Connected.Basic
-public import Mathlib.Topology.Connected.TotallyDisconnected
 public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section

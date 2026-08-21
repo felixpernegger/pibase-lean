@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Topology.Separation.Regular
 public import PiBaseLean.Properties.P182.Defs
 public import PiBaseLean.Properties.P5.Defs
 

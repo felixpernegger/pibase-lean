@@ -1,10 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P46.Bundled
-public import PiBaseLean.Properties.P52.Bundled
 public import PiBaseLean.Properties.P233.Bundled
 public import PiBaseLean.Properties.P46.Bundled
+public import PiBaseLean.Properties.P52.Bundled
 
 @[expose] public section
 
@@ -16,7 +15,7 @@ namespace PiBase
 
 /-- Theorem T89: P233 (HasOpenPathComponents) + P46 (TotallyPathDisconnectedSpace) =>
 P52 (DiscreteTopology) -/
-instance instDiscreteTopologyOfHasOpenPathComponentsOfTotallyPathDisconnectedSpace (X : Type u)
+instance instDiscreteTopologyOfHasOpenPathComponentsOfTotallyPathDisconnectedSpace {X : Type u}
     [TopologicalSpace X] [h : HasOpenPathComponents X] [h' : TotallyPathDisconnectedSpace X] :
       DiscreteTopology X := by
   apply discreteTopology_iff_isOpen_singleton.mpr (fun x ↦ ?_)

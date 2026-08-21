@@ -1,9 +1,5 @@
 module
 
-public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P23.Bundled
-public import PiBaseLean.Properties.P134.Bundled
-public import PiBaseLean.Properties.P12.Bundled
 public import PiBaseLean.Theorems.T27.BackgroundLemmas
 
 @[expose] public section
@@ -17,7 +13,7 @@ open scoped OnePoint
 namespace PiBase
 
 /-- Theorem T27: P23 (WeaklyLocallyCompactSpace) + P134 (R1Space) => P12 (CompletelyRegularSpace) -/
-instance instCompletelyRegularSpaceOfWeaklyLocallyCompactSpaceOfR1Space (X : Type u)
+instance instCompletelyRegularSpaceOfWeaklyLocallyCompactSpaceOfR1Space {X : Type u}
     [TopologicalSpace X] [WeaklyLocallyCompactSpace X] [R1Space X] : CompletelyRegularSpace X :=
   IsInducing.completelyRegularSpace <|
     Homeomorph.isInducing (OnePoint.isOpenEmbedding_coe (X := X)).toIsEmbedding.toHomeomorph

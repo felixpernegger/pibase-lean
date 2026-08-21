@@ -1,9 +1,10 @@
 module
 
-public import Mathlib.Data.SetLike.Fintype
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P78.Bundled
 public import PiBaseLean.Properties.P226.Bundled
+public import PiBaseLean.Properties.P78.Bundled
+
+import Mathlib.Data.SetLike.Fintype
 
 @[expose] public section
 
@@ -14,7 +15,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T825: P78 (Finite) => P226 (ArtinianSpace) -/
-theorem instArtinianSpaceOfFinite (X : Type u)
+theorem instArtinianSpaceOfFinite {X : Type u}
     [TopologicalSpace X] [Finite X] :
     ArtinianSpace X := by infer_instance
 

@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T584: P199 (ContractibleSpace) => P137ᶜ (Nonempty) -/
-theorem instNonemptyOfContractibleSpace (X : Type u)
+theorem instNonemptyOfContractibleSpace {X : Type u}
     [TopologicalSpace X] [h : ContractibleSpace X] : Nonempty X := by infer_instance
 
 end PiBase

@@ -11,7 +11,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T51: P39 (PreirreducibleSpace) => P41 (LocallyConnectedSpace) -/
-instance instLocallyConnectedSpaceOfPreirreducibleSpace (X : Type u)
+instance instLocallyConnectedSpaceOfPreirreducibleSpace {X : Type u}
     [TopologicalSpace X] [h : PreirreducibleSpace X] : LocallyConnectedSpace X := by
   refine locallyConnectedSpace_iff_connected_subsets.mpr (fun x U hU ↦ ?_)
   refine ⟨interior U, by simpa, ?_, interior_subset⟩
@@ -22,6 +22,6 @@ end PiBase
 
 namespace PiBase.Formal
 
-theorem T51 : P39 ≤ P41 := instLocallyConnectedSpaceOfPreirreducibleSpace
+theorem T51 : P39 ≤ P41 := @instLocallyConnectedSpaceOfPreirreducibleSpace
 
 end PiBase.Formal

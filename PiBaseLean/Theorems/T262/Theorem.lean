@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P39.Bundled
 public import PiBaseLean.Properties.P129.Bundled
 public import PiBaseLean.Properties.P134.Bundled
+public import PiBaseLean.Properties.P39.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T262: P134 (R1Space) + P39 (PreirreducibleSpace) => P129 (IndiscreteTopology) -/
-instance instIndiscreteTopologyOfR1SpaceOfPreirreducibleSpace (X : Type u)
+instance instIndiscreteTopologyOfR1SpaceOfPreirreducibleSpace {X : Type u}
     [TopologicalSpace X] [R1Space X] [i : PreirreducibleSpace X] : IndiscreteTopology X := by
   refine IndiscreteTopology.of_forall_inseparable (fun x y ↦ ?_)
   by_contra h0

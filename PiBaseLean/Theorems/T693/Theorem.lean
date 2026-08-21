@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T693: P49 (ExtremallyDisconnected) => P85 (BasicallyDisconnectedSpace) -/
-instance instBasicallyDisconnectedSpaceOfExtremallyDisconnected (X : Type u)
+instance instBasicallyDisconnectedSpaceOfExtremallyDisconnected {X : Type u}
     [TopologicalSpace X] [h : ExtremallyDisconnected X] :
     BasicallyDisconnectedSpace X where
   basically_disconnected U hU := h.open_closure U hU.isOpen

@@ -1,9 +1,10 @@
 module
 
-public import Mathlib.SetTheory.Cardinal.Arithmetic
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P175.Bundled
 public import PiBaseLean.Properties.P204.Bundled
+
+import Mathlib.SetTheory.Cardinal.Arithmetic
 
 @[expose] public section
 
@@ -14,7 +15,7 @@ open Topology Set Function Cardinal
 namespace PiBase
 
 /-- Theorem T558: P204 (HasACutPoint) => P175 (CardGeThree) -/
-instance instCardGeThreeOfHasACutPoint (X : Type u)
+instance instCardGeThreeOfHasACutPoint {X : Type u}
     [TopologicalSpace X] [h : HasACutPoint X] :
     CardGeThree X where
   card_ge := by

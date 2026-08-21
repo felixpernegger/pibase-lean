@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P51.Bundled
 public import PiBaseLean.Properties.P137.Bundled
 public import PiBaseLean.Properties.P139.Bundled
+public import PiBaseLean.Properties.P51.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T306: P51 (ScatteredSpace) + ¬P137 (IsEmpty) => P139 (HasAnIsolatedPoint) -/
-instance instHasAnIsolatedPointOfScatteredSpaceOfNonempty (X : Type u)
+instance instHasAnIsolatedPointOfScatteredSpaceOfNonempty {X : Type u}
     [TopologicalSpace X] [h : ScatteredSpace X] [Nonempty X] : HasAnIsolatedPoint X := by
   obtain ⟨⟨p, _⟩, hp⟩ := h.scattered univ univ_nonempty
   obtain ⟨s, so, hs⟩ := hp

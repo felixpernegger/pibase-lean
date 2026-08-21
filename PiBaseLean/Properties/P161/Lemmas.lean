@@ -1,8 +1,7 @@
 module
 
-public import PiBaseLean.AdditionalDefs.Meta
+public import PiBaseLean.Properties.P160.Lemmas
 public import PiBaseLean.Properties.P161.Defs
-public import PiBaseLean.Properties.P160.Bundled
 
 @[expose] public section
 

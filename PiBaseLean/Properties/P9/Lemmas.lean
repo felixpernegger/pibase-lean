@@ -3,6 +3,8 @@ module
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P9.Defs
 
+import Mathlib.Logic.Equiv.Pairwise
+
 @[expose] public section
 
 namespace PiBase

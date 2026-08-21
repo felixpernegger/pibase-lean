@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T338: P67 (T6Space) => P15 (PerfectlyNormalSpace) -/
-theorem instPerfectlyNormalSpaceOfT6Space (X : Type u)
+theorem instPerfectlyNormalSpaceOfT6Space {X : Type u}
     [TopologicalSpace X] [T6Space X] :
     PerfectlyNormalSpace X := by infer_instance
 

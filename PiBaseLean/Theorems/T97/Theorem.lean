@@ -15,7 +15,7 @@ namespace PiBase
 
 /-- Theorem T97: P49 (ExtremallyDisconnected) + P36 (PreconnectedSpace)
 => P39 (PreirreducibleSpace) -/
-instance instPreirreducibleSpaceOfExtremallyDisconnectedOfPreconnectedSpace (X : Type u)
+instance instPreirreducibleSpaceOfExtremallyDisconnectedOfPreconnectedSpace {X : Type u}
     [TopologicalSpace X] [h : ExtremallyDisconnected X] [h' : PreconnectedSpace X] :
     PreirreducibleSpace X := by
   apply (preirreducibleSpace_iff_open_dense X).mpr (fun s hs sn ↦ ?_)

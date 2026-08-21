@@ -1,7 +1,5 @@
 module
 
-public import Mathlib.Order.BourbakiWitt
-public import Mathlib.Topology.Separation.Hausdorff
 public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section

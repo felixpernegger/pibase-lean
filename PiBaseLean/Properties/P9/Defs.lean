@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Logic.Equiv.Pairwise
 public import Mathlib.Topology.UnitInterval
 
 @[expose] public section

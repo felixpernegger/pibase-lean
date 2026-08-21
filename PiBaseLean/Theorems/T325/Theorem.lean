@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T325: P141 (CompactlyGeneratedSpace) => P140 (CompactlyCoherentSpace) -/
-theorem instCompactlyCoherentSpaceOfCompactlyGeneratedSpace (X : Type u)
+theorem instCompactlyCoherentSpaceOfCompactlyGeneratedSpace {X : Type u}
     [TopologicalSpace X] [CompactlyGeneratedSpace X] : CompactlyCoherentSpace X := by
   infer_instance
 

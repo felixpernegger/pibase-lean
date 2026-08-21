@@ -1,9 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import Mathlib.Topology.Clopen
-public import PiBaseLean.Properties.P40.Bundled
 public import PiBaseLean.Properties.P218.Bundled
+public import PiBaseLean.Properties.P40.Bundled
 
 @[expose] public section
 
@@ -14,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T87: P40 (UltraconnectedSpace) => P218 (UltranormalSpace) -/
-instance instUltranormalSpaceOfUltraconnectedSpace (X : Type u)
+instance instUltranormalSpaceOfUltraconnectedSpace {X : Type u}
     [TopologicalSpace X] [h : UltraconnectedSpace X] :
     UltranormalSpace X where
   disjoint_clopen := by

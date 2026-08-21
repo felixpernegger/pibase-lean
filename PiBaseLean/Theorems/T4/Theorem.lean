@@ -1,9 +1,10 @@
 module
 
-public import Mathlib.Analysis.Normed.Order.Lattice
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P19.Bundled
 public import PiBaseLean.Properties.P22.Bundled
+
+import Mathlib.Analysis.Normed.Order.Lattice
 
 @[expose] public section
 

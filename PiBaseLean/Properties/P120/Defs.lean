@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Topology.Homeomorph.Lemmas
 public import PiBaseLean.Properties.P133.Defs
 
 @[expose] public section

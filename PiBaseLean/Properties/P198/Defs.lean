@@ -1,8 +1,6 @@
 module
 
 public import PiBaseLean.AdditionalDefs.Cardinal
-public import Mathlib.Topology.Homeomorph.Lemmas
-public import Mathlib.Topology.DiscreteSubset
 
 @[expose] public section
 

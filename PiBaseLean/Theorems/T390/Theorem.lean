@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P59.Bundled
 public import PiBaseLean.Properties.P163.Bundled
+public import PiBaseLean.Properties.P59.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Cardinal
 namespace PiBase
 
 /-- Theorem 390: |X| ≤ 𝔠 implies |X| ≤ 2^𝔠 -/
-instance instCardLeContinuumOfCardLePowerContinuum (X : Type u) [h : CardLeContinuum X] :
+instance instCardLeContinuumOfCardLePowerContinuum {X : Type u} [h : CardLeContinuum X] :
     CardLePowerContinuum X where
   card_le := le_trans h.card_le (cantor 𝔠).le
 

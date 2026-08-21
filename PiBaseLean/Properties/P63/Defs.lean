@@ -1,8 +1,6 @@
 module
 
 public import Mathlib.Topology.Separation.CompletelyRegular
-public import Mathlib.Topology.Compactification.StoneCech
-public import Mathlib.Topology.GDelta.Basic
 
 @[expose] public section
 

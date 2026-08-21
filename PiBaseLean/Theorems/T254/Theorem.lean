@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P18.Bundled
 public import PiBaseLean.Properties.P131.Bundled
+public import PiBaseLean.Properties.P18.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T254: P131 (HereditarilyLindelofSpace) => P18 (LindelofSpace) -/
-theorem instLindelofSpaceOfHereditarilyLindelofSpace (X : Type u)
+theorem instLindelofSpaceOfHereditarilyLindelofSpace {X : Type u}
     [TopologicalSpace X] [HereditarilyLindelofSpace X] :
     LindelofSpace X := by infer_instance
 

@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.SetTheory.Cardinal.Continuum
-public import Mathlib.Topology.Constructions
 public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section

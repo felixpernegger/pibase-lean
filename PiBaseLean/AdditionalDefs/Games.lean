@@ -1,9 +1,10 @@
 module
 
 public import Mathlib.Algebra.Ring.Parity
-public import Mathlib.Topology.Homeomorph.Lemmas
 public import Mathlib.Topology.UniformSpace.Defs
 public import PiBaseLean.AdditionalDefs.Cover
+
+import Mathlib.Topology.Homeomorph.Lemmas
 
 /-! This file builds up defs and basic theory about Gale-Stewart games. This has been done
 previously in Lean, for example here https://afm.episciences.org/17712/pdf

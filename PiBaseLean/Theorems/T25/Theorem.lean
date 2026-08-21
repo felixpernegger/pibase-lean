@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T25: P124 (TopologicalNManifold) => P123 (LocallyNEuclideanSpace) -/
-theorem instLocallyNEuclideanSpaceOfTopologicalNManifold (X : Type u)
+theorem instLocallyNEuclideanSpaceOfTopologicalNManifold {X : Type u}
     [TopologicalSpace X] [TopologicalNManifold X] :
     LocallyNEuclideanSpace X := by infer_instance
 

@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T40: P37 (PrepathConnectedSpace) => P36 (PreconnectedSpace) -/
-instance instPreconnectedSpaceOfPrepathConnectedSpace (X : Type u)
+instance instPreconnectedSpaceOfPrepathConnectedSpace {X : Type u}
     [TopologicalSpace X] [PrepathConnectedSpace X] :
     PreconnectedSpace X := by
   by_cases! IsEmpty X

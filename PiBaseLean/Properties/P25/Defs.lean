@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Topology.Compactness.SigmaCompact
-public import Mathlib.Topology.Homeomorph.Defs
 
 @[expose] public section
 

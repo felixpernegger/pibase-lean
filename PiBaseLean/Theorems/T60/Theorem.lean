@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T60: P140 (CompactlyCoherentSpace) + P170 (K1T2Space) => P142 (K3Space) -/
-instance instK3SpaceOfCompactlyCoherentSpaceOfK1T2Space (X : Type u)
+instance instK3SpaceOfCompactlyCoherentSpaceOfK1T2Space {X : Type u}
     [TopologicalSpace X] [h : CompactlyCoherentSpace X] [h' : K1T2Space X] :
     K3Space X where
   isCoherentWith := by

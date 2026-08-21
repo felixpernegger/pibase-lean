@@ -14,7 +14,7 @@ namespace PiBase
 
 -- Most likely redundant
 /-- Theorem T104: P35 (FullyT4Space) => P2 (T1Space) -/
-theorem instT1SpaceOfFullyT4Space (X : Type u)
+theorem instT1SpaceOfFullyT4Space {X : Type u}
     [TopologicalSpace X] [FullyT4Space X] :
     T1Space X := by infer_instance
 

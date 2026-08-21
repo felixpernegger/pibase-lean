@@ -1,10 +1,10 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P3.Bundled
-public import PiBaseLean.Properties.P16.Bundled
-public import PiBaseLean.Properties.P49.Bundled
 public import PiBaseLean.Properties.P119.Bundled
+public import PiBaseLean.Properties.P16.Bundled
+public import PiBaseLean.Properties.P3.Bundled
+public import PiBaseLean.Properties.P49.Bundled
 
 @[expose] public section
 
@@ -16,7 +16,7 @@ namespace PiBase
 
 /-- Theorem T126: P16 (CompactSpace) + P3 (T2Space) +
 P49 (ExtremallyDisconnected) => P119 (StoneanSpace) -/
-theorem instStoneanSpaceOfCompactSpaceOfT2SpaceOfExtremallyDisconnected (X : Type u)
+theorem instStoneanSpaceOfCompactSpaceOfT2SpaceOfExtremallyDisconnected {X : Type u}
     [TopologicalSpace X] [CompactSpace X] [T2Space X] [ExtremallyDisconnected X] :
     StoneanSpace X := by tauto
 

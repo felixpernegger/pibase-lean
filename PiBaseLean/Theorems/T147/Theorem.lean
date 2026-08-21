@@ -14,7 +14,7 @@ namespace PiBase
 
 -- Most likely redundant
 /-- Theorem T147: P177 (SigmaSpace) => P117 (HasSigmaLocallyFiniteNetwork) -/
-theorem instHasSigmaLocallyFiniteNetworkOfSigmaSpace (X : Type u)
+theorem instHasSigmaLocallyFiniteNetworkOfSigmaSpace {X : Type u}
     [TopologicalSpace X] [SigmaSpace X] :
     HasSigmaLocallyFiniteNetwork X := by infer_instance
 

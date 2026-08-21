@@ -1,7 +1,5 @@
 module
 
-public import Mathlib.Topology.Homeomorph.Lemmas
-public import PiBaseLean.AdditionalDefs.Constructions
 public import Mathlib.Analysis.Normed.Operator.BanachSteinhaus
 public import Mathlib.Topology.Algebra.Module.Spaces.WeakDual
 

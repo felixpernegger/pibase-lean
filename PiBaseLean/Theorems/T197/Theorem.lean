@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P5.Bundled
 public import PiBaseLean.Properties.P118.Bundled
 public import PiBaseLean.Properties.P178.Bundled
+public import PiBaseLean.Properties.P5.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T197: P118 (HasSigmaLocallyFiniteKNetwork) + P5 (T3Space) => P178 (AlephSpace) -/
-theorem instAlephSpaceOfHasSigmaLocallyFiniteKNetworkOfT3Space (X : Type u)
+theorem instAlephSpaceOfHasSigmaLocallyFiniteKNetworkOfT3Space {X : Type u}
     [TopologicalSpace X] [HasSigmaLocallyFiniteKNetwork X] [T3Space X] :
     AlephSpace X := by tauto
 

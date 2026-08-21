@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P87.Bundled
 public import PiBaseLean.Properties.P137.Bundled
+public import PiBaseLean.Properties.P87.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T346: P87 (HasGroupTopology) => P137ᶜ (Nonempty) -/
-theorem instNonemptyOfHasGroupTopology (X : Type u)
+theorem instNonemptyOfHasGroupTopology {X : Type u}
     [TopologicalSpace X] [h : HasGroupTopology X] : Nonempty X :=
   let ⟨_, _⟩ := h.has_group_topology
   One.instNonempty

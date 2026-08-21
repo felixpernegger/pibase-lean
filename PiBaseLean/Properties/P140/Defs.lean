@@ -1,7 +1,6 @@
 module
 
-public import Mathlib.Topology.Compactness.CompactlyCoherentSpace
-public import Mathlib.Topology.Homeomorph.Lemmas
+import Mathlib.Topology.Compactness.CompactlyCoherentSpace
 
 @[expose] public section
 

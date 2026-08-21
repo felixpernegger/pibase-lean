@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P8.Bundled
 public import PiBaseLean.Properties.P14.Bundled
+public import PiBaseLean.Properties.P8.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T336: P8 (T5Space) => P14 (CompletelyNormalSpace) -/
-theorem instCompletelyNormalSpaceOfT5Space (X : Type u)
+theorem instCompletelyNormalSpaceOfT5Space {X : Type u}
     [TopologicalSpace X] [T5Space X] :
     CompletelyNormalSpace X := by infer_instance
 

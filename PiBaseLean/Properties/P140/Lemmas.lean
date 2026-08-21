@@ -1,7 +1,7 @@
 module
 
+public import Mathlib.Topology.Compactness.CompactlyCoherentSpace
 public import PiBaseLean.AdditionalDefs.Meta
-public import PiBaseLean.Properties.P140.Defs
 
 @[expose] public section
 

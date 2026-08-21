@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P83.Bundled
 public import PiBaseLean.Properties.P105.Bundled
+public import PiBaseLean.Properties.P83.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T655: P105 (ParaLindelofSpace) => P83 (MetaLindelofSpace) -/
-instance instMetaLindelofSpaceOfParaLindelofSpace (X : Type u)
+instance instMetaLindelofSpaceOfParaLindelofSpace {X : Type u}
     [TopologicalSpace X] [h : ParaLindelofSpace X] :
     MetaLindelofSpace X where
   meta_lindelof ι s s_open s_cover :=

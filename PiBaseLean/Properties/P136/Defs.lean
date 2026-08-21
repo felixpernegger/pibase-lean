@@ -1,9 +1,6 @@
 module
 
-public import Mathlib.Data.Finite.Defs
-public import Mathlib.Topology.Compactness.Compact
 public import Mathlib.Topology.Homeomorph.Lemmas
-public import Mathlib.Topology.Defs.Filter
 
 @[expose] public section
 

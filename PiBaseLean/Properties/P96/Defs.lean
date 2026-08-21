@@ -1,9 +1,6 @@
 module
 
-public import PiBaseLean.Properties.P95.Bundled
-public import Mathlib.Order.Filter.Bases.Basic
-public import Mathlib.Topology.Homeomorph.Lemmas
-public import Mathlib.Topology.Defs.Filter
+public import PiBaseLean.Properties.P95.Defs
 
 @[expose] public section
 

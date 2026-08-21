@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T184: P80 (FrechetUrysohnSpace) => P79 (SequentialSpace) -/
-theorem instSequentialSpaceOfFrechetUrysohnSpace (X : Type u)
+theorem instSequentialSpaceOfFrechetUrysohnSpace {X : Type u}
     [TopologicalSpace X] [FrechetUrysohnSpace X] : SequentialSpace X := by infer_instance
 
 end PiBase

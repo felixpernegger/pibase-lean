@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T176: P75 (SpectralSpace) => P73 (SoberSpace) -/
-theorem instSoberSpaceOfSpectralSpace (X : Type u)
+theorem instSoberSpaceOfSpectralSpace {X : Type u}
     [TopologicalSpace X] [SpectralSpace X] :
     SoberSpace X := by tauto
 

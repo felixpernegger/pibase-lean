@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T160: P68 (RothbergerSpace) => P66 (MengerSpace) -/
-instance instMengerSpaceOfRothbergerSpace (X : Type u) [TopologicalSpace X]
+instance instMengerSpaceOfRothbergerSpace {X : Type u} [TopologicalSpace X]
   [h : RothbergerSpace X] :
     MengerSpace X where
   menger := by

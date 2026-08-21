@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T128: P18 (LindelofSpace) => P62 (WeaklyLindelofSpace) -/
-instance instWeaklyLindelofSpaceOfLindelofSpace (X : Type u)
+instance instWeaklyLindelofSpaceOfLindelofSpace {X : Type u}
     [TopologicalSpace X] [h : LindelofSpace X] :
     WeaklyLindelofSpace X where
   weakly_lindelof := by

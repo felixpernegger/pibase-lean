@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T572: P203 (AlmostDiscreteSpace) => P126 (DoorSpace) -/
-instance instDoorSpaceOfAlmostDiscreteSpace (X : Type u)
+instance instDoorSpaceOfAlmostDiscreteSpace {X : Type u}
     [TopologicalSpace X] [h : AlmostDiscreteSpace X] : DoorSpace X where
   isOpen_or_isClosed s := by
     obtain ⟨p, hp⟩ := h.ex_point

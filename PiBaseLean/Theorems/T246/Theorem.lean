@@ -2,8 +2,8 @@ module
 
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P11.Bundled
-public import PiBaseLean.Properties.P23.Bundled
 public import PiBaseLean.Properties.P130.Bundled
+public import PiBaseLean.Properties.P23.Bundled
 
 @[expose] public section
 
@@ -15,7 +15,7 @@ namespace PiBase
 
 /-- Theorem T246: P23 (WeaklyLocallyCompactSpace) + P11 (RegularSpace) =>
 P130 (LocallyCompactSpace) -/
-theorem instLocallyCompactSpaceOfWeaklyLocallyCompactSpaceOfRegularSpace (X : Type u)
+theorem instLocallyCompactSpaceOfWeaklyLocallyCompactSpaceOfRegularSpace {X : Type u}
     [TopologicalSpace X] [WeaklyLocallyCompactSpace X] [RegularSpace X] :
     LocallyCompactSpace X := by infer_instance
 

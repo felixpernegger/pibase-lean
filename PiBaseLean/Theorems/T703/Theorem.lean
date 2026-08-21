@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T703: P95 (ArcConnectedSpace) => P38 (InjPathConnectedSpace) -/
-instance instInjPathConnectedSpaceOfArcConnectedSpace (X : Type u)
+instance instInjPathConnectedSpaceOfArcConnectedSpace {X : Type u}
     [TopologicalSpace X] [h : ArcConnectedSpace X] :
     InjPathConnectedSpace X where
   joined x y xy _ _ := by

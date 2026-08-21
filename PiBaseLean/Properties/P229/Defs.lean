@@ -1,8 +1,6 @@
 module
 
 public import PiBaseLean.AdditionalDefs.Constructions
-public import Mathlib.Topology.Homeomorph.Lemmas
-public import Mathlib.AlgebraicTopology.FundamentalGroupoid.Basic
 
 @[expose] public section
 

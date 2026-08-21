@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T410: P166 (HasCoarserSeparableMetrizableTopology ) => P112 (SubmetrizableSpace) -/
-instance instSubmetrizableSpaceOfHasCoarserSeparableMetrizableTopology (X : Type u)
+instance instSubmetrizableSpaceOfHasCoarserSeparableMetrizableTopology {X : Type u}
     [TopologicalSpace X] [h : HasCoarserSeparableMetrizableTopology X] :
     SubmetrizableSpace X where
   le_metrizable :=

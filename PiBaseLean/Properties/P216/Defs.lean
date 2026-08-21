@@ -1,8 +1,7 @@
 module
 
-public import Mathlib.Topology.Compactness.Paracompact
 public import PiBaseLean.AdditionalDefs.Meta
-public import PiBaseLean.Properties.P30.Bundled
+public import PiBaseLean.Properties.P30.Defs
 
 @[expose] public section
 

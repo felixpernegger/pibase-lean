@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P7.Bundled
-public import PiBaseLean.Properties.P32.Bundled
 public import PiBaseLean.Properties.P127.Bundled
+public import PiBaseLean.Properties.P32.Bundled
+public import PiBaseLean.Properties.P7.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T159: P7 (T4Space) + P32 (¬CountablyParacompactSpace) => P127 (DowkerSpace) -/
-theorem instDowkerSpaceOfT4SpaceOfNotCountablyParacompactSpace (X : Type u)
+theorem instDowkerSpaceOfT4SpaceOfNotCountablyParacompactSpace {X : Type u}
     [TopologicalSpace X] [T4Space X] (h2 : ¬ CountablyParacompactSpace X) :
     DowkerSpace X := by tauto
 

@@ -1,7 +1,7 @@
 module
 
-public import PiBaseLean.Properties.P37.Defs
 public import PiBaseLean.AdditionalDefs.Meta
+public import PiBaseLean.Properties.P37.Defs
 
 @[expose] public section
 

@@ -1,9 +1,6 @@
 module
 
-public import Mathlib.Data.ENNReal.Basic
-public import Mathlib.SetTheory.Cardinal.Finite
-public import Mathlib.SetTheory.Ordinal.Principal
-public import Mathlib.Topology.Constructions
+public import Mathlib.SetTheory.Ordinal.Arithmetic
 public import Mathlib.Topology.Sequences
 
 @[expose] public section

@@ -3,7 +3,6 @@ module
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P53.Bundled
 public import PiBaseLean.Properties.P55.Bundled
-public import Mathlib.Topology.Metrizable.Basic
 
 @[expose] public section
 

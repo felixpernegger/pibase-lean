@@ -1,6 +1,5 @@
 module
 
-public import PiBaseLean.AdditionalDefs.Constructions
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P73.Defs
 

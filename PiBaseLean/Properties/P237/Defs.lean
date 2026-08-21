@@ -1,7 +1,5 @@
 module
 
-public import Mathlib.Topology.Homeomorph.Lemmas
-public import Mathlib.Topology.Separation.Hausdorff
 public import PiBaseLean.Properties.P236.Defs
 
 @[expose] public section

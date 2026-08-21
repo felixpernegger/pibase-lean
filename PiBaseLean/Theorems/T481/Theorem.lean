@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P3.Bundled
 public import PiBaseLean.Properties.P188.Bundled
+public import PiBaseLean.Properties.P3.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T481: P188 (ContinuumSpace) => P3 (T2Space) -/
-theorem instT2SpaceOfContinuumSpace (X : Type u)
+theorem instT2SpaceOfContinuumSpace {X : Type u}
     [TopologicalSpace X] [ContinuumSpace X] :
     T2Space X := by infer_instance
 

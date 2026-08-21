@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T212: P57 (Countable) + P28 (FirstCountableTopology) => P27 (SecondCountableTopology) -/
-theorem instSecondCountableTopologyOfCountableOfFirstCountableTopology (X : Type u)
+theorem instSecondCountableTopologyOfCountableOfFirstCountableTopology {X : Type u}
     [TopologicalSpace X] [Countable X] [FirstCountableTopology X] :
     SecondCountableTopology X := by infer_instance
 

@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T765: P218 (UltranormalSpace) => P13 (NormalSpace) -/
-instance instNormalSpaceOfUltranormalSpace (X : Type u)
+instance instNormalSpaceOfUltranormalSpace {X : Type u}
     [TopologicalSpace X] [h : UltranormalSpace X] :
     NormalSpace X where
   normal s t hs ht st := by

@@ -1,10 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import Mathlib.Topology.MetricSpace.Polish
-public import Mathlib.Topology.Metrizable.CompletelyMetrizable
-public import PiBaseLean.Properties.P55.Bundled
 public import PiBaseLean.Properties.P116.Bundled
+public import PiBaseLean.Properties.P55.Bundled
 
 @[expose] public section
 
@@ -15,7 +13,7 @@ open Topology Set Function TopologicalSpace
 namespace PiBase
 
 /-- Theorem T200: P116 (PolishSpace) => P55 (IsCompletelyMetrizableSpace) -/
-theorem instIsCompletelyMetrizableSpaceOfPolishSpace (X : Type u)
+theorem instIsCompletelyMetrizableSpaceOfPolishSpace {X : Type u}
     [TopologicalSpace X] [PolishSpace X] :
     IsCompletelyMetrizableSpace X := by infer_instance
 

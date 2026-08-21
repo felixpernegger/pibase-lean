@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T96: P39 (PreirreducibleSpace) => P49 (ExtremallyDisconnected) -/
-instance instExtremallyDisconnectedOfPreirreducibleSpace (X : Type u)
+instance instExtremallyDisconnectedOfPreirreducibleSpace {X : Type u}
     [TopologicalSpace X] [h : PreirreducibleSpace X] : ExtremallyDisconnected X where
   open_closure U hU := by
     by_cases! Un : U = ∅

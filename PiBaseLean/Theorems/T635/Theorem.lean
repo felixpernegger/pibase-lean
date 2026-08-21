@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T635: P205 (CutPointSpace) => P204 (HasACutPoint) -/
-instance instHasACutPointOfCutPointSpace (X : Type u)
+instance instHasACutPointOfCutPointSpace {X : Type u}
     [TopologicalSpace X] [h : CutPointSpace X] :
     HasACutPoint X :=
   have : Nonempty X := by infer_instance

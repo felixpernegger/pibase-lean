@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Algebra.Group.TransferInstance
 public import Mathlib.Topology.Algebra.Group.Defs
 
 @[expose] public section

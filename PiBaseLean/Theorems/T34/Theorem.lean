@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T34: P118 (HasSigmaLocallyFiniteKNetwork) => P117 (HasSigmaLocallyFiniteNetwork) -/
-instance instHasSigmaLocallyFiniteNetworkOfHasSigmaLocallyFiniteKNetwork (X : Type u)
+instance instHasSigmaLocallyFiniteNetworkOfHasSigmaLocallyFiniteKNetwork {X : Type u}
     [TopologicalSpace X] [h : HasSigmaLocallyFiniteKNetwork X] :
     HasSigmaLocallyFiniteNetwork X where
   ex_network :=

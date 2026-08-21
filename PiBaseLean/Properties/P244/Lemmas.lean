@@ -1,9 +1,6 @@
 module
 
-public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P244.Defs
-public import Mathlib.Topology.Homeomorph.Lemmas
-public import Mathlib.Data.Set.Countable
 
 @[expose] public section
 

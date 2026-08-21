@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.SetTheory.Cardinal.Order
-public import Mathlib.Topology.Defs.Basic
 
 @[expose] public section
 

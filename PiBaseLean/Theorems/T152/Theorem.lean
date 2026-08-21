@@ -14,7 +14,7 @@ namespace PiBase
 
 -- Most likely redundant
 /-- Theorem T152: P67 (T6Space) => P2 (T1Space) -/
-theorem instT1SpaceOfT6Space (X : Type u)
+theorem instT1SpaceOfT6Space {X : Type u}
     [TopologicalSpace X] [T6Space X] :
     T1Space X := by infer_instance
 

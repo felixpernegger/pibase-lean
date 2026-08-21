@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Topology.Homeomorph.Lemmas
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P75.Defs
 

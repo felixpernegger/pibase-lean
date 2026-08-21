@@ -1,9 +1,6 @@
 module
 
-public import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
-public import Mathlib.Data.Set.Card
-public import Mathlib.SetTheory.Ordinal.Basic
-public import Mathlib.Topology.Sets.OpenCover
+public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section
 

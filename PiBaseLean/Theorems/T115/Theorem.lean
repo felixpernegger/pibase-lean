@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T115: P6 (T35Space) => P5 (T3Space) -/
-theorem instT3SpaceOfT35Space (X : Type u) [TopologicalSpace X] [T35Space X] : T3Space X :=
+theorem instT3SpaceOfT35Space {X : Type u} [TopologicalSpace X] [T35Space X] : T3Space X :=
   instT3Space
 
 end PiBase

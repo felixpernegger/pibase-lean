@@ -1,9 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P27.Bundled
 public import PiBaseLean.Properties.P129.Bundled
-public import Mathlib.Topology.Bases
+public import PiBaseLean.Properties.P27.Bundled
 
 @[expose] public section
 
@@ -14,7 +13,7 @@ open Topology Set Function TopologicalSpace Filter
 namespace PiBase
 
 /-- Theorem T450: P129 (IndiscreteTopology) => P27 (SecondCountableTopology) -/
-instance instSecondCountableTopologyOfIndiscreteTopology (X : Type u)
+instance instSecondCountableTopologyOfIndiscreteTopology {X : Type u}
     [TopologicalSpace X] [IndiscreteTopology X] : SecondCountableTopology X := by
   refine IsTopologicalBasis.secondCountableTopology (b := {univ}) ?_ (countable_singleton univ)
   apply IsTopologicalBasis.of_hasBasis_nhds

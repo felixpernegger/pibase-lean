@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P163.Bundled
 public import PiBaseLean.Properties.P58.Bundled
 public import PiBaseLean.Properties.P65.Bundled
-public import PiBaseLean.Properties.P163.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ namespace PiBase
 open Cardinal PiBase.Formal
 
 /-- Theorem 391: |X| ≤ 𝔠 and ¬ |X| < 𝔠  implies |X| = 𝔠 -/
-theorem instCardEqContinuumOfCardLeContinuumOfNotCardltContinuum (X : Type u)
+theorem instCardEqContinuumOfCardLeContinuumOfNotCardltContinuum {X : Type u}
     [h : CardLeContinuum X] (h' : ¬CardLtContinuum X) : CardEqContinuum X where
   card_eq := by
     refine le_antisymm h.card_le ?_

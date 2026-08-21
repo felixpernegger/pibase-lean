@@ -1,8 +1,6 @@
 module
 
 public import Mathlib.AlgebraicTopology.FundamentalGroupoid.FundamentalGroup
-public import Mathlib.Topology.GDelta.MetrizableSpace
-public import Mathlib.Topology.Metrizable.Uniformity
 
 @[expose] public section
 

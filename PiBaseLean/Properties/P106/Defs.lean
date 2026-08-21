@@ -1,7 +1,7 @@
 module
 
-public import Mathlib.Topology.GDelta.Basic
 public import Mathlib.Topology.Constructions.SumProd
+public import Mathlib.Topology.GDelta.Basic
 
 @[expose] public section
 

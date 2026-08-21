@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P16.Bundled
 public import PiBaseLean.Properties.P129.Bundled
+public import PiBaseLean.Properties.P16.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T251: P129 (IndiscreteTopology) => P16 (CompactSpace) -/
-theorem instCompactSpaceOfIndiscreteTopology (X : Type u)
+theorem instCompactSpaceOfIndiscreteTopology {X : Type u}
     [TopologicalSpace X] [IndiscreteTopology X] : CompactSpace X := by
   infer_instance
 

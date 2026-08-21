@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T189: P78 (Finite) => P27 (SecondCountableTopology) -/
-theorem instSecondCountableTopologyOfFinite (X : Type u)
+theorem instSecondCountableTopologyOfFinite {X : Type u}
     [TopologicalSpace X] [Finite X] : SecondCountableTopology X := by infer_instance
 
 end PiBase

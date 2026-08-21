@@ -3,7 +3,6 @@ module
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P120.Bundled
 public import PiBaseLean.Properties.P133.Bundled
-public import PiBaseLean.Properties.P133.Bundled
 
 @[expose] public section
 
@@ -14,7 +13,7 @@ open Topology Set Function Filter
 namespace PiBase
 
 /-- Theorem T750: P133 (Lots) => P120 (LocallyOrderableSpace) -/
-instance instLocallyOrderableSpaceOfLots (X : Type u)
+instance instLocallyOrderableSpaceOfLots {X : Type u}
     [TopologicalSpace X] [h : Lots X] :
     LocallyOrderableSpace X where
   ex_nbhd_lots _ := ⟨univ, univ_mem, (WellDefined.Set.univ WellDefined.lots).mp h⟩

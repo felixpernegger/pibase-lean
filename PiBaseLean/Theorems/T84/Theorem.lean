@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P5.Bundled
 public import PiBaseLean.Properties.P177.Bundled
+public import PiBaseLean.Properties.P5.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology TopologicalSpace
 namespace PiBase
 
 /-- Theorem T84: P177 (SigmaSpace) => P5 (T3Space) -/
-theorem instT3SpaceOfSigmaSpace (X : Type u)
+theorem instT3SpaceOfSigmaSpace {X : Type u}
     [TopologicalSpace X] [SigmaSpace X] :
     T3Space X := instT3Space
 

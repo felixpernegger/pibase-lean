@@ -1,8 +1,7 @@
 module
 
-public import PiBaseLean.Properties.P2.Bundled
-public import PiBaseLean.Properties.P191.Bundled
-public import Mathlib.Data.Set.Defs
+public import PiBaseLean.Properties.P191.Defs
+public import PiBaseLean.Properties.P2.Defs
 
 @[expose] public section
 

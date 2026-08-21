@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P52.Bundled
 public import PiBaseLean.Properties.P203.Bundled
+public import PiBaseLean.Properties.P52.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T571: P203 (AlmostDiscreteSpace) => P52 (¬DiscreteTopology) -/
-theorem not_DiscreteTopologyOfAlmostDiscreteSpace (X : Type u)
+theorem not_DiscreteTopologyOfAlmostDiscreteSpace {X : Type u}
     [TopologicalSpace X] [h : AlmostDiscreteSpace X] :
     ¬ DiscreteTopology X := by
   obtain ⟨p, hp⟩ := h.ex_point

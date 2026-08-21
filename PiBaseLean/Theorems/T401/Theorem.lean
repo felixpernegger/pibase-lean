@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T401: P13 (NormalSpace) => P165 (PseudonormalSpace) -/
-instance instPseudonormalSpaceOfNormalSpace (X : Type u)
+instance instPseudonormalSpaceOfNormalSpace {X : Type u}
     [TopologicalSpace X] [h : NormalSpace X] :
     PseudonormalSpace X where
   pseudonormal _ _ _ hs ht st := normal_separation hs ht st

@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P2.Bundled
 public import PiBaseLean.Properties.P15.Bundled
+public import PiBaseLean.Properties.P2.Bundled
 public import PiBaseLean.Properties.P67.Bundled
 
 @[expose] public section
@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T153: P2 (T1Space) + P15 (PerfectlyNormalSpace) => P67 (T6Space) -/
-theorem instT6SpaceOfT1SpaceOfPerfectlyNormalSpace (X : Type u)
+theorem instT6SpaceOfT1SpaceOfPerfectlyNormalSpace {X : Type u}
     [TopologicalSpace X] [T1Space X] [PerfectlyNormalSpace X] :
     T6Space X := by tauto
 

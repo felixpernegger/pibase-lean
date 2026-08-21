@@ -3,7 +3,8 @@ module
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P130.Bundled
 public import PiBaseLean.Properties.P208.Bundled
-public import Mathlib.Topology.Spectral.Prespectral
+
+import Mathlib.Topology.Spectral.Prespectral
 
 @[expose] public section
 
@@ -14,7 +15,7 @@ open Topology Set Function TopologicalSpace
 namespace PiBase
 
 /-- Theorem T652: P208 (NoetherianSpace) => P130 (LocallyCompactSpace) -/
-theorem instLocallyCompactSpaceOfNoetherianSpace (X : Type u)
+theorem instLocallyCompactSpaceOfNoetherianSpace {X : Type u}
     [TopologicalSpace X] [NoetherianSpace X] : LocallyCompactSpace X := by
   infer_instance
 

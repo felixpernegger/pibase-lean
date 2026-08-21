@@ -1,10 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P52.Bundled
 public import PiBaseLean.Properties.P125.Bundled
 public import PiBaseLean.Properties.P129.Bundled
-public import Mathlib.Logic.Nontrivial.Defs
+public import PiBaseLean.Properties.P52.Bundled
 
 @[expose] public section
 
@@ -15,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T247: P52 (DiscreteTopology) + P129 (IndiscreteTopology) => ¬P125 (Nontrivial) -/
-instance instSubsingletonOfDiscreteTopologyOfIndiscreteTopology (X : Type u)
+instance instSubsingletonOfDiscreteTopologyOfIndiscreteTopology {X : Type u}
     [TopologicalSpace X] [DiscreteTopology X] [h : IndiscreteTopology X] : Subsingleton X := by
   refine { allEq := fun a b ↦ ?_}
   have ha : {a} = univ := by

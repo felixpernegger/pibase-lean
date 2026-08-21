@@ -1,8 +1,6 @@
 module
 
-public import Mathlib.Topology.Homeomorph.Lemmas
 public import PiBaseLean.AdditionalDefs.Constructions
-public import PiBaseLean.AdditionalDefs.Meta
 
 @[expose] public section
 

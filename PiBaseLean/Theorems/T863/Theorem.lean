@@ -1,9 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P234.Bundled
 public import PiBaseLean.Properties.P41.Bundled
-public import PiBaseLean.Properties.P234.Bundled
-public import PiBaseLean.Properties.P234.Bundled
 
 @[expose] public section
 
@@ -14,7 +13,7 @@ open Topology Set Function Filter
 namespace PiBase
 
 /-- Theorem T863: P41 (LocallyConnectedSpace) => P234 (HasOpenConnectedComponents) -/
-instance instHasOpenConnectedComponentsOfLocallyConnectedSpace (X : Type u)
+instance instHasOpenConnectedComponentsOfLocallyConnectedSpace {X : Type u}
     [TopologicalSpace X] [h : LocallyConnectedSpace X] : HasOpenConnectedComponents X := by
   apply (hasOpenConnectedComponents_iff_ex_connected_nbhd X).mpr fun x ↦ ?_
   obtain ⟨s, ⟨so, xs, sc⟩, _⟩ := (hasBasis_iff.mp (h.open_connected_basis x) univ).mp univ_mem

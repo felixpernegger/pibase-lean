@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P170.Bundled
 public import PiBaseLean.Properties.P92.Bundled
 public import PiBaseLean.Properties.P98.Bundled
-public import PiBaseLean.Properties.P170.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T505: P98 (kω1Space) + P170 (K1T2Space) => P92 (kω3Space) -/
-instance instkω3SpaceOfkω1SpaceOfK1T2Space (X : Type u)
+instance instkω3SpaceOfkω1SpaceOfK1T2Space {X : Type u}
     [TopologicalSpace X] [h : kω1Space X] [h' : K1T2Space X] :
     kω3Space X where
   k_omega :=

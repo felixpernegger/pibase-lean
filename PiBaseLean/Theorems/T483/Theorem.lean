@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P36.Bundled
 public import PiBaseLean.Properties.P188.Bundled
+public import PiBaseLean.Properties.P36.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ namespace PiBase
 
 -- Most likely redundant
 /-- Theorem T483: P188 (ContinuumSpace) => P36 (PreconnectedSpace) -/
-theorem instPreconnectedSpaceOfContinuumSpace (X : Type u)
+theorem instPreconnectedSpaceOfContinuumSpace {X : Type u}
     [TopologicalSpace X] [ContinuumSpace X] :
     PreconnectedSpace X := by infer_instance
 

@@ -1,10 +1,10 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P39.Bundled
 public import PiBaseLean.Properties.P137.Bundled
 public import PiBaseLean.Properties.P192.Bundled
 public import PiBaseLean.Properties.P201.Bundled
+public import PiBaseLean.Properties.P39.Bundled
 
 @[expose] public section
 
@@ -16,7 +16,7 @@ namespace PiBase
 
 /-- Theorem T594: P192 (QuasiSober) + P39 (PreirreducibleSpace) +
 P137 (¬IsEmpty) => P201 (HasGenericPoint) -/
-instance instHasGenericPointOfQuasiSoberOfPreirreducibleSpaceOfNonempty (X : Type u)
+instance instHasGenericPointOfQuasiSoberOfPreirreducibleSpaceOfNonempty {X : Type u}
     [TopologicalSpace X] [h : QuasiSober X] [h' : PreirreducibleSpace X] [h'' : Nonempty X] :
     HasGenericPoint X where
   ex_generic_point := by

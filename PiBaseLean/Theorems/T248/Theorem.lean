@@ -1,9 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P52.Bundled
 public import PiBaseLean.Properties.P125.Bundled
-public import Mathlib.Logic.Nontrivial.Defs
+public import PiBaseLean.Properties.P52.Bundled
 
 @[expose] public section
 
@@ -14,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T248: ¬P125 (Nontrivial) => P52 (DiscreteTopology) -/
-theorem instDiscreteTopologyOfSubsingleton (X : Type u)
+theorem instDiscreteTopologyOfSubsingleton {X : Type u}
     [TopologicalSpace X] [Subsingleton X] : DiscreteTopology X := by
   infer_instance
 

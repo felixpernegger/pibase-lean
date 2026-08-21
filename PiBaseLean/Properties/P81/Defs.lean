@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Data.Set.Countable
-public import Mathlib.Topology.Defs.Basic
 public import Mathlib.Topology.Homeomorph.Defs
 
 @[expose] public section

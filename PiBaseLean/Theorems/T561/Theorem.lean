@@ -13,7 +13,7 @@ open Topology Set Function Filter Cardinal
 namespace PiBase
 
 /-- Theorem T561: P197 (HasCountableSpread) => P198 (HasCountableExtent) -/
-instance instHasCountableExtentOfHasCountableSpread (X : Type u)
+instance instHasCountableExtentOfHasCountableSpread {X : Type u}
     [TopologicalSpace X] [h : HasCountableSpread X] :
     HasCountableExtent X where
   extent_eq := le_antisymm (h.spread_eq ▸ extent_le_spread X) (aleph_zero_le_extent X)

@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Topology.Metrizable.Basic
-public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section
 

@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P73.Bundled
 public import PiBaseLean.Properties.P192.Bundled
+public import PiBaseLean.Properties.P73.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T511: P73 (SoberSpace) => P192 (QuasiSober) -/
-theorem instQuasiSoberOfSoberSpace (X : Type u)
+theorem instQuasiSoberOfSoberSpace {X : Type u}
     [TopologicalSpace X] [SoberSpace X] :
     QuasiSober X := by infer_instance
 

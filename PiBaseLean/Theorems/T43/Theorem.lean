@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T43: P2 (T1Space) + P51 (ScatteredSpace) => P47 (TotallyDisconnectedSpace) -/
-instance instTotallyDisconnectedSpaceOfT1SpaceOfScatteredSpace (X : Type u)
+instance instTotallyDisconnectedSpaceOfT1SpaceOfScatteredSpace {X : Type u}
     [TopologicalSpace X] [T1Space X] [h : ScatteredSpace X] : TotallyDisconnectedSpace X := by
   refine totallyDisconnectedSpace_iff_connectedComponent_singleton.mpr (fun x ↦ ?_)
   obtain ⟨p, hp⟩ := h.scattered (connectedComponent x) connectedComponent_nonempty

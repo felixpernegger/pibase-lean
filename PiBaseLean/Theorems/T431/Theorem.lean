@@ -1,9 +1,10 @@
 module
 
-public import Mathlib.SetTheory.Cardinal.Basic
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P78.Bundled
 public import PiBaseLean.Properties.P176.Bundled
+public import PiBaseLean.Properties.P78.Bundled
+
+import Mathlib.SetTheory.Cardinal.Basic
 
 @[expose] public section
 

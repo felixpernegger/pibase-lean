@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T535: P123 (LocallyNEuclideanSpace) => P122 (LocallyEuclideanSpace) -/
-instance instLocallyEuclideanSpaceOfLocallyNEuclideanSpace (X : Type u)
+instance instLocallyEuclideanSpaceOfLocallyNEuclideanSpace {X : Type u}
     [TopologicalSpace X] [h : LocallyNEuclideanSpace X] :
     LocallyEuclideanSpace X where
   locally_homeomorph x :=

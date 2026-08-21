@@ -2,9 +2,8 @@ module
 
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P197.Defs
-public import Mathlib.Topology.Homeomorph.Lemmas
-public import Mathlib.Topology.DiscreteSubset
-public import Mathlib.Data.Set.Countable
+
+import Mathlib.Tactic.Order
 
 @[expose] public section
 

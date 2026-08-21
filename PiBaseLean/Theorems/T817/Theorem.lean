@@ -1,9 +1,8 @@
 module
 
-public import Mathlib.Topology.Constructions
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P52.Bundled
 public import PiBaseLean.Properties.P219.Bundled
+public import PiBaseLean.Properties.P52.Bundled
 
 @[expose] public section
 
@@ -14,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T817: P52 (DiscreteTopology) => P219 (TorontoSpace) -/
-theorem instTorontoSpaceOfDiscreteTopology (X : Type u)
+theorem instTorontoSpaceOfDiscreteTopology {X : Type u}
     [TopologicalSpace X] [DiscreteTopology X] : TorontoSpace X :=
   ⟨fun _ h ↦ ⟨Cardinal.eq.mp h |>.some, continuous_of_discreteTopology,
   continuous_of_discreteTopology⟩⟩

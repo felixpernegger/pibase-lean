@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T8: P25 (ExhaustibleByCompacts) => P23 (WeaklyLocallyCompactSpace) -/
-instance instWeaklyLocallyCompactSpaceOfExhaustibleByCompacts (X : Type u)
+instance instWeaklyLocallyCompactSpaceOfExhaustibleByCompacts {X : Type u}
     [TopologicalSpace X] [h : ExhaustibleByCompacts X] :
     WeaklyLocallyCompactSpace X where
   exists_compact_mem_nhds x := by

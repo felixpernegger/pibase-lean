@@ -1,12 +1,10 @@
 module
 
-public import Mathlib.Data.Real.Basic
-public import Mathlib.SetTheory.Cardinal.Continuum
 public import Mathlib.Analysis.Real.Cardinality
-public import Mathlib.Order.SetNotation
-public import Mathlib.Topology.Baire.LocallyCompactRegular
-public import Mathlib.Topology.UnitInterval
 public import PiBaseLean.Theorems.T21.Theorem
+
+import Mathlib.Topology.Baire.LocallyCompactRegular
+import Mathlib.Topology.UnitInterval
 
 /-!
 # Set theory axioms beyond ZFC

@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T121: P16 (CompactSpace) => P17 (SigmaCompactSpace) -/
-theorem instSigmaCompactSpaceOfCompactSpace (X : Type u)
+theorem instSigmaCompactSpaceOfCompactSpace {X : Type u}
     [TopologicalSpace X] [CompactSpace X] :
     SigmaCompactSpace X := by infer_instance
 

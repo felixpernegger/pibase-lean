@@ -14,7 +14,7 @@ namespace PiBase
 
 -- Most likely redundant
 /-- Theorem T587: P18 (LindelofSpace) => P83 (MetaLindelofSpace) -/
-instance instMetaLindelofSpaceOfLindelofSpace (X : Type u)
+instance instMetaLindelofSpaceOfLindelofSpace {X : Type u}
     [TopologicalSpace X] [h : LindelofSpace X] :
     MetaLindelofSpace X where
   meta_lindelof ι s so sc := by

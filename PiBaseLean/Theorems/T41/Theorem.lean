@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P45.Bundled
 public import PiBaseLean.Properties.P137.Bundled
+public import PiBaseLean.Properties.P45.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T41: P45 (HasDispersionPoint) => P137 (¬IsEmpty) -/
-theorem instNonemptyOfHasDispersionPoint (X : Type u)
+theorem instNonemptyOfHasDispersionPoint {X : Type u}
     [TopologicalSpace X] [HasDispersionPoint X] :
     Nonempty X := by infer_instance
 

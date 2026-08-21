@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Order.Filter.Map
 public import Mathlib.Topology.Defs.Filter
 
 @[expose] public section

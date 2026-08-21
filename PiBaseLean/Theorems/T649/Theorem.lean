@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T649: P126 (DoorSpace) + P137ᶜ (Nonempty) => P107 (HasClosedPoint) -/
-instance instHasClosedPointOfDoorSpaceOfNonempty (X : Type u)
+instance instHasClosedPointOfDoorSpaceOfNonempty {X : Type u}
     [TopologicalSpace X] [h : DoorSpace X] [h' : Nonempty X] :
     HasClosedPoint X where
   has_closed_point := by

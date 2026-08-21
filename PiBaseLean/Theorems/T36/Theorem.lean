@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T36: P14 (CompletelyNormalSpace) => P13 (NormalSpace) -/
-theorem instNormalSpaceOfCompletelyNormalSpace (X : Type u)
+theorem instNormalSpaceOfCompletelyNormalSpace {X : Type u}
     [TopologicalSpace X] [CompletelyNormalSpace X] : NormalSpace X := by
   infer_instance
 

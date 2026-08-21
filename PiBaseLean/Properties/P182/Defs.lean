@@ -1,8 +1,6 @@
 module
 
 public import PiBaseLean.AdditionalDefs.Cover
-public import Mathlib.Data.Set.Countable
-public import Mathlib.Topology.Homeomorph.Defs
 
 @[expose] public section
 

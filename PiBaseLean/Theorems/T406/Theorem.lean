@@ -2,8 +2,8 @@ module
 
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P13.Bundled
-public import PiBaseLean.Properties.P57.Bundled
 public import PiBaseLean.Properties.P165.Bundled
+public import PiBaseLean.Properties.P57.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T406: P165 (PseudonormalSpace) + P57 (Countable) => P13 (NormalSpace) -/
-instance instNormalSpaceOfPseudonormalSpaceOfCountable (X : Type u)
+instance instNormalSpaceOfPseudonormalSpaceOfCountable {X : Type u}
     [TopologicalSpace X] [h : PseudonormalSpace X] [h' : Countable X] :
     NormalSpace X where
   normal s t hs ht st := h.pseudonormal s t (to_countable s) hs ht st

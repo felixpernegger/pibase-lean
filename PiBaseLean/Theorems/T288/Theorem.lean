@@ -2,8 +2,8 @@ module
 
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P1.Bundled
-public import PiBaseLean.Properties.P2.Bundled
 public import PiBaseLean.Properties.P135.Bundled
+public import PiBaseLean.Properties.P2.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T288: P135 (R0Space) + P1 (T0Space) => P2 (T1Space) -/
-theorem instT1SpaceOfR0SpaceOfT0Space (X : Type u)
+theorem instT1SpaceOfR0SpaceOfT0Space {X : Type u}
     [TopologicalSpace X] [R0Space X] [T0Space X] :
     T1Space X := by infer_instance
 

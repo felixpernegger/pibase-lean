@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P5.Bundled
 public import PiBaseLean.Properties.P179.Bundled
 public import PiBaseLean.Properties.P183.Bundled
+public import PiBaseLean.Properties.P5.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T117: P183 (HasCountableKNetwork) + P5 (T3Space) => P179 (AlephZeroSpace) -/
-theorem instAlephZeroSpaceOfHasCountableKNetworkOfT3Space (X : Type u)
+theorem instAlephZeroSpaceOfHasCountableKNetworkOfT3Space {X : Type u}
     [TopologicalSpace X] [HasCountableKNetwork X] [T3Space X] :
     AlephZeroSpace X := by tauto
 

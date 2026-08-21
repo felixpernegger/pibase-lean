@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T182: P178 (AlephSpace) => P118 (HasSigmaLocallyFiniteKNetwork) -/
-theorem instHasSigmaLocallyFiniteKNetworkOfAlephSpace (X : Type u)
+theorem instHasSigmaLocallyFiniteKNetworkOfAlephSpace {X : Type u}
     [TopologicalSpace X] [AlephSpace X] :
     HasSigmaLocallyFiniteKNetwork X := by infer_instance
 

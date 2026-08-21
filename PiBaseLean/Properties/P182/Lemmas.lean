@@ -2,7 +2,6 @@ module
 
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P182.Defs
-public import Mathlib.Topology.Homeomorph.Defs
 
 @[expose] public section
 

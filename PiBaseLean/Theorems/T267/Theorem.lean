@@ -4,7 +4,8 @@ public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P2.Bundled
 public import PiBaseLean.Properties.P52.Bundled
 public import PiBaseLean.Properties.P90.Bundled
-public import Mathlib.Topology.Separation.AlexandrovDiscrete
+
+import Mathlib.Topology.Separation.AlexandrovDiscrete
 
 @[expose] public section
 

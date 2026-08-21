@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P36.Bundled
 public import PiBaseLean.Properties.P189.Bundled
+public import PiBaseLean.Properties.P36.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T484: P189 (SigmaConnectedSpace) => P36 (PreconnectedSpace) -/
-theorem instPreconnectedSpaceOfSigmaConnectedSpace (X : Type u)
+theorem instPreconnectedSpaceOfSigmaConnectedSpace {X : Type u}
     [TopologicalSpace X] [SigmaConnectedSpace X] :
     PreconnectedSpace X := by infer_instance
 

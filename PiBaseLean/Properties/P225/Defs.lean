@@ -1,8 +1,6 @@
 module
 
-public import PiBaseLean.AdditionalDefs.Games
 public import Mathlib.Topology.UnitInterval
-public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section
 

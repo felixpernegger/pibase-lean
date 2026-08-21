@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P5.Bundled
 public import PiBaseLean.Properties.P110.Bundled
 public import PiBaseLean.Properties.P113.Bundled
+public import PiBaseLean.Properties.P5.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T717: P110 (DevelopableSpace) + P5 (T3Space) => P113 (MooreSpace) -/
-theorem instMooreSpaceOfDevelopableSpaceOfT3Space (X : Type u)
+theorem instMooreSpaceOfDevelopableSpaceOfT3Space {X : Type u}
     [TopologicalSpace X] [DevelopableSpace X] [T3Space X] :
     MooreSpace X := by tauto
 

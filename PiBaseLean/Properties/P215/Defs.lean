@@ -2,7 +2,6 @@ module
 
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P162.Defs
-public import PiBaseLean.Properties.P162.Bundled
 
 @[expose] public section
 

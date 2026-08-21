@@ -1,8 +1,7 @@
 module
 
-public import PiBaseLean.AdditionalDefs.Games
-public import PiBaseLean.Properties.P87.Defs
 public import PiBaseLean.Properties.P187.Defs
+public import PiBaseLean.Properties.P87.Defs
 
 @[expose] public section
 

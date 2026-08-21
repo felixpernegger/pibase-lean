@@ -2,7 +2,6 @@ module
 
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P163.Defs
-public import Mathlib.SetTheory.Cardinal.Continuum
 
 @[expose] public section
 

@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T564: P94 (LocallyFiniteSpace) => P93 (LocallyCountableSpace) -/
-instance instLocallyCountableSpaceOfLocallyFiniteSpace (X : Type u)
+instance instLocallyCountableSpaceOfLocallyFiniteSpace {X : Type u}
     [TopologicalSpace X] [h : LocallyFiniteSpace X] :
     LocallyCountableSpace X where
   locally_countable x := by

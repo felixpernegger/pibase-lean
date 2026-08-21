@@ -1,7 +1,6 @@
 module
 
 public import PiBaseLean.AdditionalDefs.Meta
-public import Mathlib.Topology.Defs.Basic
 
 @[expose] public section
 

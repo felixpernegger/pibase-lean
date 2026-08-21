@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T865: P51 (ScatteredSpace) => P73 (SoberSpace) -/
-instance instSoberSpaceOfScatteredSpace (X : Type u)
+instance instSoberSpaceOfScatteredSpace {X : Type u}
     [TopologicalSpace X] [h : ScatteredSpace X] : SoberSpace X := by
   refine soberSpace_iff_ex_unique_generic.mpr (fun S Si Sc ↦ ?_)
   obtain ⟨⟨p, pS⟩, hp⟩ := h.scattered S (IsIrreducible.nonempty Si)

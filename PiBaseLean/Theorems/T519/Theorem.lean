@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T519: P134 (R1Space) => P192 (QuasiSober) -/
-theorem instQuasiSoberOfR1Space (X : Type u)
+theorem instQuasiSoberOfR1Space {X : Type u}
     [TopologicalSpace X] [R1Space X] : QuasiSober X := by
   infer_instance
 

@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Order.Filter.Map
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P202.Defs
 

@@ -1,9 +1,10 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import Mathlib.Topology.Metrizable.Uniformity
-public import PiBaseLean.Properties.P53.Bundled
 public import PiBaseLean.Properties.P112.Bundled
+public import PiBaseLean.Properties.P53.Bundled
+
+import Mathlib.Topology.Metrizable.Uniformity
 
 @[expose] public section
 
@@ -15,7 +16,7 @@ namespace PiBase
 
 -- Most likely redundant
 /-- Theorem T407: P53 (MetrizableSpace) => P112 (SubmetrizableSpace) -/
-instance instSubmetrizableSpaceOfMetrizableSpace (X : Type u)
+instance instSubmetrizableSpaceOfMetrizableSpace {X : Type u}
     [τ : TopologicalSpace X] [MetrizableSpace X] :
     SubmetrizableSpace X where
   le_metrizable := ⟨metrizableSpaceMetric X, le_refl τ⟩

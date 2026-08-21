@@ -3,6 +3,8 @@ module
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P76.Defs
 
+import Mathlib.Topology.UniformSpace.Basic
+
 @[expose] public section
 
 namespace PiBase

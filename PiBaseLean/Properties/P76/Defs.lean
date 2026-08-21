@@ -1,8 +1,6 @@
 module
 
 public import PiBaseLean.AdditionalDefs.Games
-public import Mathlib.Topology.UniformSpace.Basic
-public import Mathlib.Topology.UniformSpace.UniformEmbedding
 
 @[expose] public section
 

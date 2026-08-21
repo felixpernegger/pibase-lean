@@ -1,7 +1,5 @@
 module
 
-public import Mathlib.Data.Countable.Defs
-public import Mathlib.Topology.Defs.Filter
 public import PiBaseLean.AdditionalDefs.Cover
 
 @[expose] public section

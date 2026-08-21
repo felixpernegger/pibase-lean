@@ -3,6 +3,8 @@ module
 public import PiBaseLean.AdditionalDefs.Meta
 public import PiBaseLean.Properties.P238.Defs
 
+import Mathlib.Algebra.Module.TransferInstance
+
 @[expose] public section
 
 namespace PiBase

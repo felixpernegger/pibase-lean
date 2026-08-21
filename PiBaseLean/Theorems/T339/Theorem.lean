@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T339: P75 (SpectralSpace) => P16 (CompactSpace) -/
-theorem instCompactSpaceOfSpectralSpace (X : Type u)
+theorem instCompactSpaceOfSpectralSpace {X : Type u}
     [TopologicalSpace X] [SpectralSpace X] :
     CompactSpace X := by infer_instance
 

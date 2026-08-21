@@ -1,9 +1,7 @@
 module
 
-public import PiBaseLean.AdditionalDefs.Meta
-public import PiBaseLean.Properties.P121.Defs
-public import PiBaseLean.Properties.P185.Bundled
 public import Mathlib.Topology.Metrizable.Uniformity
+public import PiBaseLean.Properties.P185.Lemmas
 
 @[expose] public section
 

@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P51.Bundled
 public import PiBaseLean.Properties.P203.Bundled
+public import PiBaseLean.Properties.P51.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T573: P203 (AlmostDiscreteSpace) => P51 (ScatteredSpace) -/
-instance instScatteredSpaceOfAlmostDiscreteSpace (X : Type u)
+instance instScatteredSpaceOfAlmostDiscreteSpace {X : Type u}
     [TopologicalSpace X] [h : AlmostDiscreteSpace X] : ScatteredSpace X where
   scattered s sn := by
     obtain ⟨p, hp⟩ := h.ex_point

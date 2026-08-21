@@ -1,9 +1,10 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P15.Bundled
 public import PiBaseLean.Properties.P121.Bundled
-public import Mathlib.Topology.GDelta.MetrizableSpace
+public import PiBaseLean.Properties.P15.Bundled
+
+import Mathlib.Topology.GDelta.MetrizableSpace
 
 @[expose] public section
 

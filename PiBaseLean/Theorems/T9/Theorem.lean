@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T9: P16 (CompactSpace) => P25 (ExhaustibleByCompacts) -/
-instance instExhaustibleByCompactsOfCompactSpace (X : Type u)
+instance instExhaustibleByCompactsOfCompactSpace {X : Type u}
     [TopologicalSpace X] [CompactSpace X] :
     ExhaustibleByCompacts X where
   exhaustion := by

@@ -1,6 +1,5 @@
 module
 
-public import PiBaseLean.AdditionalDefs.Games
 public import PiBaseLean.Properties.P160.Defs
 
 @[expose] public section

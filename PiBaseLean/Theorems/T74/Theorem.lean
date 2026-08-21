@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T74: P57 (Countable) => P17 (SigmaCompactSpace) -/
-instance instSigmaCompactSpaceOfCountable (X : Type u)
+instance instSigmaCompactSpaceOfCountable {X : Type u}
     [TopologicalSpace X] [h : Countable X] : SigmaCompactSpace X := by
   by_cases! IsEmpty X
   · infer_instance

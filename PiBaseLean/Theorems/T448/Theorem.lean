@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T448: P129 (IndiscreteTopology) => P185 (PartitionTopology) -/
-instance instPartitionTopologyOfIndiscreteTopology (X : Type u)
+instance instPartitionTopologyOfIndiscreteTopology {X : Type u}
     [TopologicalSpace X] [h : IndiscreteTopology X] :
     PartitionTopology X where
   quotient_discrete := by infer_instance

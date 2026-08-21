@@ -1,8 +1,6 @@
 module
 
 public import Mathlib.Topology.Compactness.CompactlyCoherentSpace
-public import Mathlib.Topology.Homeomorph.Lemmas
-public import Mathlib.Topology.Separation.Hausdorff
 
 @[expose] public section
 

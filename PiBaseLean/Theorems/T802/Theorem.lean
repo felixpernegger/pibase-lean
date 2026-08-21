@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T802: P119 (StoneanSpace) => P195 (StoneSpace) -/
-theorem instStoneSpaceOfStoneanSpace (X : Type u)
+theorem instStoneSpaceOfStoneanSpace {X : Type u}
     [TopologicalSpace X] [StoneanSpace X] :
     StoneSpace X := by tauto
 

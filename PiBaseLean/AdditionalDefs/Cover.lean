@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Topology.Sets.OpenCover
-public import Mathlib.Data.Set.Card
 
 @[expose] public section
 

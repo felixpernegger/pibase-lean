@@ -1,7 +1,5 @@
 module
 
-public import Mathlib.Data.Finite.Defs
-public import Mathlib.Topology.Defs.Basic
 public import Mathlib.Topology.Sets.Opens
 
 @[expose] public section

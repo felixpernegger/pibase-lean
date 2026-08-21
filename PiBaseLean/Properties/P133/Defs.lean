@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Topology.Order.Basic
-public import Mathlib.Topology.Order
 
 @[expose] public section
 

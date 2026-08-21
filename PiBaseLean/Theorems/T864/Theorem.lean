@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P36.Bundled
 public import PiBaseLean.Properties.P234.Bundled
+public import PiBaseLean.Properties.P36.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T864: P36 (PreconnectedSpace) => P234 (HasOpenConnectedComponents) -/
-instance instHasOpenConnectedComponentsOfPreconnectedSpace (X : Type u)
+instance instHasOpenConnectedComponentsOfPreconnectedSpace {X : Type u}
     [TopologicalSpace X] [h : PreconnectedSpace X] :
     HasOpenConnectedComponents X where
   component_open x := PreconnectedSpace.connectedComponent_eq_univ x ▸ isOpen_univ

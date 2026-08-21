@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P13.Bundled
 public import PiBaseLean.Properties.P2.Bundled
 public import PiBaseLean.Properties.P7.Bundled
-public import PiBaseLean.Properties.P13.Bundled
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T99: P2 (T1Space) + P13 (NormalSpace) => P7 (T4Space) -/
-theorem instT4SpaceOfT1SpaceOfNormalSpace (X : Type u)
+theorem instT4SpaceOfT1SpaceOfNormalSpace {X : Type u}
     [TopologicalSpace X] [T1Space X] [NormalSpace X] :
     T4Space X := by tauto
 

@@ -1,9 +1,10 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P9.Bundled
 public import PiBaseLean.Properties.P48.Bundled
-public import Mathlib.Topology.Algebra.Indicator
+public import PiBaseLean.Properties.P9.Bundled
+
+import Mathlib.Topology.Algebra.Indicator
 
 @[expose] public section
 
@@ -14,7 +15,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T48: P48 (TotallySeparatedSpace) => P9 (FunctionallyT2Space) -/
-instance instFunctionallyT2SpaceOfTotallySeparatedSpace (X : Type u)
+instance instFunctionallyT2SpaceOfTotallySeparatedSpace {X : Type u}
     [TopologicalSpace X] [h : TotallySeparatedSpace X] : FunctionallyT2Space X where
   functionally_t2 x y xy := by
     obtain ⟨U, hU, yU, xU⟩ := totallySeparatedSpace_iff_exists_isClopen.mp h xy.symm

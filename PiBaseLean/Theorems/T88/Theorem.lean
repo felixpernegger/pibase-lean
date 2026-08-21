@@ -1,9 +1,9 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P125.Bundled
 public import PiBaseLean.Properties.P37.Bundled
 public import PiBaseLean.Properties.P46.Bundled
-public import PiBaseLean.Properties.P125.Bundled
 
 @[expose] public section
 
@@ -15,7 +15,7 @@ namespace PiBase
 
 /-- Theorem T88: P37 (PrepathConnectedSpace) + P125 (Nontrivial) =>
 P46 (¬TotallyPathDisconnectedSpace) -/
-theorem instNotTotallyPathDisconnectedSpaceOfPrepathConnectedSpaceOfNontrivial (X : Type u)
+theorem instNotTotallyPathDisconnectedSpaceOfPrepathConnectedSpaceOfNontrivial {X : Type u}
     [TopologicalSpace X] [h : PrepathConnectedSpace X] [h' : Nontrivial X] :
     ¬ TotallyPathDisconnectedSpace X := by
   contrapose! h'

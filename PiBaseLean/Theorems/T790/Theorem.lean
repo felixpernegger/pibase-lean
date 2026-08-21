@@ -1,11 +1,11 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
+public import PiBaseLean.Properties.P191.Bundled
 public import PiBaseLean.Properties.P2.Bundled
 public import PiBaseLean.Properties.P93.Bundled
-public import PiBaseLean.Properties.P191.Bundled
-public import PiBaseLean.AdditionalDefs.Constructions
-public import PiBaseLean.AdditionalDefs.Cover
+
+import PiBaseLean.AdditionalDefs.Cover
 
 @[expose] public section
 
@@ -16,7 +16,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T790: P93 (LocallyCountableSpace) + P2 (T1Space) => P191 (HasGδSingletons) -/
-instance instHasGδSingletonsOfLocallyCountableSpaceOfT1Space (X : Type u)
+instance instHasGδSingletonsOfLocallyCountableSpaceOfT1Space {X : Type u}
     [TopologicalSpace X] [h : LocallyCountableSpace X] [h' : T1Space X] : HasGδSingletons X where
   isGδ_singleton x := by
     obtain ⟨s, sx, sc⟩ := h.locally_countable x

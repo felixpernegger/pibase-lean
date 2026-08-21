@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T482: P188 (ContinuumSpace) => P16 (CompactSpace) -/
-theorem instCompactSpaceOfContinuumSpace (X : Type u)
+theorem instCompactSpaceOfContinuumSpace {X : Type u}
     [TopologicalSpace X] [ContinuumSpace X] :
     CompactSpace X := by infer_instance
 

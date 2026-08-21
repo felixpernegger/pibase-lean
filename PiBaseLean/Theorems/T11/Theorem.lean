@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T11: P183 (HasCountableKNetwork) => P182 (HasCountableNetwork) -/
-instance instHasCountableNetworkOfHasCountableKNetwork (X : Type u)
+instance instHasCountableNetworkOfHasCountableKNetwork {X : Type u}
     [TopologicalSpace X] [h : HasCountableKNetwork X] :
     HasCountableNetwork X where
   has_countable_network := by

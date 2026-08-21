@@ -1,8 +1,6 @@
 module
 
-public import Mathlib.Topology.Bases
 public import PiBaseLean.AdditionalDefs.Meta
-public import PiBaseLean.Properties.P26.Bundled
 
 @[expose] public section
 

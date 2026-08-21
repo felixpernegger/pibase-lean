@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P2.Bundled
 public import PiBaseLean.Properties.P169.Bundled
+public import PiBaseLean.Properties.P2.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T419: P169 (SemiT2Space) => P2 (T1Space) -/
-instance instT1SpaceOfSemiT2Space (X : Type u)
+instance instT1SpaceOfSemiT2Space {X : Type u}
     [TopologicalSpace X] [h : SemiT2Space X] :
     T1Space X := by
   apply (t1Space_iff_exists_open).mpr (fun x y xy ↦ ?_)

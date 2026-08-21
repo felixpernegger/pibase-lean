@@ -1,7 +1,5 @@
 module
 
-public import Mathlib.Order.Filter.AtTopBot.Defs
-public import Mathlib.Topology.Defs.Filter
 public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section

@@ -1,9 +1,10 @@
 module
 
-public import Mathlib.Tactic.NormNum
 public import PiBaseLean.Properties.Bundled.Basic
 public import PiBaseLean.Properties.P175.Bundled
 public import PiBaseLean.Properties.P176.Bundled
+
+import Mathlib.Tactic.NormNum
 
 @[expose] public section
 

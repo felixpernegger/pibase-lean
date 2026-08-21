@@ -1,10 +1,10 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P3.Bundled
 public import PiBaseLean.Properties.P16.Bundled
-public import PiBaseLean.Properties.P36.Bundled
 public import PiBaseLean.Properties.P188.Bundled
+public import PiBaseLean.Properties.P3.Bundled
+public import PiBaseLean.Properties.P36.Bundled
 
 @[expose] public section
 
@@ -16,7 +16,7 @@ namespace PiBase
 
 /-- Theorem T480: P16 (CompactSpace) + P36 (PreconnectedSpace) +
 P3 (T2Space) => P188 (ContinuumSpace) -/
-theorem instContinuumSpaceOfCompactSpaceOfPreconnectedSpaceOfT2Space (X : Type u)
+theorem instContinuumSpaceOfCompactSpaceOfPreconnectedSpaceOfT2Space {X : Type u}
     [TopologicalSpace X] [CompactSpace X] [PreconnectedSpace X] [T2Space X] :
     ContinuumSpace X := by tauto
 

@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Topology.Homotopy.Contractible
-public import Mathlib.Topology.Homeomorph.Lemmas
 
 @[expose] public section
 

@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P23.Bundled
 public import PiBaseLean.Properties.P130.Bundled
+public import PiBaseLean.Properties.P23.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T245: P130 (LocallyCompactSpace) => P23 (WeaklyLocallyCompactSpace) -/
-theorem instWeaklyLocallyCompactSpaceOfLocallyCompactSpace (X : Type u)
+theorem instWeaklyLocallyCompactSpaceOfLocallyCompactSpace {X : Type u}
     [TopologicalSpace X] [LocallyCompactSpace X] : WeaklyLocallyCompactSpace X := by
   infer_instance
 

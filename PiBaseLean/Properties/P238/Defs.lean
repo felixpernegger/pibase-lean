@@ -1,10 +1,6 @@
 module
 
-public import Mathlib.Topology.Algebra.Module.Basic
-public import Mathlib.Data.Real.Basic
-public import PiBaseLean.AdditionalDefs.Meta
-public import Mathlib.Algebra.Group.TransferInstance
-public import Mathlib.Algebra.Module.TransferInstance
+public import Mathlib.Topology.Algebra.Ring.Real
 
 @[expose] public section
 

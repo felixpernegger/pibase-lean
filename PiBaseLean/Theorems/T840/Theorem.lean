@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P79.Bundled
 public import PiBaseLean.Properties.P228.Bundled
+public import PiBaseLean.Properties.P79.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology TopologicalSpace
 namespace PiBase
 
 /-- Theorem T840: P228 (WeaklyFirstCountableSpace) => P79 (SequentialSpace) -/
-theorem instSequentialSpaceOfWeaklyFirstCountableSpace (X : Type u)
+theorem instSequentialSpaceOfWeaklyFirstCountableSpace {X : Type u}
     [TopologicalSpace X] [hX : WeaklyFirstCountableSpace X] :
     SequentialSpace X := by
   refine ⟨fun s hs ↦ ?_⟩

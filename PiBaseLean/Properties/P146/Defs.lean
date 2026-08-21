@@ -1,8 +1,7 @@
 module
 
-public import PiBaseLean.AdditionalDefs.Meta
 public import Mathlib.Data.Setoid.Partition
-public import Mathlib.Topology.Defs.Basic
+public import PiBaseLean.AdditionalDefs.Meta
 
 @[expose] public section
 

@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T337: P35 (FullyT4Space) => P34 (FullyNormalSpace) -/
-theorem instFullyNormalSpaceOfFullyT4Space (X : Type u)
+theorem instFullyNormalSpaceOfFullyT4Space {X : Type u}
     [TopologicalSpace X] [FullyT4Space X] :
     FullyNormalSpace X := by tauto
 

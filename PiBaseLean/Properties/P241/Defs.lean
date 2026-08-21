@@ -1,9 +1,6 @@
 module
 
-public import Mathlib.Topology.Homeomorph.Lemmas
-public import Mathlib.Topology.MetricSpace.Pseudo.Defs
-public import Mathlib.Topology.Defs.Induced
-public import PiBaseLean.AdditionalDefs.Meta
+public import Mathlib.Topology.UniformSpace.Real
 
 @[expose] public section
 

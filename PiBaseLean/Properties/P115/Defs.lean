@@ -1,6 +1,5 @@
 module
 
-public import PiBaseLean.AdditionalDefs.Cover
 public import PiBaseLean.AdditionalDefs.Meta
 
 @[expose] public section

@@ -1,8 +1,8 @@
 module
 
 public import PiBaseLean.Properties.Bundled.Basic
-public import PiBaseLean.Properties.P79.Bundled
 public import PiBaseLean.Properties.P141.Bundled
+public import PiBaseLean.Properties.P79.Bundled
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ open Topology Set Function
 namespace PiBase
 
 /-- Theorem T59: P79 (SequentialSpace) => P141 (CompactlyGeneratedSpace) -/
-theorem instCompactlyGeneratedSpaceOfSequentialSpace (X : Type u)
+theorem instCompactlyGeneratedSpaceOfSequentialSpace {X : Type u}
     [TopologicalSpace X] [SequentialSpace X] : CompactlyGeneratedSpace X := by
   infer_instance
 

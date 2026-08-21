@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Topology.Bases
 public import PiBaseLean.AdditionalDefs.Constructions
 
 @[expose] public section
