@@ -7,6 +7,7 @@ import PiBaseLean.AdditionalDefs.Meta
 import PiBaseLean.AdditionalDefs.SetTheoryAxioms
 import PiBaseLean.Bundled.Basic
 import PiBaseLean.Bundled.Defs
+import PiBaseLean.Bundled.SetTheoryVariation
 import PiBaseLean.Properties.P1.Bundled
 import PiBaseLean.Properties.P1.Defs
 import PiBaseLean.Properties.P1.Lemmas
