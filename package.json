@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "test:python": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*.py' -v",
     "dashboard:data": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_dashboard_data.py",
     "dashboard:build": "npm run dashboard:data && vite build",
     "dashboard:dev": "npm run dashboard:data && vite --host 127.0.0.1",

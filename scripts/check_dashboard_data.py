@@ -8,6 +8,11 @@ import re
 from collections import Counter
 from pathlib import Path
 
+from classification_audit_contract import (
+    ClassificationAuditContractError,
+    validate_classification_audit,
+)
+
 ROOT = Path(__file__).resolve().parent.parent
 PUBLIC = ROOT / "dashboard" / "public"
 DATA = PUBLIC / "data"
@@ -55,7 +60,7 @@ def check_review(kind: str, expected: int, source_prefix: str) -> None:
 def main() -> None:
     manifest = load(DATA / "dashboard.json")
     canonical_repo = "https://github.com/felixpernegger/pibase-lean"
-    require(manifest["schemaVersion"] == 4, "unexpected dashboard schema version")
+    require(manifest["schemaVersion"] == 5, "unexpected dashboard schema version")
     require(manifest["project"]["repoUrl"] == canonical_repo, "project repository is not Felix's repository")
     require(
         manifest["project"]["repositoryLabel"] == "felixpernegger/pibase-lean",
@@ -70,11 +75,35 @@ def main() -> None:
         re.fullmatch(r"[0-9a-f]{40}", manifest["source"]["commit"]) is not None,
         "Lean source commit is not an exact Git revision",
     )
+    classification_target = manifest.get("classificationTarget")
+    try:
+        validate_classification_audit(
+            classification_target,
+            [{"uid": item["id"]} for item in manifest["properties"]],
+        )
+    except (ClassificationAuditContractError, TypeError) as error:
+        raise SystemExit(f"dashboard integrity error: {error}") from error
+    require(
+        load(DATA / "classification-target.json") == classification_target,
+        "classification target artifact disagrees with the manifest",
+    )
+    require(
+        any(
+            artifact["path"] == "data/classification-target.json"
+            for artifact in manifest["downloads"]
+        ),
+        "classification target artifact is not listed as a download",
+    )
     size = manifest["graph"]["size"]
     outcomes = (DATA / "outcomes.bin").read_bytes()
     formalized_outcomes = (DATA / "formalized-outcomes.bin").read_bytes()
     witness_bytes = (DATA / "witnesses.bin").read_bytes()
     require(len(manifest["properties"]) == size, "property list does not match graph size")
+    require(
+        classification_target["propertyCount"] == size
+        and classification_target["pairCount"] == size * (size - 1),
+        "classification target dimensions do not match the dashboard graph",
+    )
     require(len(outcomes) == size * size, "outcome matrix dimensions are invalid")
     require(len(formalized_outcomes) == size * size, "formalized outcome matrix dimensions are invalid")
     require(len(witness_bytes) == size * size * 2, "witness matrix dimensions are invalid")

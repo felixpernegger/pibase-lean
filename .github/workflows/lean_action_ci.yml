@@ -5,11 +5,8 @@ on:
   pull_request:
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read # Read access to repository contents
-  pages: write # Write access to GitHub Pages
-  id-token: write # Write access to ID tokens
+  contents: read
 
 jobs:
   build:
@@ -17,7 +14,36 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+        with:
+          # Dashboard provenance checks need the canonical branch/PR refs.
+          fetch-depth: 0
+      - name: Bind pull-request revision to the canonical remote
+        if: github.event_name == 'pull_request'
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          EVENT_SHA: ${{ github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EVENT_SHA"
+          git update-ref "refs/remotes/origin/pull/${PR_NUMBER}/merge" "$EVENT_SHA"
       - uses: leanprover/lean-action@v1
         with:
           build-args: --wfail
-      - uses: leanprover-community/docgen-action@v1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Install dashboard dependencies
+        run: npm ci
+      - name: Test classification audit contract
+        run: npm run test:python
+      - name: Check dashboard types
+        run: npm run dashboard:check
+      - name: Build dashboard from this revision
+        if: github.event_name == 'pull_request' || github.repository == 'felixpernegger/pibase-lean'
+        run: npm run dashboard:build
+      - name: Verify dashboard artifacts
+        if: github.event_name == 'pull_request' || github.repository == 'felixpernegger/pibase-lean'
+        run: npm run dashboard:verify

@@ -45,6 +45,14 @@ export default function Shell({ data, route, children }: { data: DashboardData; 
           <div className="topbar-source">
             <a
               className="icon-link"
+              href="docs/"
+              aria-label="Open Lean API documentation"
+              data-tooltip="Lean API docs"
+            >
+              <BookOpenCheck size={18} aria-hidden="true" />
+            </a>
+            <a
+              className="icon-link"
               href={data.project.referenceUrl}
               aria-label="Open π-Base"
               data-tooltip="π-Base"

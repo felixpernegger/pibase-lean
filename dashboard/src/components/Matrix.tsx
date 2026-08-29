@@ -7,7 +7,7 @@ const PIBASE_STATUS_CLASS: Record<number, string> = {
   1: "explicit-true",
   2: "derived-true",
   3: "false",
-  4: "independent",
+  4: "axiom-dependent",
   5: "unclassified",
 };
 
@@ -81,7 +81,7 @@ export default function Matrix({
       1: styles.getPropertyValue(view === "formalized" ? "--graph-formal-direct" : "--graph-explicit").trim(),
       2: styles.getPropertyValue(view === "formalized" ? "--graph-formal-derived" : "--graph-derived").trim(),
       3: styles.getPropertyValue("--graph-false").trim(),
-      4: styles.getPropertyValue("--graph-independent").trim(),
+      4: styles.getPropertyValue("--graph-axiom-dependent").trim(),
       5: styles.getPropertyValue(view === "formalized" ? "--graph-unformalized" : "--graph-unclassified").trim(),
     };
     const cell = side / size;

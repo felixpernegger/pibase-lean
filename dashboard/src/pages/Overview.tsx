@@ -33,7 +33,7 @@ const PIBASE_STATUS_CLASS: Record<number, string> = {
   1: "explicit-true",
   2: "derived-true",
   3: "false",
-  4: "independent",
+  4: "axiom-dependent",
   5: "unclassified",
 };
 
@@ -64,6 +64,8 @@ export default function Overview({ bundle, params }: { bundle: DashboardBundle; 
   const formalDirectCount = data.graph.formalized.counts.formalizedDirect ?? 0;
   const formalDerivedCount = data.graph.formalized.counts.formalizedDerived ?? 0;
   const formalPairCount = formalDirectCount + formalDerivedCount;
+  const classificationTarget = data.classificationTarget;
+  const classifiedTargetCount = classificationTarget.pairCount - classificationTarget.statuses.open;
   const sourceIndex = data.properties.findIndex((item) => item.id === source);
   const targetIndex = data.properties.findIndex((item) => item.id === target);
   const sourceNode = data.properties[sourceIndex];
@@ -105,6 +107,7 @@ export default function Overview({ bundle, params }: { bundle: DashboardBundle; 
   const outcomeLabel = matrixView === "formalized"
     ? statusLabels[state].label
     : graphStatusLabel(data, state, source, target);
+  const goalSourceUrl = `${data.project.repoUrl}/blob/${data.source.commit}/PiBaseLean/Goal.lean`;
   const paramKey = params.toString();
 
   useEffect(() => {
@@ -180,6 +183,47 @@ export default function Overview({ bundle, params }: { bundle: DashboardBundle; 
           tone="open"
           icon={<CheckCircle2 size={18} aria-hidden="true" />}
         />
+      </section>
+
+      <section className="classification-goal" aria-labelledby="classification-goal-title">
+        <div>
+          <p className="eyebrow">Formal completion target</p>
+          <h2 id="classification-goal-title">
+            {formatNumber(classifiedTargetCount)} of {formatNumber(classificationTarget.pairCount)} pairs evidence-checked
+          </h2>
+          <p>
+            Lean&apos;s canonical plan covers {formatNumber(classificationTarget.propertyCount)}
+            positive properties and every ordered pair with distinct endpoints. Its soundness proof
+            kernel-checks the evidence behind every non-open status: an unconditional proof,
+            counterexample evidence, or conditional evidence under two named contexts.
+          </p>
+          <p className="classification-boundary">
+            The explorer matrix below is a separate view derived from π-Base data and detected Lean
+            theorem paths. Its cells are not exported <code>ClassificationFor</code> certificates and
+            do not count toward this canonical plan.
+          </p>
+        </div>
+        <div className="classification-goal-links">
+          <a className="text-link" href={goalSourceUrl}>
+            Inspect the Lean target <ExternalLink size={14} aria-hidden="true" />
+          </a>
+          <a className="text-link" href={routeTo("implications")}>
+            Explore signed-literal questions <ArrowRight size={14} aria-hidden="true" />
+          </a>
+          <a className="text-link" href="data/classification-target.json">
+            Download target audit <ArrowRight size={14} aria-hidden="true" />
+          </a>
+          <small>
+            The signed-literal checker is a separate, incomparable workflow: it includes negations
+            and multi-premise queries, while its canonical pair census excludes P164.
+          </small>
+        </div>
+        <dl className="classification-status-grid" aria-label="Canonical Lean classification status">
+          <div><dt>Proved</dt><dd>{formatNumber(classificationTarget.statuses.proved)}</dd></div>
+          <div><dt>Refuted</dt><dd>{formatNumber(classificationTarget.statuses.refuted)}</dd></div>
+          <div><dt>Varies under contexts</dt><dd>{formatNumber(classificationTarget.statuses.variesUnder)}</dd></div>
+          <div><dt>Open</dt><dd>{formatNumber(classificationTarget.statuses.open)}</dd></div>
+        </dl>
       </section>
 
       <section id="implication-explorer" className="dashboard-section section-graph">
@@ -358,12 +402,23 @@ export default function Overview({ bundle, params }: { bundle: DashboardBundle; 
                   )}
                   {state === 4 && axiomDependency && (
                     <div className="axiom-evidence">
-                      <p><strong>Independent of {axiomDependency.baseTheory}.</strong> {axiomDependency.summary}</p>
+                      <p><strong>Repository metadata reports axiom-dependence over {axiomDependency.baseTheory}.</strong> {axiomDependency.summary}</p>
                       <dl className="frontier-evidence">
                         {axiomDependency.trueWhen && <div><dt>True under</dt><dd>{conditionLabel(axiomDependency.trueWhen)}</dd></div>}
                         {axiomDependency.falseWhen && <div><dt>False under</dt><dd>{conditionLabel(axiomDependency.falseWhen)}</dd></div>}
                       </dl>
-                      <TheoremLinks data={data} theoremIds={axiomDependency.theorems} view="pibase" />
+                      {axiomDependency.theorems.length > 0 && (
+                        <TheoremLinks data={data} theoremIds={axiomDependency.theorems} view="pibase" />
+                      )}
+                      {axiomDependency.referenceUrl && (
+                        <a className="text-link" href={axiomDependency.referenceUrl}>
+                          Review external source <ExternalLink size={14} aria-hidden="true" />
+                        </a>
+                      )}
+                      <p className="evidence-boundary">
+                        This is external source metadata, not yet a Lean proof of independence or
+                        consistency. Lean certificates record only the named conditional results.
+                      </p>
                     </div>
                   )}
                   {state === 5 && pibaseFrontier && (

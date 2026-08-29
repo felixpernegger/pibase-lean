@@ -51,6 +51,7 @@ export interface FrontierItem {
   pibaseStatus?: "direct" | "derived";
 }
 
+/** External π-Base metadata; this is not a Lean independence certificate. */
 export interface AxiomDependency {
   source: string;
   target: string;
@@ -81,6 +82,24 @@ export interface DirectEdge {
   source: string;
   target: string;
   theorems: string[];
+}
+
+export interface ClassificationTargetAudit {
+  schemaVersion: 1;
+  scope: "positive-ordered-distinct";
+  planDeclaration: string;
+  goalDeclaration: string;
+  propertyIds: number[];
+  propertyCount: number;
+  pairCount: number;
+  statuses: {
+    proved: number;
+    refuted: number;
+    variesUnder: number;
+    open: number;
+  };
+  sound: true;
+  complete: boolean;
 }
 
 export interface DashboardData {
@@ -117,6 +136,7 @@ export interface DashboardData {
     totalPairs: number;
     unclassifiedPairs: number;
   };
+  classificationTarget: ClassificationTargetAudit;
   trust: {
     properties: Record<LeanStatusName, number>;
     theorems: Record<LeanStatusName, number>;

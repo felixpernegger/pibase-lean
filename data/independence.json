@@ -1,5 +1,5 @@
 {
-  "note": "Certified ZFC-independent implications and conditional π-Base constructions. A pair is classified as independent only when both truth values under the named assumptions are documented; a conditional space supplies conditional evidence but never an unconditional refutation.",
+  "note": "Externally sourced set-theoretic dependency claims and conditional π-Base constructions. A pair is marked axiom-dependent only when both truth values under named assumptions are documented. This metadata is not itself a Lean proof of independence or consistency, and a conditional space never supplies an unconditional refutation.",
   "baseTheory": "ZFC",
   "pairs": [
     {
@@ -10,10 +10,8 @@
       ],
       "trueWhen": "CH",
       "falseWhen": "not CH",
-      "summary": "The implication holds exactly when CH holds.",
-      "theorems": [
-        "T000067"
-      ],
+      "summary": "The π-Base note on T67 reports that its converse, P58 → P57, holds exactly when CH holds.",
+      "theorems": [],
       "referenceUrl": "https://topology.pi-base.org/theorems/T000067"
     }
   ],

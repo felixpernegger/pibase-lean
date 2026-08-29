@@ -25,7 +25,7 @@
   --graph-formal-direct: #146845;
   --graph-formal-derived: #68a785;
   --graph-false: #b75b49;
-  --graph-independent: #765a9c;
+  --graph-axiom-dependent: #765a9c;
   --graph-unclassified: #3e72aa;
   --graph-unformalized: #c8d0c9;
   --graph-muted: #e5e9e5;
@@ -231,6 +231,38 @@ p { margin: 0; }
 .metric-graph strong, .metric-graph .metric-heading svg { color: var(--rust); }
 .metric-open strong, .metric-open .metric-heading svg { color: var(--blue); }
 
+.classification-goal {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(230px, 0.8fr);
+  gap: 36px;
+  align-items: end;
+  padding: 4px 0 30px;
+}
+.classification-goal h2 { font-size: 24px; }
+.classification-goal p:not(.eyebrow) {
+  max-width: 760px;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.classification-goal-links { display: grid; gap: 9px; justify-items: start; }
+.classification-goal-links small { color: var(--muted); font-size: 11px; }
+.classification-status-grid {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--surface);
+}
+.classification-status-grid div { min-width: 0; padding: 11px 13px; border-left: 1px solid var(--rule); }
+.classification-status-grid div:first-child { border-left: 0; }
+.classification-status-grid dt { color: var(--muted); font-size: 10px; font-weight: 750; text-transform: uppercase; }
+.classification-status-grid dd { margin: 3px 0 0; font-size: 20px; font-weight: 750; }
+.classification-boundary { padding-left: 10px; border-left: 2px solid var(--gold); }
+.evidence-boundary { color: var(--muted); font-size: 11px; }
+
 .dashboard-section { padding: 32px 0; border-top: 1px solid var(--rule); }
 .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 20px; }
 .section-heading .eyebrow { margin-bottom: 5px; }
@@ -311,7 +343,7 @@ p { margin: 0; }
 .graph-formal-direct { background: var(--graph-formal-direct); }
 .graph-formal-derived { background: var(--graph-formal-derived); }
 .graph-false { background: var(--graph-false); }
-.graph-independent { background: var(--graph-independent); }
+.graph-axiom-dependent { background: var(--graph-axiom-dependent); }
 .graph-unclassified { background: var(--graph-unclassified); }
 .graph-unformalized { background: var(--graph-unformalized); }
 .graph-diagonal { background: var(--graph-diagonal); }
@@ -901,7 +933,13 @@ textarea { padding: 10px 11px; resize: vertical; }
   .page-intro { align-items: start; }
   h1 { font-size: 36px; }
   .page-lede { font-size: 15px; }
-  .graph-layout, .two-column-section, .explorer-layout { grid-template-columns: 1fr; }
+  .classification-goal, .graph-layout, .two-column-section, .explorer-layout {
+    grid-template-columns: 1fr;
+  }
+  .classification-goal { gap: 16px; }
+  .classification-status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .classification-status-grid div:nth-child(3) { border-left: 0; }
+  .classification-status-grid div:nth-child(n + 3) { border-top: 1px solid var(--rule); }
   .outcome-ledger { max-width: 520px; }
   .pair-inspector { box-shadow: none; }
   .review-panes { grid-template-columns: 1fr; }
@@ -929,6 +967,9 @@ textarea { padding: 10px 11px; resize: vertical; }
   .frontier-intro-actions { align-items: flex-start; justify-content: flex-start; }
   .compact-intro h1, h1 { font-size: 32px; }
   .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .classification-status-grid { grid-template-columns: 1fr; }
+  .classification-status-grid div { border-left: 0; border-top: 1px solid var(--rule); }
+  .classification-status-grid div:first-child { border-top: 0; }
   .metric { min-height: 120px; padding: 13px; }
   .metric-heading { font-size: 10px; }
   .metric strong { margin-top: 16px; font-size: 25px; }
@@ -1026,7 +1067,7 @@ textarea { padding: 10px 11px; resize: vertical; }
     --graph-formal-direct: #4eb98a;
     --graph-formal-derived: #759f89;
     --graph-false: #c26c5b;
-    --graph-independent: #9279b7;
+    --graph-axiom-dependent: #9279b7;
     --graph-unclassified: #5685b8;
     --graph-unformalized: #46535a;
     --graph-muted: #253036;

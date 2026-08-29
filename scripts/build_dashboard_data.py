@@ -20,6 +20,11 @@ sys.path.insert(0, str(SCRIPTS))
 
 from graph import full_trait_matrix, known_true_edges, transitive_closure  # noqa: E402
 from gen_traits import build_traits_data  # noqa: E402
+from classification_audit_contract import (  # noqa: E402
+    ClassificationAuditContractError,
+    parse_classification_audit,
+    validate_classification_audit,
+)
 
 DATA_DIR = ROOT / "data"
 PUBLIC_DIR = ROOT / "dashboard" / "public"
@@ -55,19 +60,50 @@ def git(*args: str) -> str:
 
 
 def is_felix_commit() -> bool:
-    """Return whether HEAD is contained in a fetched ref from Felix's repository."""
+    """Return whether HEAD is exactly named by a fetched ref from Felix's repository."""
+    canonical_urls = {
+        f"https://github.com/{REPO_SLUG}",
+        f"git@github.com:{REPO_SLUG}",
+        f"ssh://git@github.com/{REPO_SLUG}",
+    }
     for remote in git("remote").splitlines():
-        url = git("remote", "get-url", remote).lower().removesuffix(".git").replace(":", "/")
-        if not url.endswith(f"github.com/{REPO_SLUG}"):
+        url = git("remote", "get-url", remote).strip().lower().rstrip("/").removesuffix(".git")
+        if url not in canonical_urls:
             continue
         if git(
             "for-each-ref",
             "--format=%(refname)",
-            "--contains=HEAD",
+            "--points-at=HEAD",
             f"refs/remotes/{remote}",
         ):
             return True
     return False
+
+
+def run_classification_audit(properties: list[dict]) -> dict:
+    """Run Lean's canonical-plan audit and bind it to the dashboard catalogue."""
+    try:
+        result = subprocess.run(
+            ["lake", "exe", "classificationAudit"],
+            cwd=LEAN_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+    except OSError as error:
+        raise SystemExit(f"could not run classificationAudit: {error}") from error
+    if result.returncode:
+        details = (result.stderr or result.stdout).strip()
+        suffix = f": {details}" if details else ""
+        raise SystemExit(f"classificationAudit exited with status {result.returncode}{suffix}")
+    try:
+        report = parse_classification_audit(result.stdout)
+        validate_classification_audit(report, properties)
+    except ClassificationAuditContractError as error:
+        raise SystemExit(f"classificationAudit contract error: {error}") from error
+    if result.stderr.strip():
+        print(result.stderr.rstrip(), file=sys.stderr)
+    return report
 
 
 def short_id(uid: str) -> str:
@@ -819,7 +855,7 @@ def main() -> None:
         raise SystemExit(f"Lean source at {LEAN_ROOT} has uncommitted changes")
     if not is_felix_commit():
         raise SystemExit(
-            f"Lean source commit {commit[:8]} is not contained in a fetched {REPO_SLUG} ref"
+            f"Lean source commit {commit[:8]} is not the tip of a fetched {REPO_SLUG} ref"
         )
     if OUT_DIR.exists():
         shutil.rmtree(OUT_DIR)
@@ -828,6 +864,7 @@ def main() -> None:
     registry = load_json(DATA_DIR / "registry.json")
     foundations = load_json(DATA_DIR / "independence.json")
     implications = load_json(DATA_DIR / "implications.json")
+    classification_target = run_classification_audit(data["properties"])
     validate_implications(implications)
     base_theory = foundations.get("baseTheory", "ZFC")
     axiom_dependency_records = [
@@ -958,7 +995,7 @@ def main() -> None:
         + counts.get("axiomDependent", 0)
     )
     dashboard = {
-        "schemaVersion": 4,
+        "schemaVersion": 5,
         "project": {
             "id": "pibase-lean",
             "name": "pibase-lean",
@@ -991,6 +1028,7 @@ def main() -> None:
             "totalPairs": total_pairs,
             "unclassifiedPairs": counts.get("unclassified", 0),
         },
+        "classificationTarget": classification_target,
         "trust": trust,
         "graph": {
             "size": len(graph["nodes"]),
@@ -1023,10 +1061,11 @@ def main() -> None:
         "latestDelta": delta,
         "downloads": [
             {"label": "Dashboard manifest", "path": "data/dashboard.json", "format": "JSON"},
+            {"label": "Lean classification target", "path": "data/classification-target.json", "format": "JSON"},
             {"label": "Outcome matrix", "path": "data/outcomes.bin", "format": "Uint8"},
             {"label": "Formalized outcome matrix", "path": "data/formalized-outcomes.bin", "format": "Uint8"},
             {"label": "Witness matrix", "path": "data/witnesses.bin", "format": "Uint16 LE"},
-            {"label": "Set-theoretic independence", "path": "data/axiom-dependencies.json", "format": "JSON"},
+            {"label": "Set-theoretic dependency metadata", "path": "data/axiom-dependencies.json", "format": "JSON"},
             {"label": "Formalization frontier", "path": "data/formalization-frontier.json", "format": "JSON"},
             {"label": "π-Base frontier", "path": "data/frontier.json", "format": "JSON"},
             {"label": "Review: spaces", "path": "data/review-spaces.json", "format": "JSON"},
@@ -1039,6 +1078,7 @@ def main() -> None:
     }
 
     dump_json(OUT_DIR / "dashboard.json", dashboard)
+    dump_json(OUT_DIR / "classification-target.json", classification_target)
     dump_json(OUT_DIR / "implications.json", implications)
     dump_json(OUT_DIR / "questions.json", questions)
     dump_json(OUT_DIR / "traits.json", traits)
@@ -1072,6 +1112,7 @@ def main() -> None:
         "dashboard data: "
         f"{len(properties)} properties, {len(formalized_graph['frontier'])} formalization candidates, "
         f"{len(graph['frontier'])} unclassified pairs, "
+        f"{classification_target['statuses']['open']} canonical-plan pairs open, "
         f"{theorem_implementations} implemented theorem rows from {commit_short}"
     )
 

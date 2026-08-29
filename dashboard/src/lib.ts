@@ -5,7 +5,7 @@ export const GRAPH_STATUS = {
   1: { key: "explicit-true", label: "True · π-Base theorem" },
   2: { key: "derived-true", label: "True · transitive closure" },
   3: { key: "false", label: "False · unconditional witness" },
-  4: { key: "independent", label: "Independent of ZFC" },
+  4: { key: "axiom-dependent", label: "Axiom-dependent · π-Base metadata" },
   5: { key: "unclassified", label: "Unclassified" },
 } as const;
 
@@ -100,7 +100,7 @@ export function graphStatusLabel(
     (item) => item.source === source && item.target === target,
   );
   return dependency?.baseTheory
-    ? `Independent of ${dependency.baseTheory}`
+    ? `Axiom-dependent over ${dependency.baseTheory}`
     : GRAPH_STATUS[state].label;
 }
 

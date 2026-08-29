@@ -99,21 +99,21 @@ instance : CompleteAtomicBooleanAlgebra Property :=
 @[simp]
 theorem compl_toPred (p : Property.{u}) : pᶜ.toPred = p.toPredᶜ := rfl
 
-end PiBase.Formal.Property
-namespace PiBase.Formal
-
-protected theorem Property.le_iff (p q : Property.{u}) :
+/-- Bundled-property order is implication on every topological space. -/
+theorem le_iff (p q : Property.{u}) :
     p ≤ q ↔ (∀ (X : Type u) (_ : TopologicalSpace X), p.toPred X → q.toPred X) := by
   rfl
 
-protected theorem Property.ne_le_iff (p q : Property.{u}) :
+/-- Refuting an implication amounts to exhibiting a topological counterexample. -/
+theorem not_le_iff (p q : Property.{u}) :
     ¬ p ≤ q ↔ (∃ (X : Type u) (_ : TopologicalSpace X), p.toPred X ∧ ¬ q.toPred X) := by
-  simp [Property.le_iff]
+  simp [le_iff]
 
+/-- Two bundled properties are equal when they agree on every topological space. -/
 @[ext]
-protected theorem Property.ext
+theorem ext
     {p q : Property.{u}} (h : ∀ (X : Type u) (_ : TopologicalSpace X), p X ↔ q X) : p = q :=
   le_antisymm
-    ((Property.le_iff p q).mp fun X _ ↦ (h X _).mp) ((Property.le_iff q p).mp fun X _ ↦ (h X _).mpr)
+    ((le_iff p q).mp fun X _ ↦ (h X _).mp) ((le_iff q p).mp fun X _ ↦ (h X _).mpr)
 
-end PiBase.Formal
+end PiBase.Formal.Property

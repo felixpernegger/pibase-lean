@@ -7,27 +7,39 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
+
+env:
+  PIBASE_DATA_COMMIT: 5c343408ea723e78e31523f9899bfb22580235bd
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
-      - name: Check out Felix's Lean source
-        # Full history is used for per-file authorship in the review audit.
-        run: git clone --filter=blob:none --no-tags --branch master https://github.com/felixpernegger/pibase-lean.git "$RUNNER_TEMP/felix-pibase-lean"
-      - name: Check out Felix's pi-base data
-        run: git clone --depth 1 --branch main https://github.com/felixpernegger/pibase-data.git "$RUNNER_TEMP/felix-pibase-data"
-      - uses: actions/setup-python@v5
+        with:
+          # Full history is used for provenance and per-file authorship.
+          fetch-depth: 0
+      - name: Check out pinned pi-base data
+        run: |
+          git init "$RUNNER_TEMP/felix-pibase-data"
+          git -C "$RUNNER_TEMP/felix-pibase-data" remote add origin https://github.com/felixpernegger/pibase-data.git
+          git -C "$RUNNER_TEMP/felix-pibase-data" fetch --depth 1 origin "$PIBASE_DATA_COMMIT"
+          git -C "$RUNNER_TEMP/felix-pibase-data" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/felix-pibase-data" rev-parse HEAD)" = "$PIBASE_DATA_COMMIT"
+      - name: Set up Lean and build the classification audit
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: --wfail classificationAudit
+          test: false
+          lint: false
+          use-mathlib-cache: true
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Refresh the implications payload
@@ -35,7 +47,7 @@ jobs:
         # by the Implications page, so assertions accepted upstream are current
         # at every deploy.
         run: |
-          pip install pyyaml
+          pip install PyYAML==6.0.3
           PYTHONDONTWRITEBYTECODE=1 python3 scripts/fetch_implications.py "$RUNNER_TEMP/felix-pibase-data"
       - uses: actions/setup-node@v5
         with:
@@ -47,15 +59,53 @@ jobs:
         run: npm run dashboard:check
       - name: Build the project dashboard
         run: npm run dashboard:build
-        env:
-          PIBASE_LEAN_SOURCE: ${{ runner.temp }}/felix-pibase-lean
       - name: Verify dashboard artifacts
         run: npm run dashboard:verify
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      - name: Build API documentation into the project site
+        # docgen-action also deploys Pages on every push. Build its doc-gen4
+        # target here instead so the dashboard and API docs have one publisher.
+        run: |
+          DOC_BUILD_DIR="$RUNNER_TEMP/pibase-docbuild"
+          mkdir -p "$DOC_BUILD_DIR"
+          cat > "$DOC_BUILD_DIR/lakefile.toml" <<EOF
+          name = "docbuild"
+          reservoir = false
+          version = "0.1.0"
+          packagesDir = "$GITHUB_WORKSPACE/.lake/packages"
+
+          [[require]]
+          name = "pibase-lean"
+          path = "$GITHUB_WORKSPACE"
+
+          [[require]]
+          scope = "leanprover"
+          name = "doc-gen4"
+          rev = "$(cut -d: -f2 lean-toolchain)"
+          EOF
+          (
+            cd "$DOC_BUILD_DIR"
+            MATHLIB_NO_CACHE_ON_UPDATE=1 lake update pibase-lean
+            lake build PiBaseLean:docs
+          )
+          test ! -e site/docs
+          cp -R "$DOC_BUILD_DIR/.lake/build/doc" site/docs
+          test -f site/docs/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - id: deployment
         uses: actions/deploy-pages@v4
