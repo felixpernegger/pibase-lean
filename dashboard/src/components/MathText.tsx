@@ -1,14 +1,11 @@
 import renderMathInElement from "katex/contrib/auto-render";
-import { marked } from "marked";
 import { memo, useLayoutEffect, useMemo, useRef } from "react";
 import "katex/dist/katex.min.css";
+import { renderSafeMarkdown } from "../safeMarkdown";
 
 function MathText({ text, inline = false }: { text: string; inline?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
-  const html = useMemo(() => {
-    if (inline) return String(marked.parseInline(text));
-    return String(marked.parse(text));
-  }, [inline, text]);
+  const html = useMemo(() => renderSafeMarkdown(text, inline), [inline, text]);
 
   useLayoutEffect(() => {
     if (!ref.current) return;

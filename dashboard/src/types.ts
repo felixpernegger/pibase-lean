@@ -20,6 +20,74 @@ export interface LeanStatus {
   sourcePath: string;
 }
 
+export type SpaceAuditStatus =
+  | "implemented"
+  | "not-implemented"
+  | "invalid"
+  | "not-targeted";
+
+export type TargetedSpaceAuditStatus = Exclude<SpaceAuditStatus, "not-targeted">;
+
+export interface SpaceAuditFailure {
+  code: string;
+  message: string;
+}
+
+export interface SpaceAuditAssumptions {
+  expected: string[];
+  declared: string[];
+  used: string[];
+  valid: boolean;
+}
+
+export interface SpaceAuditAxioms {
+  axioms: string[];
+  trusted: string[];
+  conditional: string[];
+  forbidden: string[];
+}
+
+export interface SpaceAuditPresentation {
+  carrier: string | null;
+  canonicalHomeomorph: string | null;
+  typeValid: boolean;
+  assumptions: SpaceAuditAssumptions;
+  axioms: SpaceAuditAxioms;
+  failures: SpaceAuditFailure[];
+  status: TargetedSpaceAuditStatus;
+}
+
+export interface SpaceAuditTrait {
+  propertyId: string;
+  name: string | null;
+  expected: boolean;
+  polarity: boolean;
+  certificate: string | null;
+  provenance: "direct" | "derived" | null;
+  typeValid: boolean;
+  assumptions: SpaceAuditAssumptions;
+  axioms: SpaceAuditAxioms;
+  failures: SpaceAuditFailure[];
+  status: TargetedSpaceAuditStatus;
+}
+
+export interface TargetedSpaceAudit {
+  targeted: true;
+  spaceId: string;
+  catalogName: string | null;
+  presentation: SpaceAuditPresentation;
+  traits: SpaceAuditTrait[];
+  failures: SpaceAuditFailure[];
+  status: TargetedSpaceAuditStatus;
+}
+
+export interface NonTargetedSpaceAudit {
+  targeted: false;
+  status: "not-targeted";
+}
+
+export type SpaceAudit = TargetedSpaceAudit | NonTargetedSpaceAudit;
+
 export interface PropertyNode {
   id: string;
   shortId: string;
@@ -37,6 +105,7 @@ export interface SpaceNode {
   name: string;
   referenceUrl: string;
   lean: LeanStatus | null;
+  spaceAudit: SpaceAudit;
   assumptions: string[];
 }
 
@@ -84,7 +153,7 @@ export interface DirectEdge {
 }
 
 export interface DashboardData {
-  schemaVersion: number;
+  schemaVersion: 5;
   project: {
     id: string;
     name: string;
@@ -219,7 +288,7 @@ export interface ReviewTrait {
   via: string | null;
 }
 
-export interface ReviewEntry {
+interface ReviewEntryBase {
   id: string;
   shortId: string;
   name: string;
@@ -232,21 +301,24 @@ export interface ReviewEntry {
   code: string;
   extraCode: string;
   leanStatus: LeanStatus;
-  traits?: ReviewTrait[];
-  traitSummary?: Record<string, number>;
 }
 
-export interface ReviewPayload {
-  schemaVersion: number;
-  kind: ReviewKind;
-  sourceCommit: string;
-  generatedAt: string;
-  chunkSize: number;
-  chunks: string[];
-  entries: ReviewEntrySummary[];
+export interface StandardReviewEntry extends ReviewEntryBase {
+  spaceAudit?: never;
+  traits?: never;
+  traitSummary?: never;
 }
 
-export interface ReviewEntrySummary {
+export interface SpaceReviewEntry extends ReviewEntryBase {
+  generatedCode: string;
+  spaceAudit: SpaceAudit;
+  traits: ReviewTrait[];
+  traitSummary: Partial<Record<ReviewTrait["status"], number>>;
+}
+
+export type ReviewEntry = StandardReviewEntry | SpaceReviewEntry;
+
+interface ReviewEntrySummaryBase {
   id: string;
   shortId: string;
   name: string;
@@ -258,10 +330,34 @@ export interface ReviewEntrySummary {
   chunk: number;
 }
 
-export interface ReviewChunkPayload {
-  schemaVersion: number;
-  kind: ReviewKind;
+export interface StandardReviewEntrySummary extends ReviewEntrySummaryBase {
+  spaceAudit?: never;
+}
+
+export interface SpaceReviewEntrySummary extends ReviewEntrySummaryBase {
+  spaceAudit: SpaceAudit;
+}
+
+export type ReviewEntrySummary = StandardReviewEntrySummary | SpaceReviewEntrySummary;
+
+interface ReviewPayloadBase {
+  schemaVersion: 2;
+  sourceCommit: string;
+  generatedAt: string;
+  chunkSize: number;
+  chunks: string[];
+}
+
+export type ReviewPayload =
+  | (ReviewPayloadBase & { kind: "spaces"; entries: SpaceReviewEntrySummary[] })
+  | (ReviewPayloadBase & { kind: "properties" | "theorems"; entries: StandardReviewEntrySummary[] });
+
+interface ReviewChunkPayloadBase {
+  schemaVersion: 2;
   chunk: number;
   sourceCommit: string;
-  entries: ReviewEntry[];
 }
+
+export type ReviewChunkPayload =
+  | (ReviewChunkPayloadBase & { kind: "spaces"; entries: SpaceReviewEntry[] })
+  | (ReviewChunkPayloadBase & { kind: "properties" | "theorems"; entries: StandardReviewEntry[] });

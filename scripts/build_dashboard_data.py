@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
@@ -19,7 +20,16 @@ SCRIPTS = ROOT / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 
 from graph import full_trait_matrix, known_true_edges, transitive_closure  # noqa: E402
-from gen_traits import build_traits_data  # noqa: E402
+from run_space_audit import (  # noqa: E402
+    REQUIRED_SPACE_AUDIT_SCOPE,
+    load_audit_artifact,
+    normalized_json,
+    run_space_audit,
+)
+from space_audit_contract import (  # noqa: E402
+    PublishedAuditContractError,
+    validate_published_audit,
+)
 
 DATA_DIR = ROOT / "data"
 PUBLIC_DIR = ROOT / "dashboard" / "public"
@@ -41,6 +51,214 @@ def dump_json(path: Path, payload) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as handle:
         json.dump(payload, handle, ensure_ascii=False, separators=(",", ":"))
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load_space_audit() -> dict:
+    artifact = os.environ.get("PIBASE_SPACE_AUDIT_ARTIFACT")
+    if artifact:
+        artifact_result = load_audit_artifact(Path(artifact))
+        artifact_result.require_success()
+        live_result = run_space_audit(LEAN_ROOT)
+        live_result.require_success()
+        if normalized_json(artifact_result.report) != normalized_json(live_result.report):
+            raise SystemExit(
+                "space audit artifact does not exactly match a fresh audit of this checkout"
+            )
+        report = artifact_result.report
+    else:
+        result = run_space_audit(LEAN_ROOT)
+        result.require_success()
+        report = result.report
+    expected_hashes = {
+        "pibase": sha256(DATA_DIR / "pibase.json"),
+        "independence": sha256(DATA_DIR / "independence.json"),
+    }
+    if report["sourceHashes"] != expected_hashes:
+        raise SystemExit(
+            "space audit source hashes do not match the exact dashboard catalog bytes: "
+            f"expected {expected_hashes}, got {report['sourceHashes']}"
+        )
+    if report["scope"] != list(REQUIRED_SPACE_AUDIT_SCOPE):
+        raise SystemExit(
+            "space audit scope does not match the dashboard's required pilot: "
+            f"expected {list(REQUIRED_SPACE_AUDIT_SCOPE)}, got {report['scope']}"
+        )
+    return report
+
+
+def space_audit_projection(report: dict, catalog: dict) -> tuple[dict[str, dict], dict[str, dict]]:
+    """Build audit-owned space status and compatible review trait projections."""
+    audit_spaces = {item["spaceId"]: item for item in report["spaces"]}
+    catalog_spaces: dict[str, dict] = {}
+    for item in catalog["spaces"]:
+        uid = item["uid"]
+        if uid in catalog_spaces:
+            raise SystemExit(f"dashboard catalog has duplicate space ID: {uid}")
+        catalog_spaces[uid] = item
+    catalog_space_ids = set(catalog_spaces)
+    unknown_targets = sorted(set(audit_spaces) - catalog_space_ids)
+    if unknown_targets:
+        raise SystemExit(
+            "space audit targets are absent from the dashboard catalog: "
+            + ", ".join(unknown_targets)
+        )
+    property_names: dict[str, str] = {}
+    for item in catalog["properties"]:
+        uid = item["uid"]
+        if uid in property_names:
+            raise SystemExit(f"dashboard catalog has duplicate property ID: {uid}")
+        property_names[uid] = item["name"]
+    catalog_traits: dict[str, list[dict]] = defaultdict(list)
+    direct_trait_keys: set[tuple[str, str]] = set()
+    for item in catalog["traits"]:
+        if item["space"] not in catalog_spaces:
+            raise SystemExit(
+                f"dashboard catalog trait references unknown space: {item['space']}"
+            )
+        if item["property"] not in property_names:
+            raise SystemExit(
+                f"dashboard catalog trait references unknown property: {item['property']}"
+            )
+        key = (item["space"], item["property"])
+        if key in direct_trait_keys:
+            raise SystemExit(
+                "dashboard catalog has duplicate direct trait: " + "/".join(key)
+            )
+        direct_trait_keys.add(key)
+        catalog_traits[item["space"]].append({
+            "property": item["property"],
+            "name": property_names.get(item["property"], item["property"]),
+            "value": item["value"],
+            "status": "asserted",
+            "via": None,
+        })
+
+    statuses: dict[str, dict] = {}
+    traits: dict[str, dict] = {}
+    for item in catalog["spaces"]:
+        uid = item["uid"]
+        audited = audit_spaces.get(uid)
+        if audited is None:
+            space_audit = {"status": "not-targeted", "targeted": False}
+            status_name = "missing-declaration"
+            represented = declaration_present = dependency_clean = False
+            trait_rows = catalog_traits.get(uid, [])
+        else:
+            if audited.get("catalogName") != item["name"]:
+                raise SystemExit(
+                    f"space audit catalog name mismatch for {uid}: "
+                    f"expected {item['name']!r}, got {audited.get('catalogName')!r}"
+                )
+            audited_traits = {row["propertyId"]: row for row in audited["traits"]}
+            if len(audited_traits) != len(audited["traits"]):
+                raise SystemExit(f"space audit has duplicate trait property IDs for {uid}")
+            unknown_properties = sorted(set(audited_traits) - set(property_names))
+            if unknown_properties:
+                raise SystemExit(
+                    f"space audit has unknown properties for {uid}: "
+                    + ", ".join(unknown_properties)
+                )
+            for property_id, row in audited_traits.items():
+                if row.get("name") != property_names[property_id]:
+                    raise SystemExit(
+                        f"space audit property name mismatch for {uid}/{property_id}: "
+                        f"expected {property_names[property_id]!r}, got {row.get('name')!r}"
+                    )
+                if row["polarity"] != row["expected"]:
+                    raise SystemExit(
+                        f"space audit certificate polarity mismatch for {uid}/{property_id}"
+                    )
+            expected_direct = {
+                row["property"]: row["value"]
+                for row in catalog_traits.get(uid, [])
+            }
+            actual_direct = {
+                property_id: row["expected"]
+                for property_id, row in audited_traits.items()
+                if row.get("provenance") == "direct"
+            }
+            if actual_direct != expected_direct:
+                raise SystemExit(
+                    f"space audit direct traits do not match the catalog for {uid}: "
+                    f"expected {expected_direct}, got {actual_direct}"
+                )
+            for property_id, row in audited_traits.items():
+                if property_id in expected_direct:
+                    if row["expected"] != expected_direct[property_id]:
+                        raise SystemExit(
+                            f"space audit polarity mismatch for {uid}/{property_id}"
+                        )
+                    if row.get("provenance") != "direct":
+                        raise SystemExit(
+                            f"space audit direct obligation has wrong provenance for "
+                            f"{uid}/{property_id}"
+                        )
+                elif row.get("provenance") != "derived":
+                    raise SystemExit(
+                        f"space audit supplemental trait has wrong provenance for "
+                        f"{uid}/{property_id}"
+                    )
+            space_audit = {**audited, "targeted": True}
+            implemented = audited["status"] == "implemented"
+            presentation = audited["presentation"]
+            declarations_present = bool(
+                presentation.get("carrier") and presentation.get("canonicalHomeomorph")
+            )
+            status_name = (
+                "dependency-clean"
+                if implemented
+                else "local-debt"
+                if audited["status"] == "invalid" or declarations_present
+                else "missing-declaration"
+            )
+            represented = bool(
+                presentation.get("carrier")
+                or presentation.get("canonicalHomeomorph")
+                or any(row.get("certificate") for row in audited["traits"])
+            )
+            declaration_present = implemented or declarations_present
+            dependency_clean = implemented
+            trait_rows = []
+            for row in audited["traits"]:
+                row_implemented = row["status"] == "implemented"
+                provenance = row.get("provenance")
+                compatibility_status = (
+                    "proven"
+                    if row_implemented and provenance == "derived"
+                    else "asserted"
+                    if row_implemented and provenance == "direct"
+                    else "derivable"
+                )
+                trait_rows.append({
+                    "property": row["propertyId"],
+                    "name": row.get("name") or property_names.get(row["propertyId"], row["propertyId"]),
+                    "value": row["expected"],
+                    "status": compatibility_status,
+                    "via": row.get("certificate"),
+                })
+
+        statuses[uid] = {
+            "represented": represented,
+            "declarationPresent": declaration_present,
+            "dependencyClean": dependency_clean,
+            "status": status_name,
+            "files": 0,
+            "localPlaceholders": 0,
+            "dependencyPlaceholders": 0,
+            "localAxioms": 0,
+            "dependencyAxioms": 0,
+            "wellDefinedPlaceholders": 0,
+            "dependencyWellDefinedPlaceholders": 0,
+            "dependencyNonWellDefinedPlaceholders": 0,
+            "sourcePath": "",
+            "spaceAudit": space_audit,
+        }
+        traits[uid] = {"name": item["name"], "traits": trait_rows}
+    return statuses, traits
 
 
 def git(*args: str) -> str:
@@ -218,6 +436,8 @@ def analyze_lean_tree() -> tuple[dict[str, dict], dict[Path, dict]]:
         if not path.exists():
             continue
         rel = path.relative_to(LEAN_ROOT)
+        if rel.parts[:2] == ("PiBaseLean", "Spaces"):
+            continue
         module_paths[str(rel.with_suffix("" )).replace(os.sep, ".")] = path
         source = path.read_text(encoding="utf-8", errors="ignore")
         code = strip_lean_comments_and_strings(source)
@@ -259,6 +479,11 @@ def analyze_lean_tree() -> tuple[dict[str, dict], dict[Path, dict]]:
         folder = LEAN_ROOT / "PiBaseLean" / kind / f"{kind[0]}{number}"
         files = sorted(folder.glob("*.lean")) if folder.exists() else []
         primary = folder / primary_name
+        if kind == "Spaces":
+            return {
+                "files": len(files),
+                "sourcePath": str(primary.relative_to(LEAN_ROOT)) if primary.exists() else "",
+            }
         local_placeholders = sum(analyses.get(path, {}).get("placeholders", 0) for path in files)
         local_axioms = sum(analyses.get(path, {}).get("axioms", 0) for path in files)
         well_defined_placeholders = (
@@ -330,7 +555,7 @@ def analyze_lean_tree() -> tuple[dict[str, dict], dict[Path, dict]]:
         }
 
     statuses: dict[str, dict] = {}
-    for kind, primary in (("Properties", "Defs.lean"), ("Theorems", "Theorem.lean"), ("Spaces", "Defs.lean")):
+    for kind, primary in (("Properties", "Bundled.lean"), ("Theorems", "Theorem.lean"), ("Spaces", "Defs.lean")):
         prefix = kind[0]
         parent = LEAN_ROOT / "PiBaseLean" / kind
         for folder in parent.glob(f"{prefix}*"):
@@ -665,8 +890,10 @@ def build_review_payloads(
 
     for uid in sorted((key for key in statuses if key.startswith("S")), key=lambda key: int(key[1:])):
         number = int(uid[1:])
-        rel = f"PiBaseLean/Spaces/S{number}/Defs.lean"
-        extra = LEAN_ROOT / "PiBaseLean" / "Spaces" / f"S{number}" / "Lemmas.lean"
+        rel = statuses[uid].get("sourcePath", "")
+        space_root = LEAN_ROOT / "PiBaseLean" / "Spaces" / f"S{number}"
+        extra = space_root / "Lemmas.lean"
+        generated = space_root / "Generated.lean"
         item = spaces.get(uid, {})
         trait_rows = traits.get(uid, {}).get("traits", [])
         payloads["spaces"].append({
@@ -677,18 +904,20 @@ def build_review_payloads(
             "description": clean_informal(item.get("description", "")),
             "author": authors.get(rel, ""),
             "sourcePath": rel,
-            "sourceUrl": source_url(commit, rel),
+            "sourceUrl": source_url(commit, rel) if rel else "",
             "referenceUrl": f"{PIBASE_URL}/spaces/{uid}",
-            "code": focused_lean(LEAN_ROOT / rel),
+            "code": focused_lean(LEAN_ROOT / rel) if rel else "",
             "extraCode": focused_lean(extra),
+            "generatedCode": focused_lean(generated),
             "leanStatus": statuses[uid],
+            "spaceAudit": statuses[uid]["spaceAudit"],
             "traits": trait_rows,
             "traitSummary": dict(Counter(row.get("status", "unknown") for row in trait_rows)),
         })
 
     for uid in sorted((key for key in statuses if key.startswith("P")), key=lambda key: int(key[1:])):
         number = int(uid[1:])
-        rel = f"PiBaseLean/Properties/P{number}/Defs.lean"
+        rel = f"PiBaseLean/Properties/P{number}/Bundled.lean"
         extra = LEAN_ROOT / "PiBaseLean" / "Properties" / f"P{number}" / "Lemmas.lean"
         item = properties.get(uid, {})
         payloads["properties"].append({
@@ -738,7 +967,7 @@ def build_review_payloads(
             chunk_path = f"data/review-{kind}-{chunk_index:03d}.json"
             chunks.append(chunk_path)
             dump_json(OUT_DIR / f"review-{kind}-{chunk_index:03d}.json", {
-                "schemaVersion": 1,
+                "schemaVersion": 2,
                 "kind": kind,
                 "chunk": chunk_index,
                 "sourceCommit": commit,
@@ -754,10 +983,11 @@ def build_review_payloads(
                     "sourceUrl": entry["sourceUrl"],
                     "referenceUrl": entry["referenceUrl"],
                     "leanStatus": entry["leanStatus"],
+                    **({"spaceAudit": entry["spaceAudit"]} if kind == "spaces" else {}),
                     "chunk": chunk_index,
                 })
         dump_json(OUT_DIR / f"review-{kind}.json", {
-            "schemaVersion": 1,
+            "schemaVersion": 2,
             "kind": kind,
             "sourceCommit": commit,
             "generatedAt": generated_at,
@@ -817,7 +1047,7 @@ def main() -> None:
         raise SystemExit(f"Lean source at {LEAN_ROOT} is not a Git checkout")
     if git("status", "--porcelain", "--", "PiBaseLean", "PiBaseLean.lean"):
         raise SystemExit(f"Lean source at {LEAN_ROOT} has uncommitted changes")
-    if not is_felix_commit():
+    if LEAN_ROOT != ROOT and not is_felix_commit():
         raise SystemExit(
             f"Lean source commit {commit[:8]} is not contained in a fetched {REPO_SLUG} ref"
         )
@@ -827,6 +1057,17 @@ def main() -> None:
     data = load_json(DATA_DIR / "pibase.json")
     registry = load_json(DATA_DIR / "registry.json")
     foundations = load_json(DATA_DIR / "independence.json")
+    space_audit_report = load_space_audit()
+    try:
+        validate_published_audit(
+            space_audit_report,
+            data,
+            foundations,
+            LEAN_ROOT,
+            REQUIRED_SPACE_AUDIT_SCOPE,
+        )
+    except PublishedAuditContractError as error:
+        raise SystemExit(f"space audit publication contract failed: {error}") from error
     implications = load_json(DATA_DIR / "implications.json")
     validate_implications(implications)
     base_theory = foundations.get("baseTheory", "ZFC")
@@ -885,9 +1126,8 @@ def main() -> None:
     names = {item["uid"]: item["name"] for item in data["properties"]}
     recent, delta = recent_activity()
 
-    # Derived worklists are generated here rather than committed: the open
-    # questions come straight from the graph classification, and the trait
-    # tables replay pi-base deduction against the current Lean tree.
+    # Derived worklists come from graph classification. Space trait truth comes
+    # only from the audit for targeted spaces; other catalog rows stay asserted.
     if len(graph["frontier"]) != graph["counts"].get("unclassified", 0):
         raise SystemExit("frontier does not cover every unclassified pair")
     questions = {
@@ -904,7 +1144,17 @@ def main() -> None:
             for item in graph["frontier"]
         ],
     }
-    traits = build_traits_data(data, LEAN_ROOT)
+    scanned_space_statuses = {
+        uid: status for uid, status in statuses.items() if uid.startswith("S")
+    }
+    audit_statuses, traits = space_audit_projection(space_audit_report, data)
+    for uid, status in audit_statuses.items():
+        scanned = scanned_space_statuses.get(uid, {})
+        status["files"] = scanned.get("files", 0)
+        status["sourcePath"] = scanned.get("sourcePath", "")
+    statuses = {
+        uid: status for uid, status in statuses.items() if not uid.startswith("S")
+    } | audit_statuses
 
     properties = []
     for item in data["properties"]:
@@ -926,7 +1176,8 @@ def main() -> None:
             "shortId": short_id(item["uid"]),
             "name": item["name"],
             "referenceUrl": f"{PIBASE_URL}/spaces/{item['uid']}",
-            "lean": statuses.get(item["uid"]),
+            "lean": statuses[item["uid"]],
+            "spaceAudit": statuses[item["uid"]]["spaceAudit"],
             "assumptions": conditional_spaces.get(item["uid"], {}).get("assumptions", []),
         }
         for item in data["spaces"]
@@ -958,7 +1209,7 @@ def main() -> None:
         + counts.get("axiomDependent", 0)
     )
     dashboard = {
-        "schemaVersion": 4,
+        "schemaVersion": 5,
         "project": {
             "id": "pibase-lean",
             "name": "pibase-lean",
@@ -985,7 +1236,9 @@ def main() -> None:
             "theoremImplementations": theorem_implementations,
             "dependencyCleanTheorems": sum(item["dependencyClean"] for item in theorem_statuses),
             "spaceEntries": len(space_statuses),
-            "spaceImplementations": sum(item["declarationPresent"] for item in space_statuses),
+            "spaceImplementations": sum(
+                item["status"] == "implemented" for item in space_audit_report["spaces"]
+            ),
             "spaceTotal": len(data["spaces"]),
             "resolvedPairs": resolved,
             "totalPairs": total_pairs,
@@ -1035,10 +1288,14 @@ def main() -> None:
             {"label": "Implications engine payload", "path": "data/implications.json", "format": "JSON"},
             {"label": "Open questions worklist", "path": "data/questions.json", "format": "JSON"},
             {"label": "Space trait tables", "path": "data/traits.json", "format": "JSON"},
+            {"label": "Raw space audit", "path": "data/space-audit.json", "format": "JSON"},
         ],
     }
 
     dump_json(OUT_DIR / "dashboard.json", dashboard)
+    (OUT_DIR / "space-audit.json").write_text(
+        normalized_json(space_audit_report), encoding="utf-8"
+    )
     dump_json(OUT_DIR / "implications.json", implications)
     dump_json(OUT_DIR / "questions.json", questions)
     dump_json(OUT_DIR / "traits.json", traits)

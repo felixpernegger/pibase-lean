@@ -1,15 +1,32 @@
 import { AlertTriangle, Check, Download, ExternalLink, FileUp, Flag, Search } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import MathText from "../components/MathText";
+import SpaceAuditBadge from "../components/SpaceAuditBadge";
+import SpaceAuditDetails from "../components/SpaceAuditDetails";
 import StatusBadge from "../components/StatusBadge";
 import { downloadText, formatNumber, routeTo } from "../lib";
-import type { DashboardData, LeanStatusName, ReviewChunkPayload, ReviewEntry, ReviewKind, ReviewPayload } from "../types";
+import {
+  assertReviewChunkPayload,
+  assertReviewPayload,
+  reviewCacheKey,
+  reviewChunkCacheKey,
+  versionedReviewUrl,
+} from "../reviewData";
+import type {
+  DashboardData,
+  LeanStatusName,
+  ReviewEntry,
+  ReviewEntrySummary,
+  ReviewKind,
+  ReviewPayload,
+  SpaceAuditStatus,
+} from "../types";
 
 type Mark = "ok" | "flag";
 type MarkMap = Record<string, Mark>;
-type StatusFilter = "all" | LeanStatusName;
+type StatusFilter = "all" | LeanStatusName | SpaceAuditStatus;
 
-const cache = new Map<ReviewKind, ReviewPayload>();
+const cache = new Map<string, ReviewPayload>();
 const chunkCache = new Map<string, ReviewEntry[]>();
 
 function statusLabel(kind: ReviewKind, entry: { leanStatus: ReviewEntry["leanStatus"] }): string | undefined {
@@ -19,6 +36,13 @@ function statusLabel(kind: ReviewKind, entry: { leanStatus: ReviewEntry["leanSta
     && entry.leanStatus.wellDefinedPlaceholders > 0
   ) return "Well-definedness debt";
   return undefined;
+}
+
+function reviewStatusBadge(kind: ReviewKind, entry: ReviewEntry | ReviewEntrySummary) {
+  if (kind === "spaces" && entry.spaceAudit) {
+    return <SpaceAuditBadge status={entry.spaceAudit.status} />;
+  }
+  return <StatusBadge status={entry.leanStatus.status} label={statusLabel(kind, entry)} />;
 }
 
 function readMarks(key: string): MarkMap {
@@ -35,7 +59,10 @@ export default function Review({ data, params }: { data: DashboardData; params: 
   const [status, setStatus] = useState<StatusFilter>("all");
   const [hideReviewed, setHideReviewed] = useState(false);
   const [limit, setLimit] = useState(24);
-  const [payload, setPayload] = useState<ReviewPayload | null>(cache.get(initialKind) ?? null);
+  const sourceCommit = data.source.commit;
+  const [payload, setPayload] = useState<ReviewPayload | null>(
+    cache.get(reviewCacheKey(sourceCommit, initialKind)) ?? null,
+  );
   const [loadedEntries, setLoadedEntries] = useState<Map<string, ReviewEntry>>(new Map());
   const [error, setError] = useState("");
   const marksKey = `pibase-review:${data.source.commit}`;
@@ -55,40 +82,44 @@ export default function Review({ data, params }: { data: DashboardData; params: 
 
   useEffect(() => {
     let active = true;
+    const cacheKey = reviewCacheKey(sourceCommit, kind);
     const seeded = new Map<string, ReviewEntry>();
     chunkCache.forEach((entries, key) => {
-      if (key.startsWith(`${kind}:`)) entries.forEach((entry) => seeded.set(entry.id, entry));
+      if (key.startsWith(`${cacheKey}:`)) entries.forEach((entry) => seeded.set(entry.id, entry));
     });
     setLoadedEntries(seeded);
-    const cached = cache.get(kind);
+    const cached = cache.get(cacheKey);
     if (cached) {
       setPayload(cached);
       setError("");
       return () => { active = false; };
     }
     setPayload(null);
-    fetch(new URL(`data/review-${kind}.json`, document.baseURI))
+    fetch(versionedReviewUrl(`data/review-${kind}.json`, sourceCommit))
       .then((response) => {
         if (!response.ok) throw new Error(`Review data returned ${response.status}`);
-        return response.json() as Promise<ReviewPayload>;
+        return response.json() as Promise<unknown>;
       })
       .then((next) => {
-        if (next.kind !== kind) throw new Error(`Review index does not match ${kind}`);
-        cache.set(kind, next);
+        assertReviewPayload(next, kind, sourceCommit);
+        cache.set(cacheKey, next);
         if (active) { setPayload(next); setError(""); }
       })
       .catch((reason: unknown) => {
         if (active) setError(reason instanceof Error ? reason.message : "Review data could not be loaded");
       });
     return () => { active = false; };
-  }, [kind]);
+  }, [kind, sourceCommit]);
 
   const filtered = useMemo(() => {
     if (!payload || payload.kind !== kind) return [];
     const term = query.trim().toLowerCase();
     const exactId = /^[pst]\d+$/.test(term);
     return payload.entries.filter((entry) => {
-      if (status !== "all" && entry.leanStatus.status !== status) return false;
+      const entryStatus = kind === "spaces" && entry.spaceAudit
+        ? entry.spaceAudit.status
+        : entry.leanStatus.status;
+      if (status !== "all" && entryStatus !== status) return false;
       if (hideReviewed && marks[entry.id]) return false;
       if (!term) return true;
       if (exactId) return entry.shortId.toLowerCase() === term;
@@ -102,16 +133,16 @@ export default function Review({ data, params }: { data: DashboardData; params: 
     let active = true;
     const payloadKind = payload.kind;
     const wanted = [...new Set(filtered.slice(0, limit).map((entry) => entry.chunk))];
-    const missing = wanted.filter((chunk) => !chunkCache.has(`${payloadKind}:${chunk}`));
+    const missing = wanted.filter(
+      (chunk) => !chunkCache.has(reviewChunkCacheKey(sourceCommit, payloadKind, chunk)),
+    );
     if (!missing.length) return () => { active = false; };
     Promise.all(missing.map(async (chunk) => {
-      const response = await fetch(new URL(payload.chunks[chunk], document.baseURI));
+      const response = await fetch(versionedReviewUrl(payload.chunks[chunk], sourceCommit));
       if (!response.ok) throw new Error(`Review chunk returned ${response.status}`);
-      const next = await response.json() as ReviewChunkPayload;
-      if (next.kind !== payloadKind || next.chunk !== chunk) {
-        throw new Error(`Review chunk ${chunk} does not match ${payloadKind}`);
-      }
-      chunkCache.set(`${payloadKind}:${chunk}`, next.entries);
+      const next = await response.json() as unknown;
+      assertReviewChunkPayload(next, payloadKind, chunk, sourceCommit);
+      chunkCache.set(reviewChunkCacheKey(sourceCommit, payloadKind, chunk), next.entries);
       return next.entries;
     }))
       .then((groups) => {
@@ -126,10 +157,11 @@ export default function Review({ data, params }: { data: DashboardData; params: 
         if (active) setError(reason instanceof Error ? reason.message : "Review source could not be loaded");
       });
     return () => { active = false; };
-  }, [filtered, kind, limit, payload]);
+  }, [filtered, kind, limit, payload, sourceCommit]);
 
   function changeKind(next: ReviewKind) {
     setKind(next);
+    setStatus("all");
     setLimit(24);
     window.history.replaceState(null, "", routeTo("review", { kind: next, q: query || undefined }));
   }
@@ -179,7 +211,7 @@ export default function Review({ data, params }: { data: DashboardData; params: 
         <div>
           <p className="eyebrow">Semantic verification</p>
           <h1>Review</h1>
-          <p className="page-lede">Informal π-Base statements beside their Lean representation and dependency status.</p>
+          <p className="page-lede">Informal π-Base records beside their Lean representation, audit, and dependency evidence.</p>
         </div>
         <div className="review-progress">
           <strong>{formatNumber(reviewedCount)}</strong>
@@ -205,11 +237,23 @@ export default function Review({ data, params }: { data: DashboardData; params: 
         <label className="select-field">
           <span>Status</span>
           <select value={status} onChange={(event) => { setStatus(event.target.value as StatusFilter); setLimit(24); }}>
-            <option value="all">All trust states</option>
-            <option value="dependency-clean">Dependency-clean</option>
-            <option value="dependency-debt">Dependency debt</option>
-            <option value="local-debt">Local debt</option>
-            <option value="missing-declaration">Missing declaration</option>
+            {kind === "spaces" ? (
+              <>
+                <option value="all">All audit states</option>
+                <option value="implemented">Implemented</option>
+                <option value="not-implemented">Incomplete</option>
+                <option value="invalid">Invalid</option>
+                <option value="not-targeted">Not targeted</option>
+              </>
+            ) : (
+              <>
+                <option value="all">All trust states</option>
+                <option value="dependency-clean">Dependency-clean</option>
+                <option value="dependency-debt">Dependency debt</option>
+                <option value="local-debt">Local debt</option>
+                <option value="missing-declaration">Missing declaration</option>
+              </>
+            )}
           </select>
         </label>
         <label className="check-field"><input type="checkbox" checked={hideReviewed} onChange={(event) => setHideReviewed(event.target.checked)} /><span>Hide reviewed</span></label>
@@ -237,7 +281,7 @@ export default function Review({ data, params }: { data: DashboardData; params: 
                 <header className="review-entry-head">
                   <a className="entry-id" href={summary.referenceUrl}><code>{summary.shortId}</code></a>
                   <div className="entry-title"><MathText text={summary.name} inline /></div>
-                  <StatusBadge status={summary.leanStatus.status} label={statusLabel(kind, summary)} />
+                  {reviewStatusBadge(kind, summary)}
                 </header>
                 <div className="review-source-loading">Loading Lean source…</div>
               </article>
@@ -249,10 +293,10 @@ export default function Review({ data, params }: { data: DashboardData; params: 
               <a className="entry-id" href={entry.referenceUrl}><code>{entry.shortId}</code></a>
               <div className="entry-title"><MathText text={entry.name} inline /></div>
               {entry.author && <span className="author-name">{entry.author}</span>}
-              <StatusBadge status={entry.leanStatus.status} label={statusLabel(kind, entry)} />
+              {reviewStatusBadge(kind, entry)}
               <div className="entry-links">
                 <a className="icon-link" href={entry.referenceUrl} aria-label={`Open ${entry.shortId} on π-Base`} data-tooltip="π-Base"><ExternalLink size={15} /></a>
-                <a className="icon-link" href={entry.sourceUrl} aria-label={`Open ${entry.shortId} Lean source`} data-tooltip="Lean source"><code>λ</code></a>
+                {entry.sourceUrl && <a className="icon-link" href={entry.sourceUrl} aria-label={`Open ${entry.shortId} Lean source`} data-tooltip="Lean source"><code>λ</code></a>}
               </div>
               <div className="review-actions">
                 <button type="button" aria-pressed={marks[entry.id] === "ok"} onClick={() => setMark(entry, "ok")}><Check size={15} /> Reviewed</button>
@@ -300,34 +344,23 @@ export default function Review({ data, params }: { data: DashboardData; params: 
                   </div>
                 )}
                 {entry.description ? <MathText text={entry.description} /> : <p className="muted-copy">No informal description recorded.</p>}
-                <dl className="entry-ledger">
-                  <div><dt>Local placeholders</dt><dd>{entry.leanStatus.localPlaceholders}</dd></div>
-                  <div><dt>Dependency placeholders</dt><dd>{entry.leanStatus.dependencyPlaceholders}</dd></div>
-                  {kind === "properties" && <div><dt>Well-definedness placeholders</dt><dd>{entry.leanStatus.wellDefinedPlaceholders}</dd></div>}
-                  {kind === "theorems" && <div><dt>Imported well-definedness debt</dt><dd>{entry.leanStatus.dependencyWellDefinedPlaceholders}</dd></div>}
-                  {kind === "theorems" && <div><dt>Other imported placeholders</dt><dd>{entry.leanStatus.dependencyNonWellDefinedPlaceholders}</dd></div>}
-                  <div><dt>Declaration</dt><dd>{entry.leanStatus.declarationPresent ? "Present" : "Missing"}</dd></div>
-                </dl>
-                {entry.traits && entry.traits.length > 0 && (
-                  <details className="trait-details">
-                    <summary>{formatNumber(entry.traits.length)} known traits</summary>
-                    <table>
-                      <tbody>
-                        {entry.traits.map((trait) => (
-                          <tr key={`${trait.property}-${trait.value}`}>
-                            <td className={trait.value ? "trait-yes" : "trait-no"}>{trait.value ? "✓" : "×"}</td>
-                            <td><a href={routeTo("review", { kind: "properties", q: trait.property.replace(/^P0+/, "P") })}>{trait.name}</a></td>
-                            <td><span className="table-tag">{trait.status}</span></td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </details>
+                {kind === "spaces" && entry.spaceAudit ? (
+                  <SpaceAuditDetails audit={entry.spaceAudit} catalogTraits={entry.traits} />
+                ) : (
+                  <dl className="entry-ledger">
+                    <div><dt>Local placeholders</dt><dd>{entry.leanStatus.localPlaceholders}</dd></div>
+                    <div><dt>Dependency placeholders</dt><dd>{entry.leanStatus.dependencyPlaceholders}</dd></div>
+                    {kind === "properties" && <div><dt>Well-definedness placeholders</dt><dd>{entry.leanStatus.wellDefinedPlaceholders}</dd></div>}
+                    {kind === "theorems" && <div><dt>Imported well-definedness debt</dt><dd>{entry.leanStatus.dependencyWellDefinedPlaceholders}</dd></div>}
+                    {kind === "theorems" && <div><dt>Other imported placeholders</dt><dd>{entry.leanStatus.dependencyNonWellDefinedPlaceholders}</dd></div>}
+                    <div><dt>Declaration</dt><dd>{entry.leanStatus.declarationPresent ? "Present" : "Missing"}</dd></div>
+                  </dl>
                 )}
               </div>
               <div className="lean-pane"><pre><code>{entry.code || "-- No primary Lean source"}</code></pre></div>
             </div>
-            {entry.extraCode && <details className="extra-code"><summary>Supporting lemmas</summary><pre><code>{entry.extraCode}</code></pre></details>}
+            {entry.extraCode && <details className="extra-code"><summary>{kind === "spaces" ? "Direct certificates" : "Supporting lemmas"}</summary><pre><code>{entry.extraCode}</code></pre></details>}
+            {"generatedCode" in entry && entry.generatedCode && <details className="extra-code"><summary>Generated derived certificates</summary><pre><code>{entry.generatedCode}</code></pre></details>}
           </article>
           );
         })}

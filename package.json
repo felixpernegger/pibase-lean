@@ -4,12 +4,21 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "catalog:check": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/gen_space_audit_catalog.py --check",
+    "spaces:check": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/gen_spaces.py --check",
+    "traits:check": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/gen_traits.py --check S1 S4 S10 S189",
+    "generated:check": "npm run catalog:check && npm run spaces:check && npm run traits:check",
+    "audit:build": "lake build --wfail spaceAudit",
+    "audit:run": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/run_space_audit.py",
+    "test:python": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*.py' -v",
+    "test:frontend": "node --test tests/test_dashboard_frontend_contracts.mjs",
     "dashboard:data": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_dashboard_data.py",
     "dashboard:build": "npm run dashboard:data && vite build",
     "dashboard:dev": "npm run dashboard:data && vite --host 127.0.0.1",
     "dashboard:preview": "vite preview --host 127.0.0.1 --port 4290",
     "dashboard:check": "tsc --noEmit -p dashboard/tsconfig.json",
-    "dashboard:verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/check_dashboard_data.py"
+    "dashboard:verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/check_dashboard_data.py",
+    "verify": "npm run generated:check && npm run test:python && npm run test:frontend && npm run audit:build && npm run dashboard:check && npm run dashboard:build && npm run dashboard:verify"
   },
   "dependencies": {
     "katex": "0.16.22",

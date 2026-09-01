@@ -64,6 +64,8 @@ export default function Overview({ bundle, params }: { bundle: DashboardBundle; 
   const formalDirectCount = data.graph.formalized.counts.formalizedDirect ?? 0;
   const formalDerivedCount = data.graph.formalized.counts.formalizedDerived ?? 0;
   const formalPairCount = formalDirectCount + formalDerivedCount;
+  const targetedSpaces = data.spaces.filter((space) => space.spaceAudit.targeted);
+  const implementedTargetedSpaces = targetedSpaces.filter((space) => space.spaceAudit.status === "implemented").length;
   const sourceIndex = data.properties.findIndex((item) => item.id === source);
   const targetIndex = data.properties.findIndex((item) => item.id === target);
   const sourceNode = data.properties[sourceIndex];
@@ -430,7 +432,7 @@ export default function Overview({ bundle, params }: { bundle: DashboardBundle; 
           <div>
             <p className="eyebrow">π-Base dataset</p>
             <h2>Formalization coverage</h2>
-            <p className="section-summary">Each bar compares Felix's Lean formalizations with every record in the pinned π-Base dataset.</p>
+            <p className="section-summary">Property and theorem rows compare Lean coverage with the pinned π-Base catalog. Space rows separate the targeted kernel audit pass rate from catalog-wide audited implementation coverage.</p>
           </div>
           <a className="text-link" href={routeTo("review")}>Open review <ArrowRight size={15} aria-hidden="true" /></a>
         </div>
@@ -446,9 +448,22 @@ export default function Overview({ bundle, params }: { bundle: DashboardBundle; 
             total={data.summary.theoremTotal}
           />
           <ImplementationBar
-            label="Spaces"
-            implemented={data.summary.spaceImplementations}
+            label="Targeted space audits"
+            implemented={implementedTargetedSpaces}
+            total={targetedSpaces.length}
+            totalLabel={`${formatNumber(targetedSpaces.length)} currently targeted`}
+            implementedLabel="Implemented"
+            remainingLabel="Incomplete or invalid"
+            trackLabel="Kernel-audited targeted space implementations"
+          />
+          <ImplementationBar
+            label="Audited space implementations"
+            implemented={implementedTargetedSpaces}
             total={data.summary.spaceTotal}
+            totalLabel={`${formatNumber(data.summary.spaceTotal)} total in π-Base`}
+            implementedLabel="Pass the space audit"
+            remainingLabel="Do not currently pass"
+            trackLabel="π-Base catalog spaces with kernel-audited Lean implementations"
           />
         </div>
       </section>

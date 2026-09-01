@@ -2,60 +2,126 @@ name: Deploy project site to Pages
 
 on:
   push:
-    branches: [master, add-counterexample-spaces]
+    branches: [master]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
+
+env:
+  PIBASE_DATA_COMMIT: 5c343408ea723e78e31523f9899bfb22580235bd
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v5
-      - name: Check out Felix's Lean source
-        # Full history is used for per-file authorship in the review audit.
-        run: git clone --filter=blob:none --no-tags --branch master https://github.com/felixpernegger/pibase-lean.git "$RUNNER_TEMP/felix-pibase-lean"
-      - name: Check out Felix's pi-base data
-        run: git clone --depth 1 --branch main https://github.com/felixpernegger/pibase-data.git "$RUNNER_TEMP/felix-pibase-data"
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # Dashboard review metadata derives authorship from repository history.
+          fetch-depth: 0
+
+      - name: Check out pinned pi-base data
+        run: |
+          git init "$RUNNER_TEMP/felix-pibase-data"
+          git -C "$RUNNER_TEMP/felix-pibase-data" remote add origin https://github.com/felixpernegger/pibase-data.git
+          git -C "$RUNNER_TEMP/felix-pibase-data" fetch --depth 1 origin "$PIBASE_DATA_COMMIT"
+          git -C "$RUNNER_TEMP/felix-pibase-data" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/felix-pibase-data" rev-parse HEAD)" = "$PIBASE_DATA_COMMIT"
+
+      - name: Set up Lean, restore caches, and build the space audit
+        uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
+        with:
+          auto-config: false
+          build: true
+          build-args: >-
+            --wfail
+            spaceAudit
+            PiBaseLean.Audit.Spaces.Tests.ReportSmoke
+          test: false
+          lint: false
+          use-mathlib-cache: true
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: "3.12"
+
       - name: Refresh the implications payload
         # Felix's deduction engine (build_site.py) produces the payload replayed
         # by the Implications page, so assertions accepted upstream are current
         # at every deploy.
         run: |
-          pip install pyyaml
+          pip install PyYAML==6.0.3
           PYTHONDONTWRITEBYTECODE=1 python3 scripts/fetch_implications.py "$RUNNER_TEMP/felix-pibase-data"
-      - uses: actions/setup-node@v5
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
           node-version: "24"
           cache: npm
+
       - name: Install dashboard dependencies
         run: npm ci
+
+      - name: Check generated Lean inputs
+        run: npm run generated:check
+
+      - name: Run the Lean-native space audit
+        id: space-audit
+        shell: bash
+        run: |
+          mkdir -p "${RUNNER_TEMP}/space-audit"
+          set +e
+          npm run --silent audit:run > "${RUNNER_TEMP}/space-audit/space-audit.json" 2> "${RUNNER_TEMP}/space-audit/space-audit.stderr.log"
+          audit_status=$?
+          set -e
+          cat "${RUNNER_TEMP}/space-audit/space-audit.stderr.log" >&2
+          exit "${audit_status}"
+
+      - name: Upload space audit report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: pages-space-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/space-audit
+          if-no-files-found: warn
+
+      - name: Run Python tests
+        run: npm run test:python
+
+      - name: Test dashboard data contracts
+        run: npm run test:frontend
+
       - name: Check dashboard types
         run: npm run dashboard:check
+
       - name: Build the project dashboard
-        run: npm run dashboard:build
         env:
-          PIBASE_LEAN_SOURCE: ${{ runner.temp }}/felix-pibase-lean
+          PIBASE_SPACE_AUDIT_ARTIFACT: ${{ runner.temp }}/space-audit/space-audit.json
+        run: npm run dashboard:build
+
       - name: Verify dashboard artifacts
         run: npm run dashboard:verify
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
+
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         with:
           path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
+        with:
+          enablement: true
+
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5

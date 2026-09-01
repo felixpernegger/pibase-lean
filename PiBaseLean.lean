@@ -1009,3 +1009,4 @@ import PiBaseLean.Theorems.T96.Theorem
 import PiBaseLean.Theorems.T97.Theorem
 import PiBaseLean.Theorems.T98.Theorem
 import PiBaseLean.Theorems.T99.Theorem
+import PiBaseLean.Spaces

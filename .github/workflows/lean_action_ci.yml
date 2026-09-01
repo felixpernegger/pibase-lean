@@ -5,19 +5,116 @@ on:
   pull_request:
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read # Read access to repository contents
-  pages: write # Write access to GitHub Pages
-  id-token: write # Write access to ID tokens
+  contents: read
+
+env:
+  PIBASE_DATA_COMMIT: 5c343408ea723e78e31523f9899bfb22580235bd
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
-      - uses: leanprover/lean-action@v1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
+          fetch-depth: 0
+
+      - name: Set up Lean, restore caches, and build the library
+        uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
+        with:
+          auto-config: false
+          build: true
           build-args: --wfail
-      - uses: leanprover-community/docgen-action@v1
+          test: false
+          lint: false
+          use-mathlib-cache: true
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Test space audit catalog generator
+        run: python3 -m unittest tests/test_gen_space_audit_catalog.py
+
+      - name: Check generated space audit catalog
+        run: python3 scripts/gen_space_audit_catalog.py --check
+
+      - name: Check generated Lean inputs
+        run: npm run generated:check
+
+      - name: Build space audit registry smoke tests
+        run: >-
+          lake build --wfail
+          PiBaseLean.Audit.Spaces.Tests.RegistrySmoke
+          PiBaseLean.Audit.Spaces.Tests.ReportSmoke
+          PiBaseLean.Audit.Spaces.Tests.CrossModuleDuplicateSmoke
+
+      - name: Build the Lean-native space audit
+        run: npm run audit:build
+
+      - name: Run the Lean-native space audit
+        id: space-audit
+        shell: bash
+        run: |
+          mkdir -p "${RUNNER_TEMP}/space-audit"
+          set +e
+          npm run --silent audit:run > "${RUNNER_TEMP}/space-audit/space-audit.json" 2> "${RUNNER_TEMP}/space-audit/space-audit.stderr.log"
+          audit_status=$?
+          set -e
+          cat "${RUNNER_TEMP}/space-audit/space-audit.stderr.log" >&2
+          exit "${audit_status}"
+
+      - name: Upload space audit report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: space-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/space-audit
+          if-no-files-found: warn
+
+      - name: Run Python tests
+        run: npm run test:python
+
+      - name: Install dashboard dependencies
+        run: npm ci
+
+      - name: Check out pinned pi-base data
+        run: |
+          git init "$RUNNER_TEMP/felix-pibase-data"
+          git -C "$RUNNER_TEMP/felix-pibase-data" remote add origin https://github.com/felixpernegger/pibase-data.git
+          git -C "$RUNNER_TEMP/felix-pibase-data" fetch --depth 1 origin "$PIBASE_DATA_COMMIT"
+          git -C "$RUNNER_TEMP/felix-pibase-data" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/felix-pibase-data" rev-parse HEAD)" = "$PIBASE_DATA_COMMIT"
+
+      - name: Refresh the implications payload used by Pages
+        run: |
+          pip install PyYAML==6.0.3
+          PYTHONDONTWRITEBYTECODE=1 python3 scripts/fetch_implications.py "$RUNNER_TEMP/felix-pibase-data"
+
+      - name: Test dashboard data contracts
+        run: npm run test:frontend
+
+      - name: Check dashboard types
+        run: npm run dashboard:check
+
+      - name: Build the project dashboard
+        env:
+          PIBASE_SPACE_AUDIT_ARTIFACT: ${{ runner.temp }}/space-audit/space-audit.json
+        run: npm run dashboard:build
+
+      - name: Verify dashboard artifacts
+        run: npm run dashboard:verify
+
+      - name: Upload dashboard preview
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: dashboard-preview-${{ github.run_id }}-${{ github.run_attempt }}
+          path: site
+          if-no-files-found: error
+          retention-days: 7

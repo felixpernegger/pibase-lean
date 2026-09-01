@@ -7,7 +7,7 @@ defaultTargets = ["PiBaseLean"]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
 relaxedAutoImplicit = false
 weak.linter.mathlibStandardSet = true
-linter.style.header = false
+weak.linter.style.header = false
 maxSynthPendingDepth = 3
 
 [[require]]
@@ -16,3 +16,8 @@ scope = "leanprover-community"
 
 [[lean_lib]]
 name = "PiBaseLean"
+
+[[lean_exe]]
+name = "spaceAudit"
+root = "PiBaseLean.Audit.Spaces.Main"
+supportInterpreter = true

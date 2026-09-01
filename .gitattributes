@@ -1,0 +1,4 @@
+data/pibase.json text eol=lf
+data/independence.json text eol=lf
+PiBaseLean/Audit/Spaces/GeneratedCatalog.lean text eol=lf linguist-generated=true
+PiBaseLean/Spaces/S*/Generated.lean text eol=lf linguist-generated=true

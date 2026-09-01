@@ -3,10 +3,21 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 from collections import Counter
 from pathlib import Path
+
+from run_space_audit import (
+    REQUIRED_SPACE_AUDIT_SCOPE,
+    load_audit_artifact,
+    normalized_json,
+)
+from space_audit_contract import (
+    PublishedAuditContractError,
+    validate_published_audit,
+)
 
 ROOT = Path(__file__).resolve().parent.parent
 PUBLIC = ROOT / "dashboard" / "public"
@@ -23,13 +34,30 @@ def require(condition: bool, message: str) -> None:
         raise SystemExit(f"dashboard integrity error: {message}")
 
 
-def check_review(kind: str, expected: int, source_prefix: str) -> None:
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def check_review(
+    kind: str, expected: int, source_prefix: str, source_commit: str
+) -> dict[str, dict]:
+    def has_expected_source(entry: dict) -> bool:
+        if kind == "spaces" and not entry["spaceAudit"]["targeted"]:
+            return entry["sourceUrl"] == ""
+        return entry["sourceUrl"].startswith(source_prefix)
+
     index = load(DATA / f"review-{kind}.json")
+    require(index["schemaVersion"] == 2, f"unexpected {kind} review index schema version")
+    require(index["kind"] == kind, f"{kind} review index has the wrong kind")
+    require(
+        index["sourceCommit"] == source_commit,
+        f"{kind} review index has the wrong source commit",
+    )
     entries = index["entries"]
     require(len(entries) == expected, f"{kind} review index has {len(entries)} entries, expected {expected}")
     require(len({entry["id"] for entry in entries}) == expected, f"{kind} review index has duplicate IDs")
     require(
-        all(entry["sourceUrl"].startswith(source_prefix) for entry in entries),
+        all(has_expected_source(entry) for entry in entries),
         f"{kind} review index contains a non-canonical source link",
     )
     if kind == "properties":
@@ -37,25 +65,65 @@ def check_review(kind: str, expected: int, source_prefix: str) -> None:
             all("wellDefinedPlaceholders" in entry["leanStatus"] for entry in entries),
             "property review index is missing well-definedness audit data",
         )
-    chunk_ids: set[str] = set()
+    if kind == "spaces":
+        require(
+            all("spaceAudit" in entry for entry in entries),
+            "space review index is missing structured audit data",
+        )
+    chunk_entries: dict[str, dict] = {}
+    chunk_numbers: dict[str, int] = {}
     for chunk_number, relative in enumerate(index["chunks"]):
         path = PUBLIC / relative
         require(path.exists(), f"missing review chunk {relative}")
         payload = load(path)
+        require(payload["schemaVersion"] == 2, f"unexpected review schema version in {relative}")
+        require(payload["kind"] == kind, f"review chunk has the wrong kind in {relative}")
+        require(
+            payload["sourceCommit"] == source_commit,
+            f"review chunk has the wrong source commit in {relative}",
+        )
         require(payload["chunk"] == chunk_number, f"review chunk number mismatch in {relative}")
         require(
-            all(entry["sourceUrl"].startswith(source_prefix) for entry in payload["entries"]),
+            all(has_expected_source(entry) for entry in payload["entries"]),
             f"{relative} contains a non-canonical source link",
         )
-        chunk_ids.update(entry["id"] for entry in payload["entries"])
-    require(chunk_ids == {entry["id"] for entry in entries}, f"{kind} review chunks do not match their index")
+        for entry in payload["entries"]:
+            require(entry["id"] not in chunk_entries, f"{kind} review chunks contain duplicate IDs")
+            chunk_entries[entry["id"]] = entry
+            chunk_numbers[entry["id"]] = chunk_number
+    require(set(chunk_entries) == {entry["id"] for entry in entries}, f"{kind} review chunks do not match their index")
     require(all(0 <= entry["chunk"] < len(index["chunks"]) for entry in entries), f"{kind} review entry has an invalid chunk")
+    require(
+        all(chunk_numbers[entry["id"]] == entry["chunk"] for entry in entries),
+        f"{kind} review index points an entry at the wrong chunk",
+    )
+    require(
+        all(
+            entry["sourceUrl"] == chunk_entries[entry["id"]]["sourceUrl"]
+            for entry in entries
+        ),
+        f"{kind} review index source links disagree with their chunks",
+    )
+    if kind == "spaces":
+        for entry in entries:
+            chunk_entry = chunk_entries[entry["id"]]
+            require(
+                entry["leanStatus"] == chunk_entry["leanStatus"]
+                and entry["spaceAudit"] == chunk_entry["spaceAudit"],
+                f"space review index disagrees with its chunk for {entry['id']}",
+            )
+            require(
+                "generatedCode" in chunk_entry,
+                f"space review chunk is missing generated certificates for {entry['id']}",
+            )
+    return chunk_entries
 
 
 def main() -> None:
     manifest = load(DATA / "dashboard.json")
+    catalog = load(ROOT / "data" / "pibase.json")
     canonical_repo = "https://github.com/felixpernegger/pibase-lean"
-    require(manifest["schemaVersion"] == 4, "unexpected dashboard schema version")
+    require(manifest["schemaVersion"] == 5, "unexpected dashboard schema version")
     require(manifest["project"]["repoUrl"] == canonical_repo, "project repository is not Felix's repository")
     require(
         manifest["project"]["repositoryLabel"] == "felixpernegger/pibase-lean",
@@ -221,18 +289,166 @@ def main() -> None:
         - manifest["trust"]["theorems"].get("local-debt", 0),
         "implemented theorem count disagrees with trust ledger",
     )
+    audit_path = DATA / "space-audit.json"
+    require(audit_path.is_file(), "raw space audit artifact is missing")
+    audit_result = load_audit_artifact(audit_path).require_success()
+    audit = audit_result.report
+    try:
+        validate_published_audit(
+            audit,
+            catalog,
+            load(ROOT / "data" / "independence.json"),
+            ROOT,
+            REQUIRED_SPACE_AUDIT_SCOPE,
+        )
+    except PublishedAuditContractError as error:
+        raise SystemExit(f"dashboard integrity error: {error}") from error
+    require(
+        audit_path.read_text(encoding="utf-8") == normalized_json(audit),
+        "raw space audit artifact is not normalized",
+    )
+    audit_spaces = {entry["spaceId"]: entry for entry in audit["spaces"]}
+    require(
+        len(audit_spaces) == len(audit["spaces"])
+        and audit["scope"] == [entry["spaceId"] for entry in audit["spaces"]],
+        "space audit scope and entries are inconsistent",
+    )
+    require(
+        audit["scope"] == list(REQUIRED_SPACE_AUDIT_SCOPE),
+        "space audit scope does not match the required published pilot",
+    )
+    require(
+        audit["sourceHashes"]
+        == {
+            "pibase": sha256(ROOT / "data" / "pibase.json"),
+            "independence": sha256(ROOT / "data" / "independence.json"),
+        },
+        "space audit source hashes do not match the exact catalog bytes",
+    )
     require(
         summary["spaceImplementations"]
-        == summary["spaceEntries"] - manifest["trust"]["spaces"].get("missing-declaration", 0),
-        "implemented space count disagrees with trust ledger",
+        == sum(entry["status"] == "implemented" for entry in audit["spaces"]),
+        "implemented space count disagrees with implemented audit targets",
     )
+    require(
+        len(spaces) == summary["spaceTotal"] == summary["spaceEntries"],
+        "space manifest, catalog total, and trust ledger are not aligned",
+    )
+    catalog_space_names = {entry["uid"]: entry["name"] for entry in catalog["spaces"]}
+    require(
+        len(catalog_space_names) == len(catalog["spaces"]),
+        "catalog contains duplicate space IDs",
+    )
+    property_names = {entry["uid"]: entry["name"] for entry in catalog["properties"]}
+    require(
+        len(property_names) == len(catalog["properties"]),
+        "catalog contains duplicate property IDs",
+    )
+    catalog_direct: dict[str, dict[str, bool]] = {
+        space_id: {} for space_id in catalog_space_names
+    }
+    for row in catalog["traits"]:
+        require(
+            row["space"] in catalog_direct and row["property"] in property_names,
+            "catalog trait references an unknown space or property",
+        )
+        direct = catalog_direct[row["space"]]
+        require(
+            row["property"] not in direct,
+            f"catalog contains duplicate direct trait {row['space']}/{row['property']}",
+        )
+        direct[row["property"]] = row["value"]
+    for space_id, audited in audit_spaces.items():
+        require(
+            audited["catalogName"] == catalog_space_names.get(space_id),
+            f"audit catalog name disagrees for {space_id}",
+        )
+        audited_traits = {row["propertyId"]: row for row in audited["traits"]}
+        require(
+            len(audited_traits) == len(audited["traits"]),
+            f"audit contains duplicate trait properties for {space_id}",
+        )
+        require(
+            set(audited_traits) <= set(property_names),
+            f"audit contains an unknown property for {space_id}",
+        )
+        require(
+            all(
+                row["name"] == property_names[property_id]
+                and row["polarity"] == row["expected"]
+                for property_id, row in audited_traits.items()
+            ),
+            f"audit property names or polarities disagree with the catalog for {space_id}",
+        )
+        direct = {
+            property_id: row["expected"]
+            for property_id, row in audited_traits.items()
+            if row["provenance"] == "direct"
+        }
+        require(
+            direct == catalog_direct[space_id],
+            f"audit direct traits disagree with the catalog for {space_id}",
+        )
+        require(
+            all(
+                row["provenance"]
+                == ("direct" if property_id in catalog_direct[space_id] else "derived")
+                for property_id, row in audited_traits.items()
+            ),
+            f"audit trait provenance disagrees with the catalog for {space_id}",
+        )
+    for space in spaces:
+        audit_projection = space.get("spaceAudit", {})
+        require(
+            space["lean"].get("spaceAudit") == audit_projection,
+            f"space {space['id']} has inconsistent audit projections",
+        )
+        audited = audit_spaces.get(space["id"])
+        if audited is None:
+            require(
+                audit_projection == {"status": "not-targeted", "targeted": False},
+                f"non-targeted space {space['id']} has an invalid audit projection",
+            )
+            require(
+                not space["lean"]["declarationPresent"]
+                and not space["lean"]["dependencyClean"]
+                and space["lean"]["status"] == "missing-declaration",
+                f"non-targeted space {space['id']} is counted as implemented",
+            )
+        else:
+            require(
+                audit_projection == {**audited, "targeted": True},
+                f"targeted space {space['id']} disagrees with the raw audit",
+            )
+            if audited["status"] == "implemented":
+                require(
+                    space["lean"]["declarationPresent"]
+                    and space["lean"]["dependencyClean"]
+                    and space["lean"]["status"] == "dependency-clean",
+                    f"implemented audit target {space['id']} has an invalid compatibility status",
+                )
+            else:
+                require(
+                    not space["lean"]["dependencyClean"]
+                    and space["lean"]["status"] in {"missing-declaration", "local-debt"},
+                    f"failed audit target {space['id']} is counted as implemented",
+                )
     require(summary["propertyImplementations"] <= summary["propertyTotal"], "property coverage exceeds pi-Base total")
     require(summary["theoremImplementations"] <= summary["theoremTotal"], "theorem coverage exceeds pi-Base total")
     require(summary["spaceImplementations"] <= summary["spaceTotal"], "space coverage exceeds pi-Base total")
 
-    check_review("spaces", summary["spaceEntries"], source_prefix)
-    check_review("properties", summary["propertyEntries"], source_prefix)
-    check_review("theorems", summary["theoremEntries"], source_prefix)
+    source_commit = manifest["source"]["commit"]
+    space_review = check_review("spaces", summary["spaceEntries"], source_prefix, source_commit)
+    check_review("properties", summary["propertyEntries"], source_prefix, source_commit)
+    check_review("theorems", summary["theoremEntries"], source_prefix, source_commit)
+    require(
+        all(
+            space_review[space["id"]]["leanStatus"] == space["lean"]
+            and space_review[space["id"]]["spaceAudit"] == space["spaceAudit"]
+            for space in spaces
+        ),
+        "space review data disagrees with the dashboard projection",
+    )
 
     theorem_index = load(DATA / "review-theorems.json")
     theorem_status = {entry["id"]: entry["leanStatus"] for entry in theorem_index["entries"]}
@@ -308,6 +524,20 @@ def main() -> None:
         "questions worklist references an unknown property",
     )
     traits = load(DATA / "traits.json")
+    property_names = {entry["id"]: entry["name"] for entry in manifest["properties"]}
+    catalog_traits: dict[str, list[dict]] = {space_id: [] for space_id in space_map}
+    for row in catalog["traits"]:
+        catalog_traits[row["space"]].append({
+            "property": row["property"],
+            "name": property_names.get(row["property"], row["property"]),
+            "value": row["value"],
+            "status": "asserted",
+            "via": None,
+        })
+    require(
+        set(traits) == set(space_map),
+        "trait tables do not cover the complete space catalog",
+    )
     require(
         all(
             space.startswith("S") and all(row["property"] in property_ids for row in payload["traits"])
@@ -315,7 +545,43 @@ def main() -> None:
         ),
         "trait tables reference an unknown property",
     )
+    for space_id, payload in traits.items():
+        audited = audit_spaces.get(space_id)
+        if audited is None:
+            require(
+                payload["traits"] == catalog_traits[space_id],
+                f"non-targeted space {space_id} traits are not exact catalog assertions",
+            )
+            continue
+        expected_traits = [
+            {
+                "property": row["propertyId"],
+                "name": row.get("name") or property_names.get(row["propertyId"], row["propertyId"]),
+                "value": row["expected"],
+                "status": (
+                    "proven"
+                    if row["status"] == "implemented" and row.get("provenance") == "derived"
+                    else "asserted"
+                    if row["status"] == "implemented" and row.get("provenance") == "direct"
+                    else "derivable"
+                ),
+                "via": row.get("certificate"),
+            }
+            for row in audited["traits"]
+        ]
+        require(
+            payload["traits"] == expected_traits,
+            f"targeted space {space_id} traits do not come exactly from the audit",
+        )
+    require(
+        all(space_review[space_id]["traits"] == payload["traits"] for space_id, payload in traits.items()),
+        "space review traits disagree with the trait artifact",
+    )
 
+    require(
+        any(artifact["path"] == "data/space-audit.json" for artifact in manifest["downloads"]),
+        "raw space audit is not listed as a download",
+    )
     for artifact in manifest["downloads"]:
         require((PUBLIC / artifact["path"]).exists(), f"download is missing: {artifact['path']}")
     dependency_artifact = load(DATA / "axiom-dependencies.json")
