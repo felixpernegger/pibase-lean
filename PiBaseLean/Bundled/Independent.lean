@@ -42,6 +42,11 @@ def IndependencePairs : Set (Prop × Prop) :=
     (MartinsAxiom ∧ ¬ ContinuumHypothesis, NotContinuumHypothesis),
     (MartinsAxiom ∧ ¬ ContinuumHypothesis, ¬ GeneralizedContinuumHypothesis.{u}) }
 
+/- TODO: prove this (bottleneck is Martin's axiom)
+theorem independencePairs_implies {P : Prop × Prop} (hP : P ∈ IndependencePairs) :
+    P.1 → P.2 := by sorry
+-/
+
 /-- `P` is independent of ZFC and Lean's type theory.
 Note: More precisely, the implication can be proved under some set theory axiom known to be
 independent and so does its negation.
