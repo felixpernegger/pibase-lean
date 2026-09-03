@@ -30,6 +30,18 @@ def IndependenceSet : Set Prop :=
     GeneralizedContinuumHypothesis.{u}, ¬ GeneralizedContinuumHypothesis.{u}, MartinsAxiom,
       ¬ MartinsAxiom, MartinsAxiom ∧ ¬ ContinuumHypothesis}
 
+/-- (Distinct) Members of `IndependenceSet` `(A, B)` satisfying `A → B` (mathematicallly). -/
+def IndependencePairs : Set (Prop × Prop) :=
+  { (GeneralizedContinuumHypothesis.{u}, ContinuumHypothesis),
+    (GeneralizedContinuumHypothesis.{u}, MartinsAxiom),
+    (ContinuumHypothesis, MartinsAxiom),
+    (NotContinuumHypothesis, ¬ GeneralizedContinuumHypothesis.{u}),
+    (¬ MartinsAxiom, NotContinuumHypothesis),
+    (¬ MartinsAxiom, ¬ GeneralizedContinuumHypothesis.{u}),
+    (MartinsAxiom ∧ ¬ ContinuumHypothesis, MartinsAxiom),
+    (MartinsAxiom ∧ ¬ ContinuumHypothesis, NotContinuumHypothesis),
+    (MartinsAxiom ∧ ¬ ContinuumHypothesis, ¬ GeneralizedContinuumHypothesis.{u}) }
+
 /-- `P` is independent of ZFC and Lean's type theory.
 Note: More precisely, the implication can be proved under some set theory axiom known to be
 independent and so does its negation.
@@ -37,8 +49,8 @@ independent and so does its negation.
 A proper, exhaustive and `Prop`-valued notion of independence is likely
 not possible to define in Lean. -/
 def Independent (P : Prop) : Prop :=
-  (∃ A ∈ IndependenceSet.{u}, A → P) ∧
-  (∃ B ∈ IndependenceSet.{u}, B → ¬ P)
+  (∃ A ∈ IndependenceSet.{u}, A ↔ P) ∨
+  (∃ Q ∈ IndependencePairs.{u}, Q.1 → P ∧ P → Q.2)
 
 /-- The implication P → Q is independent of ZFC and Lean's type theory.
 Note: More precisely, the implication can be proved under some set theory axiom known to be
@@ -51,8 +63,9 @@ abbrev IndependentImplication (p q : Property.{u}) :=
 
 theorem independent_of_mem_independenceSet {P : Prop} (hP : P ∈ IndependenceSet.{u}) :
     Independent.{u} P := by
-  unfold Independent IndependenceSet at *
-  exact ⟨by grind, ¬ P, by grind⟩
+  unfold Independent
+  left
+  exact ⟨P, by simpa⟩
 
 theorem ContinuumHypothesis.independent : Independent.{u} ContinuumHypothesis := by
   apply independent_of_mem_independenceSet
