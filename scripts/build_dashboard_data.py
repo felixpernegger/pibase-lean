@@ -282,22 +282,23 @@ def analyze_lean_tree() -> tuple[dict[str, dict], dict[Path, dict]]:
         dependency_non_well_defined_placeholders = max(
             0, dependency_placeholders - dependency_well_defined_placeholders
         )
+
+        def declared(pattern: str) -> bool:
+            """Whether any file of the entity's folder contains the canonical declaration."""
+            return any(re.search(pattern, analyses.get(path, {}).get("code", "")) for path in files)
+
         declaration = True
         if kind == "Properties":
-            declaration = bool(
-                primary.exists()
-                and re.search(rf"\bdef\s+P{number}\b", analyses[primary]["code"])
-            )
+            # The bundled `def P<n> : Property` lives in `Bundled.lean` since #1313
+            # (`Defs.lean` keeps the mathematical definition), so search the whole folder.
+            declaration = declared(rf"\bdef\s+P{number}\b")
         elif kind == "Theorems":
             declaration = bool(
                 primary.exists()
                 and re.search(rf"\btheorem\s+T{number}\b", analyses[primary]["code"])
             )
         elif kind == "Spaces":
-            declaration = bool(
-                primary.exists()
-                and re.search(rf"\bdef\s+S{number}\b", analyses[primary]["code"])
-            )
+            declaration = declared(rf"\bdef\s+S{number}\b")
         dependency_clean = (
             declaration
             and local_placeholders == 0

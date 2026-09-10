@@ -1,8 +1,16 @@
 name: Deploy project site to Pages
 
+# This is the only workflow that may deploy to GitHub Pages.
+#
+# It publishes the project dashboard at the site root and the doc-gen4 API
+# documentation under /docs/ as ONE deployment. Any other workflow that
+# deploys to Pages replaces the whole site: the docgen-action deployment
+# that used to run from `lean_action_ci.yml` on every push overwrote the
+# dashboard with a docs-only site, which is why the site root was a 404.
+
 on:
   push:
-    branches: [master, add-counterexample-spaces]
+    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -22,6 +30,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
+
+      # ----------------------------------------------------------------------
+      # Project dashboard (fast; runs first so that a dashboard problem fails
+      # the run before the Lean build starts).
+      # ----------------------------------------------------------------------
       - name: Check out Felix's Lean source
         # Full history is used for per-file authorship in the review audit.
         run: git clone --filter=blob:none --no-tags --branch master https://github.com/felixpernegger/pibase-lean.git "$RUNNER_TEMP/felix-pibase-lean"
@@ -51,6 +64,76 @@ jobs:
           PIBASE_LEAN_SOURCE: ${{ runner.temp }}/felix-pibase-lean
       - name: Verify dashboard artifacts
         run: npm run dashboard:verify
+
+      # ----------------------------------------------------------------------
+      # API documentation (doc-gen4).
+      #
+      # This mirrors what leanprover-community/docgen-action does. The action
+      # itself cannot be used here because it unconditionally runs its own
+      # Pages deployment on push events, which is exactly what broke the site.
+      # ----------------------------------------------------------------------
+      - name: Build the Lean project
+        uses: leanprover/lean-action@v1
+        with:
+          build-args: --wfail
+      - name: Cache the documentation of dependencies
+        # One entry per package in lake-manifest.json (module names, not
+        # package names) plus the libraries shipped with the toolchain. The
+        # project's own documentation is deliberately not cached. If a new
+        # dependency appears in the manifest, add its module here; a missing
+        # entry only means that package's docs are rebuilt on every run.
+        uses: actions/cache@v4
+        with:
+          key: Docs-${{ hashFiles('lake-manifest.json') }}
+          path: |
+            docbuild/.lake/build/doc/Mathlib
+            docbuild/.lake/build/doc/Archive
+            docbuild/.lake/build/doc/Counterexamples
+            docbuild/.lake/build/doc/Plausible
+            docbuild/.lake/build/doc/LeanSearchClient
+            docbuild/.lake/build/doc/ImportGraph
+            docbuild/.lake/build/doc/ProofWidgets
+            docbuild/.lake/build/doc/Aesop
+            docbuild/.lake/build/doc/Qq
+            docbuild/.lake/build/doc/Batteries
+            docbuild/.lake/build/doc/Cli
+            docbuild/.lake/build/doc/Init
+            docbuild/.lake/build/doc/Lake
+            docbuild/.lake/build/doc/Lean
+            docbuild/.lake/build/doc/Std
+      - name: Build the API documentation
+        # A throwaway `docbuild` package that depends on this project and on
+        # doc-gen4, sharing the already-built packages in `.lake/packages`.
+        run: |
+          mkdir -p docbuild
+          cat > docbuild/lakefile.toml <<EOF
+          name = "docbuild"
+          reservoir = false
+          version = "0.1.0"
+          packagesDir = "../.lake/packages"
+
+          [[require]]
+          name = "pibase-lean"
+          path = "../"
+
+          [[require]]
+          scope = "leanprover"
+          name = "doc-gen4"
+          rev = "$(cut -d: -f2 < lean-toolchain)"
+          EOF
+          cd docbuild
+          MATHLIB_NO_CACHE_ON_UPDATE=1 ~/.elan/bin/lake update pibase-lean
+          ~/.elan/bin/lake build PiBaseLean:docs
+
+      # ----------------------------------------------------------------------
+      # Assemble the site and deploy it once.
+      # ----------------------------------------------------------------------
+      - name: Add the API documentation to the site
+        # vite empties `site/` when it builds, so the docs are copied in afterwards.
+        run: |
+          cp -r docbuild/.lake/build/doc site/docs
+          test -f site/index.html
+          test -f site/docs/index.html
       - uses: actions/configure-pages@v5
         with:
           enablement: true
