@@ -933,6 +933,7 @@ import PiBaseLean.Theorems.T586.Theorem
 import PiBaseLean.Theorems.T587.Theorem
 import PiBaseLean.Theorems.T59.Theorem
 import PiBaseLean.Theorems.T590.Theorem
+import PiBaseLean.Theorems.T592.Theorem
 import PiBaseLean.Theorems.T594.Theorem
 import PiBaseLean.Theorems.T60.Theorem
 import PiBaseLean.Theorems.T61.Theorem
