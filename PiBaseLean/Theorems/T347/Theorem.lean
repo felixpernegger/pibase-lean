@@ -4,6 +4,8 @@ public import PiBaseLean.Bundled.Basic
 public import PiBaseLean.Properties.P86.Bundled
 public import PiBaseLean.Properties.P87.Bundled
 
+import Mathlib.Topology.Algebra.Group.Basic
+
 @[expose] public section
 
 universe u
