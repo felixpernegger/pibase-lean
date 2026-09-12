@@ -177,12 +177,16 @@ public import PiBaseLean.Properties.P218.Bundled
 public import PiBaseLean.Properties.P219.Bundled
 public import PiBaseLean.Properties.P220.Bundled
 public import PiBaseLean.Properties.P222.Bundled
+public import PiBaseLean.Properties.P226.Bundled
 public import PiBaseLean.Properties.P227.Bundled
 public import PiBaseLean.Properties.P228.Bundled
 public import PiBaseLean.Properties.P230.Bundled
 public import PiBaseLean.Properties.P231.Bundled
 public import PiBaseLean.Properties.P233.Bundled
 public import PiBaseLean.Properties.P234.Bundled
+public import PiBaseLean.Properties.P236.Bundled
+public import PiBaseLean.Properties.P237.Bundled
+public import PiBaseLean.Properties.P245.Bundled
 public import PiBaseLean.Theorems.T1.Theorem
 public import PiBaseLean.Theorems.T2.Theorem
 public import PiBaseLean.Theorems.T3.Theorem
@@ -284,10 +288,12 @@ public import PiBaseLean.Theorems.T182.Theorem
 public import PiBaseLean.Theorems.T183.Theorem
 public import PiBaseLean.Theorems.T184.Theorem
 public import PiBaseLean.Theorems.T187.Theorem
+public import PiBaseLean.Theorems.T189.Theorem
 public import PiBaseLean.Theorems.T190.Theorem
 public import PiBaseLean.Theorems.T191.Theorem
 public import PiBaseLean.Theorems.T193.Theorem
 public import PiBaseLean.Theorems.T197.Theorem
+public import PiBaseLean.Theorems.T198.Theorem
 public import PiBaseLean.Theorems.T199.Theorem
 public import PiBaseLean.Theorems.T200.Theorem
 public import PiBaseLean.Theorems.T201.Theorem
@@ -304,6 +310,7 @@ public import PiBaseLean.Theorems.T247.Theorem
 public import PiBaseLean.Theorems.T248.Theorem
 public import PiBaseLean.Theorems.T249.Theorem
 public import PiBaseLean.Theorems.T250.Theorem
+public import PiBaseLean.Theorems.T251.Theorem
 public import PiBaseLean.Theorems.T253.Theorem
 public import PiBaseLean.Theorems.T254.Theorem
 public import PiBaseLean.Theorems.T256.Theorem
@@ -318,6 +325,7 @@ public import PiBaseLean.Theorems.T270.Theorem
 public import PiBaseLean.Theorems.T281.Theorem
 public import PiBaseLean.Theorems.T282.Theorem
 public import PiBaseLean.Theorems.T283.Theorem
+public import PiBaseLean.Theorems.T284.Theorem
 public import PiBaseLean.Theorems.T285.Theorem
 public import PiBaseLean.Theorems.T286.Theorem
 public import PiBaseLean.Theorems.T287.Theorem
@@ -327,12 +335,15 @@ public import PiBaseLean.Theorems.T303.Theorem
 public import PiBaseLean.Theorems.T304.Theorem
 public import PiBaseLean.Theorems.T306.Theorem
 public import PiBaseLean.Theorems.T308.Theorem
+public import PiBaseLean.Theorems.T316.Theorem
 public import PiBaseLean.Theorems.T325.Theorem
+public import PiBaseLean.Theorems.T333.Theorem
 public import PiBaseLean.Theorems.T335.Theorem
 public import PiBaseLean.Theorems.T336.Theorem
 public import PiBaseLean.Theorems.T337.Theorem
 public import PiBaseLean.Theorems.T338.Theorem
 public import PiBaseLean.Theorems.T339.Theorem
+public import PiBaseLean.Theorems.T340.Theorem
 public import PiBaseLean.Theorems.T346.Theorem
 public import PiBaseLean.Theorems.T350.Theorem
 public import PiBaseLean.Theorems.T359.Theorem
@@ -352,6 +363,7 @@ public import PiBaseLean.Theorems.T431.Theorem
 public import PiBaseLean.Theorems.T440.Theorem
 public import PiBaseLean.Theorems.T446.Theorem
 public import PiBaseLean.Theorems.T448.Theorem
+public import PiBaseLean.Theorems.T450.Theorem
 public import PiBaseLean.Theorems.T452.Theorem
 public import PiBaseLean.Theorems.T454.Theorem
 public import PiBaseLean.Theorems.T455.Theorem
@@ -424,6 +436,7 @@ public import PiBaseLean.Theorems.T802.Theorem
 public import PiBaseLean.Theorems.T803.Theorem
 public import PiBaseLean.Theorems.T817.Theorem
 public import PiBaseLean.Theorems.T818.Theorem
+public import PiBaseLean.Theorems.T825.Theorem
 public import PiBaseLean.Theorems.T834.Theorem
 public import PiBaseLean.Theorems.T840.Theorem
 public import PiBaseLean.Theorems.T853.Theorem
@@ -446,7 +459,7 @@ correspondence between this library and the database is checked by the kernel.
 
 This file is generated. To extend it, formalize a theorem; it is picked up automatically.
 
-9 formalized theorems are deliberately absent: their statements disagree
+0 formalized theorems are deliberately absent: their statements disagree
 with the uid they are filed under, and are being resolved separately. They are listed,
 with both statements, in `scripts/gen_statement_check.py`. See https://github.com/felixpernegger/pibase-lean/issues/1324.
 -/
@@ -554,10 +567,12 @@ example : P178 ≤ P118 := T182
 example : P28 ≤ P80 := T183
 example : P80 ≤ P79 := T184
 example : P78 ≤ P57 := T187
+example : P78 ≤ P245 := T189
 example : P114 ≤ P163 := T190
 example : P114 ≤ P57ᶜ := T191
 example : P3 ≤ P84 := T193
 example : P118 ⊓ P5 ≤ P178 := T197
+example : P245 ≤ P208 := T198
 example : P116 ≤ P26 := T199
 example : P116 ≤ P55 := T200
 example : P26 ⊓ P55 ≤ P116 := T201
@@ -574,6 +589,7 @@ example : P52 ⊓ P129 ≤ P125ᶜ := T247
 example : P125ᶜ ≤ P52 := T248
 example : P125ᶜ ≤ P129 := T249
 example : P78ᶜ ≤ P125 := T250
+example : P129 ≤ P245 := T251
 example : P125 ⊓ P1 ≤ P129ᶜ := T253
 example : P131 ≤ P18 := T254
 example : P15 ≤ P132 := T256
@@ -588,6 +604,7 @@ example : P27 ≤ P28 := T270
 example : P3 ≤ P134 := T281
 example : P11 ≤ P134 := T282
 example : P134 ⊓ P1 ≤ P3 := T283
+example : P90 ≤ P130 := T284
 example : P90 ≤ P28 := T285
 example : P134 ≤ P135 := T286
 example : P2 ≤ P135 := T287
@@ -597,12 +614,15 @@ example : P136 ⊓ P16 ≤ P78 := T303
 example : P136 ⊓ P17 ≤ P57 := T304
 example : P51 ⊓ P137ᶜ ≤ P139 := T306
 example : P135 ⊓ P139 ⊓ P125 ≤ P36ᶜ := T308
+example : P236 ⊓ P3 ⊓ P27 ≤ P237 := T316
 example : P141 ≤ P140 := T325
+example : P237 ≤ P3 := T333
 example : P7 ≤ P13 := T335
 example : P8 ≤ P14 := T336
 example : P35 ≤ P34 := T337
 example : P67 ≤ P15 := T338
 example : P75 ≤ P16 := T339
+example : P237 ≤ P27 := T340
 example : P87 ≤ P137ᶜ := T346
 example : P90 ≤ P147 := T350
 example : P150 ≤ P153 := T359
@@ -622,6 +642,7 @@ example : P78ᶜ ≤ P176 := T431
 example : P180 ≤ P26 := T440
 example : P89 ≤ P137ᶜ := T446
 example : P129 ≤ P185 := T448
+example : P245 ≤ P27 := T450
 example : P204 ≤ P36 := T452
 example : P181 ≤ P57 := T454
 example : P181 ≤ P78ᶜ := T455
@@ -694,6 +715,7 @@ example : P119 ≤ P195 := T802
 example : P119 ≤ P49 := T803
 example : P52 ≤ P219 := T817
 example : P78 ≤ P219 := T818
+example : P245 ≤ P226 := T825
 example : P227 ≤ P58ᶜ := T834
 example : P228 ≤ P79 := T840
 example : P230 ≤ P231 := T853

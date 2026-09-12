@@ -34,25 +34,19 @@ OUTPUT = ROOT / "PiBaseLean" / "StatementCheck.lean"
 
 ISSUE_URL = "https://github.com/felixpernegger/pibase-lean/issues/1324"
 
-# Theorems whose Lean statement does not match the uid it is filed under. Each is
-# a claim π-base does not make, standing in the slot of one it does; none of them
-# is merely a misfiled uid (no upstream theorem states what these prove). They are
-# excluded from the generated file so that the check can land while they are
-# resolved separately -- see the issue above. Removing an entry from this list and
-# rerunning the generator is what proves it fixed.
+# Theorems whose Lean statement does not match the uid it is filed under, mapping
 #
-#   uid  -> (what the Lean file proves, what the snapshot records)
-QUARANTINE = {
-    "T189": ("P78 ≤ P27", "P78 ≤ P245"),
-    "T198": ("P78 ≤ P208", "P245 ≤ P208"),
-    "T251": ("P129 ≤ P16", "P129 ≤ P245"),
-    "T284": ("P90 ≤ P23", "P90 ≤ P130"),
-    "T316": ("P90 ≤ P42", "P236 ⊓ P3 ⊓ P27 ≤ P237"),
-    "T333": ("P124 ≤ P3", "P237 ≤ P3"),
-    "T340": ("P124 ≤ P27", "P237 ≤ P27"),
-    "T450": ("P129 ≤ P27", "P245 ≤ P27"),
-    "T825": ("P78 ≤ P226", "P245 ≤ P226"),
-}
+#   uid -> (what the Lean file proves, what the snapshot records)
+#
+# Such a theorem is excluded from the generated file, so it is checked by nothing; the
+# table exists so that a disagreement can be recorded and worked off rather than silently
+# tolerated. Every run audits it: an entry whose theorem now agrees with the snapshot fails
+# with a request to delete it, so a fix cannot be left uncovered, and an entry whose
+# recorded statements have gone stale fails too.
+#
+# Empty is the goal state, and is the state today: the nine disagreements reported in the
+# issue below were fixed rather than quarantined.
+QUARANTINE: dict[str, tuple[str, str]] = {}
 
 
 def short(uid: str) -> str:
@@ -202,6 +196,30 @@ def render(book: dict[str, tuple[list[str], str]], theorems: list[tuple[str, Pat
     return "\n".join(lines)
 
 
+def quarantine_report() -> str:
+    """The quarantine, spelled out.
+
+    A quarantined theorem is excluded from the generated file, so it contributes nothing to
+    a passing run. Saying only that the check passed invites reading a green build as "every
+    formalized theorem agrees with pi-base", which is exactly what is not true while this
+    list is non-empty. So the list is printed in full, every run, pass or fail.
+    """
+    if not QUARANTINE:
+        return "No theorems are quarantined: every formalized theorem is checked."
+    lines = [
+        "",
+        f"NOT CHECKED: {len(QUARANTINE)} formalized theorems are excluded because their",
+        f"statement disagrees with the uid they are filed under. These are still wrong in the",
+        f"source; a passing run says nothing about them. See {ISSUE_URL}.",
+        "",
+    ]
+    width = max(len(uid) for uid in QUARANTINE)
+    for uid, (lean, data) in sorted(QUARANTINE.items(), key=lambda kv: int(kv[0][1:])):
+        lines.append(f"  {uid:<{width}}  proves {lean}")
+        lines.append(f"  {'':<{width}}  pi-base says {data}")
+    return "\n".join(lines)
+
+
 def main() -> int:
     book = snapshot_statements()
     theorems = formalized()
@@ -233,14 +251,13 @@ def main() -> int:
                 file=sys.stderr,
             )
             return 1
-        print(f"{OUTPUT.relative_to(ROOT)} is up to date ({checked} statements checked).")
+        print(f"{OUTPUT.relative_to(ROOT)} is up to date: {checked} statements checked.")
+        print(quarantine_report())
         return 0
 
     OUTPUT.write_text(rendered, encoding="utf-8")
-    print(
-        f"Wrote {OUTPUT.relative_to(ROOT)}: {checked} statements checked, "
-        f"{len(QUARANTINE)} quarantined."
-    )
+    print(f"Wrote {OUTPUT.relative_to(ROOT)}: {checked} statements checked.")
+    print(quarantine_report())
     return 0
 
 
