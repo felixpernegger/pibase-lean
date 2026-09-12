@@ -745,6 +745,7 @@ import PiBaseLean.Properties.P98.Lemmas
 import PiBaseLean.Properties.P99.Bundled
 import PiBaseLean.Properties.P99.Defs
 import PiBaseLean.Properties.P99.Lemmas
+import PiBaseLean.StatementCheck
 import PiBaseLean.Theorems.T1.Theorem
 import PiBaseLean.Theorems.T100.Theorem
 import PiBaseLean.Theorems.T101.Theorem

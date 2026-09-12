@@ -17,6 +17,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+
+      # `PiBaseLean/StatementCheck.lean` is generated from `data/pibase.json` and
+      # is what ties each `T<n>` to the implication pi-base records under that
+      # uid. Regenerating it here means a stale file -- a theorem formalized
+      # without rerunning the generator, or a snapshot bump that restates a
+      # theorem -- fails the build instead of going unnoticed. The contents are
+      # then checked by Lean itself in the build step below.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check that the statement check is up to date
+        run: PYTHONDONTWRITEBYTECODE=1 python3 scripts/gen_statement_check.py --check
+
       - uses: leanprover/lean-action@v1
         with:
           build-args: --wfail
