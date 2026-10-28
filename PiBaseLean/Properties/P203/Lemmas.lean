@@ -10,27 +10,10 @@ namespace PiBase
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 theorem WellDefined.almostDiscreteSpace : WellDefined AlmostDiscreteSpace :=
-  fun {X Y} _ _ φ h => by
-    obtain ⟨p, hp⟩ := h.ex_point
-    refine ⟨⟨φ.some p, fun x => ?_⟩⟩
-    have h_ne_iff : x ≠ φ.some p ↔ φ.some.symm x ≠ p := by
-      constructor
-      · intro h_ne h_eq
-        apply h_ne
-        calc x = φ.some (φ.some.symm x) := (φ.some.apply_symm_apply x).symm
-          _ = φ.some p := by rw [h_eq]
-      · intro h_ne h_eq
-        apply h_ne
-        calc φ.some.symm x = φ.some.symm (φ.some p) := by rw [h_eq]
-          _ = p := φ.some.symm_apply_apply p
-    have h_singleton_eq : φ.some.symm '' {x} = {φ.some.symm x} := Set.image_singleton
-    have h_isOpen_iff : IsOpen {φ.some.symm x} ↔ IsOpen {x} := by
-      have h_img := φ.some.symm.isOpen_image (s := {x})
-      rw [h_singleton_eq] at h_img
-      exact h_img
-    calc x ≠ φ.some p ↔ φ.some.symm x ≠ p := h_ne_iff
-      _ ↔ IsOpen {φ.some.symm x} := hp (φ.some.symm x)
-      _ ↔ IsOpen {x} := h_isOpen_iff
+  fun {X Y} _ _ ⟨φ⟩ ⟨p, hp⟩ => by
+    refine ⟨φ p, fun x ↦ ?_⟩
+    specialize hp (φ.symm x)
+    simp [Homeomorph.symm_apply_eq, ← φ.symm.isOpen_image, hp.symm]
 
 theorem Homeomorph.almostDiscreteSpace [AlmostDiscreteSpace X]
     (f : X ≃ₜ Y) : AlmostDiscreteSpace Y := by

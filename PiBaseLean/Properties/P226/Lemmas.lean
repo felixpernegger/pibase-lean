@@ -32,6 +32,6 @@ theorem WellDefined.artinianSpace : WellDefined ArtinianSpace :=
     have hwf_iff : WellFounded (fun (a b : Closeds Y) => a > b) ↔
         WellFounded (fun (a b : Closeds X) => a > b) :=
       Function.Surjective.wellFounded_iff hf_surj (fun {a b} => hf_gt_iff a b)
-    exact ⟨hwf_iff.mpr h.wf⟩
+    exact hwf_iff.mpr h
 
 end PiBase
